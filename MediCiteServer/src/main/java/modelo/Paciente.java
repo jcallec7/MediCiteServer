@@ -1,4 +1,4 @@
-package mediciteServer.modelo;
+package modelo;
 
 public class Paciente {
 
