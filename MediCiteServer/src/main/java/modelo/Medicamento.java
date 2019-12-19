@@ -1,11 +1,23 @@
 package modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Medicamento {
 	
-	
+	@Id
+	@Column(name="mc_medic_id")
 	private int id;
+	
+	@Column(name="mc_medic_nombre")
 	private String nombreMed;
+	
+	@Column(name="mc_medic_concentr")
 	private String concentracion;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -24,9 +36,6 @@ public class Medicamento {
 	public void setConcentracion(String concentracion) {
 		this.concentracion = concentracion;
 	}
-	
-	
-	
 	
 	
 	@Override
