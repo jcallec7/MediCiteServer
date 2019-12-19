@@ -1,38 +1,44 @@
 package modelo;
 
+import javax.persistence.*;
+
+@Entity
 public class Diagnostico {
 	
-	private int id;
+	@Id
+	@Column(name="mc_diag_id")
+	private int ID;
+	
+	@Column(name="mc_diag_detalle")
 	private String detalle;
+	
+	@Column(name="mc_diag_receta")
 	private Receta receta;
-	public int getId() {
-		return id;
+
+		public int getID() {
+    	return ID;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setID(int iD) {
+		ID = iD;
 	}
+
 	public String getDetalle() {
 		return detalle;
 	}
+
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
+
 	public Receta getReceta() {
 		return receta;
 	}
+
 	public void setReceta(Receta receta) {
 		this.receta = receta;
 	}
 	
-	
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "Diagnostico [id=" + id + ", detalle=" + detalle + ", receta=" + receta + "]";
-	}
 	
 	
 	
