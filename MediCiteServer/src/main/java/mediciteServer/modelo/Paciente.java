@@ -1,5 +1,5 @@
 package mediciteServer.modelo;
 
-public class Persona {
+public class Paciente {
 
 }
