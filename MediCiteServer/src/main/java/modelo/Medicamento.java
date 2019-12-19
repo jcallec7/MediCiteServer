@@ -42,11 +42,5 @@ public class Medicamento {
 	public String toString() {
 		return "Medicamento [id=" + id + ", nombreMed=" + nombreMed + ", concentracion=" + concentracion + "]";
 	}
-	
-	
-	
-	
-	
-	
 
 }
