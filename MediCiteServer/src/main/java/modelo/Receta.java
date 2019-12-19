@@ -30,6 +30,12 @@ public class Receta implements Serializable{
 	private String mc_rec_descr;
 	
 	
+	
+	
+	
+	
+	
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "mc_medic_id")
 	private List<Medicamento> mc_medicamentos;
