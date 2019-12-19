@@ -51,6 +51,7 @@ public class MedicoDAO {
 		return clientes;
 	}
 	
+	
 	public List<Medico> getMedicoXNombre(String filtro){
 		String jpql = "SELECT a FROM Cliente a WHERE bib_cli_nombre LIKE ?1";
 		Query q = em.createQuery(jpql, Medico.class);

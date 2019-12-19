@@ -36,6 +36,7 @@ public class GestionMedico{
 		return dao.getMedico();
 	}
 	
+	
 	public List<Medico> getMedicoPorNombre(String filtro){
 		
 		return dao.getMedicoXNombre(filtro);

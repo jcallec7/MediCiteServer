@@ -71,6 +71,7 @@ public class Medico {
 		return genero;
 	}
 
+	
 
 
 	public void setGenero(String genero) {
