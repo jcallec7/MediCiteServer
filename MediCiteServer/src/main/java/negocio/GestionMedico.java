@@ -19,9 +19,9 @@ public class GestionMedico implements GestionMedicoLocal, GestionMedicoRemote{
 
 	private List<Medico> medico = new ArrayList<Medico>();
 	
-	public void guardarMedico(int id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena){
+	public void guardarMedico(String id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena){
 		Medico m = new Medico();  
-		m.setId(id);  
+		m.setId(id);
 		m.setNombre(nombre);
 		m.setApellido(apellido);
 		m.setGenero(genero);

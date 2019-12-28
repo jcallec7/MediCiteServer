@@ -16,7 +16,7 @@ public class GestionMedicoBean {
 	private GestionMedicoLocal gml;
 	
 	
-	private int id;
+	private String id;
 	private String nombre;
 	private String apellido;
 	private String genero;
@@ -28,8 +28,6 @@ public class GestionMedicoBean {
 
 	private List<Medico> Medicos;
 
-	
-
 	public GestionMedicoLocal getGml() {
 		return gml;
 	}
@@ -38,11 +36,12 @@ public class GestionMedicoBean {
 		this.gml = gml;
 	}
 
-	public int getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -119,10 +118,14 @@ public class GestionMedicoBean {
 		this.contrasena = contrasena;
 	}
 
+	
+	
 	public String guardarMedico() {
 		
 		gml.guardarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
+		//System.out.print(id+"," +nombre+"," +apellido+"," +genero+"," +especialidad+"," + correo+"," +direccion+"," +fechaNac+"," +contrasena);
 		Medicos = gml.getMedico();
+		
 		
 		//return "listadoAutores";
 		return null;

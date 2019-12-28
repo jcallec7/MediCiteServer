@@ -17,7 +17,7 @@ public class Medico {
 	@Id
 	@Size(min=10, max=13)
 	@Column(name="mc_med_id")
-	private int id;
+	private String id;
 	
 	@Column(name="mc_med_nombre")
 	private String nombre;
@@ -46,14 +46,19 @@ public class Medico {
 	private String contrasena;
 
 	
-	public int getId() {
+	
+
+
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+
+	public void setId(String id) {
 		this.id = id;
 	}
+
 
 
 	public String getNombre() {
@@ -154,7 +159,7 @@ public class Medico {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero
+		return "Medico [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero
 				+ ", correo=" + correo + ", direccion=" + direccion + ", fechaNac=" + fechaNac + "]";
 	}
 	
