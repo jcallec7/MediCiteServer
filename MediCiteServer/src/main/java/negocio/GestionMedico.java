@@ -9,6 +9,7 @@ import datos.MedicoDAO;
 import modelo.Medico;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Stateless
 public class GestionMedico implements GestionMedicoLocal, GestionMedicoRemote{
@@ -18,7 +19,7 @@ public class GestionMedico implements GestionMedicoLocal, GestionMedicoRemote{
 
 	private List<Medico> medico = new ArrayList<Medico>();
 	
-	public void guardarMedico(int id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, String fechaNac){
+	public void guardarMedico(int id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena){
 		Medico m = new Medico();  
 		m.setId(id);  
 		m.setNombre(nombre);
@@ -28,6 +29,7 @@ public class GestionMedico implements GestionMedicoLocal, GestionMedicoRemote{
 		m.setCorreo(correo);
 		m.setDireccion(direccion);
 		m.setFechaNac(fechaNac);
+		m.setContrasena(contrasena);
 		System.out.println(m);
 		dao.insert(m);
 	}
