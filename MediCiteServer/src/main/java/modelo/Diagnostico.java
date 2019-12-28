@@ -40,13 +40,4 @@ public class Diagnostico {
 		this.receta = receta;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
