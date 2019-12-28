@@ -9,6 +9,7 @@ import datos.PacienteDAO;
 import modelo.Paciente;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Stateless
 public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLocal{
@@ -18,15 +19,14 @@ public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLo
 
 	private List<Paciente> Pacientes = new ArrayList<Paciente>();
 
-	public void guardarPaciente(String id, String nombre, String apellido, String cedula, String genero,
-								String fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
+	public void guardarPaciente(String id, String nombre, String apellido, String genero,
+								Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
 								String peso, String estatura) {
 
 		Paciente c = new Paciente();
 		c.setId(id);
 		c.setNombre(nombre);
 		c.setApellido(apellido);
-		c.setCedula(cedula);
 		c.setGenero(genero);
 		c.setFecha_nac(fecha_nac);
 		c.setCorreo(correo);

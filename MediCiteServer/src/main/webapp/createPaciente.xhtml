@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="titulo">Pagina de Prueba</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			<h:outputLabel value = "Cedula o Ruc">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.id}">
+			</h:inputText>
+		
+			<h:outputLabel value = "Nombre">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.nombre}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Apellido">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.apellido}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Genero">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.genero}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Fecha Nacimiento" for="fecha" />
+			<h:inputText value = "#{gestionPacienteBean.fecha_nac}" id="fecha">
+				<f:convertDateTime pattern="yyyy/MM/dd" />
+			</h:inputText>
+			
+			<h:outputLabel value = "Correo">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.correo}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Contraseña">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.contrasena}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Telefono 1">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.telf1}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Telefono 2 (Opcional)">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.telf2}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Direccion">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.direccion}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Peso (kg)">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.peso}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Estatura (cm)">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionPacienteBean.estatura}">
+			</h:inputText>
+			
+			<h:commandButton value="Guardar" action="#{gestionPacienteBean.guardarPaciente()}">
+			</h:commandButton>
+
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

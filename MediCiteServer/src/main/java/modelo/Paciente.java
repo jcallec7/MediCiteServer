@@ -1,9 +1,13 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -28,14 +32,12 @@ public class Paciente implements Serializable {
 	@Column(name="mc_pa_apellido")
 	private String apellido;
 	
-	@Column(name="mc_pa_cedula")
-	private String cedula;
-	
 	@Column(name="mc_pa_genero")
 	private String genero;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="mc_pa_fecha_nac")
-	private String fecha_nac;
+	private Date fecha_nac;
 	
 	@Email
 	@Column(name="mc_pa_correo")
@@ -83,14 +85,6 @@ public class Paciente implements Serializable {
 		this.apellido = apellido;
 	}
 
-	public String getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
-	}
-
 	public String getGenero() {
 		return genero;
 	}
@@ -98,12 +92,12 @@ public class Paciente implements Serializable {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-
-	public String getFecha_nac() {
+	
+	public Date getFecha_nac() {
 		return fecha_nac;
 	}
 
-	public void setFecha_nac(String fecha_nac) {
+	public void setFecha_nac(Date fecha_nac) {
 		this.fecha_nac = fecha_nac;
 	}
 
@@ -163,14 +157,9 @@ public class Paciente implements Serializable {
 		this.estatura = estatura;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public String toString() {
-		return "Paciente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
-				+ ", genero=" + genero + ", fecha_nac=" + fecha_nac + ", correo=" + correo + ", contrasena="
+		return "Paciente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", fecha_nac=" + fecha_nac + ", correo=" + correo + ", contrasena="
 				+ contrasena + ", telf1=" + telf1 + ", telf2=" + telf2 + ", direccion=" + direccion + ", peso=" + peso
 				+ ", estatura=" + estatura + "]";
 	}
