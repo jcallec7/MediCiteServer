@@ -23,50 +23,37 @@ public class Receta implements Serializable{
 	
 	@Id
 	@Column(name="mc_rec_id")
-	private int mc_rec_id;
-	
+	private int id;
 	
 	@Column(name="mc_rec_descr")
-	private String mc_rec_descr;
+	private String descr;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "mc_medic_id")
-	private List<Medicamento> mc_medicamentos;
+	private List<Medicamento> medicamentos;
 
-
-	public int getMc_rec_id() {
-		return mc_rec_id;
+	public int getId() {
+		return id;
 	}
 
-
-	public void setMc_rec_id(int mc_rec_id) {
-		this.mc_rec_id = mc_rec_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-
-	public String getMc_rec_descr() {
-		return mc_rec_descr;
+	public String getDescr() {
+		return descr;
 	}
 
-
-	public void setMc_rec_descr(String mc_rec_descr) {
-		this.mc_rec_descr = mc_rec_descr;
+	public void setDescr(String descr) {
+		this.descr = descr;
 	}
 
-
-	public List<Medicamento> getMc_medicamentos() {
-		return mc_medicamentos;
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
 	}
 
-
-	public void setMc_medicamentos(List<Medicamento> mc_medicamentos) {
-		this.mc_medicamentos = mc_medicamentos;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Receta [mc_rec_id=" + mc_rec_id + ", mc_rec_descr=" + mc_rec_descr + "]";
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
 	}
 
 }

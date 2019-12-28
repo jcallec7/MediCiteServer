@@ -12,7 +12,7 @@ public class Medicamento {
 	private int id;
 	
 	@Column(name="mc_medic_nombre")
-	private String nombreMed;
+	private String nombre;
 	
 	@Column(name="mc_medic_concentr")
 	private String concentracion;
@@ -24,11 +24,11 @@ public class Medicamento {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNombreMed() {
-		return nombreMed;
+	public String getnombre() {
+		return nombre;
 	}
-	public void setNombreMed(String nombreMed) {
-		this.nombreMed = nombreMed;
+	public void setnombre(String nombre) {
+		this.nombre = nombre;
 	}
 	public String getConcentracion() {
 		return concentracion;
@@ -40,7 +40,7 @@ public class Medicamento {
 	
 	@Override
 	public String toString() {
-		return "Medicamento [id=" + id + ", nombreMed=" + nombreMed + ", concentracion=" + concentracion + "]";
+		return "Medicamento [id=" + id + ", nombre=" + nombre + ", concentracion=" + concentracion + "]";
 	}
 
 }

@@ -3,6 +3,8 @@ package modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Factura {
@@ -11,8 +13,9 @@ public class Factura {
 	@Column(name="mc_fact_id")
 	private int id;
 	
-	@Column(name="mc_fact_consulta")
-	Consulta consulta;
+	@OneToOne
+	@JoinColumn(name = "mc_cons_id")
+	private Consulta consulta;
 	
 	@Column(name="mc_fact_subtotal")
 	private double subtotal;

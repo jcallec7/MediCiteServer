@@ -23,7 +23,7 @@ public class Consulta implements Serializable {
 	private static final long serialVersionUID = -6594217200682507286L;
 
 	@Id
-	@Column(name = "mc_cons_ID")
+	@Column(name = "mc_cons_id")
 	private int id;
 
 	@ManyToOne
