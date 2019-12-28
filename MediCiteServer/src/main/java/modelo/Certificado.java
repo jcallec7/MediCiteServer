@@ -17,7 +17,7 @@ public class Certificado {
 	@Column(name="mc_cert_fecha")
 	private Date fecha;
 	
-	@OneToOne()
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mc_cons_id")
 	Consulta consulta;
 	
