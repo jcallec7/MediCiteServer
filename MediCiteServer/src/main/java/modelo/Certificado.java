@@ -10,14 +10,14 @@ public class Certificado {
 	@Column(name="mc_cert_id")
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "mc_pa_id")
 	Paciente paciente;
 	
 	@Column(name="mc_cert_fecha")
 	private Date fecha;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "mc_cons_id")
 	Consulta consulta;
 	
