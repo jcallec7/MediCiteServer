@@ -11,19 +11,19 @@ import modelo.Paciente;
 import java.util.ArrayList;
 
 @Stateless
-public class GestionPaciente{
-	
+public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLocal{
+
 	@Inject
 	private PacienteDAO dao;
 
 	private List<Paciente> Pacientes = new ArrayList<Paciente>();
-	
-	public void guardarPaciente(String id, String nombre, String apellido, String cedula, String genero, 
-								String fecha_nac, String correo, String contrasena, String telf1, 
-								String telf2, String direccion, String peso, String estatura) {
-		
-		Paciente c = new Paciente();  
-		c.setId(id);  
+
+	public void guardarPaciente(String id, String nombre, String apellido, String cedula, String genero,
+								String fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
+								String peso, String estatura) {
+
+		Paciente c = new Paciente();
+		c.setId(id);
 		c.setNombre(nombre);
 		c.setApellido(apellido);
 		c.setCedula(cedula);
@@ -36,20 +36,19 @@ public class GestionPaciente{
 		c.setDireccion(direccion);
 		c.setPeso(peso);
 		c.setEstatura(estatura);
-		
+
 		Pacientes.add(c);
-		//System.out.println(c);
+		// System.out.println(c);
 		dao.insert(c);
 	}
-	
-	public List<Paciente> getPacientes(){
+
+	public List<Paciente> getPacientes() {
 		System.out.println(Pacientes);
 		return Pacientes;
 	}
-	
-	public List<Paciente> getPacientesPorId(String filtro){
+
+	public List<Paciente> getPacientesPorId(String filtro) {
 		return dao.getPacientesXNombre(filtro);
 	}
 
-	
 }

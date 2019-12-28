@@ -12,7 +12,8 @@ public class Diagnostico {
 	@Column(name="mc_diag_detalle")
 	private String detalle;
 	
-	@Column(name="mc_diag_receta")
+	@OneToOne
+	@JoinColumn(name = "mc_rec_id")
 	private Receta receta;
 
 		public int getID() {

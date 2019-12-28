@@ -1,55 +1,95 @@
 package modelo;
 
-
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Time;
-import java.util.List;
+//import java.sql.Time;
+import java.util.Date;
+//import java.util.List;
 
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.*;
+import javax.persistence.ManyToOne;
+//import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-public class Consulta implements Serializable
+public class Consulta implements Serializable {
 
-{
 	private static final long serialVersionUID = -6594217200682507286L;
-	
+
 	@Id
-	@Column(name="mc_cons_ID")
+	@Column(name = "mc_cons_ID")
 	private int id;
-	
-	
-	@JoinColumn(name = "mc_cons_paciente")
+
+	@ManyToOne
+	@JoinColumn(name = "mc_pa_id")
 	private Paciente paciente;
-	
-	
-	
-	@JoinColumn(name = "mc_cons_medico")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "mc_med_id")
 	private Medico medico;
-	
-	@Column(name="mc_cons_fecha")
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "mc_cons_fecha")
 	private Date fecha;
-	
-	@Column(name="mc_cons_hora")
-	private Time hora;
-	
-	
-	@JoinColumn(name = "mc_cons_diagnostico")
+
+	@OneToOne
+	@JoinColumn(name = "mc_diag_id")
 	private Diagnostico diagnostico;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public Diagnostico getDiagnostico() {
+		return diagnostico;
+	}
+
+	public void setDiagnostico(Diagnostico diagnostico) {
+		this.diagnostico = diagnostico;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public String toString() {
-		return "Consulta [id=" + id + ", paciente=" + paciente + ", medico=" + medico + ", fecha=" + fecha + ", hora="
-				+ hora + ", diagnostico=" + diagnostico + "]";
+		return "Consulta [id=" + id + ", paciente=" + paciente + ", medico=" + medico + ", fecha=" + fecha
+				+ ", diagnostico=" + diagnostico + "]";
 	}
-	
-	
-	
+
 }

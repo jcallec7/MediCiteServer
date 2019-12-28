@@ -3,11 +3,15 @@ package modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class Medico {
 
 	@Id
+	@Size(min=10, max=13)
 	@Column(name="mc_med_id")
 	private int id;
 	
@@ -23,6 +27,7 @@ public class Medico {
 	@Column(name="mc_med_especialidad")
 	private String especialidad;
 	
+	@Email
 	@Column(name="mc_med_correo")
 	private String correo;
 	

@@ -1,10 +1,12 @@
 package modelo;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class Paciente implements Serializable {
@@ -14,7 +16,9 @@ public class Paciente implements Serializable {
 	 */
 	private static final long serialVersionUID = -6594217200682507286L;
 
+	
 	@Id
+	@Size(min=10, max=13)
 	@Column(name="mc_pa_id")
 	private String id;
 	
@@ -33,6 +37,7 @@ public class Paciente implements Serializable {
 	@Column(name="mc_pa_fecha_nac")
 	private String fecha_nac;
 	
+	@Email
 	@Column(name="mc_pa_correo")
 	private String correo;
 	

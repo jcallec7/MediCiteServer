@@ -43,7 +43,7 @@ public class RecetaDAO {
 	
 	public List<Receta> getReceta() {
 		
-		String jpql = "SELECT c FROM Cliente c";
+		String jpql = "SELECT c FROM Receta c";
 		Query q = em.createQuery(jpql, Receta.class);
 		
 		List<Receta> receta = q.getResultList();	
@@ -53,7 +53,7 @@ public class RecetaDAO {
 	
 	
 	public List<Receta> getRecetaXNombre(String filtro){
-		String jpql = "SELECT a FROM Cliente a WHERE bib_cli_nombre LIKE ?1";
+		String jpql = "SELECT a FROM Receta a WHERE  LIKE ?1";
 		Query q = em.createQuery(jpql, Receta.class);
 		q.setParameter(1, "%" + filtro + "%");
 		
