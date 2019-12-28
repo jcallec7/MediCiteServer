@@ -1,47 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
 
+	<ui:define name="titulo">Pagina de Prueba</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
 
-	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      template="blank.xhtml">
-	
-		<ui:define name="titulo">Pagina de Prueba</ui:define>
-		
-		<ui:define name="contenido">
-			<h:form>
-	
-				<h:outputLabel value = "Cedula o Ruc">
-				</h:outputLabel>
-				
-				<h:inputText value = "#{gestionBean.id}">
-				</h:inputText>
+			<h:outputLabel value = "Cedula o Ruc">
+			</h:outputLabel>
 			
-				<h:outputLabel value = "Nombre">
-				</h:outputLabel>
-				
-				<h:inputText value = "#{gestionBean.nombre}">
-				</h:inputText>
-				
-				<h:outputLabel value = "Apellido">
-				</h:outputLabel>
-				
-				<h:inputText value = "#{gestionBean.apellido}">
-				</h:inputText>
-				
-				<h:outputLabel value = "Fecha Nacimiento">
-				</h:outputLabel>
-				
-				<h:inputText value = "#{gestionBean.fecha_nac}">
-				</h:inputText>
-				
-				<h:commandButton value="Guardar" action="#{gestionBean.guardarPaciente()}">
-				</h:commandButton>
-	
-			</h:form>
+			<h:inputText value = "#{gestionBean.id}">
+			</h:inputText>
 		
-		</ui:define>
-		
+			<h:outputLabel value = "Nombre">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionBean.nombre}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Apellido">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionBean.apellido}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Fecha Nacimiento">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionBean.fecha_nac}">
+			</h:inputText>
+			
+			<h:commandButton value="Guardar" action="#{gestionBean.guardarPaciente()}">
+			</h:commandButton>
+
+		</h:form>
 	
-	</ui:composition>
+	</ui:define>
+	
+
+</ui:composition>
 

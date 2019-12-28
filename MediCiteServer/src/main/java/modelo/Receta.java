@@ -29,7 +29,7 @@ public class Receta implements Serializable{
 	private String descr;
 	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "medicamento", referencedColumnName = "mc_rec_id")
+	@JoinColumn(name = "mc_rec_id", referencedColumnName = "mc_rec_id")
 	private List<Medicamento> medicamentos;
 
 	public int getId() {
