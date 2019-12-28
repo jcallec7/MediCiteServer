@@ -52,10 +52,11 @@
 			<h:inputText value = "#{gestionMedicoBean.direccion}">
 			</h:inputText>
 			
-			<h:outputLabel value = "Fecha Nacimiento">
+			<h:outputLabel value = "Fecha Nacimiento" for="fecha">
 			</h:outputLabel>
 			
-			<h:inputText value = "#{gestionMedicoBean.fechaNac}">
+			<h:inputText value = "#{gestionMedicoBean.fechaNac}" id="fecha">
+				<f:convertDateTime pattern="yyyy/MM/dd" />
 			</h:inputText>
 			
 			<h:outputLabel value = "Constraseña">

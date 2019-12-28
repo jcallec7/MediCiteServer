@@ -110,7 +110,6 @@ public class GestionMedicoBean {
 		Medicos = medicos;
 	}
 	
-	
 
 	public String getContrasena() {
 		return contrasena;
