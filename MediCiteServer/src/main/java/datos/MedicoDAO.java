@@ -60,6 +60,7 @@ public class MedicoDAO {
 		List<Medico> Medicos = q.getResultList();
 		
 		return Medicos;
+		
 	}
 
 }
