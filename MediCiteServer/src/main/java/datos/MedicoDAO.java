@@ -53,7 +53,7 @@ public class MedicoDAO {
 	
 	
 	public List<Medico> getMedicoXNombre(String filtro){
-		String jpql = "SELECT a FROM Medico a WHERE mc_med_nombre OR mc_med_apellido OR mc_med_especialidad LIKE ?1";
+		String jpql = "SELECT a FROM Medico a WHERE mc_med_nombre LIKE ?1 OR mc_med_apellido LIKE ?1 OR mc_med_especialidad LIKE ?1";
 		Query q = em.createQuery(jpql, Medico.class);
 		q.setParameter(1, "%" + filtro + "%");
 		
