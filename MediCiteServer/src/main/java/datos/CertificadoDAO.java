@@ -43,7 +43,7 @@ public class CertificadoDAO {
 	
 	public List<Certificado> getCertificado() {
 		
-		String jpql = "SELECT c FROM Cliente c";
+		String jpql = "SELECT c FROM Certificado c";
 		Query q = em.createQuery(jpql, Certificado.class);
 		
 		List<Certificado> certificado = q.getResultList();	
@@ -52,8 +52,8 @@ public class CertificadoDAO {
 	}
 	
 	
-	public List<Certificado> getCertificadoXNombre(String filtro){
-		String jpql = "SELECT a FROM Cliente a WHERE bib_cli_nombre LIKE ?1";
+	public List<Certificado> getCertificadoXId(String filtro){
+		String jpql = "SELECT c FROM Certificado a WHERE mc_cert_id LIKE ?1";
 		Query q = em.createQuery(jpql, Certificado.class);
 		q.setParameter(1, "%" + filtro + "%");
 		
