@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="titulo">Actualizar Medico</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			<h:outputLabel value = "Cedula o Ruc">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.id}">
+			</h:inputText>
+		
+			<h:outputLabel value = "Nombre">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.nombre}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Apellido">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.apellido}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Genero">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.genero}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Especialidad">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.especialidad}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Correo">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.correo}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Dirección">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.direccion}">
+			</h:inputText>
+			
+			<h:outputLabel value = "Fecha Nacimiento" for="fecha">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.fechaNac}" id="fecha">
+				<f:convertDateTime pattern="yyyy/MM/dd" />
+			</h:inputText>
+			
+			<h:outputLabel value = "Constraseña">
+			</h:outputLabel>
+			
+			<h:inputText value = "#{gestionMedicoBean.contrasena}">
+			</h:inputText>
+			
+			<h:commandButton value="Guardar" action="#{gestionMedicoBean.guardarMedico()}">
+			</h:commandButton>
+
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+
