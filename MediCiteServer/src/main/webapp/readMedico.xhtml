@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="titulo">Buscar Medico</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			Filtro de búsqueda : <h:inputText value="#{gestionMedicoBean.filtro}" id = "filtro">
+			<f:ajax execute = "filtro" render = "resultado" listener = "#{gestionMedicoBean.buscarMedico()}"
+			event = "keypress"/>
+			</h:inputText>
+									
+			<h:commandButton action="#{gestionMedicoBean.buscarMedico()}" value="Buscar">
+			<f:ajax render = "resultado" execute = "filtro"/>
+			</h:commandButton>
+
+			<h:dataTable value="#{gestionMedicoBean.medicos}" var="medico" id="resultado">
+			
+				<h:column>
+					#{medico.id}
+					<f:facet name="header">Código</f:facet>
+				</h:column>
+				<h:column>
+					#{medico.nombre}
+					<f:facet name="header">Nombre</f:facet>
+				</h:column>
+				<h:column>
+					#{medico.apellido}
+					<f:facet name="header">Apellido</f:facet>
+				</h:column>
+				<h:column>
+					#{medico.especialidad}
+					<f:facet name="header">Especialidad</f:facet>
+				</h:column>
+			
+			</h:dataTable>
+			
+			
+			<h:commandButton value="Ingresar Medico" action="createMedico">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

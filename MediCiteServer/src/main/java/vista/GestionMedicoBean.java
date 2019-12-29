@@ -26,7 +26,8 @@ public class GestionMedicoBean {
 	private Date fechaNac;
 	private String contrasena;
 
-	private List<Medico> Medicos;
+	private List<Medico> medicos;
+	private String filtro;
 
 	public GestionMedicoLocal getGml() {
 		return gml;
@@ -99,16 +100,7 @@ public class GestionMedicoBean {
 
 	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
-	}
-
-	public List<Medico> getMedicos() {
-		return Medicos;
-	}
-
-	public void setMedicos(List<Medico> medicos) {
-		Medicos = medicos;
-	}
-	
+	}	
 
 	public String getContrasena() {
 		return contrasena;
@@ -118,16 +110,37 @@ public class GestionMedicoBean {
 		this.contrasena = contrasena;
 	}
 
-	
-	
+	public List<Medico> getMedicos() {
+		return medicos;
+	}
+
+	public void setMedicos(List<Medico> medicos) {
+		this.medicos = medicos;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
+
 	public String guardarMedico() {
 		
 		gml.guardarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
 		//System.out.print(id+"," +nombre+"," +apellido+"," +genero+"," +especialidad+"," + correo+"," +direccion+"," +fechaNac+"," +contrasena);
-		Medicos = gml.getMedico();
+		medicos = gml.getMedico();
 		
 		
 		//return "listadoAutores";
+		return null;
+	}
+	
+	public String buscarMedico() {
+		
+		medicos = gml.getMedicoPorNombre(filtro);
+		
 		return null;
 	}
 	
