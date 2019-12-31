@@ -47,7 +47,7 @@ public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLo
 		return Pacientes;
 	}
 
-	public List<Paciente> getPacientesPorId(String filtro) {
+	public List<Paciente> getPacientesPorNombre(String filtro) {
 		return dao.getPacientesXNombre(filtro);
 	}
 

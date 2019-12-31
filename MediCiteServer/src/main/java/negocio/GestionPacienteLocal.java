@@ -16,7 +16,7 @@ public interface GestionPacienteLocal {
 	
 	public List<Paciente> getPacientes();
 	
-	public List<Paciente> getPacientesPorId(String filtro);
+	public List<Paciente> getPacientesPorNombre(String filtro);
 	
 }
 	

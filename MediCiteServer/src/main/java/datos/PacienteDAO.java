@@ -51,7 +51,7 @@ public class PacienteDAO {
 	}
 	
 	public List<Paciente> getPacientesXNombre(String filtro){
-		String jpql = "SELECT a FROM Paciente a WHERE mc_pa_id LIKE ?1";
+		String jpql = "SELECT a FROM Paciente a WHERE mc_pa_nombre LIKE ?1 OR mc_pa_apellido LIKE ?1";
 		Query q = em.createQuery(jpql, Paciente.class);
 		q.setParameter(1, "%" + filtro + "%");
 		

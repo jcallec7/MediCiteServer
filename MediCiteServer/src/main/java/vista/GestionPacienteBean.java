@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import modelo.Paciente;
@@ -29,7 +30,10 @@ public class GestionPacienteBean {
 	private String peso;
 	private String estatura;
 
-	private List<Paciente> Pacientes;
+	private List<Paciente> pacientes;
+	
+	private String filtro;
+	private String selectedPacienteId;
 
 	public GestionPacienteLocal getGpl() {
 		return gpl;
@@ -136,20 +140,49 @@ public class GestionPacienteBean {
 	}
 
 	public List<Paciente> getPacientes() {
-		return Pacientes;
+		return pacientes;
 	}
 
 	public void setPacientes(List<Paciente> pacientes) {
-		Pacientes = pacientes;
+		this.pacientes = pacientes;
+	}
+
+	public String getSelectedPacienteId() {
+		return selectedPacienteId;
+	}
+
+	public void setSelectedPacienteId(String selectedPacienteId) {
+		this.selectedPacienteId = selectedPacienteId;
 	}
 
 	public String guardarPaciente() {
 
 		gpl.guardarPaciente(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura);
-		Pacientes = gpl.getPacientes();
+		pacientes = gpl.getPacientes();
 
 		// return "listadoAutores";
 		return null;
+	}
+	
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
+
+	public List<Paciente> buscarPaciente() {
+		
+		pacientes = gpl.getPacientesPorNombre(filtro);
+		
+		return pacientes;
+	}
+	
+	public String editPacienteById() {
+		selectedPacienteId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedPacienteId");
+		System.out.println(selectedPacienteId);
+		return "updatePaciente.xhtml";
 	}
 
 }
