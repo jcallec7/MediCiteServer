@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">Sección Paciente</ui:define>
+
+	<ui:define name="titulo">Buscar Paciente</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			Filtro de búsqueda : 
+			<h:inputText value="#{gestionPacienteBean.filtro}" id = "filtro">
+			<f:ajax execute = "filtro" render = "resultado" listener = "#{gestionPacienteBean.buscarPaciente()}"
+			event = "keypress"/>
+			</h:inputText>
+									
+			<h:commandButton action="#{gestionPacienteBean.buscarPaciente()}" value="Buscar">
+			<f:ajax render = "resultado" execute = "filtro"/>
+			</h:commandButton>
+			
+			
+
+			<h:dataTable value="#{gestionPacienteBean.buscarPaciente()}" var="pa" id="resultado" class="table table-bordered">
+			
+				<h:column>
+					#{pa.id}
+					<f:facet name="header">Cedula/RUC</f:facet>
+				</h:column>
+				<h:column>
+					#{pa.nombre}
+					<f:facet name="header">Nombre</f:facet>
+				</h:column>
+				<h:column>
+					#{pa.apellido}
+					<f:facet name="header">Apellido</f:facet>
+				</h:column>
+				<h:column>
+					#{pa.correo}
+					<f:facet name="header">Correo</f:facet>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="Editar" action="#{gestionPacienteBean.editPacienteById()}">
+						<f:param name="selectedPacienteId" value="#{pa.id}"/>
+					</h:commandButton>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton value="Eliminar" action="#{gestionPacienteBean.editPacienteById()}">
+						<f:param name="selectedPacienteId" value="#{pa.id}"/>
+					</h:commandButton>
+				</h:column>
+			
+			</h:dataTable>
+			
+			
+			
+			
+			<h:commandButton value="Ingresar Nuevo Paciente" action="createPaciente">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

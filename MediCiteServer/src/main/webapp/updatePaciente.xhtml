@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">
+        	Sección Paciente
+   	</ui:define>
+
+	<ui:define name="titulo">
+		<div class="card-header">
+        	<h3 class="card-title">Ingresar Nuevo Paciente</h3>
+        </div>
+   	</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			<div class="form-group">
+            	<h:outputLabel>Cedula o RUC</h:outputLabel>
+                <h:inputText value = "#{gestionPacienteBean.id}" class="form-control" a:placeholder="Ingrese el numero de cedula o RUC"/>
+           	</div>
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Nombre(s)</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.nombre}" class="form-control" a:placeholder="Ingrese el o los nombres"/>
+            </div>
+            
+            <div class="form-group">
+            	<h:outputLabel>Apellido(s)</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.apellido}" class="form-control" a:placeholder="Ingrese el o los apellidos"/>
+            </div>
+			
+			<div class="form-group">
+            	<h:outputLabel>Genero</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.genero}" class="form-control" a:placeholder="Ingrese el genero"/>
+            </div>
+            
+            <div class="form-group">
+	            <h:outputLabel for="fecha">Fecha Nacimiento</h:outputLabel>
+				<h:inputText value = "#{gestionPacienteBean.fecha_nac}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
+					<f:convertDateTime pattern="yyyy/MM/dd" />
+				</h:inputText>
+			</div>
+			
+			<div class="form-group">
+            	<h:outputLabel>Correo Electronico</h:outputLabel>
+                <h:inputText value = "#{gestionPacienteBean.correo}" class="form-control" a:placeholder="Ingrese el correo electronico"/>
+            </div>
+            
+            <div class="form-group">
+            	<h:outputLabel>Contraseña</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.contrasena}" class="form-control" id="exampleInputPassword1" a:placeholder="Ingrese la contraseña"/>
+            </div>
+			
+			<div class="form-group">
+            	<h:outputLabel>Telefono</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.telf1}" class="form-control" a:placeholder="Ingrese el telefono principal"/>
+            </div>
+            
+            <div class="form-group">
+            	<h:outputLabel>Telefono Secundario (Opcional)</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.telf2}" class="form-control" a:placeholder="Ingrese el telefono opcional"/>
+            </div>
+            
+            <div class="form-group">
+            	<h:outputLabel>Direccion</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.direccion}" class="form-control" a:placeholder="Ingrese la direccion"/>
+            </div>
+			
+			<div class="form-group">
+            	<h:outputLabel>Peso (kg)</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.peso}" class="form-control" a:placeholder="Ingrese el peso en kilogramos"/>
+            </div>
+			
+			<div class="form-group">
+            	<h:outputLabel>Estatura (cm)</h:outputLabel>
+            	<h:inputText value = "#{gestionPacienteBean.estatura}" class="form-control" a:placeholder="Ingrese la estatura en centimetros"/>
+            </div>
+			
+			<div class="card-footer">
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionPacienteBean.guardarPaciente()}"/>
+			</div>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+
