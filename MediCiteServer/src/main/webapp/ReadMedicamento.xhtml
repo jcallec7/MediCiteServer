@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+	
+	
+	<ui:define name="titulo">Buscar Medicamento</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+		
+		
+		
+
+			Filtro de búsqueda : 
+			<h:inputText value="#{gestionMedicamentoBean.filtro}" id = "filtro">
+			<f:ajax execute = "filtro" render = "resultado" listener = "#{gestionMedicamentoBean.buscarMedicamento()}"
+			event = "keypress"/>
+			</h:inputText>
+									
+			<h:commandButton action="#{gestionMedicamentoBean.buscarMedicamento()}" value="Buscar">
+			<f:ajax render = "resultado" execute = "filtro"/>
+			</h:commandButton>
+
+			<h:dataTable value="#{gestionMedicamentoBean.medicamentos}" var="medicamentos" id="resultado">
+			
+				<h:column>
+					#{medicamentos.id}
+					<f:facet name="header">Código</f:facet>
+				</h:column>
+				
+				<h:column>
+					#{medicamentos.nombre}
+					<f:facet name="header">Nombre</f:facet>
+				</h:column>
+				
+				<h:column>
+					#{medicamentos.concentracion}
+					<f:facet name="header">Apellido</f:facet>
+				</h:column>
+				
+				<h:column>
+					<h:commandButton value="Editar" action="UpdateMedicamento">
+					<f:facet name="header">Editar</f:facet>
+				</h:commandButton>
+					
+				</h:column>
+
+	
+			</h:dataTable>
+			
+			
+			<h:commandButton value="Ingresar Medicamento" action="CreateMedicamento">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

@@ -46,14 +46,14 @@ public class MedicamentoDAO {
 		String jpql = "SELECT m FROM Medicamento m";
 		Query q = em.createQuery(jpql, Medicamento.class);
 		
-		List<Medicamento> medicamento = q.getResultList();	
+		List<Medicamento> Medicamentos = q.getResultList();	
 		
-		return medicamento;
+		return Medicamentos;
 	}
 	
 	
 	public List<Medicamento> getMedicamentoXNombre(String filtro){
-		String jpql = "SELECT m FROM Medicamento m WHERE mc_medic_id LIKE ?1";
+		String jpql = "SELECT m FROM Medicamento m WHERE mc_medic_nombre LIKE ?1";
 		Query q = em.createQuery(jpql, Medicamento.class);
 		q.setParameter(1, "%" + filtro + "%");
 		
