@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+
+import datos.MedicoDAO;
 import modelo.Medico;
 import negocio.GestionMedicoLocal;
 
@@ -15,7 +17,7 @@ public class GestionMedicoBean {
 	@Inject
 	private GestionMedicoLocal gml;
 	
-	
+	private MedicoDAO dao;
 	private String id;
 	private String nombre;
 	private String apellido;
@@ -137,11 +139,19 @@ public class GestionMedicoBean {
 		return null;
 	}
 	
-	public String buscarMedico() {
+	public List<Medico> buscarMedico() {
 		
 		medicos = gml.getMedicoPorNombre(filtro);
 		
+		return medicos;
+	}
+	
+	public String borrarMedico() {
+		
+		dao.remove(id);
+		
 		return null;
+		
 	}
 	
 }

@@ -2,71 +2,76 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
      	template="blank.xhtml">
-
-	<ui:define name="titulo">Ingresar Medico</ui:define>
+     	
+	<ui:define name="cabecera">
+        	Sección Medico
+   	</ui:define>
+   	
+	<ui:define name="titulo">
+	
+	<div class="card-header">
+        	<h3 class="card-title">Ingresar Nuevo Medico</h3>
+        </div>
+	
+	</ui:define>
 	
 	<ui:define name="contenido">
 	
 		<h:form>
 
-			<h:outputLabel value = "Cedula o Ruc">
-			</h:outputLabel>
-			
-			<h:inputText value = "#{gestionMedicoBean.id}">
-			</h:inputText>
+			<div class="form-group">
+            	<h:outputLabel>Cedula o RUC</h:outputLabel>
+                <h:inputText value = "#{gestionMedicoBean.id}" class="form-control" a:placeholder="Ingrese el numero de cedula o RUC"/>
+           	</div>
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Nombre(s)</h:outputLabel>
+                <h:inputText value = "#{gestionMedicoBean.nombre}" class="form-control" a:placeholder="Ingrese el nombre o los nombres"/>
+           	</div>
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Apellido(s)</h:outputLabel>
+                <h:inputText value = "#{gestionMedicoBean.apellido}" class="form-control" a:placeholder="Ingrese el apellido o los apellidos"/>
+           	</div>
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Genero</h:outputLabel>
+                <h:inputText value = "#{gestionMedicoBean.genero}" class="form-control" a:placeholder="Ingrese el genero"/>
+           	</div>
 		
-			<h:outputLabel value = "Nombre">
-			</h:outputLabel>
 			
-			<h:inputText value = "#{gestionMedicoBean.nombre}">
-			</h:inputText>
+	        <div class="form-group">
+            	<h:outputLabel>Especialidad</h:outputLabel>
+                <h:inputText value = "#{gestionMedicoBean.especialidad}" class="form-control" a:placeholder="Ingrese la especialidad"/>
+           	</div>
 			
-			<h:outputLabel value = "Apellido">
-			</h:outputLabel>
+		    <div class="form-group">
+            	<h:outputLabel>Correo</h:outputLabel>
+                <h:inputText value = "#{gestionMedicoBean.correo}" class="form-control" a:placeholder="Ingrese el correo electrónico"/>
+           	</div>
+
+			<div class="form-group">
+            	<h:outputLabel>Dirección</h:outputLabel>
+                <h:inputText value = "#{gestionMedicoBean.direccion}" class="form-control" a:placeholder="Ingrese la dirección"/>
+           	</div>
 			
-			<h:inputText value = "#{gestionMedicoBean.apellido}">
-			</h:inputText>
+			<div class="form-group">
+	            <h:outputLabel for="fecha">Fecha Nacimiento</h:outputLabel>
+				<h:inputText value = "#{gestionMedicoBean.fechaNac}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
+					<f:convertDateTime pattern="yyyy/MM/dd" />
+				</h:inputText>
+			</div>
 			
-			<h:outputLabel value = "Genero">
-			</h:outputLabel>
+            <div class="form-group">
+            	<h:outputLabel>Contraseña</h:outputLabel>
+            	<h:inputText value = "#{gestionMedicoBean.contrasena}" class="form-control" id="exampleInputPassword1" a:placeholder="Ingrese la contraseña"/>
+            </div>
 			
-			<h:inputText value = "#{gestionMedicoBean.genero}">
-			</h:inputText>
-			
-			<h:outputLabel value = "Especialidad">
-			</h:outputLabel>
-			
-			<h:inputText value = "#{gestionMedicoBean.especialidad}">
-			</h:inputText>
-			
-			<h:outputLabel value = "Correo">
-			</h:outputLabel>
-			
-			<h:inputText value = "#{gestionMedicoBean.correo}">
-			</h:inputText>
-			
-			<h:outputLabel value = "Dirección">
-			</h:outputLabel>
-			
-			<h:inputText value = "#{gestionMedicoBean.direccion}">
-			</h:inputText>
-			
-			<h:outputLabel value = "Fecha Nacimiento" for="fecha">
-			</h:outputLabel>
-			
-			<h:inputText value = "#{gestionMedicoBean.fechaNac}" id="fecha">
-				<f:convertDateTime pattern="yyyy/MM/dd" />
-			</h:inputText>
-			
-			<h:outputLabel value = "Constraseña">
-			</h:outputLabel>
-			
-			<h:inputText value = "#{gestionMedicoBean.contrasena}">
-			</h:inputText>
-			
-			<h:commandButton value="Guardar" action="#{gestionMedicoBean.guardarMedico()}">
-			</h:commandButton>
+			<div class="card-footer">
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionMedicoBean.guardarMedico()}"/>
+			</div>
 
 		</h:form>
 	

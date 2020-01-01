@@ -25,7 +25,7 @@ public class MedicoDAO {
 		
 	}
 	
-	public void remove(int id) {
+	public void remove(String id) {
 		
 		Medico medico = this.read(id);
 		
@@ -33,7 +33,7 @@ public class MedicoDAO {
 		
 	}
 	
-	public Medico read(int id) {
+	public Medico read(String id) {
 		
 		Medico m = em.find(Medico.class, id);
 		

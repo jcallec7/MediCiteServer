@@ -19,7 +19,7 @@
 			<f:ajax render = "resultado" execute = "filtro"/>
 			</h:commandButton>
 
-			<h:dataTable value="#{gestionMedicoBean.medicos}" var="medico" id="resultado">
+			<h:dataTable value="#{gestionMedicoBean.buscarMedico()}" var="medico" id="resultado" class="table table-bordered">
 			
 				<h:column>
 					#{medico.id}
@@ -39,13 +39,21 @@
 				</h:column>
 				
 				<h:column>
-					<h:commandButton value="Editar" action="updateMedico">
 					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="#{medico.id}" action="updateMedico">
+						<h:input type = "hidden" value = "#{medico.id}" class="form-control"/>
+					</h:commandButton>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton value="Eliminar" action="updateMedico">
+						<h:input type = "hidden" value = "#{medico.id}" class="form-control"/>
+					</h:commandButton>
 				</h:column>
 				
 			
 			</h:dataTable>
-			
 			
 			<h:commandButton value="Ingresar Medico" action="createMedico">
 			</h:commandButton>
