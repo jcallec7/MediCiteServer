@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">
+        	Sección Medicamento
+   	</ui:define>
+
+	<ui:define name="titulo">
+		<div class="card-header">
+        	<h3 class="card-title">Ingresar Nuevo Medicamento</h3>
+        </div>
+   	</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			<div class="form-group">
+            	<h:outputLabel>Ingresar codigo</h:outputLabel>
+                <h:inputText value = "#{gestionMedicamentoBean.id}" class="form-control" a:placeholder="Ingrese el codigo"/>
+           	</div>
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Nombre(s)</h:outputLabel>
+            	<h:inputText value = "#{gestionMedicamentoBean.nombre}" class="form-control" a:placeholder="Ingrese el o los nombres"/>
+            </div>
+            
+            <div class="form-group">
+            	<h:outputLabel>Dosis</h:outputLabel>
+            	<h:inputText value = "#{gestionMedicamentoBean.concentracion}" class="form-control" a:placeholder="Ingrese la dosis"/>
+            </div>
+			
+			<div class="card-footer">
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionMedicamentoBean.guardarMedicamento()}"/>
+			</div>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+
