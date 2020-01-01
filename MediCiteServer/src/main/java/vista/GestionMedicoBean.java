@@ -150,6 +150,7 @@ public class GestionMedicoBean {
 		
 		dao.remove(id);
 		
+		
 		return null;
 		
 	}

@@ -31,6 +31,7 @@ public class MedicoDAO {
 		
 		em.remove(medico);
 		
+
 	}
 	
 	public Medico read(String id) {
