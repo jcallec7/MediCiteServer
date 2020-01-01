@@ -35,7 +35,7 @@ public class RecetaDAO {
 	
 	public Receta read(int id) {
 		
-		Receta c = em.find(Receta.class, id);
+		Receta r = em.find(Receta.class, id);
 		
 		return null;
 		
@@ -43,23 +43,23 @@ public class RecetaDAO {
 	
 	public List<Receta> getReceta() {
 		
-		String jpql = "SELECT c FROM Receta c";
+		String jpql = "SELECT r FROM Receta r";
 		Query q = em.createQuery(jpql, Receta.class);
 		
-		List<Receta> receta = q.getResultList();	
+		List<Receta> Recetas = q.getResultList();	
 		
-		return receta;
+		return Recetas;
 	}
 	
 	
 	public List<Receta> getRecetaXNombre(String filtro){
-		String jpql = "SELECT a FROM Receta a WHERE  LIKE ?1";
+		String jpql = "SELECT a FROM Receta a WHERE mc_rec_descr LIKE ?1";
 		Query q = em.createQuery(jpql, Receta.class);
 		q.setParameter(1, "%" + filtro + "%");
 		
-		List<Receta> receta = q.getResultList();
+		List<Receta> Recetas = q.getResultList();
 		
-		return receta;
+		return Recetas;
 	}
 
 }
