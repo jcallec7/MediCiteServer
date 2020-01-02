@@ -32,7 +32,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form>
+      <h:form>
         <div class="input-group mb-3">
           <h:inputText value = "#{gestionMedicoBean.id}" class="form-control" a:placeholder="Ingrese el numero de cedula o RUC"/>
           <div class="input-group-append">
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <h:inputText value = "#{gestionMedicoBean.apellido}" class="form-control" a:placeholder="Ingrese el nombre o los nombres"/>
+          <h:inputText value = "#{gestionMedicoBean.nombre}" class="form-control" a:placeholder="Ingrese el nombre o los nombres"/>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -120,7 +120,7 @@
             <h:commandButton class="btn btn-primary" value="Registrar" action="#{gestionMedicoBean.guardarMedico()}"/>
           </div>
         </div>
-      </form>
+      </h:form>
 
       <div class="social-auth-links text-center">
         <p>- OR -</p>

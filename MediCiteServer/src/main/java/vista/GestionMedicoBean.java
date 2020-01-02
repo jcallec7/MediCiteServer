@@ -141,7 +141,7 @@ public class GestionMedicoBean {
 		
 		gml.guardarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
 		medicos = gml.getMedico();
-		return "createMedico";
+		return "listMedico";
 	}
 	
 	
