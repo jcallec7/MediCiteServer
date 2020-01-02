@@ -25,9 +25,11 @@ public class GestionMedicoBean {
 	private String direccion;
 	private Date fechaNac;
 	private String contrasena;
-
-	private List<Medico> medicos;
 	private String filtro;
+	
+	private List<Medico> medicos;
+	private Medico medicoEdit;
+	
 
 	public GestionMedicoLocal getGml() {
 		return gml;
@@ -125,43 +127,51 @@ public class GestionMedicoBean {
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
+	
+
+	public Medico getMedicoEdit() {
+		return medicoEdit;
+	}
+
+	public void setMedicoEdit(Medico medicoEdit) {
+		this.medicoEdit = medicoEdit;
+	}
 
 	public String guardarMedico() {
 		
 		gml.guardarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
 		medicos = gml.getMedico();
-		return "createMedico.xhtml";
+		return "createMedico";
 	}
 	
 	
 	public String editarMedico(String id) {
 		
-		System.out.print(id);
-		gml.editarMedico(id);
-		medicos = gml.getMedico();		
+		this.medicoEdit = gml.leerMedico(id);
+		return "updateMedico";
+	}
+	
+	public String actualizarMedico() {
 		
-		return "updateMedico.xhtml";
+		gml.editarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
+		return "listMedico";
 	}
 	
 	public String eliminarMedico(String id) {
 		
-		System.out.print(id);
 		gml.eliminarMedico(id);	
-		
-		return "listMedico.xhtml";
+		return "listMedico";
 	}
 	
 	public List<Medico> buscarMedico() {
 		
 		medicos = gml.getMedicoPorNombre(filtro);
-		
 		return medicos;
 	}
 	
 	public List<Medico> buscarMedicoPorId() {
 		
 		medicos = gml.getMedicoPorId(filtro);
-		
 		return medicos;
 	}
 	

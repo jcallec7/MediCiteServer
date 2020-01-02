@@ -34,11 +34,27 @@ public class GestionMedico implements GestionMedicoLocal, GestionMedicoRemote{
 		dao.insert(m);
 	}
 	
-	public void editarMedico(String id){
+	public void editarMedico(String id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena){
+		Medico m = new Medico();  
+		m.setId(id);
+		m.setNombre(nombre);
+		m.setApellido(apellido);
+		m.setGenero(genero);
+		m.setEspecialidad(especialidad);
+		m.setCorreo(correo);
+		m.setDireccion(direccion);
+		m.setFechaNac(fechaNac);
+		m.setContrasena(contrasena);
+		System.out.println(m);
+		dao.update(m);
+	}
 	
-		Medico m = new Medico();
-		m=dao.read(id);
-		System.out.print(m);
+	public Medico leerMedico(String id){
+	
+		Medico medico = dao.read(id);
+		System.out.print(medico);
+		
+		return medico;
 		
 	}
 	
