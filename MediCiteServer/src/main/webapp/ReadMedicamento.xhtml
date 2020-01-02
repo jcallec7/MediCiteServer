@@ -24,7 +24,7 @@
 			<f:ajax render = "resultado" execute = "filtro"/>
 			</h:commandButton>
 
-			<h:dataTable value="#{gestionMedicamentoBean.medicamentos}" var="medicamentos" id="resultado">
+			<h:dataTable value="#{gestionMedicamentoBean.medicamentos}" var="medicamentos" id="resultado" class="table table-bordered">
 			
 				<h:column>
 					#{medicamentos.id}

@@ -4,6 +4,7 @@
      xmlns:h="http://java.sun.com/jsf/html"
      	template="blank.xhtml">
 	
+	<ui:define name="cabecera">Sección Receta</ui:define>
 	
 	<ui:define name="titulo">Buscar Receta</ui:define>
 	
@@ -24,7 +25,7 @@
 			<f:ajax render = "resultado" execute = "filtro"/>
 			</h:commandButton>
 
-			<h:dataTable value="#{gestionRecetaBean.recetas}" var="rec" id="resultado">
+			<h:dataTable value="#{gestionRecetaBean.recetas}" var="rec" id="resultado" class="table table-bordered">
 			
 				<h:column>
 					#{rec.id}
@@ -36,17 +37,23 @@
 					<f:facet name="header">Descripcion</f:facet>
 				</h:column>
 				
+				<!-- 
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="Editar" action="#{gestionRecetaBean.editPacienteById()}">
+					<a href="UpdateReceta.xhtml?id=#{rec.id}">Editar</a>					
+				</h:column>
+				 -->
 				
 				<h:column>
-					<h:commandButton value="Editar" action="UpdateReceta">
-					<f:facet name="header">Editar</f:facet>
-				</h:commandButton>
-					
+					<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton value="Eliminar" action="#{gestionRecetaBean.deleteReceta()}">
+					<f:param name="selectedRecetaId2" value="#{rec.id}"/>
+					</h:commandButton>
 				</h:column>
 
 	
 			</h:dataTable>
-			
 			
 			<h:commandButton value="Ingresar Receta" action="CreateReceta">
 			</h:commandButton>

@@ -1,11 +1,22 @@
 package modelo;
 
+import java.util.List;
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 
 @Entity
-public class Medicamento {
+public class Medicamento implements Serializable{
+	
+	private static final long serialVersionUID = -20336965027624681L;
+	
 	
 	@Id
 	@Column(name="mc_medic_id")
@@ -16,6 +27,12 @@ public class Medicamento {
 	
 	@Column(name="mc_medic_concentr")
 	private String concentracion;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "mc_medic_id")
+	private List<Receta> recetas;
+
+
 	
 	
 	public int getId() {
@@ -36,11 +53,17 @@ public class Medicamento {
 	public void setConcentracion(String concentracion) {
 		this.concentracion = concentracion;
 	}
+	public List<Receta> getRecetas() {
+		return recetas;
+	}
+	public void setRecetas(List<Receta> recetas) {
+		this.recetas = recetas;
+	}
 	
 	
 	@Override
 	public String toString() {
-		return "Medicamento [id=" + id + ", nombre=" + nombre + ", concentracion=" + concentracion + "]";
+		return "Medicamento [id=" + id + ", nombre=" + nombre + ", concentracion=" + concentracion + ", recetas="
+				+ recetas + "]";
 	}
-
 }
