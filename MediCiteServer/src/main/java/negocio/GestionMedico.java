@@ -44,8 +44,9 @@ public class GestionMedico implements GestionMedicoLocal, GestionMedicoRemote{
 	
 	public void eliminarMedico(String id){
 		
-		dao.remove(id);
 		System.out.print("******************************Usuario Eliminado*******************************");
+		dao.remove(id);
+		
 		
 	}
 	
