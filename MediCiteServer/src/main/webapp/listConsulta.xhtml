@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">Sección Consulta</ui:define>
+
+	<ui:define name="titulo">Consultas Guardadas</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+			
+			<h:dataTable value="#{gestionConsultaBean.gcl.consultas}" var="cons" class="table table-bordered">
+			
+				<h:column>
+					#{cons.paciente.nombre} #{cons.paciente.apellido}, #{cons.paciente.id}
+					<f:facet name="header">Paciente</f:facet>
+				</h:column>
+				<h:column>
+					#{cons.medico.nombre} #{cons.medico.apellido}, #{cons.medico.especialidad}
+					<f:facet name="header">Medico</f:facet>
+				</h:column>
+				<h:column>
+					#{cons.fecha}
+					<f:facet name="header">Fecha</f:facet>
+				</h:column>
+				<h:column>
+					#{cons.diagnostico}
+					<f:facet name="header">Diagnostico</f:facet>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="Editar" action="#{gestionConsultaBean.editConsultaById()}">
+						<f:param name="selectedConsultaId" value="#{pa.id}"/>
+					</h:commandButton>
+					
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton value="Eliminar" action="#{gestionConsultaBean.deleteConsulta()}">
+						<f:param name="selectedConsultaId2" value="#{pa.id}"/>
+					</h:commandButton>
+					
+				</h:column>
+			
+			</h:dataTable>
+		
+			<h:commandButton value="Ingresar Nuevo Consulta" action="createConsulta">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+
