@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+	
+	
+	<ui:define name="titulo">Buscar Receta</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+		
+		
+		
+
+			Filtro de búsqueda : 
+			<h:inputText value="#{gestionRecetaBean.filtro}" id = "filtro">
+			<f:ajax execute = "filtro" render = "resultado" listener = "#{gestionRecetaBean.buscarReceta()}"
+			event = "keypress"/>
+			</h:inputText>
+									
+			<h:commandButton action="#{gestionRecetaBean.buscarReceta()}" value="Buscar">
+			<f:ajax render = "resultado" execute = "filtro"/>
+			</h:commandButton>
+
+			<h:dataTable value="#{gestionRecetaBean.recetas}" var="rec" id="resultado">
+			
+				<h:column>
+					#{rec.id}
+					<f:facet name="header">Código</f:facet>
+				</h:column>
+				
+				<h:column>
+					#{rec.descr}
+					<f:facet name="header">Descripcion</f:facet>
+				</h:column>
+				
+				
+				<h:column>
+					<h:commandButton value="Editar" action="UpdateReceta">
+					<f:facet name="header">Editar</f:facet>
+				</h:commandButton>
+					
+				</h:column>
+
+	
+			</h:dataTable>
+			
+			
+			<h:commandButton value="Ingresar Receta" action="CreateReceta">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
