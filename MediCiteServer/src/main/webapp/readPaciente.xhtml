@@ -12,7 +12,7 @@
 	
 		<h:form>
  
-			Filtro de búsqueda : 
+			Filtro de búsqueda :
 			<h:inputText value="#{gestionPacienteBean.filtro}" id = "filtro">
 			<f:ajax execute = "filtro" render = "resultado" listener = "#{gestionPacienteBean.buscarPaciente()}"
 			event = "keypress"/>

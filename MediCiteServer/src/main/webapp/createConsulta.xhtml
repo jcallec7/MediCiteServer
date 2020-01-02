@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">
+        	Sección Consulta
+   	</ui:define>
+
+	<ui:define name="titulo">
+		<div class="card-header">
+        	<h3 class="card-title">Crear Nueva Consulta</h3>
+        </div>
+   	</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			<div class="form-group">
+            	<h:outputLabel>Seleccionar Paciente</h:outputLabel>
+            	<h:selectOneListbox class="form-control select2bs4"  value="#{gestionConsultaBean.selectedPaciente}" converter="pacienteConsultaConverter">
+					<f:selectItems value = "#{gestionConsultaBean.pacientes}"  var="paciente" itemLabel="#{paciente.nombre}" itemValue="#{paciente}"/>
+				</h:selectOneListbox>
+            	
+            </div>
+            
+            <div class="form-group">
+            	<h:outputLabel value = "Seleccinar Medico"></h:outputLabel>
+            	<h:selectOneListbox class="form-control select2bs4" value="#{gestionConsultaBean.selectedMedico}" converter="medicoConsultaConverter">
+					<f:selectItems value = "#{gestionConsultaBean.medicos}"  var="medico" itemLabel="#{medico.nombre}" itemValue="#{medico}"/>
+				</h:selectOneListbox>
+            	
+            </div>
+           	
+            <div class="form-group">
+	            <h:outputLabel>Ingresar Fecha</h:outputLabel>
+	            <h:inputText value = "#{gestionConsultaBean.fecha}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
+	            
+	            	<f:convertDateTime pattern="yyyy/MM/dd" />
+	            
+	            </h:inputText>
+            </div>
+			
+			
+			
+			
+			
+			
+			<div class="card-footer">
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionConsultaBean.guardarConsulta()}"/>
+			</div>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+
