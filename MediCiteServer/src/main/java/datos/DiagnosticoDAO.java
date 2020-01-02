@@ -52,7 +52,7 @@ public class DiagnosticoDAO {
 	}
 	
 	
-	public List<Diagnostico> getDiagnosticoXId(String filtro){
+	public List<Diagnostico> getDiagnosticoXId(int filtro){
 		String jpql = "SELECT d FROM Diagnostico d WHERE mc_diag_id LIKE ?1";
 		Query q = em.createQuery(jpql, Diagnostico.class);
 		q.setParameter(1, "%" + filtro + "%");
