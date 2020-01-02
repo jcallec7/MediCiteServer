@@ -22,7 +22,7 @@
 			<div class="form-group">
             	<h:outputLabel>Seleccionar Paciente</h:outputLabel>
             	<h:selectOneListbox class="form-control select2bs4"  value="#{gestionConsultaBean.selectedPaciente}" converter="pacienteConsultaConverter">
-					<f:selectItems value = "#{gestionConsultaBean.pacientes}"  var="paciente" itemLabel="#{paciente.nombre}" itemValue="#{paciente}"/>
+					<f:selectItems value = "#{gestionConsultaBean.pacientes}"  var="paciente" itemLabel="#{paciente.nombre} #{cons.paciente.apellido}, #{cons.paciente.id}" itemValue="#{paciente}"/>
 				</h:selectOneListbox>
             	
             </div>
@@ -30,7 +30,7 @@
             <div class="form-group">
             	<h:outputLabel value = "Seleccinar Medico"></h:outputLabel>
             	<h:selectOneListbox class="form-control select2bs4" value="#{gestionConsultaBean.selectedMedico}" converter="medicoConsultaConverter">
-					<f:selectItems value = "#{gestionConsultaBean.medicos}"  var="medico" itemLabel="#{medico.nombre}" itemValue="#{medico}"/>
+					<f:selectItems value = "#{gestionConsultaBean.medicos}"  var="medico" itemLabel="#{medico.nombre} #{cons.medico.apellido}, #{cons.medico.especialidad}" itemValue="#{medico}"/>
 				</h:selectOneListbox>
             	
             </div>

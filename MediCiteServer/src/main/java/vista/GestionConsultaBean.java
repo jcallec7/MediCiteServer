@@ -48,7 +48,7 @@ public class GestionConsultaBean {
 
 	@PostConstruct
 	public void init() {
-		//listConsultas();
+		listConsultas();
 		listPacientes();
 		listMedicos();
 	}
