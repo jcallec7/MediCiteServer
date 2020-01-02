@@ -44,11 +44,15 @@ public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLo
 
 	public List<Paciente> getPacientes() {
 		System.out.println(Pacientes);
-		return Pacientes;
+		return dao.getPacientes();
 	}
 
 	public List<Paciente> getPacientesPorNombre(String filtro) {
 		return dao.getPacientesXNombre(filtro);
+	}
+	
+	public void deletePaciente(String id) {
+		dao.remove(id);
 	}
 
 }

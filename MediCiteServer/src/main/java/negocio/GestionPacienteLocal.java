@@ -18,5 +18,7 @@ public interface GestionPacienteLocal {
 	
 	public List<Paciente> getPacientesPorNombre(String filtro);
 	
+	public void deletePaciente(String id);
+	
 }
 	

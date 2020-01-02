@@ -6,25 +6,13 @@
 
 	<ui:define name="cabecera">Sección Paciente</ui:define>
 
-	<ui:define name="titulo">Buscar Paciente</ui:define>
+	<ui:define name="titulo">Pacientes Guardados</ui:define>
 	
 	<ui:define name="contenido">
 	
 		<h:form>
-
-			Filtro de búsqueda : 
-			<h:inputText value="#{gestionPacienteBean.filtro}" id = "filtro">
-			<f:ajax execute = "filtro" render = "resultado" listener = "#{gestionPacienteBean.buscarPaciente()}"
-			event = "keypress"/>
-			</h:inputText>
-									
-			<h:commandButton action="#{gestionPacienteBean.buscarPaciente()}" value="Buscar">
-			<f:ajax render = "resultado" execute = "filtro"/>
-			</h:commandButton>
 			
-			
-
-			<h:dataTable value="#{gestionPacienteBean.buscarPaciente()}" var="pa" id="resultado" class="table table-bordered">
+			<h:dataTable value="#{gestionPacienteBean.gpl.pacientes}" var="pa" class="table table-bordered">
 			
 				<h:column>
 					#{pa.id}

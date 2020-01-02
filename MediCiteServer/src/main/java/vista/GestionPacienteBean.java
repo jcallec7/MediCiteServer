@@ -3,6 +3,7 @@ package vista;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -34,6 +35,12 @@ public class GestionPacienteBean {
 	
 	private String filtro;
 	private String selectedPacienteId;
+	private String selectedPacienteId2;
+	
+	@PostConstruct
+	public void init() {
+		listPaciente();
+	}
 
 	public GestionPacienteLocal getGpl() {
 		return gpl;
@@ -154,14 +161,21 @@ public class GestionPacienteBean {
 	public void setSelectedPacienteId(String selectedPacienteId) {
 		this.selectedPacienteId = selectedPacienteId;
 	}
+	
+	public String getSelectedPacienteId2() {
+		return selectedPacienteId2;
+	}
+
+	public void setSelectedPacienteId2(String selectedPacienteId2) {
+		this.selectedPacienteId2 = selectedPacienteId2;
+	}
 
 	public String guardarPaciente() {
-
+		
 		gpl.guardarPaciente(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura);
 		pacientes = gpl.getPacientes();
-
-		// return "listadoAutores";
 		return null;
+		
 	}
 	
 	public String getFiltro() {
@@ -180,9 +194,24 @@ public class GestionPacienteBean {
 	}
 	
 	public String editPacienteById() {
+		
 		selectedPacienteId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedPacienteId");
 		System.out.println(selectedPacienteId);
-		return "updatePaciente.xhtml";
+		return "updatePaciente";
+		
+	}
+	
+	public String deletePaciente() {
+		
+		selectedPacienteId2 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedPacienteId2");
+		System.out.println(selectedPacienteId2);
+		gpl.deletePaciente(selectedPacienteId2);
+		return null;
+		
+	}
+	
+	public void listPaciente() {
+		this.pacientes = this.gpl.getPacientes();
 	}
 
 }
