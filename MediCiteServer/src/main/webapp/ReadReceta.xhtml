@@ -46,6 +46,12 @@
 				 -->
 				
 				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="Editar" action="#{gestionRecetaBean.editarReceta(rec.id)}" class = "btn btn-primary">
+					</h:commandButton>					
+				</h:column>
+				
+				<h:column>
 					<f:facet name="header">Eliminar</f:facet>
 					<h:commandButton value="Eliminar" action="#{gestionRecetaBean.deleteReceta()}">
 					<f:param name="selectedRecetaId2" value="#{rec.id}"/>

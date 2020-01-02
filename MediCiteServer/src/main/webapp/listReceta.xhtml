@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     template="blank.xhtml">
+
+	<ui:define name="titulo">Listar Receta</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+									
+			<h:dataTable value="#{gestionRecetaBean.grl.receta}" var="receta" id="resultado" class="table table-bordered">
+			
+				<h:column>
+					<f:facet name="header">Código</f:facet>
+					<h:outputText value="#{receta.id}"></h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Descripcion</f:facet>
+					<h:outputText value="#{receta.descr}"></h:outputText>
+				</h:column>
+				
+
+				
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="Editar" action="#{gestionRecetaBean.editarReceta(receta.id)}" class = "btn btn-primary">
+					</h:commandButton>					
+				</h:column>
+				
+				<!--  
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					
+					
+					<h:commandButton value="Eliminar" action="#{gestionRecetaBean.   eliminarMedico(medico.id)}" class = "btn btn-primary">
+					</h:commandButton>
+					
+				</h:column>
+				-->
+				
+			</h:dataTable>
+			
+			<h:commandButton value="Ingresar Receta" action="CreateReceta" class = "btn btn-primary">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+
