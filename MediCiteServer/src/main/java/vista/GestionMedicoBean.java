@@ -139,6 +139,18 @@ public class GestionMedicoBean {
 		return null;
 	}
 	
+	
+	public String editarMedico() {
+		
+		gml.editarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
+		//System.out.print(id+"," +nombre+"," +apellido+"," +genero+"," +especialidad+"," + correo+"," +direccion+"," +fechaNac+"," +contrasena);
+		medicos = gml.getMedico();
+		
+		
+		//return "listadoAutores";
+		return null;
+	}
+	
 	public List<Medico> buscarMedico() {
 		
 		medicos = gml.getMedicoPorNombre(filtro);

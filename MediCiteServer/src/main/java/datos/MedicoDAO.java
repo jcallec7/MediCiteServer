@@ -30,7 +30,6 @@ public class MedicoDAO {
 		Medico medico = this.read(id);
 		
 		em.remove(medico);
-		
 
 	}
 	
@@ -55,6 +54,17 @@ public class MedicoDAO {
 	
 	public List<Medico> getMedicoXNombre(String filtro){
 		String jpql = "SELECT a FROM Medico a WHERE mc_med_nombre LIKE ?1 OR mc_med_apellido LIKE ?1 OR mc_med_especialidad LIKE ?1";
+		Query q = em.createQuery(jpql, Medico.class);
+		q.setParameter(1, "%" + filtro + "%");
+		
+		List<Medico> Medicos = q.getResultList();
+		
+		return Medicos;
+		
+	}
+	
+	public List<Medico> getMedicoXId(String filtro){
+		String jpql = "SELECT a FROM Medico a WHERE mc_med_id LIKE ?1";
 		Query q = em.createQuery(jpql, Medico.class);
 		q.setParameter(1, "%" + filtro + "%");
 		

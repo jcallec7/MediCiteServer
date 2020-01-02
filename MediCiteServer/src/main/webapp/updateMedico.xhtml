@@ -12,65 +12,65 @@
 	<ui:define name="titulo">
 	
 	<div class="card-header">
-        	<h3 class="card-title">Ingresar Nuevo Medico</h3>
+        	<h3 class="card-title">Editar Nuevo Medico</h3>
         </div>
 	
 	</ui:define>
 	
 	<ui:define name="contenido">
 		
-		<h:form>
+		<h:form value = "#{gestionMedicoBean.gml.getMedicoPorId()}" var="medico">
 
 			<div class="form-group">
             	<h:outputLabel>Cedula o RUC</h:outputLabel>
-                <h:inputText value = "#{gestionMedicoBean.id}" class="form-control" var="medico" readonly="readonly" a:placeholder="#{medico}"/>
+                <h:inputText value = "#{medico.id}" class="form-control"/>
            	</div>
            	
            	<div class="form-group">
             	<h:outputLabel>Nombre(s)</h:outputLabel>
-                <h:inputText value = "#{gestionMedicoBean.nombre}" class="form-control" a:placeholder="{medico}"/>
+                <h:inputText value = "#{medico.nombre}" class="form-control"/>
            	</div>
            	
            	<div class="form-group">
             	<h:outputLabel>Apellido(s)</h:outputLabel>
-                <h:inputText value = "#{gestionMedicoBean.apellido}" class="form-control" a:placeholder="Ingrese el apellido o los apellidos"/>
+                <h:inputText value = "#{medico.apellido}" class="form-control" a:placeholder="Ingrese el apellido o los apellidos"/>
            	</div>
            	
            	<div class="form-group">
             	<h:outputLabel>Genero</h:outputLabel>
-                <h:inputText value = "#{gestionMedicoBean.genero}" class="form-control" a:placeholder="Ingrese el genero"/>
+                <h:inputText value = "#{medico.genero}" class="form-control" a:placeholder="Ingrese el genero"/>
            	</div>
 		
 			
 	        <div class="form-group">
             	<h:outputLabel>Especialidad</h:outputLabel>
-                <h:inputText value = "#{gestionMedicoBean.especialidad}" class="form-control" a:placeholder="Ingrese la especialidad"/>
+                <h:inputText value = "#{medico.especialidad}" class="form-control" a:placeholder="Ingrese la especialidad"/>
            	</div>
 			
 		    <div class="form-group">
             	<h:outputLabel>Correo</h:outputLabel>
-                <h:inputText value = "#{gestionMedicoBean.correo}" class="form-control" a:placeholder="Ingrese el correo electrónico"/>
+                <h:inputText value = "#{medico.correo}" class="form-control" a:placeholder="Ingrese el correo electrónico"/>
            	</div>
 
 			<div class="form-group">
             	<h:outputLabel>Dirección</h:outputLabel>
-                <h:inputText value = "#{gestionMedicoBean.direccion}" class="form-control" a:placeholder="Ingrese la dirección"/>
+                <h:inputText value = "#{medico.direccion}" class="form-control" a:placeholder="Ingrese la dirección"/>
            	</div>
 			
 			<div class="form-group">
 	            <h:outputLabel for="fecha">Fecha Nacimiento</h:outputLabel>
-				<h:inputText value = "#{gestionMedicoBean.fechaNac}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
+				<h:inputText value = "#{medico.fechaNac}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
 					<f:convertDateTime pattern="yyyy/MM/dd" />
 				</h:inputText>
 			</div>
 			
             <div class="form-group">
             	<h:outputLabel>Contraseña</h:outputLabel>
-            	<h:inputText value = "#{gestionMedicoBean.contrasena}" class="form-control" id="exampleInputPassword1" a:placeholder="Ingrese la contraseña"/>
+            	<h:inputText value = "#{medico.contrasena}" class="form-control" id="exampleInputPassword1" a:placeholder="Ingrese la contraseña"/>
             </div>
 			
 			<div class="card-footer">
-				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionMedicoBean.guardarMedico()}"/>
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionMedicoBean.editarMedico()}"/>
 			</div>
 
 		</h:form>

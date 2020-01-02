@@ -40,17 +40,11 @@
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">Editar</f:facet>
-					<h:commandButton value="#{medico.id}" action="updateMedico">
-						<h:input type = "hidden" value = "#{medico.id}" class="form-control"/>
-					</h:commandButton>
+					<a href="updateMedico.xhtml?id=#{medico.id}">Editar</a>
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">Eliminar</f:facet>
-					<h:commandButton value="Eliminar" action="updateMedico">
-						<h:input type = "hidden" value = "#{medico.id}" class="form-control"/>
-					</h:commandButton>
+					<a href="deleteMedico.xhtml?id=#{medico.id}">Eliminar</a>
 				</h:column>
 				
 			
