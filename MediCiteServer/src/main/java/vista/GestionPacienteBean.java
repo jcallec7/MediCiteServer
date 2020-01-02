@@ -36,6 +36,7 @@ public class GestionPacienteBean {
 	private String filtro;
 	private String selectedPacienteId;
 	private String selectedPacienteId2;
+	private Paciente editedPaciente;
 	
 	@PostConstruct
 	public void init() {
@@ -169,6 +170,14 @@ public class GestionPacienteBean {
 	public void setSelectedPacienteId2(String selectedPacienteId2) {
 		this.selectedPacienteId2 = selectedPacienteId2;
 	}
+	
+	public Paciente geteditedPaciente() {
+		return editedPaciente;
+	}
+
+	public void seteditedPaciente(Paciente editedPaciente) {
+		this.editedPaciente = editedPaciente;
+	}
 
 	public String guardarPaciente() {
 		
@@ -197,6 +206,7 @@ public class GestionPacienteBean {
 		
 		selectedPacienteId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedPacienteId");
 		System.out.println(selectedPacienteId);
+		editedPaciente = gpl.readPaciente(selectedPacienteId);
 		return "updatePaciente";
 		
 	}
@@ -214,4 +224,10 @@ public class GestionPacienteBean {
 		this.pacientes = this.gpl.getPacientes();
 	}
 
+	public String updatePaciente() {
+		gpl.updatePaciente(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura);
+		return "listPaciente";
+		
+	}
+	
 }

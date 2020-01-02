@@ -20,8 +20,7 @@ public class PacienteDAO {
 	}
 	
 	public void update(Paciente Paciente) {
-		em.merge(Paciente);
-		
+		em.merge(Paciente);	
 	}
 	
 	public void remove(String id) {

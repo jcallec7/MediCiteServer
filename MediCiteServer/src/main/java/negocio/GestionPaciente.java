@@ -54,5 +54,29 @@ public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLo
 	public void deletePaciente(String id) {
 		dao.remove(id);
 	}
+	
+	public Paciente readPaciente(String id) {
+		Paciente paciente = dao.read(id);
+		return paciente;
+	}
+	
+	public void updatePaciente(String id, String nombre, String apellido, String genero,
+			Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
+			String peso, String estatura) {		
+		Paciente c = new Paciente();
+		c.setId(id);
+		c.setNombre(nombre);
+		c.setApellido(apellido);
+		c.setGenero(genero);
+		c.setFecha_nac(fecha_nac);
+		c.setCorreo(correo);
+		c.setContrasena(contrasena);
+		c.setTelf1(telf1);
+		c.setTelf2(telf2);
+		c.setDireccion(direccion);
+		c.setPeso(peso);
+		c.setEstatura(estatura);
+		dao.update(c);
+	}
 
 }

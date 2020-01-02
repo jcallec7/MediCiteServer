@@ -20,5 +20,11 @@ public interface GestionPacienteLocal {
 	
 	public void deletePaciente(String id);
 	
+	public Paciente readPaciente(String id);
+	
+	public void updatePaciente(String id, String nombre, String apellido, String genero,
+			Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
+			String peso, String estatura);
+	
 }
 	
