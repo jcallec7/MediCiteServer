@@ -131,29 +131,38 @@ public class GestionMedicoBean {
 	public String guardarMedico() {
 		
 		gml.guardarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
-		//System.out.print(id+"," +nombre+"," +apellido+"," +genero+"," +especialidad+"," + correo+"," +direccion+"," +fechaNac+"," +contrasena);
 		medicos = gml.getMedico();
-		
-		
-		//return "listadoAutores";
-		return null;
+		return "createMedico.xhtml";
 	}
 	
 	
-	public String editarMedico() {
+	public String editarMedico(String id) {
 		
-		gml.editarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
-		//System.out.print(id+"," +nombre+"," +apellido+"," +genero+"," +especialidad+"," + correo+"," +direccion+"," +fechaNac+"," +contrasena);
-		medicos = gml.getMedico();
+		System.out.print(id);
+		gml.editarMedico(id);
+		medicos = gml.getMedico();		
 		
+		return "updateMedico.xhtml";
+	}
+	
+	public String eliminarMedico(String id) {
 		
-		//return "listadoAutores";
-		return null;
+		System.out.print(id);
+		gml.eliminarMedico(id);	
+		
+		return "updateMedico.xhtml";
 	}
 	
 	public List<Medico> buscarMedico() {
 		
 		medicos = gml.getMedicoPorNombre(filtro);
+		
+		return medicos;
+	}
+	
+	public List<Medico> buscarMedicoPorId() {
+		
+		medicos = gml.getMedicoPorId(filtro);
 		
 		return medicos;
 	}

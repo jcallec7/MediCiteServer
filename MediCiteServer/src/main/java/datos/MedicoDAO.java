@@ -37,7 +37,7 @@ public class MedicoDAO {
 		
 		Medico m = em.find(Medico.class, id);
 		
-		return null;
+		return m;
 		
 	}
 	

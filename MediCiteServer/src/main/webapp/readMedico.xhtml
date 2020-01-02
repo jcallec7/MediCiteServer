@@ -2,7 +2,7 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
-     	template="blank.xhtml">
+     template="blank.xhtml">
 
 	<ui:define name="titulo">Buscar Medico</ui:define>
 	
@@ -11,46 +11,54 @@
 		<h:form>
 
 			Filtro de búsqueda : <h:inputText value="#{gestionMedicoBean.filtro}" id = "filtro">
-			<f:ajax execute = "filtro" render = "resultado" listener = "#{gestionMedicoBean.buscarMedico()}"
-			event = "keypress"/>
 			</h:inputText>
 									
-			<h:commandButton action="#{gestionMedicoBean.buscarMedico()}" value="Buscar">
-			<f:ajax render = "resultado" execute = "filtro"/>
+			<h:commandButton action="#{gestionMedicoBean.buscarMedico()}" value="Buscar" class = "btn btn-primary">
 			</h:commandButton>
 
 			<h:dataTable value="#{gestionMedicoBean.buscarMedico()}" var="medico" id="resultado" class="table table-bordered">
 			
 			
 				<h:column>
-					#{medico.id}
 					<f:facet name="header">Código</f:facet>
+					<h:outputText value="#{medico.id}"></h:outputText>
+					
 				</h:column>
 				<h:column>
-					#{medico.nombre}
+					
 					<f:facet name="header">Nombre</f:facet>
+					<h:outputText value="#{medico.nombre}"></h:outputText>
+					
 				</h:column>
 				<h:column>
-					#{medico.apellido}
+				
 					<f:facet name="header">Apellido</f:facet>
+					<h:outputText value="#{medico.apellido}"></h:outputText>
+					
 				</h:column>
 				<h:column>
-					#{medico.especialidad}
+					
 					<f:facet name="header">Especialidad</f:facet>
+					<h:outputText value="#{medico.especialidad}"></h:outputText>
+					
 				</h:column>
 				
 				<h:column>
-					<a href="updateMedico.xhtml?id=#{medico.id}">Editar</a>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="Editar" action="#{gestionMedicoBean.editarMedico(medico.id)}" class = "btn btn-primary"></h:commandButton>
+					
 				</h:column>
 				
 				<h:column>
-					<a href="deleteMedico.xhtml?id=#{medico.id}">Eliminar</a>
+					<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton value="Eliminar" action="#{gestionMedicoBean.eliminarMedico(medico.id)}" class = "btn btn-primary"></h:commandButton>
+				
 				</h:column>
 				
 			
 			</h:dataTable>
 			
-			<h:commandButton value="Ingresar Medico" action="createMedico">
+			<h:commandButton value="Ingresar Medico" action="createMedico" class = "btn btn-primary">
 			</h:commandButton>
 			
 		</h:form>
