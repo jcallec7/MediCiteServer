@@ -44,7 +44,7 @@ public class GestionLoginBean {
 			return "listMedico";
 		}
 		
-		return null;
+		return "loginFailed";
 	}
 	
 	public Medico validarLoginMedico() {
