@@ -28,9 +28,6 @@ public class Receta implements Serializable{
 	@Column(name="mc_rec_descr")
 	private String descr;
 	
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "mc_rec_id", referencedColumnName = "mc_rec_id")
-	private List<Medicamento> medicamentos;
 
 	public int getId() {
 		return id;
@@ -48,12 +45,13 @@ public class Receta implements Serializable{
 		this.descr = descr;
 	}
 
-	public List<Medicamento> getMedicamentos() {
-		return medicamentos;
+	@Override
+	public String toString() {
+		return "Receta [id=" + id + ", descr=" + descr + "]";
 	}
-
-	public void setMedicamentos(List<Medicamento> medicamentos) {
-		this.medicamentos = medicamentos;
-	}
+	
+	
+	
+	
 
 }
