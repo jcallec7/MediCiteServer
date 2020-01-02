@@ -19,12 +19,11 @@ public class GestionMedicamento implements GestionMedicamentoLocal, GestionMedic
 	
 	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 
-	public void guardarMedicamento(int id, String nombre, String concentracion, List<Receta> recetas) {
+	public void guardarMedicamento(int id, String nombre, String concentracion) {
 		Medicamento m = new Medicamento();
 		m.setId(id);
 		m.setnombre(nombre);
 		m.setConcentracion(concentracion);
-		m.setRecetas(recetas);
 		System.out.println(m);
 		
 		medicamentos.add(m);
@@ -36,6 +35,26 @@ public class GestionMedicamento implements GestionMedicamentoLocal, GestionMedic
 		return dao.getmedicamento(); 
 	}
 	
+	public Medicamento leerMedicamento(int id){
+		
+		Medicamento medicamento = dao.read(id);
+		System.out.print(medicamento);
+		
+		return medicamento;
+		
+	}
+	
+	public void editarMedicamento(int id, String nombre, String concentracion) {
+		Medicamento m = new Medicamento();
+		m.setId(id);
+		m.setnombre(nombre);
+		m.setConcentracion(concentracion);
+		System.out.println(m);
+		
+		medicamentos.add(m);
+		dao.update(m);
+	}
+	
 	
 	public List<Medicamento> getMedicamentoPorNombre(String filtro){
 		
@@ -45,5 +64,8 @@ public class GestionMedicamento implements GestionMedicamentoLocal, GestionMedic
 	public void deleteMedicamento(int id) {
 		dao.remove(id);
 	}
+
+
+
 
 }

@@ -23,21 +23,21 @@
 
 			<div class="form-group">
             	<h:outputLabel>Ingresar codigo</h:outputLabel>
-                <h:inputText value = "#{gestionMedicamentoBean.id}" class="form-control" var="medicamento" readonly="readonly" a:placeholder="#{medicamento}"/>
+                <h:inputText value = "#{gestionMedicamentoBean.id}" class="form-control" var="medicamento" a:placeholder="#{gestionMedicamentoBean.mediEdit.id}"/>
            	</div>
            	
            	<div class="form-group">
             	<h:outputLabel>Nombre(s)</h:outputLabel>
-            	<h:inputText value = "#{gestionMedicamentoBean.nombre}" class="form-control" a:placeholder="{medicamento}"/>
+            	<h:inputText value = "#{gestionMedicamentoBean.nombre}" class="form-control" a:placeholder="#{gestionMedicamentoBean.mediEdit.nombre}"/>
             </div>
             
             <div class="form-group">
             	<h:outputLabel>Dosis</h:outputLabel>
-            	<h:inputText value = "#{gestionMedicamentoBean.concentracion}" class="form-control" a:placeholder="Ingrese la dosis"/>
+            	<h:inputText value = "#{gestionMedicamentoBean.concentracion}" class="form-control" a:placeholder="#{gestionMedicamentoBean.mediEdit.concentracion}"/>
             </div>
 			
 			<div class="card-footer">
-				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionMedicamentoBean.guardarMedicamento()}"/>
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionMedicamentoBean.actualizarMedicamento()}"/>
 			</div>
 			
 		</h:form>

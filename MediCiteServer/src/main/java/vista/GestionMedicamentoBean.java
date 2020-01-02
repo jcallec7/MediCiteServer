@@ -8,10 +8,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import datos.MedicamentoDAO;
 import modelo.Medicamento;
-import modelo.Receta;
 import negocio.GestionMedicamentoLocal;
-import negocio.GestionRecetaLocal;
 
 @ManagedBean
 public class GestionMedicamentoBean {
@@ -19,23 +18,15 @@ public class GestionMedicamentoBean {
 	@Inject
 	private GestionMedicamentoLocal gml;
 	
-	@Inject
-	private GestionRecetaLocal grl;
 	
+	private MedicamentoDAO dao;
 	private int id;
 	private String nombre;
 	private String concentracion;
-	private List<Medicamento> medicamentos;
 	private String filtro;
-	private List<Receta> recetas;
-	private SelectItem recetaSeleccionada;
-
-	@PostConstruct
-	public void init() {
-		this.listarRecetas();
-	}
 	
-	
+	private List<Medicamento> medicamentos;
+	private Medicamento mediEdit;
 
 	public GestionMedicamentoLocal getGml() {
 		return gml;
@@ -45,12 +36,12 @@ public class GestionMedicamentoBean {
 		this.gml = gml;
 	}
 
-	public GestionRecetaLocal getGrl() {
-		return grl;
+	public MedicamentoDAO getDao() {
+		return dao;
 	}
 
-	public void setGrl(GestionRecetaLocal grl) {
-		this.grl = grl;
+	public void setDao(MedicamentoDAO dao) {
+		this.dao = dao;
 	}
 
 	public int getId() {
@@ -77,12 +68,12 @@ public class GestionMedicamentoBean {
 		this.concentracion = concentracion;
 	}
 
-	public List<Receta> getRecetas() {
-		return recetas;
+	public String getFiltro() {
+		return filtro;
 	}
 
-	public void setRecetas(List<Receta> recetas) {
-		this.recetas = recetas;
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
 	}
 
 	public List<Medicamento> getMedicamentos() {
@@ -93,27 +84,17 @@ public class GestionMedicamentoBean {
 		this.medicamentos = medicamentos;
 	}
 
-	public String getFiltro() {
-		return filtro;
+	public Medicamento getMediEdit() {
+		return mediEdit;
 	}
 
-	public void setFiltro(String filtro) {
-		this.filtro = filtro;
-	}
-	
-	public SelectItem getRecetaSeleccionada() {
-		return recetaSeleccionada;
-	}
-
-
-
-	public void setRecetaSeleccionada(SelectItem recetaSeleccionada) {
-		this.recetaSeleccionada = recetaSeleccionada;
+	public void setMediEdit(Medicamento mediEdit) {
+		this.mediEdit = mediEdit;
 	}
 
 	public String guardarMedicamento() {
 		
-		gml.guardarMedicamento(id, nombre, concentracion, recetas);
+		gml.guardarMedicamento(id, nombre, concentracion);
 		//System.out.print(id+"," +nombre+"," +apellido+"," +genero+"," +especialidad+"," + correo+"," +direccion+"," +fechaNac+"," +contrasena);
 		medicamentos = gml.getMedicamento();
 		
@@ -122,15 +103,21 @@ public class GestionMedicamentoBean {
 		return null;
 	}
 	
-	public String buscarMedicamento() {
+	public String editarMedicamento(int id) {
+		this.mediEdit = gml.leerMedicamento(id);
+		return "UpdateMedicamento";
+	}
+	
+	public List<Medicamento> buscarMedicamentoPorId() {
 		
 		medicamentos = gml.getMedicamentoPorNombre(filtro);
-		
-		return null;
+		return medicamentos;
 	}
 	
 	
-	public void listarRecetas() {
-		this.recetas = this.grl.getReceta();
+	public String actualizarMedicamento() {
+		gml.editarMedicamento(id, nombre, concentracion);
+		return "listMedicamento";
+		
 	}
 }

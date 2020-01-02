@@ -10,23 +10,29 @@
 	
 		<h:form>
 									
-			<h:dataTable value="#{gestionRecetaBean.grl.receta}" var="receta" id="resultado" class="table table-bordered">
+			<h:dataTable value="#{gestionMedicamentoBean.gml.medicamento}" var="medicamento" id="resultado" class="table table-bordered">
 			
 				<h:column>
 					<f:facet name="header">Código</f:facet>
-					<h:outputText value="#{receta.id}"></h:outputText>
+					<h:outputText value="#{medicamento.id}"></h:outputText>
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">Descripcion</f:facet>
-					<h:outputText value="#{receta.descr}"></h:outputText>
+					<f:facet name="header">Nombre</f:facet>
+					<h:outputText value="#{medicamento.nombre}"></h:outputText>
+				</h:column>
+				
+				
+				<h:column>
+				<f:facet name="header">Concentracion</f:facet>
+				<h:outputText value="#{medicamento.concentracion}"></h:outputText>
 				</h:column>
 				
 
 				
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandButton value="Editar" action="#{gestionRecetaBean.editarReceta(receta.id)}" class = "btn btn-primary">
+					<h:commandButton value="Editar" action="#{gestionMedicamentoBean.editarMedicamento(medicamento.id)}" class = "btn btn-primary">
 					</h:commandButton>					
 				</h:column>
 				

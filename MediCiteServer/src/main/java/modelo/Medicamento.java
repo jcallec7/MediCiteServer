@@ -28,12 +28,6 @@ public class Medicamento implements Serializable{
 	@Column(name="mc_medic_concentr")
 	private String concentracion;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "mc_medic_id")
-	private List<Receta> recetas;
-
-
-	
 	
 	public int getId() {
 		return id;
@@ -53,17 +47,11 @@ public class Medicamento implements Serializable{
 	public void setConcentracion(String concentracion) {
 		this.concentracion = concentracion;
 	}
-	public List<Receta> getRecetas() {
-		return recetas;
-	}
-	public void setRecetas(List<Receta> recetas) {
-		this.recetas = recetas;
-	}
 	
 	
 	@Override
 	public String toString() {
-		return "Medicamento [id=" + id + ", nombre=" + nombre + ", concentracion=" + concentracion + ", recetas="
-				+ recetas + "]";
+		return "Medicamento [id=" + id + ", nombre=" + nombre + ", concentracion=" + concentracion + ", "
+				 + "]";
 	}
 }

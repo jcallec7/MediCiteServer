@@ -35,23 +35,6 @@
             </div>
             
             
-             <!-- 
-            <div class="form-group">
-            	<h:outputLabel>Codigo de Receta</h:outputLabel>
-                <h:inputText value = "#{gestionMedicamentoBean.recetas}" class="form-control" a:placeholder="Ingrese el codigo de la receta"/>
-           	</div>
-             -->
-            
-            
-            <div class="form-group">
-            <h:outputLabel>Receta</h:outputLabel>
-            <h:selectOneListbox value = "#{gestionMedicamentoBean.listarRecetas()}" converter="recetaConverter">
-			<f:selectItems value = "#{gestionMedicamentoBean.recetas}" var = "receta"
-			itemLabel="#{receta.descr}" itemValue="#{receta}"/>
-			</h:selectOneListbox>
-            
-            </div>
-            
            
            
 			<div class="card-footer">
