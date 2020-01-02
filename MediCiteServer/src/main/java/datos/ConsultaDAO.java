@@ -14,29 +14,28 @@ public class ConsultaDAO {
 	@Inject
 	private EntityManager em;
 	
-	public void insert(Consulta Consulta) {
-		em.persist(Consulta);
+	public void insert(Consulta consulta) {
+		em.persist(consulta);
 		
 	}
 	
-	public void update(Consulta Consulta) {
-		em.merge(Consulta);
+	public void update(Consulta consulta) {
+		em.merge(consulta);	
+	}
+	
+	public void remove(String id) {
+		
+		Consulta consulta = this.read(id);
+		
+		em.remove(consulta);
 		
 	}
 	
-	public void remove(int id) {
-		
-		Consulta Consulta = this.read(id);
-		
-		em.remove(Consulta);
-		
-	}
-	
-	public Consulta read(int id) {
+	public Consulta read(String id) {
 		
 		Consulta a = em.find(Consulta.class, id);
 		
-		return null;
+		return a;
 		
 	}
 	
@@ -45,19 +44,19 @@ public class ConsultaDAO {
 		String jpql = "SELECT c FROM Consulta c";
 		Query q = em.createQuery(jpql, Consulta.class);
 		
-		List<Consulta> Consultas = q.getResultList();	
+		List<Consulta> consultas = q.getResultList();	
 		
-		return Consultas;
+		return consultas;
 	}
 	
 	public List<Consulta> getConsultasXNombre(String filtro){
-		String jpql = "SELECT a FROM Consulta a WHERE mc_cons_id LIKE ?1";
+		String jpql = "SELECT a FROM Consulta a WHERE mc_med_id LIKE ?1 OR mc_pa_id LIKE ?1";
 		Query q = em.createQuery(jpql, Consulta.class);
 		q.setParameter(1, "%" + filtro + "%");
 		
-		List<Consulta> Consultas = q.getResultList();
+		List<Consulta> consultas = q.getResultList();
 		
-		return Consultas;
+		return consultas;
 	}
 
 }
