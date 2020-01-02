@@ -61,6 +61,16 @@ public class RecetaDAO {
 		
 		return Recetas;
 	}
+	
+	public List<Receta> getRecetaXId(String filtro){
+		String jpql = "SELECT a FROM Receta a WHERE mc_rec_id LIKE ?1";
+		Query q = em.createQuery(jpql, Receta.class);
+		q.setParameter(1, "%" + filtro + "%");
+		
+		List<Receta> Recetas = q.getResultList();
+		
+		return Recetas;
+	}
 
 }
 

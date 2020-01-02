@@ -2,9 +2,12 @@ package vista;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import datos.RecetaDAO;
 import modelo.Medicamento;
 import modelo.Receta;
 import negocio.GestionMedicamentoLocal;
@@ -19,15 +22,22 @@ public class GestionRecetaBean {
 	@Inject
 	private GestionRecetaLocal grl;
 	
-	@Inject
-	private GestionMedicamentoLocal gmedl;
-	
-	  
+	private RecetaDAO dao;
 	private int id;
 	private String descr;
 
 	private List<Receta> recetas;
+	
 	private String filtro;
+	private int selectedRecetaId;
+	private int selectedRecetaId2;
+
+
+	
+	@PostConstruct
+	public void init() {
+		listReceta();
+	}
 
 	
 
@@ -37,14 +47,6 @@ public class GestionRecetaBean {
 
 	public void setGrl(GestionRecetaLocal grl) {
 		this.grl = grl;
-	}
-
-	public GestionMedicamentoLocal getGmedl() {
-		return gmedl;
-	}
-
-	public void setGmedl(GestionMedicamentoLocal gmedl) {
-		this.gmedl = gmedl;
 	}
 
 	public int getId() {
@@ -82,6 +84,9 @@ public class GestionRecetaBean {
 	}
 
 	
+	
+	
+	
 	public String guardarReceta() {
 		grl.guardarReceta(id, descr);
 		recetas = grl.getReceta();
@@ -90,11 +95,40 @@ public class GestionRecetaBean {
 		return null;
 	}
 	
-	public String buscarReceta() {
+	
+	public List<Receta> buscarReceta() {
 		
 		recetas = grl.getRecetasPorNombre(filtro); 
 		
 		return null;
+	}
+	
+	public String editarReceta() {
+		
+		
+		grl.editarReceta(id, descr);
+		//System.out.print(id+"," +nombre+"," +apellido+"," +genero+"," +especialidad+"," + correo+"," +direccion+"," +fechaNac+"," +contrasena);
+		recetas = grl.getReceta();
+		
+		
+		//return "listadoAutores";
+		return null;
+	}
+	
+	public String deleteReceta() {
+		
+		selectedRecetaId2 = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectRecetaId2"));
+		System.out.println(selectedRecetaId2);
+		grl.delateReceta(selectedRecetaId2);
+		return null;
+		
+	}
+	
+
+	
+	private void listReceta() {
+		this.recetas = this.grl.getReceta();
+		
 	}
 	
 }
