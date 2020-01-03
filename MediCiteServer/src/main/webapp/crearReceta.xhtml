@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">
+        	Sección Receta
+   	</ui:define>
+
+	<ui:define name="titulo">
+		<div class="card-header">
+        	<h3 class="card-title">Ingresar receta</h3>
+        </div>
+   	</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			<div class="form-group">
+            	<h:outputLabel>Ingresar codigo</h:outputLabel>
+                <h:inputText value = "#{gestionRecetaBean.id}" class="form-control" a:placeholder="Ingrese el codigo"/>
+           	</div>
+           	
+           	
+           <div class="form-group">
+            	<h:outputLabel>Ingresar la descripcion</h:outputLabel>
+            	<h:inputText value = "#{gestionRecetaBean.descr}" class="form-control" a:placeholder="Ingrese la descripcion"/>
+            </div>
+            
+            
+            <div class="form-group">
+            	<h:outputLabel>Seleccionar Medicamento</h:outputLabel>
+            	<h:selectOneListbox class="form-control select2bs4"  value="#{gestionRecetaBean.selectedDetalle}" converter="detalleRecetaConverter">
+					<f:selectItems value = "#{gestionRecetaBean.selectedDetalle}"  var="detalle" itemLabel="#{detalle.nombre}" itemValue="#{detalle}"/>
+				</h:selectOneListbox>
+            	
+            </div>
+            
+            
+            
+            
+           	
+           	
+           	
+			
+			<div class="card-footer">
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionDetalleBean.guardarDetalle()}"/>
+				
+			</div>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
