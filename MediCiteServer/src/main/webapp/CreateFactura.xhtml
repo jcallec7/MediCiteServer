@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     	template="blank.xhtml">
+     	
+	<ui:define name="cabecera">
+        	Sección Factura
+   	</ui:define>
+   	
+	<ui:define name="titulo">
+	
+	<div class="card-header">
+        	<h3 class="card-title">Ingresar Nueva Factura</h3>
+        </div>
+	
+	</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			<div class="form-group">
+            	<h:outputLabel>Numero de factura</h:outputLabel>
+                <h:inputText value = "#{gestionFacturaBean.id}" class="form-control" a:placeholder="Ingrese el numero de factura"/>
+           	</div>
+           	
+           	 <div class="form-group">
+            	<h:outputLabel value = "Seleccinar Consulta"></h:outputLabel>
+            	<h:selectOneMenu class="form-control select2bs4" value="#{gestionFacturaBean.selectedConsulta}" converter="FacturaConverter">
+					<f:selectItems value = "#{gestionConsultaBean.consultas}"  var="consulta" itemLabel="#{consulta.id} " itemValue="#{consulta}"/>
+				</h:selectOneMenu>
+            	
+            </div>
+			
+			<div class="form-group">
+	            <h:outputLabel for="fecha">Fecha </h:outputLabel>
+				<h:inputText value = "#{gestionFacturaBean.fecha}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
+					<f:convertDateTime pattern="yyyy/MM/dd" />
+				</h:inputText>
+			</div>
+			
+			<div class="form-group">
+            	<h:outputLabel>Subtotal</h:outputLabel>
+                <h:inputText value = "#{gestionFacturaBean.subtotal}" class="form-control" a:placeholder="Ingrese elsubtotal"/>
+           	</div>
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Total</h:outputLabel>
+                <h:inputText value = "#{gestionFacturaBean.total}" class="form-control" a:placeholder="Ingrese el TOTAL"/>
+           	</div>
+			
+			<div class="card-footer">
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionFacturaBean.guardarFactura()}"/>
+			</div>
+			
+			<h:commandButton value="Buscar Factura" action="readFactura" class = "btn btn-primary">
+			</h:commandButton>
+			
+			<h:commandButton value="Listar Facturas" action="listFactura" class = "btn btn-primary">
+			</h:commandButton>
+
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+
