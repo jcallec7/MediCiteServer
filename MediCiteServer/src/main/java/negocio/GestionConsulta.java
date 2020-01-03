@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.ConsultaDAO;
+import datos.DiagnosticoDAO;
 import datos.MedicoDAO;
 import datos.PacienteDAO;
 import modelo.Consulta;
@@ -27,6 +28,9 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 	
 	@Inject
 	private MedicoDAO daoMedico;
+	
+	@Inject
+	private DiagnosticoDAO daoDiagnostico;
 
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 
@@ -47,6 +51,7 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		System.out.println(consultas);
 		daoPaciente.getPacientes();
 		daoMedico.getMedico();
+		daoDiagnostico.getDiagnostico();
 		return dao.getConsultas();
 	}
 
@@ -54,11 +59,11 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		return dao.getConsultasXNombre(filtro);
 	}
 	
-	public void deleteConsulta(String id) {
+	public void deleteConsulta(int id) {
 		dao.remove(id);
 	}
 	
-	public Consulta readConsulta(String id) {
+	public Consulta readConsulta(int id) {
 		Consulta consulta = dao.read(id);
 		return consulta;
 	}

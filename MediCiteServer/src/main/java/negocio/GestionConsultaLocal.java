@@ -19,9 +19,9 @@ public interface GestionConsultaLocal {
 	
 	public List<Consulta> getConsultasPorNombre(String filtro);
 	
-	public void deleteConsulta(String id);
+	public void deleteConsulta(int id);
 	
-	public Consulta readConsulta(String id);
+	public Consulta readConsulta(int id);
 	
 	public void updateConsulta(int id, Paciente paciente, Medico medico, Date fecha, Diagnostico diagnostico);
 	

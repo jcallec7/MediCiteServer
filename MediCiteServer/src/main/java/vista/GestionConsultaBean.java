@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import modelo.Consulta;
@@ -43,7 +44,8 @@ public class GestionConsultaBean {
 	private String filtro;
 	private Paciente selectedPaciente;
 	private Medico selectedMedico;
-	private Consulta editedConsulta;
+	private int selectedConsultaId;
+	private Consulta selectedConsulta;
 	private Diagnostico selectedDiagnostico;
 	private int hora;
 	private int minuto;
@@ -55,6 +57,22 @@ public class GestionConsultaBean {
 		listMedicos();
 	}
 	
+	public Consulta getSelectedConsulta() {
+		return selectedConsulta;
+	}
+
+	public void setSelectedConsulta(Consulta selectedConsulta) {
+		this.selectedConsulta = selectedConsulta;
+	}
+
+	public int getSelectedConsultaId() {
+		return selectedConsultaId;
+	}
+
+	public void setSelectedConsultaId(int selectedConsultaId) {
+		this.selectedConsultaId = selectedConsultaId;
+	}
+
 	public GestionPacienteLocal getGpl() {
 		return gpl;
 	}
@@ -166,14 +184,6 @@ public class GestionConsultaBean {
 	public void setConsultas(List<Consulta> consultas) {
 		this.consultas = consultas;
 	}	
-
-	public Consulta getEditedConsulta() {
-		return editedConsulta;
-	}
-
-	public void setEditedConsulta(Consulta editedConsulta) {
-		this.editedConsulta = editedConsulta;
-	}
 	
 	public int getHora() {
 		return hora;
@@ -220,7 +230,10 @@ public class GestionConsultaBean {
 
 	public String editConsultaById() {
 
-		return null;
+		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedPacienteId"));
+		System.out.println(selectedConsultaId);
+		selectedConsulta = gcl.readConsulta(selectedConsultaId);
+		return "updateConsulta";
 
 	}
 

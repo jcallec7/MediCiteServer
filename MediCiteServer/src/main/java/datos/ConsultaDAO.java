@@ -23,7 +23,7 @@ public class ConsultaDAO {
 		em.merge(consulta);	
 	}
 	
-	public void remove(String id) {
+	public void remove(int id) {
 		
 		Consulta consulta = this.read(id);
 		
@@ -31,7 +31,7 @@ public class ConsultaDAO {
 		
 	}
 	
-	public Consulta read(String id) {
+	public Consulta read(int id) {
 		
 		Consulta a = em.find(Consulta.class, id);
 		
