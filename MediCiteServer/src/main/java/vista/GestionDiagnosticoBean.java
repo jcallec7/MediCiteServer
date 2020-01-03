@@ -118,7 +118,7 @@ public String buscardiagnostico() {
 }
 
 public void listarRecetas() {
-	this.recetas = this.grl.getReceta();
+	this.recetas = this.grl.getRecetas();
 }
 
 }
