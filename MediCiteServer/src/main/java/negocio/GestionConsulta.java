@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.ConsultaDAO;
+import datos.MedicoDAO;
+import datos.PacienteDAO;
 import modelo.Consulta;
 import modelo.Diagnostico;
 import modelo.Medico;
@@ -19,6 +21,12 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 
 	@Inject
 	private ConsultaDAO dao;
+	
+	@Inject
+	private PacienteDAO daoPaciente;
+	
+	@Inject
+	private MedicoDAO daoMedico;
 
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 
@@ -37,6 +45,8 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 
 	public List<Consulta> getConsultas() {
 		System.out.println(consultas);
+		daoPaciente.getPacientes();
+		daoMedico.getMedico();
 		return dao.getConsultas();
 	}
 

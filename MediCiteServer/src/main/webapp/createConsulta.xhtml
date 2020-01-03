@@ -3,6 +3,7 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     xmlns:p="http://primefaces.org/ui"
      	template="blank.xhtml">
 
 	<ui:define name="cabecera">
@@ -21,32 +22,36 @@
 
 			<div class="form-group">
             	<h:outputLabel>Seleccionar Paciente</h:outputLabel>
-            	<h:selectOneListbox class="form-control select2bs4"  value="#{gestionConsultaBean.selectedPaciente}" converter="pacienteConsultaConverter">
-					<f:selectItems value = "#{gestionConsultaBean.pacientes}"  var="paciente" itemLabel="#{paciente.nombre} #{cons.paciente.apellido}, #{cons.paciente.id}" itemValue="#{paciente}"/>
-				</h:selectOneListbox>
+            	<h:selectOneMenu class="form-control select2bs4"  value="#{gestionConsultaBean.selectedPaciente}" converter="pacienteConsultaConverter">
+					<f:selectItems value = "#{gestionConsultaBean.pacientes}"  var="paciente" itemLabel="#{paciente.nombre} #{paciente.apellido}, #{paciente.id}" itemValue="#{paciente}"/>
+				</h:selectOneMenu>
             	
             </div>
             
             <div class="form-group">
             	<h:outputLabel value = "Seleccinar Medico"></h:outputLabel>
-            	<h:selectOneListbox class="form-control select2bs4" value="#{gestionConsultaBean.selectedMedico}" converter="medicoConsultaConverter">
-					<f:selectItems value = "#{gestionConsultaBean.medicos}"  var="medico" itemLabel="#{medico.nombre} #{cons.medico.apellido}, #{cons.medico.especialidad}" itemValue="#{medico}"/>
-				</h:selectOneListbox>
+            	<h:selectOneMenu class="form-control select2bs4" value="#{gestionConsultaBean.selectedMedico}" converter="medicoConsultaConverter">
+					<f:selectItems value = "#{gestionConsultaBean.medicos}"  var="medico" itemLabel="#{medico.nombre} #{medico.apellido}, #{medico.especialidad}" itemValue="#{medico}"/>
+				</h:selectOneMenu>
             	
             </div>
            	
-            <div class="form-group">
-	            <h:outputLabel>Ingresar Fecha</h:outputLabel>
-	            <h:inputText value = "#{gestionConsultaBean.fecha}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
+           	<h:outputLabel value = "Ingresar Fecha y Hora"></h:outputLabel>
+            <h:inputText value = "#{gestionConsultaBean.fecha}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
 	            
-	            	<f:convertDateTime pattern="yyyy/MM/dd" />
+           		<f:convertDateTime pattern="yyyy/MM/dd" />
+           
+           	</h:inputText>
+           	<h:inputText value = "#{gestionConsultaBean.hora}" class="form-control" id="hora" a:placeholder="Hora">
 	            
-	            </h:inputText>
-            </div>
-			
-			
-			
-			
+           		<!-- <f:convertDateTime pattern="HH:mm"/>  -->
+           
+           	</h:inputText>
+           	<h:inputText value = "#{gestionConsultaBean.minuto}" class="form-control" id="minuto" a:placeholder="Minutos">
+	            
+           		<!-- <f:convertDateTime pattern="HH:mm"/>  -->
+           
+           	</h:inputText>
 			
 			
 			<div class="card-footer">

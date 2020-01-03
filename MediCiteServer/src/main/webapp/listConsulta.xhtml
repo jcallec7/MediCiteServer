@@ -34,7 +34,7 @@
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
 					<h:commandButton value="Editar" action="#{gestionConsultaBean.editConsultaById()}">
-						<f:param name="selectedConsultaId" value="#{pa.id}"/>
+						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
 					
 				</h:column>
@@ -42,14 +42,14 @@
 				<h:column>
 					<f:facet name="header">Eliminar</f:facet>
 					<h:commandButton value="Eliminar" action="#{gestionConsultaBean.deleteConsulta()}">
-						<f:param name="selectedConsultaId2" value="#{pa.id}"/>
+						<f:param name="selectedConsultaId2" value="#{cons.id}"/>
 					</h:commandButton>
 					
 				</h:column>
 			
 			</h:dataTable>
 		
-			<h:commandButton value="Ingresar Nuevo Consulta" action="createConsulta">
+			<h:commandButton value="Crear Nueva Consulta" action="createConsulta">
 			</h:commandButton>
 			
 		</h:form>

@@ -45,6 +45,8 @@ public class GestionConsultaBean {
 	private Medico selectedMedico;
 	private Consulta editedConsulta;
 	private Diagnostico selectedDiagnostico;
+	private int hora;
+	private int minuto;
 
 	@PostConstruct
 	public void init() {
@@ -172,11 +174,29 @@ public class GestionConsultaBean {
 	public void setEditedConsulta(Consulta editedConsulta) {
 		this.editedConsulta = editedConsulta;
 	}
+	
+	public int getHora() {
+		return hora;
+	}
+
+	public void setHora(int hora) {
+		this.hora = hora;
+	}
+
+	public int getMinuto() {
+		return minuto;
+	}
+
+	public void setMinuto(int minuto) {
+		this.minuto = minuto;
+	}
 
 	public String guardarConsulta() {
 		
 		System.out.println(selectedPaciente);
 		System.out.println(selectedMedico);
+		fecha.setHours(hora);
+		fecha.setMinutes(minuto);
 		gcl.guardarConsulta(id, selectedPaciente, selectedMedico, fecha, diagnostico);
 		consultas = gcl.getConsultas();
 		return null;
