@@ -32,22 +32,15 @@
             
             
             <div class="form-group">
-            	<h:outputLabel>Seleccionar Medicamento</h:outputLabel>
+            	<h:outputLabel>Seleccionar Detalle (Medicamentos)</h:outputLabel>
             	<h:selectOneListbox class="form-control select2bs4"  value="#{gestionRecetaBean.selectedDetalle}" converter="detalleRecetaConverter">
-					<f:selectItems value = "#{gestionRecetaBean.selectedDetalle}"  var="detalle" itemLabel="#{detalle.nombre}" itemValue="#{detalle}"/>
+					<f:selectItems value = "#{gestionRecetaBean.detalles}"  var="det" itemLabel="#{det.nombre}" itemValue="#{det}"/>
 				</h:selectOneListbox>
-            	
             </div>
             
-            
-            
-            
-           	
-           	
-           	
-			
+
 			<div class="card-footer">
-				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionDetalleBean.guardarDetalle()}"/>
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionRecetaBean.guardarReceta()}"/>
 				
 			</div>
 			

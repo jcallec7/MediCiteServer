@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.DetalleDAO;
+import datos.MedicamentoDAO;
 import datos.RecetaDAO;
 import modelo.Detalle;
 import modelo.Medicamento;
@@ -19,15 +20,18 @@ public class GestionReceta implements GestionRecetaLocal, GestionRecetaRemote {
 	@Inject
 	private RecetaDAO dao;
 	
+	@Inject
+	private MedicamentoDAO daoMedicamento;
+	
 	private List<Receta> recetas = new ArrayList<Receta>();
 	
 	public void guardarReceta(int id, String descr, List<Detalle> detalles ) {
 
 		Receta r = new Receta();
 		//c.setId(id);
-		r.getId();
-		r.getDescr();
-		r.getDetalle();
+		//r.setId(id);
+		r.setDescr(descr);
+		r.setDetalle(detalles);
 		
 		recetas.add(r);
 		dao.insert(r);
@@ -35,6 +39,7 @@ public class GestionReceta implements GestionRecetaLocal, GestionRecetaRemote {
 	
 	public List<Receta> getRecetas(){
 		System.out.println(recetas);
+		daoMedicamento.getmedicamento();
 		return dao.getReceta();
 	}
 	

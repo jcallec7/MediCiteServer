@@ -7,7 +7,6 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import modelo.Detalle;
-import modelo.Medicamento;
 import vista.GestionDetalleBean;
 import vista.GestionRecetaBean;
 
@@ -23,7 +22,7 @@ public class DetalleRecetaConverter implements Converter {
                                 "#{gestionRecetaBean}", GestionRecetaBean.class);
         GestionRecetaBean beers = (GestionRecetaBean)vex.getValue(ctx.getELContext());
         for(Detalle a : beers.getDetalles()) {
-        	System.out.println("id " + a.getId() + "  " + beerId);
+        	System.out.println("id +" + a.getId() + "+" + beerId+"+");
         	if(a.getId().equals(beerId)) {
         		System.out.println(a);
         		return a;
@@ -35,7 +34,7 @@ public class DetalleRecetaConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object beer) {
-        return "" + ((Medicamento)beer).getId();
+        return "" + ((Detalle)beer).getId();
     }
 	
 

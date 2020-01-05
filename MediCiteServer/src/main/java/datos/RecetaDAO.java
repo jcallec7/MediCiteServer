@@ -36,7 +36,7 @@ public class RecetaDAO {
 	public Receta read(int id) {
 		
 		Receta r = em.find(Receta.class, id);
-		
+		//r.getDetalle().size();
 		return null;
 		
 	}
