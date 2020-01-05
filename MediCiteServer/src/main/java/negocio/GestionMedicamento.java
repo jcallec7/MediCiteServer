@@ -55,16 +55,17 @@ public class GestionMedicamento implements GestionMedicamentoLocal, GestionMedic
 		dao.update(m);
 	}
 	
+	public void eliminarMedicamento(int id){
+		
+		System.out.print("******************************Usuario Eliminado*******************************");
+		dao.remove(id);
+	}
 	
 	public List<Medicamento> getMedicamentoPorNombre(String filtro){
 		
 		return dao.getMedicamentoXNombre(filtro);
 	}
 	
-	public void deleteMedicamento(int id) {
-		dao.remove(id);
-	}
-
 
 
 

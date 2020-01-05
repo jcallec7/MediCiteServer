@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.DetalleDAO;
+import datos.MedicamentoDAO;
 import modelo.Detalle;
 import modelo.Diagnostico;
 import modelo.Medicamento;
@@ -18,6 +19,9 @@ import modelo.Paciente;
 
 public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote{
 
+	@Inject
+	private MedicamentoDAO daoMedicamento;
+	
 	@Inject
 	private DetalleDAO dao;
 	
@@ -39,8 +43,35 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 	
 	public List<Detalle> getDetalles() {
 		System.out.println(detalles);
+		daoMedicamento.getmedicamento();
 		return dao.getDetalles();
+		
 	}
+	
+	public Detalle leerDetalle(String id){
+		
+		Detalle detalle = dao.read(id);
+		System.out.print(detalle);
+		
+		return detalle;
+		
+	}
+	
+	public void editarDetalle(String id, String nombre, Medicamento medicamento ) {
+
+		Detalle d = new Detalle();
+		//c.setId(id);
+		d.setId(id);
+		d.setNombre(nombre);
+		d.setMedicamento(medicamento);
+		
+		//c.setDiagnostico(null);
+		detalles.add(d);
+		// System.out.println(c);
+		dao.update(d);
+	}
+	
+	
 	
 	public List<Detalle> getDetallesPorNombre(String filtro) {
 		return dao.getDetallesXNombre(filtro);
@@ -50,10 +81,6 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 		dao.remove(id);
 	}
 	
-	public Detalle readDetalle(String id) {
-		Detalle detalle = dao.read(id);
-		return detalle;
-	}
 	
 	public void updateDetalle(String id, String nombre, Medicamento medicamento) {		
 		Detalle d = new Detalle();
@@ -61,5 +88,6 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 		
 		dao.update(d);
 	}
+
 	
 }

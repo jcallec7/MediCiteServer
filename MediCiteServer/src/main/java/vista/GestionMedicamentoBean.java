@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import datos.MedicamentoDAO;
 import modelo.Medicamento;
+import modelo.Medico;
 import negocio.GestionMedicamentoLocal;
 
 @ManagedBean
@@ -112,6 +113,11 @@ public class GestionMedicamentoBean {
 		
 		medicamentos = gml.getMedicamentoPorNombre(filtro);
 		return medicamentos;
+	}
+	
+	public String eliminarMedicamento(int id) {
+		gml.eliminarMedicamento(id);
+		return "listMedicamento";
 	}
 	
 	

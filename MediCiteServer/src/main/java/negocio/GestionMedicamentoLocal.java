@@ -13,6 +13,6 @@ public interface GestionMedicamentoLocal {
 	public List<Medicamento> getMedicamento();
 	public Medicamento leerMedicamento(int id);
 	public void editarMedicamento(int id, String nombre, String concentracion);
+	public void eliminarMedicamento(int id);
 	public List<Medicamento> getMedicamentoPorNombre(String filtro);
-	public void deleteMedicamento(int id);
 }

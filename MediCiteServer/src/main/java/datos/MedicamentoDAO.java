@@ -28,16 +28,15 @@ public class MedicamentoDAO {
 	public void remove(int id) {
 		
 		Medicamento medicamento = this.read(id);
-		
 		em.remove(medicamento);
 		
 	}
 	
 	public Medicamento read(int id) {
 		
-		Medicamento c = em.find(Medicamento.class, id);
+		Medicamento m = em.find(Medicamento.class, id);
 		
-		return null;
+		return m;
 		
 	}
 	
