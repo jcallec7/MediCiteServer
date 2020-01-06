@@ -72,14 +72,17 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 	}
 	
 	
+	public void eliminarDetalles(String id){
+		
+		System.out.print("******************************Usuario Eliminado*******************************");
+		dao.remove(id);
+	}
+	
 	
 	public List<Detalle> getDetallesPorNombre(String filtro) {
 		return dao.getDetallesXNombre(filtro);
 	}
-	
-	public void deleteDetalles(String id) {
-		dao.remove(id);
-	}
+
 	
 	
 	public void updateDetalle(String id, String nombre, Medicamento medicamento) {		

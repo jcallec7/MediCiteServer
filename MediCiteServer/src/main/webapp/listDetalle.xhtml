@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">Sección Medicamento Detalle</ui:define>
+
+	<ui:define name="titulo">Detalles del medicamento guardados</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+			
+			<h:dataTable value="#{gestionDetalleBean.gdl.detalles}" var="deta" id="resultado" class="table table-bordered">
+			
+				<h:column>
+					<f:facet name="header">Código</f:facet>
+					<h:outputText value="#{deta.id}"></h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Medicamento</f:facet>
+					<h:outputText value="#{deta.medicamento.nombre} #{deta.medicamento.concentracion}"></h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Dosis</f:facet>
+					<h:outputText value="#{deta.nombre}"></h:outputText>
+				</h:column>
+	
+				
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					
+					<!-- 
+					<h:commandButton value="Editar" action="#{gestionDetalleBean.editarDetalle(deta.id)}" class = "btn btn-primary">					
+					</h:commandButton>	
+					 -->				
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>	
+					<!-- <h:commandButton value="Eliminar" action="#{gestionDetalleBean.seguridadEliminar(deta.id)}" class = "btn btn-primary">-->
+					<h:commandButton value="Eliminar" action="#{gestionDetalleBean.eliminarDetalle(deta.id)}" class = "btn btn-primary">
+					</h:commandButton>
+					
+				</h:column>
+				 
+			
+			</h:dataTable>
+			
+			<h:commandButton value="Crear nuevo detalle de Medicamento" action="crearDetalle">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

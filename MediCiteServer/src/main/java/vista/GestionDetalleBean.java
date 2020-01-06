@@ -37,6 +37,7 @@ public class GestionDetalleBean {
 	private String filtro;
 	private Detalle editDetalle;
 	private Medicamento selectedMedicamento;
+	private Medicamento selectedMedicamento2;
 	
 	@PostConstruct
 	public void init() {
@@ -126,6 +127,18 @@ public class GestionDetalleBean {
 		this.selectedMedicamento = selectedMedicamento;
 	}
 	
+	public Medicamento getSelectedMedicamento2() {
+		return selectedMedicamento2;
+	}
+
+
+
+	public void setSelectedMedicamento2(Medicamento selectedMedicamento2) {
+		this.selectedMedicamento2 = selectedMedicamento2;
+	}
+
+
+
 	private void listDetalles() {
 		this.detalles = this.gdl.getDetalles();
 	}
@@ -143,7 +156,7 @@ public class GestionDetalleBean {
 		System.out.println(selectedMedicamento);
 		gdl.guardarDetalle(id, nombre, selectedMedicamento);
 		detalles = gdl.getDetalles();
-		return "crearDetalle";
+		return "listDetalle";
 
 	}
 	
@@ -158,10 +171,20 @@ public class GestionDetalleBean {
 		this.editDetalle = gdl.leerDetalle(id);
 		return "updateDetalle";
 	}
+	
+	public String eliminarDetalle(String id) {
+		gdl.eliminarDetalles(id);
+		return "listDetalle";
+	}
+	
+	public String seguridadEliminar(String id) {
+		return "notEliminar";
+	}
+	
 
 	
 	public String actualizarDetalle() {
-		gdl.updateDetalle(id, nombre, selectedMedicamento);
+		gdl.updateDetalle(id, nombre, selectedMedicamento2);
 		return "listDetalle";
 	}
 	

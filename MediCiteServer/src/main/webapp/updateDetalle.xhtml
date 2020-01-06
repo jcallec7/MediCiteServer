@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     	template="blank.xhtml">
+     	
+	<ui:define name="cabecera">
+        	Sección Detalle
+   	</ui:define>
+   	
+	<ui:define name="titulo">
+	
+	<div class="card-header">
+        	<h3 class="card-title">Actualizar</h3>
+        </div>
+	
+	</ui:define>
+	
+	<ui:define name="contenido">
+		
+		<h:form>
+
+			<div class="form-group">
+            	<h:outputLabel>Código</h:outputLabel>
+                <h:inputText value = "#{gestionDetalleBean.id}" class="form-control" var="medicamento" a:placeholder="#{gestionDetalleBean.editDetalle.id}"/>
+           	</div>
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Seleccionar Medicamento</h:outputLabel>
+				<h:selectOneListbox class="form-control select2bs4"  value="#{gestionDetalleBean.selectedMedicamento2}" converter="medicamentoDetalleConverter">
+					<f:selectItems value = "#{gestionDetalleBean.medicamentos}"  var="medicamentos" itemLabel="#{medicamentos.nombre}" itemValue="#{medicamentos}"/>
+				</h:selectOneListbox>            </div>
+            
+            <div class="form-group">
+            	<h:outputLabel>Dosis</h:outputLabel>
+            	<h:inputText value = "#{gestionDetalleBean.nombre}" class="form-control" a:placeholder="#{gestionDetalleBean.editDetalle.nombre}"/>
+            </div>
+			
+			<div class="card-footer">
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionDetalleBean.actualizarDetalle()}"/>
+			</div>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

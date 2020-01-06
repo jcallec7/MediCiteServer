@@ -11,6 +11,6 @@ public interface GestionDetalleRemote {
 	public Detalle leerDetalle(String id);
 	public void editarDetalle(String id, String nombre, Medicamento medicamento );
 	public List<Detalle> getDetallesPorNombre(String filtro);
-	public void deleteDetalles(String id);
+	public void eliminarDetalles(String id);
 	public void updateDetalle(String id, String nombre, Medicamento medicamento);
 }

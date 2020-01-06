@@ -66,6 +66,8 @@ public class GestionMedicamento implements GestionMedicamentoLocal, GestionMedic
 		return dao.getMedicamentoXNombre(filtro);
 	}
 	
+	
+	
 
 
 

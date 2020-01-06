@@ -34,9 +34,9 @@ public class DetalleDAO {
 	
 	public Detalle read(String id) {
 		
-		Detalle a = em.find(Detalle.class, id);
+		Detalle d = em.find(Detalle.class, id);
 		
-		return a;
+		return d;
 		
 	}
 	

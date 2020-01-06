@@ -101,7 +101,8 @@ public class GestionMedicamentoBean {
 		
 		
 		//return "listadoAutores";
-		return null;
+		return "listMedicamento";
+	
 	}
 	
 	public String editarMedicamento(int id) {
