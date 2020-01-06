@@ -11,39 +11,43 @@
 
 	<ui:define name="titulo">
 		<div class="card-header">
-        	<h3 class="card-title">Ingresar Nuevo Diagnostico</h3>
+        	<h3 class="card-title">Ingresar Nuevo Diagnosticos</h3>
         </div>
    	</ui:define>
-	
+
 	<ui:define name="contenido">
-	
+
 		<h:form>
-           	
+
+			<div class="form-group">
+            	<h:outputLabel>Ingresar codigo</h:outputLabel>
+                <h:inputText value = "#{gestionDiagnosticoBean.id}" class="form-control" a:placeholder="Ingrese el codigo"/>
+           	</div>
+
            	<div class="form-group">
             	<h:outputLabel>Detalle</h:outputLabel>
             	<h:inputText value = "#{gestionDiagnosticoBean.detalle}" class="form-control" a:placeholder="Ingrese la descripcion"/>
             </div>
+
             
-             <!-- 
             <div class="form-group">
             	<h:outputLabel>Codigo de Receta</h:outputLabel>
                 <h:inputText value = "#{gestionMedicamentoBean.recetas}" class="form-control" a:placeholder="Ingrese el codigo de la receta"/>
            	</div>
-             -->
-            
-            
-            
-            
-            
-           
-           
+             
+
+
+
+
+
+
+
 			<div class="card-footer">
 				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionDiagnosticoBean.guardarDiagnostico()}"/>
 			</div>
-			
-		</h:form>
-	
-	</ui:define>
-	
-</ui:composition>
 
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

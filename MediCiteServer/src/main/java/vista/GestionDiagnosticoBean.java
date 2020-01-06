@@ -18,7 +18,7 @@ import negocio.GestionRecetaLocal;
 @ManagedBean
 public class GestionDiagnosticoBean {
 	
-
+    @Inject
 	private GestionDiagnosticoLocal gml;
 	
 	@Inject
