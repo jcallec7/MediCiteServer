@@ -29,7 +29,7 @@ public class GestionReceta implements GestionRecetaLocal, GestionRecetaRemote {
 
 		Receta r = new Receta();
 		//c.setId(id);
-		//r.setId(id);
+		r.setId(id);
 		r.setDescr(descr);
 		r.setDetalle(detalles);
 		
