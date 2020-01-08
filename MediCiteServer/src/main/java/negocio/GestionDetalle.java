@@ -16,7 +16,6 @@ import modelo.Medico;
 import modelo.Paciente;
 
 @Stateless
-
 public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote{
 
 	@Inject

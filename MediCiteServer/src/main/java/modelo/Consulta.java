@@ -38,7 +38,7 @@ public class Consulta implements Serializable {
 	@JoinColumn(name = "mc_med_id")
 	private Medico medico;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "mc_cons_fecha")
 	private Date fecha;
 

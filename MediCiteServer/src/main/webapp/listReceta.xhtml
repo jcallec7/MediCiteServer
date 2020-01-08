@@ -10,7 +10,7 @@
 	
 		<h:form>
 									
-			<h:dataTable value="#{gestionRecetaBean.grl.receta}" var="receta" id="resultado" class="table table-bordered">
+			<h:dataTable value="#{gestionRecetaBean.grl.recetas}" var="receta" id="resultado" class="table table-bordered">
 			
 				<h:column>
 					<f:facet name="header">Código</f:facet>
@@ -22,7 +22,17 @@
 					<h:outputText value="#{receta.descr}"></h:outputText>
 				</h:column>
 				
-
+				<h:column>
+					<f:facet name="header">Medicamentos</f:facet>
+					<h:outputText value="#{receta.detalle}"></h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Medicamentos</f:facet>
+					<h:commandButton value="Listar Medicamentos" action="#{gestionRecetaBean.listarDetalles()}" class = "btn btn-primary">
+						<f:param name="selectedRecetaId" value="#{receta.id}"/>
+					</h:commandButton>					
+				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Editar</f:facet>

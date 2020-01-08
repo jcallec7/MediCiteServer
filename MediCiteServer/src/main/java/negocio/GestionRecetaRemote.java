@@ -2,9 +2,13 @@ package negocio;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+
 import modelo.Detalle;
 import modelo.Receta;
 
+
+@Remote
 public interface GestionRecetaRemote {
 
 	

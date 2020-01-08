@@ -41,7 +41,7 @@ public class GestionDetalleBean {
 	
 	@PostConstruct
 	public void init() {
-		//listDetalles();
+		listDetalles();
 		listMedicamentos();
 	}
 

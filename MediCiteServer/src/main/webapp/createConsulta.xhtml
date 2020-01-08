@@ -29,7 +29,7 @@
             </div>
             
             <div class="form-group">
-            	<h:outputLabel value = "Seleccinar Medico"></h:outputLabel>
+            	<h:outputLabel>Seleccinar Medico</h:outputLabel>
             	<h:selectOneMenu class="form-control select2bs4" value="#{gestionConsultaBean.selectedMedico}" converter="medicoConsultaConverter">
 					<f:selectItems value = "#{gestionConsultaBean.medicos}"  var="medico" itemLabel="#{medico.nombre} #{medico.apellido}, #{medico.especialidad}" itemValue="#{medico}"/>
 				</h:selectOneMenu>

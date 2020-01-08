@@ -2,9 +2,13 @@ package negocio;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import modelo.Detalle;
 import modelo.Medicamento;
 
+
+@Local
 public interface GestionDetalleLocal {
 	public void guardarDetalle(String id, String nombre, Medicamento medicamento );
 	public List<Detalle> getDetalles();

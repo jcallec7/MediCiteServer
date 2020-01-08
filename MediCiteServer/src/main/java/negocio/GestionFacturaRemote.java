@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import modelo.Factura;
 import modelo.Consulta;
 
+@Remote
 public interface GestionFacturaRemote 
 {
 	public void guardarFactura(int id, Consulta consulta, double subtotal, double total, Date fecha);

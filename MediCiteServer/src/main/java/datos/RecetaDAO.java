@@ -36,8 +36,8 @@ public class RecetaDAO {
 	public Receta read(int id) {
 		
 		Receta r = em.find(Receta.class, id);
-		//r.getDetalle().size();
-		return null;
+		r.getDetalle().size();
+		return r;
 		
 	}
 	
@@ -47,6 +47,7 @@ public class RecetaDAO {
 		Query q = em.createQuery(jpql, Receta.class);
 		
 		List<Receta> Recetas = q.getResultList();	
+		
 		
 		return Recetas;
 	}

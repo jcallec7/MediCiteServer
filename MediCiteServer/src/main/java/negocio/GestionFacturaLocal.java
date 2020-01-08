@@ -3,9 +3,12 @@ package negocio;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Local;
+
 import modelo.Consulta;
 import modelo.Factura;
 
+@Local
 public interface GestionFacturaLocal
 {
 	public void guardarFactura(int id, Consulta consulta, double subtotal, double total, Date fecha);

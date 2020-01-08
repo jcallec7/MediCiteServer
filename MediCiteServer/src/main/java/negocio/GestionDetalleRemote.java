@@ -2,9 +2,13 @@ package negocio;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+
 import modelo.Detalle;
 import modelo.Medicamento;
 
+
+@Remote
 public interface GestionDetalleRemote {
 	public void guardarDetalle(String id, String nombre, Medicamento medicamento );
 	public List<Detalle> getDetalles();

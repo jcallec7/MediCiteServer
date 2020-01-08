@@ -32,7 +32,8 @@ public class GestionMedicamento implements GestionMedicamentoLocal, GestionMedic
 	
 	public List<Medicamento> getMedicamento(){
 		System.out.println(medicamentos);
-		return dao.getmedicamento(); 
+		medicamentos = dao.getmedicamento(); 
+		return medicamentos;
 	}
 	
 	public Medicamento leerMedicamento(int id){

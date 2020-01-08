@@ -33,7 +33,7 @@
 				
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandButton value="Editar" action="#{gestionPacienteBean.editPacienteById()}">
+					<h:commandButton value="Editar" action="#{gestionPacienteBean.editPacienteById()}" class = "btn btn-primary">
 						<f:param name="selectedPacienteId" value="#{pa.id}"/>
 					</h:commandButton>
 					
@@ -43,7 +43,7 @@
 				
 				<h:column>
 					<f:facet name="header">Eliminar</f:facet>
-					<h:commandButton value="Eliminar" action="#{gestionPacienteBean.deletePaciente()}">
+					<h:commandButton value="Eliminar" action="#{gestionPacienteBean.deletePaciente()}" class = "btn btn-primary">
 						<f:param name="selectedPacienteId2" value="#{pa.id}"/>
 					</h:commandButton>
 					
@@ -51,10 +51,10 @@
 			
 			</h:dataTable>
 		
-			<h:commandButton value="Ingresar Nuevo Paciente" action="createPaciente">
+			<h:commandButton value="Ingresar Nuevo Paciente" action="createPaciente" class = "btn btn-primary">
 			</h:commandButton>
 			
-			<h:commandButton value="Buscar Paciente" action="readPaciente">
+			<h:commandButton value="Buscar Paciente" action="readPaciente" class = "btn btn-primary">
 			</h:commandButton>
 			
 		</h:form>

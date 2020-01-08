@@ -45,6 +45,7 @@ public class GestionConsultaBean {
 	private Paciente selectedPaciente;
 	private Medico selectedMedico;
 	private int selectedConsultaId;
+	private int selectedConsultaId2;
 	private Consulta selectedConsulta;
 	private Diagnostico selectedDiagnostico;
 	private int hora;
@@ -57,6 +58,14 @@ public class GestionConsultaBean {
 		listMedicos();
 	}
 	
+	public int getSelectedConsultaId2() {
+		return selectedConsultaId2;
+	}
+
+	public void setSelectedConsultaId2(int selectedConsultaId2) {
+		this.selectedConsultaId2 = selectedConsultaId2;
+	}
+
 	public Consulta getSelectedConsulta() {
 		return selectedConsulta;
 	}
@@ -230,7 +239,8 @@ public class GestionConsultaBean {
 
 	public String editConsultaById() {
 
-		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedPacienteId"));
+		gcl.getConsultas();
+		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedConsultaId"));
 		System.out.println(selectedConsultaId);
 		selectedConsulta = gcl.readConsulta(selectedConsultaId);
 		return "updateConsulta";
@@ -239,7 +249,10 @@ public class GestionConsultaBean {
 
 	public String deleteConsulta() {
 
-		return null;
+		selectedConsultaId2 = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedConsultaId2"));
+		System.out.println(selectedConsultaId2);
+		gcl.deleteConsulta(selectedConsultaId2);
+		return "return alert('Consulta Eliminada Exitosamente')";
 
 	}
 

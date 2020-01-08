@@ -21,6 +21,9 @@ public class GestionReceta implements GestionRecetaLocal, GestionRecetaRemote {
 	private RecetaDAO dao;
 	
 	@Inject
+	private DetalleDAO daoDetalle;
+	
+	@Inject
 	private MedicamentoDAO daoMedicamento;
 	
 	private List<Receta> recetas = new ArrayList<Receta>();
@@ -40,6 +43,7 @@ public class GestionReceta implements GestionRecetaLocal, GestionRecetaRemote {
 	public List<Receta> getRecetas(){
 		System.out.println(recetas);
 		daoMedicamento.getmedicamento();
+		daoDetalle.getDetalles();
 		return dao.getReceta();
 	}
 	
@@ -52,6 +56,8 @@ public class GestionReceta implements GestionRecetaLocal, GestionRecetaRemote {
 	}
 	
 	public Receta readReceta(int id) {
+		daoMedicamento.getmedicamento();
+		daoDetalle.getDetalles();
 		Receta receta = dao.read(id);
 		return receta;
 	}
