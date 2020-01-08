@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import datos.PacienteDAO;
 import modelo.Paciente;
+import modelo.Rol;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLo
 
 	public void guardarPaciente(String id, String nombre, String apellido, String genero,
 								Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
-								String peso, String estatura) {
+								String peso, String estatura, Rol rol) {
 
 		Paciente c = new Paciente();
 		c.setId(id);
@@ -36,6 +37,7 @@ public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLo
 		c.setDireccion(direccion);
 		c.setPeso(peso);
 		c.setEstatura(estatura);
+		c.setRol(rol);
 
 		Pacientes.add(c);
 		// System.out.println(c);

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import datos.MedicoDAO;
 import modelo.Medico;
+import modelo.Rol;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +20,7 @@ public class GestionMedico implements GestionMedicoLocal, GestionMedicoRemote{
 
 	private List<Medico> medico = new ArrayList<Medico>();
 	
-	public void guardarMedico(String id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena){
+	public void guardarMedico(String id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena, Rol rol){
 		Medico m = new Medico();  
 		m.setId(id);
 		m.setNombre(nombre);
@@ -30,6 +31,7 @@ public class GestionMedico implements GestionMedicoLocal, GestionMedicoRemote{
 		m.setDireccion(direccion);
 		m.setFechaNac(fechaNac);
 		m.setContrasena(contrasena);
+		m.setRol(rol);
 		System.out.println(m);
 		dao.insert(m);
 	}

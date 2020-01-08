@@ -6,11 +6,12 @@ import java.util.List;
 import javax.ejb.Local;
 
 import modelo.Medico;
+import modelo.Rol;
 
 @Local
 public interface GestionMedicoLocal {
 	
-	public void guardarMedico(String id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena);
+	public void guardarMedico(String id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena, Rol rol);
 	public void editarMedico(String id, String nombre, String apellido, String genero, String especialidad, String correo, String direccion, Date fechaNac, String contrasena);
 	public Medico leerMedico(String id);
 	public void eliminarMedico(String id);

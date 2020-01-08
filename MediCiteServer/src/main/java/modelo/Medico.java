@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -44,9 +46,10 @@ public class Medico {
 	
 	@Column(name="mc_med_contrasena")
 	private String contrasena;
-
 	
-	
+	@ManyToOne
+	@JoinColumn(name="mc_med_rol")
+	private Rol rol;
 
 
 	public String getId() {
@@ -155,6 +158,20 @@ public class Medico {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+	
+	
+
+
+	public Rol getRol() {
+		return rol;
+	}
+
+
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
 
 
 	@Override

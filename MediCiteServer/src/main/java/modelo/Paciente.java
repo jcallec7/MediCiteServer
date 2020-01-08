@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -60,6 +62,10 @@ public class Paciente implements Serializable {
 	
 	@Column(name="mc_pa_estatura")
 	private String estatura;
+	
+	@ManyToOne
+	@JoinColumn(name="mc_pa_rol")
+	private Rol rol;
 
 	public String getId() {
 		return id;
@@ -157,9 +163,17 @@ public class Paciente implements Serializable {
 		this.estatura = estatura;
 	}
 
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
 	@Override
 	public String toString() {
-		return "Paciente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", fecha_nac=" + fecha_nac + ", correo=" + correo + ", contrasena="
+		return " Paciente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", fecha_nac=" + fecha_nac + ", correo=" + correo + ", contrasena="
 				+ contrasena + ", telf1=" + telf1 + ", telf2=" + telf2 + ", direccion=" + direccion + ", peso=" + peso
 				+ ", estatura=" + estatura + "]";
 	}

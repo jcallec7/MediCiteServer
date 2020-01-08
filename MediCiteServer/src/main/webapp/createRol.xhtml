@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     	template="blank.xhtml">
+     	
+	<ui:define name="cabecera">
+        	Sección Medico
+   	</ui:define>
+   	
+	<ui:define name="titulo">
+	
+	<div class="card-header">
+        	<h3 class="card-title">Ingresar Nuevo Medico</h3>
+        </div>
+	
+	</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+
+			<div class="form-group">
+            	<h:outputLabel>Codigo</h:outputLabel>
+                <h:inputText value = "#{gestionRolBean.id}" class="form-control" a:placeholder="Ingrese el codigo"/>
+           	</div>
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Tipo de Rol</h:outputLabel>
+                <h:inputText value = "#{gestionRolBean.descripcion}" class="form-control" a:placeholder="Ingrese la descripción"/>
+           	</div>
+			
+			<div class="card-footer">
+				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionRolBean.createRol()}"/>
+			</div>
+			
+			<h:commandButton value="Buscar Medico" action="readMedico" class = "btn btn-primary">
+			</h:commandButton>
+			
+			<h:commandButton value="Listar Medico" action="listMedico" class = "btn btn-primary">
+			</h:commandButton>
+
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

@@ -9,13 +9,17 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import modelo.Paciente;
+import modelo.Rol;
 import negocio.GestionPacienteLocal;
+import negocio.GestionRolLocal;
 
 @ManagedBean
 public class GestionPacienteBean {
 
 	@Inject
 	private GestionPacienteLocal gpl;
+	@Inject
+	private GestionRolLocal grl;
 
 	/* Beans properties */
 	private String id;
@@ -30,6 +34,8 @@ public class GestionPacienteBean {
 	private String direccion;
 	private String peso;
 	private String estatura;
+	private int rolId = 4;
+	private Rol rol;
 
 	private List<Paciente> pacientes;
 	
@@ -181,7 +187,8 @@ public class GestionPacienteBean {
 
 	public String guardarPaciente() {
 		
-		gpl.guardarPaciente(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura);
+		rol = grl.readRol(rolId);
+		gpl.guardarPaciente(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura, rol);
 		pacientes = gpl.getPacientes();
 		return null;
 		

@@ -7,7 +7,9 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import modelo.Medico;
+import modelo.Rol;
 import negocio.GestionMedicoLocal;
+import negocio.GestionRolLocal;
 
 @ManagedBean
 public class GestionMedicoBean {
@@ -15,6 +17,8 @@ public class GestionMedicoBean {
 	
 	@Inject
 	private GestionMedicoLocal gml;
+	@Inject
+	private GestionRolLocal grl;
 	
 	private String id;
 	private String nombre;
@@ -26,6 +30,8 @@ public class GestionMedicoBean {
 	private Date fechaNac;
 	private String contrasena;
 	private String filtro;
+	private int rolId = 3;
+	private Rol rol;
 	
 	private List<Medico> medicos;
 	private Medico medicoEdit;
@@ -139,7 +145,8 @@ public class GestionMedicoBean {
 
 	public String guardarMedico() {
 		
-		gml.guardarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena);
+		rol = grl.readRol(rolId);
+		gml.guardarMedico(id, nombre, apellido, genero, especialidad, correo, direccion, fechaNac, contrasena, rol);
 		medicos = gml.getMedico();
 		return "listMedico";
 	}
