@@ -1,6 +1,6 @@
 package negocio;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -26,13 +26,13 @@ public class GestionCertificado implements GestionCertificadoLocal, GestionCerti
 	private List<Certificado> certificados = new ArrayList<Certificado>();
 	
 	
-	public void guardarCertificado(int id, Date fecha, Consulta consulta, String detalle) {
+	public void guardarCertificado(int id, Date fecha, Consulta consulta, String descripcion) {
 		Certificado c = new Certificado();
 		c.setId(id);
 		c.setFecha(fecha);
 		c.setConsulta(consulta);
-		c.setDetalle(detalle);
-		
+		c.setDescripcion(descripcion);
+		System.out.println(c);
 		certificados.add(c);
 		dao.insert(c);
 	}
@@ -53,18 +53,21 @@ public class GestionCertificado implements GestionCertificadoLocal, GestionCerti
 	
 	public Certificado readCertificado(int id) {
 		Certificado certificado = dao.read(id);
+		System.out.println(certificado);
 		return certificado;
 	}
 	
-	public void updateCertificado(int id, Date fecha, Consulta consulta, String detalle) {
+	public void updateCertificado(int id, Date fecha, Consulta consulta, String descripcion) {
 		Certificado c = new Certificado();
 		c.setId(id);
 		c.setFecha(fecha);
 		c.setConsulta(consulta);
-		c.setDetalle(detalle);
-		
+		c.setDescripcion(descripcion);
+		System.out.println(c);
 		dao.update(c);
 	}
+
+	
 	
 }
 

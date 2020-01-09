@@ -1,6 +1,6 @@
 package vista;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +27,7 @@ public class GestionCertificadoBean {
 	private int id;
 	private Date fecha;
 	private Consulta consulta;
-	private String detalle;
+	private String descripcion;
 	
 	private List<Consulta> consultas;
 	private List<Certificado> certificados;
@@ -41,99 +41,190 @@ public class GestionCertificadoBean {
 		listConsultas();
 		//listCertificados();
 	}
+	
+	
+
+	
 
 	public GestionConsultaLocal getGcl() {
 		return gcl;
 	}
 
+
+
+
+
 	public void setGcl(GestionConsultaLocal gcl) {
 		this.gcl = gcl;
 	}
+
+
+
+
 
 	public GestionCertificadoLocal getGcel() {
 		return gcel;
 	}
 
+
+
+
+
 	public void setGcel(GestionCertificadoLocal gcel) {
 		this.gcel = gcel;
 	}
 
+
+
+
+
 	public int getId() {
 		return id;
 	}
+
+
+
+
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
 
-	public Consulta getConsulta() {
-		return consulta;
-	}
 
-	public void setConsulta(Consulta consulta) {
-		this.consulta = consulta;
-	}
 
-	public String getDetalle() {
-		return detalle;
-	}
 
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
-	}
-
-	public List<Consulta> getConsultas() {
-		return consultas;
-	}
-
-	public void setConsultas(List<Consulta> consultas) {
-		this.consultas = consultas;
-	}
-
-	public List<Certificado> getCertificados() {
-		return certificados;
-	}
-
-	public void setCertificados(List<Certificado> certificados) {
-		this.certificados = certificados;
-	}
-
-	public String getFiltro() {
-		return filtro;
-	}
-
-	public void setFiltro(String filtro) {
-		this.filtro = filtro;
-	}
-
-	public Consulta getSelectedConsulta() {
-		return selectedConsulta;
-	}
-
-	public void setSelectedConsulta(Consulta selectedConsulta) {
-		this.selectedConsulta = selectedConsulta;
-	}
-
-	public Certificado getEditCertificado() {
-		return editCertificado;
-	}
-
-	public void setEditCertificado(Certificado editCertificado) {
-		this.editCertificado = editCertificado;
-	}
-	
 	public Date getFecha() {
 		return fecha;
 	}
+
+
+
+
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
+
+
+
+
+	public Consulta getConsulta() {
+		return consulta;
+	}
+
+
+
+
+
+	public void setConsulta(Consulta consulta) {
+		this.consulta = consulta;
+	}
+
+
+
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+
+
+
+	public List<Consulta> getConsultas() {
+		return consultas;
+	}
+
+
+
+
+
+	public void setConsultas(List<Consulta> consultas) {
+		this.consultas = consultas;
+	}
+
+
+
+
+
+	public List<Certificado> getCertificados() {
+		return certificados;
+	}
+
+
+
+
+
+	public void setCertificados(List<Certificado> certificados) {
+		this.certificados = certificados;
+	}
+
+
+
+
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+
+
+
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
+
+
+
+
+
+	public Consulta getSelectedConsulta() {
+		return selectedConsulta;
+	}
+
+
+
+
+
+	public void setSelectedConsulta(Consulta selectedConsulta) {
+		this.selectedConsulta = selectedConsulta;
+	}
+
+
+
+
+
+	public Certificado getEditCertificado() {
+		return editCertificado;
+	}
+
+
+
+
+
+	public void setEditCertificado(Certificado editCertificado) {
+		this.editCertificado = editCertificado;
+	}
+
+
+
+
+
 	public String guardarCertificado() {
 		System.out.println(selectedConsulta);
-		gcel.guardarCertificado(id, fecha, selectedConsulta, detalle);
+		gcel.guardarCertificado(id, fecha, selectedConsulta, descripcion);
 		certificados = gcel.getCertificados();
 		return null;
 		

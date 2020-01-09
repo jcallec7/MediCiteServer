@@ -1,12 +1,9 @@
 package modelo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,24 +11,22 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Certificado implements Serializable {
-	
-	private static final long serialVersionUID = -6594217200682507286L;
+public class Certificado {
 
 	@Id
-	@Column(name = "mc_cert_id")
+	@Column(name="mc_cer_id")
 	private int id;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "mc_cert_fecha")
+	@Column(name="mc_cer_fecha")
 	private Date fecha;
 	
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JoinColumn(name = "mc_cons_id")
+	@ManyToOne
+	@JoinColumn(name="mc_cons_id")
 	private Consulta consulta;
 	
-	@Column(name = "mc_cert_detalle")
-	private String detalle;
+	@Column(name="mc_cer_descripcion")
+	private String descripcion;
 
 	public int getId() {
 		return id;
@@ -57,21 +52,18 @@ public class Certificado implements Serializable {
 		this.consulta = consulta;
 	}
 
-	public String getDetalle() {
-		return detalle;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	@Override
 	public String toString() {
-		return "Certificado [id=" + id + ", fecha=" + fecha + ", consulta=" + consulta + ", detalle=" + detalle + "]";
+		return "Certificado [id=" + id + ", fecha=" + fecha + ", consulta=" + consulta + ", descripcion=" + descripcion
+				+ "]";
 	}
-	
-	
-	
-	
 	
 }
