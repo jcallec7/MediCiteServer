@@ -8,11 +8,11 @@ import javax.inject.Inject;
 import datos.ConsultaDAO;
 import datos.DiagnosticoDAO;
 import datos.MedicoDAO;
-import datos.PacienteDAO;
+import datos.UsuarioDAO;
 import modelo.Consulta;
 import modelo.Diagnostico;
 import modelo.Medico;
-import modelo.Paciente;
+import modelo.Usuario;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +24,7 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 	private ConsultaDAO dao;
 	
 	@Inject
-	private PacienteDAO daoPaciente;
+	private UsuarioDAO daoUsuario;
 	
 	@Inject
 	private MedicoDAO daoMedico;
@@ -34,11 +34,11 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 
-	public void guardarConsulta(int id, Paciente paciente, Medico medico, Date fecha, Diagnostico diagnostico) {
+	public void guardarConsulta(int id, Usuario usuario, Medico medico, Date fecha, Diagnostico diagnostico) {
 
 		Consulta c = new Consulta();
 		//c.setId(id);
-		c.setPaciente(paciente);
+		c.setUsuario(usuario);
 		c.setMedico(medico);
 		c.setFecha(fecha);
 		//c.setDiagnostico(null);
@@ -49,7 +49,7 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 
 	public List<Consulta> getConsultas() {
 		System.out.println(consultas);
-		daoPaciente.getPacientes();
+		daoUsuario.getUsuarios();
 		daoMedico.getMedico();
 		daoDiagnostico.getDiagnostico();
 		return dao.getConsultas();
@@ -68,7 +68,7 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		return consulta;
 	}
 	
-	public void updateConsulta(int id, Paciente paciente, Medico medico, Date fecha, Diagnostico diagnostico) {		
+	public void updateConsulta(int id, Usuario usuario, Medico medico, Date fecha, Diagnostico diagnostico) {		
 		Consulta c = new Consulta();
 		c.setId(id);
 		

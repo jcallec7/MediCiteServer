@@ -35,7 +35,7 @@ public class ConsultaDAO {
 		
 		Consulta a = em.find(Consulta.class, id);
 		a.getMedico().toString();
-		a.getPaciente().toString();
+		a.getUsuario().toString();
 		return a;
 		
 	}

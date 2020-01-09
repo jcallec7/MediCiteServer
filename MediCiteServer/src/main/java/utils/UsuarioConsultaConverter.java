@@ -6,11 +6,11 @@ package utils;
 	import javax.faces.convert.Converter;
 	import javax.faces.convert.FacesConverter;
 
-import modelo.Paciente;
+import modelo.Usuario;
 import vista.GestionConsultaBean;
 
-	@FacesConverter(value = "pacienteConsultaConverter")
-	public class PacienteConsultaConverter implements Converter {
+	@FacesConverter(value = "usuarioConsultaConverter")
+	public class UsuarioConsultaConverter implements Converter {
 
 	    @Override
 	    public Object getAsObject(FacesContext ctx, UIComponent uiComponent, String beerId) {
@@ -19,7 +19,7 @@ import vista.GestionConsultaBean;
 	                        .createValueExpression(ctx.getELContext(),
 	                                "#{gestionConsultaBean}", GestionConsultaBean.class);
 	        GestionConsultaBean beers = (GestionConsultaBean)vex.getValue(ctx.getELContext());
-	        for(Paciente a : beers.getPacientes()) {
+	        for(Usuario a : beers.getUsuarios()) {
 	        	if(a.getId().equals(beerId)) {
 	        		return a;
 	        	}
@@ -29,7 +29,7 @@ import vista.GestionConsultaBean;
 
 	    @Override
 	    public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object beer) {
-	        return "" + ((Paciente)beer).getId();
+	        return "" + ((Usuario)beer).getId();
 	    }
 
 	}

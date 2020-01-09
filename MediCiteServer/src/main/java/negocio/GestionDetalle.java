@@ -13,7 +13,7 @@ import modelo.Detalle;
 import modelo.Diagnostico;
 import modelo.Medicamento;
 import modelo.Medico;
-import modelo.Paciente;
+import modelo.Usuario;
 
 @Stateless
 public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote{

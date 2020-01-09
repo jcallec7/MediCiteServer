@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
-public class Paciente implements Serializable {
+public class Usuario implements Serializable {
 
 	/**
 	 * 
@@ -25,46 +25,46 @@ public class Paciente implements Serializable {
 	
 	@Id
 	@Size(min=10, max=13)
-	@Column(name="mc_pa_id")
+	@Column(name="mc_usr_id")
 	private String id;
 	
-	@Column(name="mc_pa_nombre")
+	@Column(name="mc_usr_nombre")
 	private String nombre;
 	
-	@Column(name="mc_pa_apellido")
+	@Column(name="mc_usr_apellido")
 	private String apellido;
 	
-	@Column(name="mc_pa_genero")
+	@Column(name="mc_usr_genero")
 	private String genero;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="mc_pa_fecha_nac")
+	@Column(name="mc_usr_fecha_nac")
 	private Date fecha_nac;
 	
 	@Email
-	@Column(name="mc_pa_correo")
+	@Column(name="mc_usr_correo")
 	private String correo;
 	
-	@Column(name="mc_pa_contraseña")
+	@Column(name="mc_usr_contraseña")
 	private String contrasena;
 	
-	@Column(name="mc_pa_telf1")
+	@Column(name="mc_usr_telf1")
 	private String telf1;
 	
-	@Column(name="mc_pa_telf2")
+	@Column(name="mc_usr_telf2")
 	private String telf2;
 	
-	@Column(name="mc_pa_direccion")
+	@Column(name="mc_usr_direccion")
 	private String direccion;
 	
-	@Column(name="mc_pa_peso")
+	@Column(name="mc_usr_peso")
 	private String peso;
 	
-	@Column(name="mc_pa_estatura")
+	@Column(name="mc_usr_estatura")
 	private String estatura;
 	
 	@ManyToOne
-	@JoinColumn(name="mc_pa_rol")
+	@JoinColumn(name="mc_usr_rol")
 	private Rol rol;
 
 	public String getId() {

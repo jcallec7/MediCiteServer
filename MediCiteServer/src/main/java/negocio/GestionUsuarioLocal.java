@@ -5,25 +5,25 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import modelo.Paciente;
+import modelo.Usuario;
 import modelo.Rol;
 
 @Local
-public interface GestionPacienteLocal {
+public interface GestionUsuarioLocal {
 	
-	public void guardarPaciente(String id, String nombre, String apellido, String genero, 
+	public void guardarUsuario(String id, String nombre, String apellido, String genero, 
 								Date fecha_nac, String correo, String contrasena, String telf1, 
 								String telf2, String direccion, String peso, String estatura, Rol rol);
 	
-	public List<Paciente> getPacientes();
+	public List<Usuario> getUsuarios();
 	
-	public List<Paciente> getPacientesPorNombre(String filtro);
+	public List<Usuario> getUsuariosPorNombre(String filtro);
 	
-	public void deletePaciente(String id);
+	public void deleteUsuario(String id);
 	
-	public Paciente readPaciente(String id);
+	public Usuario readUsuario(String id);
 	
-	public void updatePaciente(String id, String nombre, String apellido, String genero,
+	public void updateUsuario(String id, String nombre, String apellido, String genero,
 			Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
 			String peso, String estatura);
 	

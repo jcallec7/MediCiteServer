@@ -5,26 +5,26 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import datos.PacienteDAO;
-import modelo.Paciente;
+import datos.UsuarioDAO;
+import modelo.Usuario;
 import modelo.Rol;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 @Stateless
-public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLocal{
+public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal{
 
 	@Inject
-	private PacienteDAO dao;
+	private UsuarioDAO dao;
 
-	private List<Paciente> Pacientes = new ArrayList<Paciente>();
+	private List<Usuario> Usuarios = new ArrayList<Usuario>();
 
-	public void guardarPaciente(String id, String nombre, String apellido, String genero,
+	public void guardarUsuario(String id, String nombre, String apellido, String genero,
 								Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
 								String peso, String estatura, Rol rol) {
 
-		Paciente c = new Paciente();
+		Usuario c = new Usuario();
 		c.setId(id);
 		c.setNombre(nombre);
 		c.setApellido(apellido);
@@ -39,33 +39,33 @@ public class GestionPaciente implements GestionPacienteRemote, GestionPacienteLo
 		c.setEstatura(estatura);
 		c.setRol(rol);
 
-		Pacientes.add(c);
+		Usuarios.add(c);
 		// System.out.println(c);
 		dao.insert(c);
 	}
 
-	public List<Paciente> getPacientes() {
-		System.out.println(Pacientes);
-		return dao.getPacientes();
+	public List<Usuario> getUsuarios() {
+		System.out.println(Usuarios);
+		return dao.getUsuarios();
 	}
 
-	public List<Paciente> getPacientesPorNombre(String filtro) {
-		return dao.getPacientesXNombre(filtro);
+	public List<Usuario> getUsuariosPorNombre(String filtro) {
+		return dao.getUsuariosXNombre(filtro);
 	}
 	
-	public void deletePaciente(String id) {
+	public void deleteUsuario(String id) {
 		dao.remove(id);
 	}
 	
-	public Paciente readPaciente(String id) {
-		Paciente paciente = dao.read(id);
-		return paciente;
+	public Usuario readUsuario(String id) {
+		Usuario usuario = dao.read(id);
+		return usuario;
 	}
 	
-	public void updatePaciente(String id, String nombre, String apellido, String genero,
+	public void updateUsuario(String id, String nombre, String apellido, String genero,
 			Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
 			String peso, String estatura) {		
-		Paciente c = new Paciente();
+		Usuario c = new Usuario();
 		c.setId(id);
 		c.setNombre(nombre);
 		c.setApellido(apellido);

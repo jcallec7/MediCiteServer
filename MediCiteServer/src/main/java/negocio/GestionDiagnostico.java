@@ -21,7 +21,7 @@ public class GestionDiagnostico implements GestionDiagnosticoLocal, GestionDiagn
 	@Override
 	public void guardarDiagnostico(int id, String detalle, Receta receta) {
 		Diagnostico d = new Diagnostico();
-		d.setID(id);
+		d.setId(id);
 		d.setDetalle(detalle);
 		d.setReceta(receta);
 		System.out.println(d);

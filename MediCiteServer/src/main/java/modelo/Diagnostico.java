@@ -8,7 +8,7 @@ public class Diagnostico {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "mc_diag_id")
-	private int ID;
+	private int id;
 
 	@Column(name = "mc_diag_detalle")
 	private String detalle;
@@ -17,12 +17,12 @@ public class Diagnostico {
 	@JoinColumn(name = "mc_rec_id")
 	private Receta receta;
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		id = id;
 	}
 
 	public String getDetalle() {

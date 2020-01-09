@@ -8,16 +8,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import modelo.Paciente;
+import modelo.Usuario;
 import modelo.Rol;
-import negocio.GestionPacienteLocal;
+import negocio.GestionUsuarioLocal;
 import negocio.GestionRolLocal;
 
 @ManagedBean
-public class GestionPacienteBean {
+public class GestionUsuarioBean {
 
 	@Inject
-	private GestionPacienteLocal gpl;
+	private GestionUsuarioLocal gpl;
 	@Inject
 	private GestionRolLocal grl;
 
@@ -37,23 +37,23 @@ public class GestionPacienteBean {
 	private int rolId = 4;
 	private Rol rol;
 
-	private List<Paciente> pacientes;
+	private List<Usuario> usuarios;
 	
 	private String filtro;
-	private String selectedPacienteId;
-	private String selectedPacienteId2;
-	private Paciente editedPaciente;
+	private String selectedUsuarioId;
+	private String selectedUsuarioId2;
+	private Usuario editedUsuario;
 	
 	@PostConstruct
 	public void init() {
-		listPaciente();
+		listUsuario();
 	}
 
-	public GestionPacienteLocal getGpl() {
+	public GestionUsuarioLocal getGpl() {
 		return gpl;
 	}
 
-	public void setGpl(GestionPacienteLocal gpl) {
+	public void setGpl(GestionUsuarioLocal gpl) {
 		this.gpl = gpl;
 	}
 
@@ -153,43 +153,43 @@ public class GestionPacienteBean {
 		this.estatura = estatura;
 	}
 
-	public List<Paciente> getPacientes() {
-		return pacientes;
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setPacientes(List<Paciente> pacientes) {
-		this.pacientes = pacientes;
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
-	public String getSelectedPacienteId() {
-		return selectedPacienteId;
+	public String getSelectedUsuarioId() {
+		return selectedUsuarioId;
 	}
 
-	public void setSelectedPacienteId(String selectedPacienteId) {
-		this.selectedPacienteId = selectedPacienteId;
+	public void setSelectedUsuarioId(String selectedUsuarioId) {
+		this.selectedUsuarioId = selectedUsuarioId;
 	}
 	
-	public String getSelectedPacienteId2() {
-		return selectedPacienteId2;
+	public String getSelectedUsuarioId2() {
+		return selectedUsuarioId2;
 	}
 
-	public void setSelectedPacienteId2(String selectedPacienteId2) {
-		this.selectedPacienteId2 = selectedPacienteId2;
+	public void setSelectedUsuarioId2(String selectedUsuarioId2) {
+		this.selectedUsuarioId2 = selectedUsuarioId2;
 	}
 	
-	public Paciente geteditedPaciente() {
-		return editedPaciente;
+	public Usuario geteditedUsuario() {
+		return editedUsuario;
 	}
 
-	public void seteditedPaciente(Paciente editedPaciente) {
-		this.editedPaciente = editedPaciente;
+	public void seteditedUsuario(Usuario editedUsuario) {
+		this.editedUsuario = editedUsuario;
 	}
 
-	public String guardarPaciente() {
+	public String guardarUsuario() {
 		
 		rol = grl.readRol(rolId);
-		gpl.guardarPaciente(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura, rol);
-		pacientes = gpl.getPacientes();
+		gpl.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura, rol);
+		usuarios = gpl.getUsuarios();
 		return null;
 		
 	}
@@ -202,38 +202,38 @@ public class GestionPacienteBean {
 		this.filtro = filtro;
 	}
 
-	public List<Paciente> buscarPaciente() {
+	public List<Usuario> buscarUsuario() {
 		
-		pacientes = gpl.getPacientesPorNombre(filtro);
+		usuarios = gpl.getUsuariosPorNombre(filtro);
 		
-		return pacientes;
+		return usuarios;
 	}
 	
-	public String editPacienteById() {
+	public String editUsuarioById() {
 		
-		selectedPacienteId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedPacienteId");
-		System.out.println(selectedPacienteId);
-		editedPaciente = gpl.readPaciente(selectedPacienteId);
-		return "updatePaciente";
+		selectedUsuarioId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedUsuarioId");
+		System.out.println(selectedUsuarioId);
+		editedUsuario = gpl.readUsuario(selectedUsuarioId);
+		return "updateUsuario";
 		
 	}
 	
-	public String deletePaciente() {
+	public String deleteUsuario() {
 		
-		selectedPacienteId2 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedPacienteId2");
-		System.out.println(selectedPacienteId2);
-		gpl.deletePaciente(selectedPacienteId2);
+		selectedUsuarioId2 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedUsuarioId2");
+		System.out.println(selectedUsuarioId2);
+		gpl.deleteUsuario(selectedUsuarioId2);
 		return null;
 		
 	}
 	
-	public void listPaciente() {
-		this.pacientes = this.gpl.getPacientes();
+	public void listUsuario() {
+		this.usuarios = this.gpl.getUsuarios();
 	}
 
-	public String updatePaciente() {
-		gpl.updatePaciente(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura);
-		return "listPaciente";
+	public String updateUsuario() {
+		gpl.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura);
+		return "listUsuario";
 		
 	}
 	

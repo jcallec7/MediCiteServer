@@ -32,7 +32,7 @@ public class Consulta implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "mc_pa_id")
-	private Paciente paciente;
+	private Usuario usuario;
 
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "mc_med_id")
@@ -54,12 +54,12 @@ public class Consulta implements Serializable {
 		this.id = id;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Medico getMedico() {
@@ -92,7 +92,7 @@ public class Consulta implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Consulta [id=" + id + ", paciente=" + paciente + ", medico=" + medico + ", fecha=" + fecha
+		return "Consulta [id=" + id + ", usuario=" + usuario + ", medico=" + medico + ", fecha=" + fecha
 				+ ", diagnostico=" + diagnostico + "]";
 	}
 

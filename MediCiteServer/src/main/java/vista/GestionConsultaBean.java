@@ -12,10 +12,10 @@ import javax.inject.Inject;
 import modelo.Consulta;
 import modelo.Diagnostico;
 import modelo.Medico;
-import modelo.Paciente;
+import modelo.Usuario;
 import negocio.GestionConsultaLocal;
 import negocio.GestionMedicoLocal;
-import negocio.GestionPacienteLocal;
+import negocio.GestionUsuarioLocal;
 
 @ManagedBean
 @SessionScoped
@@ -25,24 +25,24 @@ public class GestionConsultaBean {
 	private GestionConsultaLocal gcl;
 	
 	@Inject
-	private GestionPacienteLocal gpl;
+	private GestionUsuarioLocal gpl;
 	
 	@Inject
 	private GestionMedicoLocal gml;
 	
 	/* Beans properties */
 	private int id;
-	private Paciente paciente;
+	private Usuario usuario;
 	private Medico medico;
 	private Date fecha;
 	private Diagnostico diagnostico;
 
 	private List<Consulta> consultas;
 	private List<Medico> medicos;
-	private List<Paciente> pacientes;
+	private List<Usuario> usuarios;
 
 	private String filtro;
-	private Paciente selectedPaciente;
+	private Usuario selectedUsuario;
 	private Medico selectedMedico;
 	private int selectedConsultaId;
 	private int selectedConsultaId2;
@@ -54,7 +54,7 @@ public class GestionConsultaBean {
 	@PostConstruct
 	public void init() {
 		listConsultas();
-		listPacientes();
+		listUsuarios();
 		listMedicos();
 	}
 	
@@ -82,11 +82,11 @@ public class GestionConsultaBean {
 		this.selectedConsultaId = selectedConsultaId;
 	}
 
-	public GestionPacienteLocal getGpl() {
+	public GestionUsuarioLocal getGpl() {
 		return gpl;
 	}
 
-	public void setGpl(GestionPacienteLocal gpl) {
+	public void setGpl(GestionUsuarioLocal gpl) {
 		this.gpl = gpl;
 	}
 
@@ -98,12 +98,12 @@ public class GestionConsultaBean {
 		this.gml = gml;
 	}
 
-	public Paciente getSelectedPaciente() {
-		return selectedPaciente;
+	public Usuario getSelectedUsuario() {
+		return selectedUsuario;
 	}
 
-	public void setSelectedPaciente(Paciente selectedPaciente) {
-		this.selectedPaciente = selectedPaciente;
+	public void setSelectedUsuario(Usuario selectedUsuario) {
+		this.selectedUsuario = selectedUsuario;
 	}
 
 	public Medico getSelectedMedico() {
@@ -130,12 +130,12 @@ public class GestionConsultaBean {
 		this.medicos = medicos;
 	}
 
-	public List<Paciente> getPacientes() {
-		return pacientes;
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setPacientes(List<Paciente> pacientes) {
-		this.pacientes = pacientes;
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	public GestionConsultaLocal getGcl() {
@@ -154,12 +154,12 @@ public class GestionConsultaBean {
 		this.id = id;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Medico getMedico() {
@@ -212,11 +212,11 @@ public class GestionConsultaBean {
 
 	public String guardarConsulta() {
 		
-		System.out.println(selectedPaciente);
+		System.out.println(selectedUsuario);
 		System.out.println(selectedMedico);
 		fecha.setHours(hora);
 		fecha.setMinutes(minuto);
-		gcl.guardarConsulta(id, selectedPaciente, selectedMedico, fecha, diagnostico);
+		gcl.guardarConsulta(id, selectedUsuario, selectedMedico, fecha, diagnostico);
 		consultas = gcl.getConsultas();
 		return null;
 
@@ -260,8 +260,8 @@ public class GestionConsultaBean {
 		this.consultas = this.gcl.getConsultas();
 	}
 	
-	public void listPacientes() {
-		this.pacientes = this.gpl.getPacientes();
+	public void listUsuarios() {
+		this.usuarios = this.gpl.getUsuarios();
 	}
 	
 	public void listMedicos() {
@@ -269,7 +269,7 @@ public class GestionConsultaBean {
 	}
 
 	public String updateConsulta() {
-		gcl.updateConsulta(id, paciente, medico, fecha, diagnostico);
+		gcl.updateConsulta(id, usuario, medico, fecha, diagnostico);
 		return "listConsulta";
 	}
 

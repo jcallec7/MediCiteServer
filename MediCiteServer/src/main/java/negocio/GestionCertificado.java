@@ -12,7 +12,7 @@ import modelo.Certificado;
 import modelo.Consulta;
 import modelo.Diagnostico;
 import modelo.Medico;
-import modelo.Paciente;
+import modelo.Usuario;
 
 @Stateless
 public class GestionCertificado implements GestionCertificadoLocal, GestionCertificadoRemote{
