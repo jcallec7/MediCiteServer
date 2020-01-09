@@ -37,7 +37,7 @@ public class CertificadoDAO {
 		
 		Certificado c = em.find(Certificado.class, id);
 		
-		return null;
+		return c;
 		
 	}
 	
@@ -46,9 +46,9 @@ public class CertificadoDAO {
 		String jpql = "SELECT c FROM Certificado c";
 		Query q = em.createQuery(jpql, Certificado.class);
 		
-		List<Certificado> certificado = q.getResultList();	
+		List<Certificado> certificados = q.getResultList();	
 		
-		return certificado;
+		return certificados;
 	}
 	
 	
@@ -57,10 +57,12 @@ public class CertificadoDAO {
 		Query q = em.createQuery(jpql, Certificado.class);
 		q.setParameter(1, "%" + filtro + "%");
 		
-		List<Certificado> certificado = q.getResultList();
+		List<Certificado> certificados = q.getResultList();
 		
-		return certificado;
+		return certificados;
 	}
 
 }
+
+
 
