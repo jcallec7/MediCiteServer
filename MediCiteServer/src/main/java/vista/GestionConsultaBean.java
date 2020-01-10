@@ -11,10 +11,8 @@ import javax.inject.Inject;
 
 import modelo.Consulta;
 import modelo.Diagnostico;
-import modelo.Medico;
 import modelo.Usuario;
 import negocio.GestionConsultaLocal;
-import negocio.GestionMedicoLocal;
 import negocio.GestionUsuarioLocal;
 
 @ManagedBean
@@ -28,22 +26,22 @@ public class GestionConsultaBean {
 	private GestionUsuarioLocal gpl;
 	
 	@Inject
-	private GestionMedicoLocal gml;
+	private GestionUsuarioLocal gml;
 	
 	/* Beans properties */
 	private int id;
 	private Usuario usuario;
-	private Medico medico;
+	private Usuario medico;
 	private Date fecha;
 	private Diagnostico diagnostico;
 
 	private List<Consulta> consultas;
-	private List<Medico> medicos;
+	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
 
 	private String filtro;
 	private Usuario selectedUsuario;
-	private Medico selectedMedico;
+	private Usuario selectedMedico;
 	private int selectedConsultaId;
 	private int selectedConsultaId2;
 	private Consulta selectedConsulta;
@@ -90,11 +88,11 @@ public class GestionConsultaBean {
 		this.gpl = gpl;
 	}
 
-	public GestionMedicoLocal getGml() {
+	public GestionUsuarioLocal getGml() {
 		return gml;
 	}
 
-	public void setGml(GestionMedicoLocal gml) {
+	public void setGml(GestionUsuarioLocal gml) {
 		this.gml = gml;
 	}
 
@@ -106,11 +104,11 @@ public class GestionConsultaBean {
 		this.selectedUsuario = selectedUsuario;
 	}
 
-	public Medico getSelectedMedico() {
+	public Usuario getSelectedMedico() {
 		return selectedMedico;
 	}
 
-	public void setSelectedMedico(Medico selectedMedico) {
+	public void setSelectedMedico(Usuario selectedMedico) {
 		this.selectedMedico = selectedMedico;
 	}
 
@@ -122,11 +120,11 @@ public class GestionConsultaBean {
 		this.selectedDiagnostico = selectedDiagnostico;
 	}
 
-	public List<Medico> getMedicos() {
+	public List<Usuario> getMedicos() {
 		return medicos;
 	}
 
-	public void setMedicos(List<Medico> medicos) {
+	public void setMedicos(List<Usuario> medicos) {
 		this.medicos = medicos;
 	}
 
@@ -162,11 +160,11 @@ public class GestionConsultaBean {
 		this.usuario = usuario;
 	}
 
-	public Medico getMedico() {
+	public Usuario getMedico() {
 		return medico;
 	}
 
-	public void setMedico(Medico medico) {
+	public void setMedico(Usuario medico) {
 		this.medico = medico;
 	}
 
@@ -265,7 +263,7 @@ public class GestionConsultaBean {
 	}
 	
 	public void listMedicos() {
-		this.medicos = this.gml.getMedico();
+		this.medicos = this.gml.getUsuarios();
 	}
 
 	public String updateConsulta() {

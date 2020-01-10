@@ -4,15 +4,15 @@
      xmlns:h="http://java.sun.com/jsf/html"
      	template="blank.xhtml">
 
-	<ui:define name="cabecera">Sección Paciente</ui:define>
+	<ui:define name="cabecera">Sección Usuario</ui:define>
 
-	<ui:define name="titulo">Pacientes Guardados</ui:define>
+	<ui:define name="titulo">Usuarios Guardados</ui:define>
 	
 	<ui:define name="contenido">
 	
 		<h:form>
 			
-			<h:dataTable value="#{gestionPacienteBean.gpl.pacientes}" var="pa" class="table table-bordered">
+			<h:dataTable value="#{gestionUsuarioBean.gul.getUsuarioPorRol(gestionUsuarioBean.rolId)}" var="pa" class="table table-bordered">
 			
 				<h:column>
 					#{pa.id}
@@ -33,28 +33,28 @@
 				
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandButton value="Editar" action="#{gestionPacienteBean.editPacienteById()}" class = "btn btn-primary">
-						<f:param name="selectedPacienteId" value="#{pa.id}"/>
+					<h:commandButton value="Editar" action="#{gestionUsuarioBean.editUsuarioById()}" class = "btn btn-primary">
+						<f:param name="selectedUsuarioId" value="#{pa.id}"/>
 					</h:commandButton>
 					
-					<!-- <a href="updatePaciente.xhtml?id=#{medico.id}">Editar</a>  -->
+					<!-- <a href="updateUsuario.xhtml?id=#{medico.id}">Editar</a>  -->
 					
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Eliminar</f:facet>
-					<h:commandButton value="Eliminar" action="#{gestionPacienteBean.deletePaciente()}" class = "btn btn-primary">
-						<f:param name="selectedPacienteId2" value="#{pa.id}"/>
+					<h:commandButton value="Eliminar" action="#{gestionUsuarioBean.deleteUsuario()}" class = "btn btn-primary">
+						<f:param name="selectedUsuarioId2" value="#{pa.id}"/>
 					</h:commandButton>
 					
 				</h:column>
 			
 			</h:dataTable>
 		
-			<h:commandButton value="Ingresar Nuevo Paciente" action="createPaciente" class = "btn btn-primary">
+			<h:commandButton value="Ingresar Nuevo Usuario" action="createUsuario" class = "btn btn-primary">
 			</h:commandButton>
 			
-			<h:commandButton value="Buscar Paciente" action="readPaciente" class = "btn btn-primary">
+			<h:commandButton value="Buscar Usuario" action="readUsuario" class = "btn btn-primary">
 			</h:commandButton>
 			
 		</h:form>

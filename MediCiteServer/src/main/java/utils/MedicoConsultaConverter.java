@@ -6,7 +6,7 @@ package utils;
 	import javax.faces.convert.Converter;
 	import javax.faces.convert.FacesConverter;
 
-import modelo.Medico;
+import modelo.Usuario;
 import vista.GestionConsultaBean;
 
 	@FacesConverter(value = "medicoConsultaConverter")
@@ -19,7 +19,7 @@ import vista.GestionConsultaBean;
 	                        .createValueExpression(ctx.getELContext(),
 	                                "#{gestionConsultaBean}", GestionConsultaBean.class);
 	        GestionConsultaBean beers = (GestionConsultaBean)vex.getValue(ctx.getELContext());
-	        for(Medico a : beers.getMedicos()) {
+	        for(Usuario a : beers.getUsuarios()) {
 	        	System.out.println("id " + a.getId() + "  " + beerId);
 	        	if(a.getId().equals(beerId)) {
 	        		System.out.println(a);
@@ -32,7 +32,7 @@ import vista.GestionConsultaBean;
 
 	    @Override
 	    public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object beer) {
-	        return "" + ((Medico)beer).getId();
+	        return "" + ((Usuario)beer).getId();
 	    }
 
 	}

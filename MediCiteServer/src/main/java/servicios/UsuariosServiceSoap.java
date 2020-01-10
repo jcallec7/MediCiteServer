@@ -20,7 +20,7 @@ public class UsuariosServiceSoap {
 		
 		Respuesta respuesta = new Respuesta();
 		try {
-			gpl.guardarUsuario(usuario.getId(), usuario.getNombre(), usuario.getApellido(), usuario.getGenero(), usuario.getFecha_nac(), usuario.getCorreo(), usuario.getContrasena(), usuario.getTelf1(), usuario.getTelf2(), usuario.getDireccion(), usuario.getPeso(), usuario.getEstatura(), usuario.getRol());
+			gpl.guardarUsuario(usuario.getId(), usuario.getNombre(), usuario.getApellido(), usuario.getGenero(), usuario.getFecha_nac(), usuario.getCorreo(), usuario.getEspecialidad(), usuario.getContrasena(), usuario.getTelf1(), usuario.getTelf2(), usuario.getDireccion(), usuario.getPeso(), usuario.getEstatura(), usuario.getRol());
 			respuesta.setCodigo(1);
 			respuesta.setMensaje("AL PELOO");
 		} catch(Exception e) {

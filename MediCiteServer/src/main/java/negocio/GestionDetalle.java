@@ -12,7 +12,6 @@ import datos.MedicamentoDAO;
 import modelo.Detalle;
 import modelo.Diagnostico;
 import modelo.Medicamento;
-import modelo.Medico;
 import modelo.Usuario;
 
 @Stateless

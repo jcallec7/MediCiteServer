@@ -45,6 +45,9 @@ public class Usuario implements Serializable {
 	@Column(name="mc_usr_correo")
 	private String correo;
 	
+	@Column(name="mc_usr_especialidad")
+	private String especialidad;
+	
 	@Column(name="mc_usr_contraseña")
 	private String contrasena;
 	
@@ -169,6 +172,14 @@ public class Usuario implements Serializable {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+
+	public String getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
 	}
 
 	@Override

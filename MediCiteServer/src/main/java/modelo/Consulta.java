@@ -36,7 +36,7 @@ public class Consulta implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "mc_med_id")
-	private Medico medico;
+	private Usuario medico;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "mc_cons_fecha")
@@ -62,11 +62,11 @@ public class Consulta implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Medico getMedico() {
+	public Usuario getMedico() {
 		return medico;
 	}
 
-	public void setMedico(Medico medico) {
+	public void setMedico(Usuario medico) {
 		this.medico = medico;
 	}
 

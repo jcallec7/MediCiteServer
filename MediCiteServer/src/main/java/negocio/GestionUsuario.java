@@ -21,7 +21,7 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 	private List<Usuario> Usuarios = new ArrayList<Usuario>();
 
 	public void guardarUsuario(String id, String nombre, String apellido, String genero,
-								Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
+								Date fecha_nac, String correo, String especialidad, String contrasena, String telf1, String telf2, String direccion,
 								String peso, String estatura, Rol rol) {
 
 		Usuario c = new Usuario();
@@ -31,6 +31,7 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 		c.setGenero(genero);
 		c.setFecha_nac(fecha_nac);
 		c.setCorreo(correo);
+		c.setEspecialidad(especialidad);
 		c.setContrasena(contrasena);
 		c.setTelf1(telf1);
 		c.setTelf2(telf2);
@@ -43,28 +44,10 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 		// System.out.println(c);
 		dao.insert(c);
 	}
-
-	public List<Usuario> getUsuarios() {
-		System.out.println(Usuarios);
-		return dao.getUsuarios();
-	}
-
-	public List<Usuario> getUsuariosPorNombre(String filtro) {
-		return dao.getUsuariosXNombre(filtro);
-	}
-	
-	public void deleteUsuario(String id) {
-		dao.remove(id);
-	}
-	
-	public Usuario readUsuario(String id) {
-		Usuario usuario = dao.read(id);
-		return usuario;
-	}
 	
 	public void updateUsuario(String id, String nombre, String apellido, String genero,
-			Date fecha_nac, String correo, String contrasena, String telf1, String telf2, String direccion,
-			String peso, String estatura) {		
+			Date fecha_nac, String correo, String especialidad, String contrasena, String telf1, String telf2, String direccion,
+			String peso, String estatura, Rol rol) {		
 		Usuario c = new Usuario();
 		c.setId(id);
 		c.setNombre(nombre);
@@ -72,13 +55,44 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 		c.setGenero(genero);
 		c.setFecha_nac(fecha_nac);
 		c.setCorreo(correo);
+		c.setEspecialidad(especialidad);
 		c.setContrasena(contrasena);
 		c.setTelf1(telf1);
 		c.setTelf2(telf2);
 		c.setDireccion(direccion);
 		c.setPeso(peso);
 		c.setEstatura(estatura);
+		c.setRol(rol);
 		dao.update(c);
+	}
+	
+	public Usuario readUsuario(String id) {
+		Usuario usuario = dao.read(id);
+		return usuario;
+	}
+	
+	public void deleteUsuario(String id) {
+		dao.remove(id);
+	}
+	
+
+	public List<Usuario> getUsuarios() {
+		System.out.println(Usuarios);
+		return dao.getUsuarios();
+	}
+
+	public List<Usuario> getUsuariosPorNombre(String filtro) {
+		return dao.getUsuariosPorNombre(filtro);
+	}
+	
+	public List<Usuario> getUsuarioPorId(String filtro){
+		
+		return dao.getUsuarioPorId(filtro);
+	}
+	
+	public List<Usuario> getUsuarioPorRol(String filtro){
+		
+		return dao.getUsuarioPorRol(filtro);
 	}
 
 }

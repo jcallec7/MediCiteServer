@@ -6,7 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import datos.RolDAO;
-import modelo.Medico;
 import modelo.Rol;
 
 public class GestionRol implements GestionRolLocal {

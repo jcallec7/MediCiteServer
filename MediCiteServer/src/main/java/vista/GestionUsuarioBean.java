@@ -17,7 +17,7 @@ import negocio.GestionRolLocal;
 public class GestionUsuarioBean {
 
 	@Inject
-	private GestionUsuarioLocal gpl;
+	private GestionUsuarioLocal gul;
 	@Inject
 	private GestionRolLocal grl;
 
@@ -28,6 +28,7 @@ public class GestionUsuarioBean {
 	private String genero;
 	private Date fecha_nac;
 	private String correo;
+	private String especialidad;
 	private String contrasena;
 	private String telf1;
 	private String telf2;
@@ -49,12 +50,12 @@ public class GestionUsuarioBean {
 		listUsuario();
 	}
 
-	public GestionUsuarioLocal getGpl() {
-		return gpl;
+	public GestionUsuarioLocal getGul() {
+		return gul;
 	}
 
-	public void setGpl(GestionUsuarioLocal gpl) {
-		this.gpl = gpl;
+	public void setGul(GestionUsuarioLocal gul) {
+		this.gul = gul;
 	}
 
 	public String getId() {
@@ -185,11 +186,51 @@ public class GestionUsuarioBean {
 		this.editedUsuario = editedUsuario;
 	}
 
+	public String getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	public GestionRolLocal getGrl() {
+		return grl;
+	}
+
+	public void setGrl(GestionRolLocal grl) {
+		this.grl = grl;
+	}
+
+	public int getRolId() {
+		return rolId;
+	}
+
+	public void setRolId(int rolId) {
+		this.rolId = rolId;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+	public Usuario getEditedUsuario() {
+		return editedUsuario;
+	}
+
+	public void setEditedUsuario(Usuario editedUsuario) {
+		this.editedUsuario = editedUsuario;
+	}
+
 	public String guardarUsuario() {
 		
 		rol = grl.readRol(rolId);
-		gpl.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura, rol);
-		usuarios = gpl.getUsuarios();
+		gul.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, rol);
+		usuarios = gul.getUsuarios();
 		return null;
 		
 	}
@@ -204,7 +245,7 @@ public class GestionUsuarioBean {
 
 	public List<Usuario> buscarUsuario() {
 		
-		usuarios = gpl.getUsuariosPorNombre(filtro);
+		usuarios = gul.getUsuariosPorNombre(filtro);
 		
 		return usuarios;
 	}
@@ -213,7 +254,7 @@ public class GestionUsuarioBean {
 		
 		selectedUsuarioId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedUsuarioId");
 		System.out.println(selectedUsuarioId);
-		editedUsuario = gpl.readUsuario(selectedUsuarioId);
+		editedUsuario = gul.readUsuario(selectedUsuarioId);
 		return "updateUsuario";
 		
 	}
@@ -222,17 +263,17 @@ public class GestionUsuarioBean {
 		
 		selectedUsuarioId2 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedUsuarioId2");
 		System.out.println(selectedUsuarioId2);
-		gpl.deleteUsuario(selectedUsuarioId2);
+		gul.deleteUsuario(selectedUsuarioId2);
 		return null;
 		
 	}
 	
 	public void listUsuario() {
-		this.usuarios = this.gpl.getUsuarios();
+		this.usuarios = this.gul.getUsuarios();
 	}
 
 	public String updateUsuario() {
-		gpl.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, contrasena, telf1, telf2, direccion, peso, estatura);
+		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, rol);
 		return "listUsuario";
 		
 	}

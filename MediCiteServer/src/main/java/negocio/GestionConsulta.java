@@ -7,11 +7,9 @@ import javax.inject.Inject;
 
 import datos.ConsultaDAO;
 import datos.DiagnosticoDAO;
-import datos.MedicoDAO;
 import datos.UsuarioDAO;
 import modelo.Consulta;
 import modelo.Diagnostico;
-import modelo.Medico;
 import modelo.Usuario;
 
 import java.util.ArrayList;
@@ -27,19 +25,19 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 	private UsuarioDAO daoUsuario;
 	
 	@Inject
-	private MedicoDAO daoMedico;
+	private UsuarioDAO daoMedico;
 	
 	@Inject
 	private DiagnosticoDAO daoDiagnostico;
 
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 
-	public void guardarConsulta(int id, Usuario usuario, Medico medico, Date fecha, Diagnostico diagnostico) {
+	public void guardarConsulta(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico) {
 
 		Consulta c = new Consulta();
 		//c.setId(id);
 		c.setUsuario(usuario);
-		c.setMedico(medico);
+		c.setUsuario(medico);
 		c.setFecha(fecha);
 		//c.setDiagnostico(null);
 		consultas.add(c);
@@ -50,7 +48,7 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 	public List<Consulta> getConsultas() {
 		System.out.println(consultas);
 		daoUsuario.getUsuarios();
-		daoMedico.getMedico();
+		daoMedico.getUsuarios();
 		daoDiagnostico.getDiagnostico();
 		return dao.getConsultas();
 	}
@@ -68,7 +66,7 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		return consulta;
 	}
 	
-	public void updateConsulta(int id, Usuario usuario, Medico medico, Date fecha, Diagnostico diagnostico) {		
+	public void updateConsulta(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico) {		
 		Consulta c = new Consulta();
 		c.setId(id);
 		

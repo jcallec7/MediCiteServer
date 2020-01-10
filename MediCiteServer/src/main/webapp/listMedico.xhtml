@@ -10,7 +10,7 @@
 	
 		<h:form>
 									
-			<h:dataTable value="#{gestionMedicoBean.gml.medico}" var="medico" id="resultado" class="table table-bordered">
+			<h:dataTable value="#{gestionMedicoBean.gul.getUsuarioPorRol(gestionMedicoBean.rolId)}" var="medico" id="resultado" class="table table-bordered">
 			
 				<h:column>
 					<f:facet name="header">Código</f:facet>

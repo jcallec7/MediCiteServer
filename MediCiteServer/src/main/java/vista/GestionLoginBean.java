@@ -7,15 +7,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import modelo.Medico;
-import negocio.GestionMedicoLocal;
+import modelo.Usuario;
+import negocio.GestionUsuarioLocal;
 
 @ManagedBean
 @SessionScoped
 public class GestionLoginBean {
 	
 	@Inject
-	private GestionMedicoLocal gml;
+	private GestionUsuarioLocal gul;
 	
 	private String correo;
 	private String contrasena;
@@ -36,21 +36,43 @@ public class GestionLoginBean {
 	
 	public String iniciarSesion() {
 		
-		Medico medico=this.validarLoginMedico();
+		Usuario usuario=this.validarLogin();
 		
-		if(medico != null) {
+		if(usuario != null) {
 			
-			return "indexMedico";
+			int rol = usuario.getRol().getId();
+			
+			switch(rol){
+			
+				case 1:
+					
+					return "indexAdmin";
+					
+				case 2:
+							
+					return "indexSecretario";
+					
+				case 3:
+					
+					return "indexMedico";			
+					
+				case 4:
+							
+					return "indexPaciente";	
+					
+				default:
+					break;
+			}
 		}
 		
 		return "loginFailed";
 	}
 	
-	public Medico validarLoginMedico() {
+	public Usuario validarLogin() {
 		
-		List<Medico> medicos =new ArrayList<Medico>();
-		medicos= this.gml.getMedico();
-		for(Medico m: medicos) {
+		List<Usuario> usuarios =new ArrayList<Usuario>();
+		usuarios= this.gul.getUsuarios();
+		for(Usuario m: usuarios) {
 			if(m.getCorreo().equals(this.getCorreo()) && m.getContrasena().equals(this.getContrasena())) {
 				return m;
 			}

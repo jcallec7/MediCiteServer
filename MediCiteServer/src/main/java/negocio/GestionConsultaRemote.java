@@ -7,13 +7,12 @@ import javax.ejb.Remote;
 
 import modelo.Consulta;
 import modelo.Diagnostico;
-import modelo.Medico;
-import modelo.Usuario;;
+import modelo.Usuario;
 
 @Remote	
 public interface GestionConsultaRemote {
 	
-	public void guardarConsulta(int id, Usuario paciente, Medico medico, Date fecha, Diagnostico diagnostico);
+	public void guardarConsulta(int id, Usuario paciente, Usuario medico, Date fecha, Diagnostico diagnostico);
 	
 	public List<Consulta> getConsultas();
 

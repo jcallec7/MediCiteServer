@@ -11,7 +11,6 @@ import datos.ConsultaDAO;
 import modelo.Certificado;
 import modelo.Consulta;
 import modelo.Diagnostico;
-import modelo.Medico;
 import modelo.Usuario;
 
 @Stateless

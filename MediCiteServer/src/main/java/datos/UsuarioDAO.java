@@ -49,14 +49,36 @@ public class UsuarioDAO {
 		return Usuarios;
 	}
 	
-	public List<Usuario> getUsuariosXNombre(String filtro){
-		String jpql = "SELECT a FROM Usuario a WHERE mc_pa_nombre LIKE ?1 OR mc_pa_apellido LIKE ?1";
+	public List<Usuario> getUsuariosPorNombre(String filtro){
+		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_nombre LIKE ?1 OR mc_usr_apellido LIKE ?1";
 		Query q = em.createQuery(jpql, Usuario.class);
 		q.setParameter(1, "%" + filtro + "%");
 		
 		List<Usuario> Usuarios = q.getResultList();
 		
 		return Usuarios;
+	}
+	
+	public List<Usuario> getUsuarioPorId(String filtro){
+		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_id LIKE ?1";
+		Query q = em.createQuery(jpql, Usuario.class);
+		q.setParameter(1, "%" + filtro + "%");
+		
+		List<Usuario> Usuarios = q.getResultList();
+		
+		return Usuarios;
+		
+	}
+	
+	public List<Usuario> getUsuarioPorRol(String filtro){
+		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_rol LIKE ?1";
+		Query q = em.createQuery(jpql, Usuario.class);
+		q.setParameter(1, "%" + filtro + "%");
+		
+		List<Usuario> Usuarios = q.getResultList();
+		
+		return Usuarios;
+		
 	}
 
 }

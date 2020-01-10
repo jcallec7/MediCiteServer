@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 import datos.MedicamentoDAO;
 import modelo.Medicamento;
-import modelo.Medico;
 import negocio.GestionMedicamentoLocal;
 
 @ManagedBean

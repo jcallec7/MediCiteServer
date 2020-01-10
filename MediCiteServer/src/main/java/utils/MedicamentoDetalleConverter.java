@@ -7,7 +7,6 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import modelo.Medicamento;
-import modelo.Medico;
 import vista.GestionConsultaBean;
 import vista.GestionDetalleBean;
 
