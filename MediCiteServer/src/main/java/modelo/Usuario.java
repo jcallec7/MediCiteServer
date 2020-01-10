@@ -17,9 +17,6 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 public class Usuario implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6594217200682507286L;
 
 	
