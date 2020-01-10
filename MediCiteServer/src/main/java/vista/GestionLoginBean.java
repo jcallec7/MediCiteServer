@@ -19,7 +19,6 @@ public class GestionLoginBean {
 	
 	private String correo;
 	private String contrasena;
-	private List<Medico> medicos;
 	
 	public String getCorreo() {
 		return correo;
@@ -41,7 +40,7 @@ public class GestionLoginBean {
 		
 		if(medico != null) {
 			
-			return "listMedico";
+			return "indexMedico";
 		}
 		
 		return "loginFailed";

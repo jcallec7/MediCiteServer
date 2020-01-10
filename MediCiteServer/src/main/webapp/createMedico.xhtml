@@ -19,6 +19,8 @@
 	
 	<ui:define name="contenido">
 	
+	<div class="card">
+	<div class="card-body">
 		<h:form>
 
 			<div class="form-group">
@@ -71,15 +73,21 @@
 			
 			<div class="card-footer">
 				<h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionMedicoBean.guardarMedico()}"/>
-			</div>
+			
 			
 			<h:commandButton value="Buscar Medico" action="readMedico" class = "btn btn-primary">
 			</h:commandButton>
 			
 			<h:commandButton value="Listar Medico" action="listMedico" class = "btn btn-primary">
 			</h:commandButton>
+			
+			</div>
+			
 
 		</h:form>
+		
+		</div>
+		</div>
 	
 	</ui:define>
 	
