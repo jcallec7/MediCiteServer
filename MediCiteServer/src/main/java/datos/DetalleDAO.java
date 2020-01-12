@@ -27,15 +27,12 @@ public class DetalleDAO {
 	public void remove(String id) {
 		
 		Detalle detalle = this.read(id);
-		
 		em.remove(detalle);
 		
 	}
 	
 	public Detalle read(String id) {
-		
 		Detalle d = em.find(Detalle.class, id);
-		d.getMedicamento();
 		return d;
 		
 	}
@@ -44,7 +41,6 @@ public class DetalleDAO {
 		
 		String jpql = "SELECT c FROM Detalle c";
 		Query q = em.createQuery(jpql, Detalle.class);
-		
 		List<Detalle> detalles = q.getResultList();	
 		
 		return detalles;

@@ -56,9 +56,13 @@ public class Receta implements Serializable {
 		this.detalle = detalle;
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "Receta [id=" + id + ", descr=" + descr + ", detalle=" + detalle + "]";
+		return "Receta= Motivo:" + descr + ", " + detalle + "";
 	}
+	
+	
 
 }

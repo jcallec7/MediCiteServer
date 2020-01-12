@@ -48,10 +48,11 @@ public class Medicamento implements Serializable{
 		this.concentracion = concentracion;
 	}
 	
-	
+
 	@Override
 	public String toString() {
-		return "Medicamento [id=" + id + ", nombre=" + nombre + ", concentracion=" + concentracion + ", "
-				 + "]";
+		return "Nombre=" + nombre + ", Concentracion=" + concentracion+ "";
 	}
+	
+	
 }

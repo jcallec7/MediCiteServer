@@ -26,15 +26,15 @@ public class GestionRecetaBean {
 	@Inject
 	private GestionDetalleLocal gdl;
 
-	@Inject
-	GestionMedicamentoLocal gml;
+	//@Inject
+	//private GestionMedicamentoLocal gml;
 
 	/* Beans properties */
 
 	private int id;
 	private String descr;
 	private List<Detalle> detalles;
-	private List<Medicamento> medicamentos;
+	//private List<Medicamento> medicamentos;
 	private List<Receta> recetas;
 
 	private String filtro;
@@ -46,7 +46,7 @@ public class GestionRecetaBean {
 	@PostConstruct
 	public void init() {
 		listDetalles();
-		listMedicamentos();
+		//listMedicamentos();
 		listRecetas();
 	}
 	
@@ -57,7 +57,7 @@ public class GestionRecetaBean {
 	public void setSelectedReceta(Receta selectedReceta) {
 		this.selectedReceta = selectedReceta;
 	}
-
+/*
 	public GestionMedicamentoLocal getGml() {
 		return gml;
 	}
@@ -73,6 +73,7 @@ public class GestionRecetaBean {
 	public void setMedicamentos(List<Medicamento> medicamentos) {
 		this.medicamentos = medicamentos;
 	}
+	*/
 
 	public int getCurrentRecetaId() {
 		return currentRecetaId;
@@ -161,14 +162,16 @@ public class GestionRecetaBean {
 
 	private void listRecetas() {
 		this.detalles = this.gdl.getDetalles();
-		this.medicamentos = this.gml.getMedicamento();
-		this.recetas = this.grl.getRecetas();
-		//System.out.println(this.recetas);
+		//this.medicamentos = this.gml.getMedicamento();
+		//this.recetas = this.grl.getRecetas();
 	}
 	
+	/*
 	private void listMedicamentos() {
 		this.medicamentos = this.gml.getMedicamento();
 	}
+	
+	*/
 
 	public String guardarReceta() {
 
@@ -177,7 +180,7 @@ public class GestionRecetaBean {
 		aux.add(selectedDetalle);
 		grl.guardarReceta(id, descr, aux);
 		recetas = grl.getRecetas();
-		return null;
+		return "listReceta";
 
 	}
 
@@ -195,7 +198,7 @@ public class GestionRecetaBean {
 		this.gdl.getDetalles();
 		System.out.println("*"+currentRecetaId+"*");
 		System.out.println("*"+selectedReceta+"*");
-		this.gml.getMedicamento();
+		//this.gml.getMedicamento();
 		this.detalles = this.selectedReceta.getDetalle();
 		return "listDetalle";
 	}

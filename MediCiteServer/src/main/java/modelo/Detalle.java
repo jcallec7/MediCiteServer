@@ -25,7 +25,7 @@ public class Detalle implements Serializable {
 	@Column(name="mc_det_nombre")
 	private String nombre;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne()
 	private Medicamento medicamento;
 
 	public String getId() {
@@ -55,7 +55,7 @@ public class Detalle implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Detalle [id=" + id + ", nombre=" + nombre + ", medicamento=" + medicamento + "]";
+		return "Dosis=" + nombre + ", " + medicamento + "]";
 	}
 	
 }

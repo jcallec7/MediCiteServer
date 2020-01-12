@@ -32,10 +32,8 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 		d.setId(id);
 		d.setNombre(nombre);
 		d.setMedicamento(medicamento);
-		
-		//c.setDiagnostico(null);
+		System.out.println(d);
 		detalles.add(d);
-		// System.out.println(c);
 		dao.insert(d);
 	}
 	
@@ -43,7 +41,6 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 		System.out.println(detalles);
 		daoMedicamento.getmedicamento();
 		return dao.getDetalles();
-		
 	}
 	
 	public Detalle leerDetalle(String id){

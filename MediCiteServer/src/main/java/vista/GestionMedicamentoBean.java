@@ -106,7 +106,7 @@ public class GestionMedicamentoBean {
 	
 	public String editarMedicamento(int id) {
 		this.mediEdit = gml.leerMedicamento(id);
-		return "UpdateMedicamento";
+		return "updateMedicamento";
 	}
 	
 	public List<Medicamento> buscarMedicamentoPorId() {

@@ -6,7 +6,7 @@
 
 	<ui:define name="cabecera">Sección Medicamento Detalle</ui:define>
 
-	<ui:define name="titulo">Detalles del medicamento guardados</ui:define>
+	<ui:define name="titulo">Lista de medicamentos guardados</ui:define>
 	
 	<ui:define name="contenido">
 	
@@ -40,18 +40,22 @@
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">Eliminar</f:facet>	
-					<!-- <h:commandButton value="Eliminar" action="#{gestionDetalleBean.seguridadEliminar(deta.id)}" class = "btn btn-primary">-->
+					<f:facet name="header">Eliminar</f:facet>
+					
+					
 					<h:commandButton value="Eliminar" action="#{gestionDetalleBean.eliminarDetalle(deta.id)}" class = "btn btn-primary">
 					</h:commandButton>
 					
 				</h:column>
+				
+				
 				 
 			
 			</h:dataTable>
 			
-			<h:commandButton value="Crear nuevo detalle de Medicamento" action="crearDetalle">
+			<h:commandButton value="Ingresar Medicamento Detalle" action="createDetalle" class = "btn btn-primary">
 			</h:commandButton>
+			
 			
 		</h:form>
 	

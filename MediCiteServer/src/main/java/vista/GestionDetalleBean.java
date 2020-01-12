@@ -177,12 +177,6 @@ public class GestionDetalleBean {
 		return "listDetalle";
 	}
 	
-	public String seguridadEliminar(String id) {
-		return "notEliminar";
-	}
-	
-
-	
 	public String actualizarDetalle() {
 		gdl.updateDetalle(id, nombre, selectedMedicamento2);
 		return "listDetalle";
