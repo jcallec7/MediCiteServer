@@ -23,23 +23,27 @@
             	<h:outputLabel>Ingresar codigo</h:outputLabel>
                 <h:inputText value = "#{gestionDiagnosticoBean.id}" class="form-control" a:placeholder="Ingrese el codigo"/>
            	</div>
-
+           	
+           	<div class="form-group">
+            	<h:outputLabel>Ingresar Tipo Diagnóstico</h:outputLabel>
+                <h:inputText value = "#{gestionDiagnosticoBean.tipo}" class="form-control" a:placeholder="Ingrese el tipo de diagnostico"/>
+           	</div>
+           	
            	<div class="form-group">
             	<h:outputLabel>Detalle</h:outputLabel>
-            	<h:inputText value = "#{gestionDiagnosticoBean.detalle}" class="form-control" a:placeholder="Ingrese la descripcion"/>
+            	<h:inputText value = "#{gestionDiagnosticoBean.detalle}" class="form-control" a:placeholder="Ingrese el diagnostico"/>
             </div>
 
             
             <div class="form-group">
-            	<h:outputLabel>Codigo de Receta</h:outputLabel>
-                <h:inputText value = "#{gestionMedicamentoBean.recetas}" class="form-control" a:placeholder="Ingrese el codigo de la receta"/>
-           	</div>
-             
-
-
-
-
-
+            	<h:outputLabel>Seleccionar Receta</h:outputLabel>
+            	<h:selectOneMenu class="form-control select2bs4"  value="#{gestionDiagnosticoBean.selectedReceta}" converter="recetaDiagnosticoConverter">
+					<f:selectItems value = "#{gestionDiagnosticoBean.recetas}" var="recetas" itemLabel="Descripcion: #{recetas.descr} - Medicamento: #{recetas.detalle}" itemValue="#{recetas}"/>
+				</h:selectOneMenu>
+            	
+            </div>
+            
+            
 
 
 			<div class="card-footer">

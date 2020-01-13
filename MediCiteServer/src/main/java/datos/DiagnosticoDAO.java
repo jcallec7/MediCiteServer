@@ -10,7 +10,7 @@ import modelo.Diagnostico;
 
 
 @Stateless
-public class DiagnosticoDAO {
+public class DiagnosticoDAO{
 	
 	@Inject
 	private EntityManager em;
@@ -52,7 +52,7 @@ public class DiagnosticoDAO {
 	}
 	
 	
-	public List<Diagnostico> getDiagnosticoXId(int filtro){
+	public List<Diagnostico> getDiagnosticoXId(String filtro){
 		String jpql = "SELECT d FROM Diagnostico d WHERE mc_diag_id LIKE ?1";
 		Query q = em.createQuery(jpql, Diagnostico.class);
 		q.setParameter(1, "%" + filtro + "%");

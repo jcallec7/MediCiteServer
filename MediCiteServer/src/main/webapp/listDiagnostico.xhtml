@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">Sección Diagnóstico</ui:define>
+
+	<ui:define name="titulo">Lista de Diagnósticos</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+			
+			<h:dataTable value="#{gestionDiagnosticoBean.diagnosticos}" var="diag" id="resultado" class="table table-bordered">
+			
+				<h:column>
+					<f:facet name="header">Código</f:facet>
+					<h:outputText value="#{diag.id}"></h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Tipo Diagnóstico</f:facet>
+					<h:outputText value="#{diag.tipo}"></h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Diagnóstico</f:facet>
+					<h:outputText value="#{diag.detalle} "></h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Receta</f:facet>
+					<h:outputText value="#{diag.receta.descr} - Medicamento: #{diag.receta.detalle}"></h:outputText>
+				</h:column>
+				
+				
+
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="Editar" action="#{gestionDiagnosticoBean.editDiagnosticoById()}" class = "btn btn-primary">
+						<f:param name="selectedDiagnosticoId" value="#{diag.id}"/>
+					</h:commandButton>
+					
+				</h:column>
+		
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton value="Eliminar" onclick="return confirm('¿Está seguro de eliminar esta consulta?');" action="#{gestionDiagnosticoBean.deleteDiagnostico()}" class = "btn btn-primary">
+					<f:param name="selectedDiagnosticoId2" value="#{diag.id}"/>
+					</h:commandButton>
+					
+				</h:column>
+				
+				
+				 
+			
+			</h:dataTable>
+			
+			<h:commandButton value="Ingresar Nuevo Diagnóstico" action="createDiagnostico" class = "btn btn-primary">
+			</h:commandButton>
+			
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

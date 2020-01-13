@@ -13,10 +13,14 @@ public class Diagnostico {
 	@Column(name = "mc_diag_detalle")
 	private String detalle;
 
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "mc_rec_id")
 	private Receta receta;
+	
+	@Column(name = "mc_diag_tipo")
+	private String tipo;
 
+	
 	public int getId() {
 		return id;
 	}
@@ -40,5 +44,20 @@ public class Diagnostico {
 	public void setReceta(Receta receta) {
 		this.receta = receta;
 	}
+	
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Diagnostico [id=" + id + ", detalle=" + detalle + ", receta=" + receta + ", tipo=" + tipo + "]";
+	}
+
+	
 }
