@@ -23,10 +23,7 @@ public class GestionConsultaBean {
 	private GestionConsultaLocal gcl;
 	
 	@Inject
-	private GestionUsuarioLocal gpl;
-	
-	@Inject
-	private GestionUsuarioLocal gml;
+	private GestionUsuarioLocal gul;
 	
 	/* Beans properties */
 	private int id;
@@ -48,6 +45,8 @@ public class GestionConsultaBean {
 	private Diagnostico selectedDiagnostico;
 	private int hora;
 	private int minuto;
+	private int rolMed = 3;
+	private int rolPac = 4;
 
 	@PostConstruct
 	public void init() {
@@ -79,21 +78,13 @@ public class GestionConsultaBean {
 	public void setSelectedConsultaId(int selectedConsultaId) {
 		this.selectedConsultaId = selectedConsultaId;
 	}
-
-	public GestionUsuarioLocal getGpl() {
-		return gpl;
+	
+	public GestionUsuarioLocal getGul() {
+		return gul;
 	}
 
-	public void setGpl(GestionUsuarioLocal gpl) {
-		this.gpl = gpl;
-	}
-
-	public GestionUsuarioLocal getGml() {
-		return gml;
-	}
-
-	public void setGml(GestionUsuarioLocal gml) {
-		this.gml = gml;
+	public void setGul(GestionUsuarioLocal gul) {
+		this.gul = gul;
 	}
 
 	public Usuario getSelectedUsuario() {
@@ -110,6 +101,22 @@ public class GestionConsultaBean {
 
 	public void setSelectedMedico(Usuario selectedMedico) {
 		this.selectedMedico = selectedMedico;
+	}
+
+	public int getRolMed() {
+		return rolMed;
+	}
+
+	public void setRolMed(int rolMed) {
+		this.rolMed = rolMed;
+	}
+
+	public int getRolPac() {
+		return rolPac;
+	}
+
+	public void setRolPac(int rolPac) {
+		this.rolPac = rolPac;
 	}
 
 	public Diagnostico getSelectedDiagnostico() {
@@ -185,6 +192,8 @@ public class GestionConsultaBean {
 	}
 
 	public List<Consulta> getConsultas() {
+		listUsuarios();
+		listMedicos();
 		return consultas;
 	}
 
@@ -210,13 +219,14 @@ public class GestionConsultaBean {
 
 	public String guardarConsulta() {
 		
+		System.out.println("Entroooo");
 		System.out.println(selectedUsuario);
 		System.out.println(selectedMedico);
 		fecha.setHours(hora);
 		fecha.setMinutes(minuto);
 		gcl.guardarConsulta(id, selectedUsuario, selectedMedico, fecha, diagnostico);
 		consultas = gcl.getConsultas();
-		return null;
+		return "listConsulta";
 
 	}
 
@@ -259,11 +269,11 @@ public class GestionConsultaBean {
 	}
 	
 	public void listUsuarios() {
-		this.usuarios = this.gpl.getUsuarios();
+		this.usuarios = this.gul.getUsuarioPorRol(rolPac);
 	}
 	
 	public void listMedicos() {
-		this.medicos = this.gml.getUsuarios();
+		this.medicos = this.gul.getUsuarioPorRol(rolMed);
 	}
 
 	public String updateConsulta() {

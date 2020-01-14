@@ -12,7 +12,7 @@ import modelo.Usuario;
 @Local
 public interface GestionConsultaLocal {
 	
-	public void guardarConsulta(int id, Usuario paciente, Usuario medico, Date fecha, Diagnostico diagnostico);
+	public void guardarConsulta(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico);
 	
 	public List<Consulta> getConsultas();
 	

@@ -20,36 +20,22 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 
 	@Inject
 	private ConsultaDAO dao;
-	
-	@Inject
-	private UsuarioDAO daoUsuario;
-	
-	@Inject
-	private UsuarioDAO daoMedico;
-	
-	@Inject
-	private DiagnosticoDAO daoDiagnostico;
 
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 
 	public void guardarConsulta(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico) {
 
 		Consulta c = new Consulta();
-		//c.setId(id);
 		c.setUsuario(usuario);
-		c.setUsuario(medico);
+		c.setMedico(medico);
 		c.setFecha(fecha);
-		//c.setDiagnostico(null);
 		consultas.add(c);
-		// System.out.println(c);
+		System.out.println(c);
 		dao.insert(c);
 	}
 
 	public List<Consulta> getConsultas() {
 		System.out.println(consultas);
-		daoUsuario.getUsuarios();
-		daoMedico.getUsuarios();
-		daoDiagnostico.getDiagnostico();
 		return dao.getConsultas();
 	}
 

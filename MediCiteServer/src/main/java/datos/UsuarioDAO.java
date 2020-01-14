@@ -70,7 +70,7 @@ public class UsuarioDAO {
 		
 	}
 	
-	public List<Usuario> getUsuarioPorRol(String filtro){
+	public List<Usuario> getUsuarioPorRol(int filtro){
 		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_rol LIKE ?1";
 		Query q = em.createQuery(jpql, Usuario.class);
 		q.setParameter(1, "%" + filtro + "%");

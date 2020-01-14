@@ -90,7 +90,7 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 		return dao.getUsuarioPorId(filtro);
 	}
 	
-	public List<Usuario> getUsuarioPorRol(String filtro){
+	public List<Usuario> getUsuarioPorRol(int filtro){
 		
 		return dao.getUsuarioPorRol(filtro);
 	}

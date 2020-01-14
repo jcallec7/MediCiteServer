@@ -181,7 +181,7 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return " Paciente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", fecha_nac=" + fecha_nac + ", correo=" + correo + ", contrasena="
+		return " Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", fecha_nac=" + fecha_nac + ", correo=" + correo + ", contrasena="
 				+ contrasena + ", telf1=" + telf1 + ", telf2=" + telf2 + ", direccion=" + direccion + ", peso=" + peso
 				+ ", estatura=" + estatura + "]";
 	}

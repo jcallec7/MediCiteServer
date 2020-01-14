@@ -12,10 +12,10 @@
 	
 		<h:form>
 			
-			<h:dataTable value="#{gestionConsultaBean.gcl.consultas}" var="cons" class="table table-bordered">
+			<h:dataTable value="#{gestionConsultaBean.consultas}" var="cons" class="table table-bordered">
 			
 				<h:column>
-					#{cons.paciente.nombre} #{cons.paciente.apellido}, #{cons.paciente.id}
+					#{cons.usuario.nombre} #{cons.usuario.apellido}, #{cons.usuario.id}
 					<f:facet name="header">Paciente</f:facet>
 				</h:column>
 				<h:column>

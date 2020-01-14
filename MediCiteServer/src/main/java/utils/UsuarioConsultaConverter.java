@@ -19,11 +19,14 @@ import vista.GestionConsultaBean;
 	                        .createValueExpression(ctx.getELContext(),
 	                                "#{gestionConsultaBean}", GestionConsultaBean.class);
 	        GestionConsultaBean beers = (GestionConsultaBean)vex.getValue(ctx.getELContext());
-	        for(Usuario a : beers.getUsuarios()) {
+	        for(Usuario a : beers.getGul().getUsuarios()) {
+	        	System.out.println("id " + a.getId() + "  " + beerId);
 	        	if(a.getId().equals(beerId)) {
+	        		System.out.println(a);
 	        		return a;
 	        	}
 	        }
+	        System.out.println("no encontrado");
 	        return null;
 	    }
 
