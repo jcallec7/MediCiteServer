@@ -3,11 +3,13 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     xmlns:p="http://primefaces.org/ui">
+     
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>MediCite | Registration Page</title>
+  <title>MediCite | Registrarse</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -30,7 +32,7 @@
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <p class="login-box-msg">Registrarse</p>
 
       <h:form>
         <div class="input-group mb-3">
@@ -81,24 +83,45 @@
             </div>
           </div>
         </div>
+        
+        <div class="input-group mb-3">
+          <h:inputText value = "#{gestionUsuarioBean.telf1}" class="form-control" a:placeholder="Ingrese el telefono principal"/>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="input-group mb-3">
+          <h:inputText value = "#{gestionUsuarioBean.telf2}" class="form-control" a:placeholder="Ingrese el telefono opcional"/>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        
         <div class="input-group mb-3">
           <h:inputText value = "#{gestionMedicoBean.direccion}" class="form-control" a:placeholder="Ingrese la dirección"/>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-address"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+        
         <div class="input-group mb-3">
           <h:inputText value = "#{gestionMedicoBean.fechaNac}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
           		<f:convertDateTime pattern="yyyy/MM/dd" />
 		  </h:inputText>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-date"></span>
+              <span class="fas fa-calendar-alt"></span>
             </div>
           </div>
         </div>
+        
         <div class="input-group mb-3">
           <h:inputText value = "#{gestionMedicoBean.contrasena}" class="form-control" a:type="password" a:placeholder="Ingrese la contraseña"/>
           <div class="input-group-append">
@@ -134,7 +157,7 @@
         </a>
       </div>
 
-      <a href="login.xhtml" class="text-center">I already have a membership</a>
+      <a href="login.xhtml" class="text-center">Ya me encuentro registrado</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

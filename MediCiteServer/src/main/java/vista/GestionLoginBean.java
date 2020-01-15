@@ -9,6 +9,9 @@ import javax.inject.Inject;
 
 import modelo.Usuario;
 import negocio.GestionUsuarioLocal;
+import utils.Session;
+
+import javax.servlet.http.HttpSession;
 
 @ManagedBean
 @SessionScoped
@@ -19,6 +22,7 @@ public class GestionLoginBean {
 	
 	private String correo;
 	private String contrasena;
+	private String userName;
 	
 	public String getCorreo() {
 		return correo;
@@ -32,8 +36,12 @@ public class GestionLoginBean {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	
-	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public String iniciarSesion() {
 		
 		Usuario usuario=this.validarLogin();
@@ -41,23 +49,32 @@ public class GestionLoginBean {
 		if(usuario != null) {
 			
 			int rol = usuario.getRol().getId();
+			HttpSession session = Session.getSession();
 			
 			switch(rol){
 			
 				case 1:
 					
+					session.setAttribute("user", usuario);
+					this.userName = usuario.getNombre()+" "+usuario.getApellido();
 					return "indexAdmin";
 					
 				case 2:
-							
+					
+					session.setAttribute("user", usuario);
+					this.userName = usuario.getNombre()+" "+usuario.getApellido();		
 					return "indexSecretario";
 					
 				case 3:
 					
+					session.setAttribute("user", usuario);
+					this.userName = usuario.getNombre()+" "+usuario.getApellido();
 					return "indexMedico";			
 					
 				case 4:
-							
+					
+					session.setAttribute("user", usuario);
+					this.userName = usuario.getNombre()+" "+usuario.getApellido();		
 					return "indexPaciente";	
 					
 				default:
@@ -72,9 +89,9 @@ public class GestionLoginBean {
 		
 		List<Usuario> usuarios =new ArrayList<Usuario>();
 		usuarios= this.gul.getUsuarios();
-		for(Usuario m: usuarios) {
-			if(m.getCorreo().equals(this.getCorreo()) && m.getContrasena().equals(this.getContrasena())) {
-				return m;
+		for(Usuario u: usuarios) {
+			if(u.getCorreo().equals(this.getCorreo()) && u.getContrasena().equals(this.getContrasena())) {
+				return u;
 			}
 		}
 		return null;

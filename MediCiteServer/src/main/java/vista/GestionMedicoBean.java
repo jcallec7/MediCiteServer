@@ -1,16 +1,19 @@
 package vista;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import modelo.Rol;
 import modelo.Usuario;
 import negocio.GestionRolLocal;
 import negocio.GestionUsuarioLocal;
+import utils.Session;
 
 @ManagedBean
 public class GestionMedicoBean {
@@ -38,6 +41,9 @@ public class GestionMedicoBean {
 	private int rolId = 3;
 	private Rol rol;
 	
+	private HttpSession session = Session.getSession();
+	private Usuario miUsuario = (Usuario) session.getAttribute("user");
+			
 	private List<Usuario> medicos = new ArrayList<Usuario>();
 	private Usuario medicoEdit;
 	
@@ -240,6 +246,26 @@ public class GestionMedicoBean {
 
 	public void setMedicoEdit(Usuario medicoEdit) {
 		this.medicoEdit = medicoEdit;
+	}
+
+
+	public HttpSession getSession() {
+		return session;
+	}
+
+
+	public void setSession(HttpSession session) {
+		this.session = session;
+	}
+
+
+	public Usuario getMiUsuario() {
+		return miUsuario;
+	}
+
+
+	public void setMiUsuario(Usuario miUsuario) {
+		this.miUsuario = miUsuario;
 	}
 
 
