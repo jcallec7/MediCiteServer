@@ -25,9 +25,6 @@ public class GestionConsultaBean {
 	@Inject
 	private GestionUsuarioLocal gul;
 	
-	@Inject
-	private GestionUsuarioLocal gml;
-	
 	/* Beans properties */
 	private int id;
 	private Usuario usuario;
@@ -56,14 +53,6 @@ public class GestionConsultaBean {
 		listConsultas();
 		listUsuarios();
 		listMedicos();
-	}
-	
-	public GestionUsuarioLocal getGml() {
-		return gml;
-	}
-
-	public void setGml(GestionUsuarioLocal gml) {
-		this.gml = gml;
 	}
 
 	public int getSelectedConsultaId2() {
@@ -276,8 +265,6 @@ public class GestionConsultaBean {
 	}
 
 	public void listConsultas() {
-		this.medicos = this.gml.getUsuarioPorRol(rolMed);
-		this.usuarios = this.gul.getUsuarioPorRol(rolPac);
 		this.consultas = this.gcl.getConsultas();
 	}
 	
@@ -286,7 +273,7 @@ public class GestionConsultaBean {
 	}
 	
 	public void listMedicos() {
-		this.medicos = this.gml.getUsuarioPorRol(rolMed);
+		this.medicos = this.gul.getUsuarioPorRol(rolMed);
 	}
 
 	public String updateConsulta() {

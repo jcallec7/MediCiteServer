@@ -26,7 +26,6 @@ public class ConsultaDAO {
 	public void remove(int id) {
 
 		Consulta consulta = this.read(id);
-
 		em.remove(consulta);
 
 	}
@@ -34,9 +33,6 @@ public class ConsultaDAO {
 	public Consulta read(int id) {
 
 		Consulta a = em.find(Consulta.class, id);
-		a.getMedico();
-		a.getUsuario();
-		a.getDiagnostico();
 		return a;
 
 	}

@@ -20,6 +20,9 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 
 	@Inject
 	private ConsultaDAO dao;
+	
+	@Inject
+	private UsuarioDAO daoUsuario;
 
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 
@@ -37,6 +40,7 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 
 	public List<Consulta> getConsultas() {
 		System.out.println(consultas);
+		daoUsuario.getUsuarios();
 		return dao.getConsultas();
 	}
 
@@ -50,6 +54,9 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 	
 	public Consulta readConsulta(int id) {
 		Consulta consulta = dao.read(id);
+		daoUsuario.getUsuarios();
+		consulta.getMedico();
+		consulta.getUsuario();
 		return consulta;
 	}
 	
