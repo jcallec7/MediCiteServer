@@ -30,11 +30,11 @@ public class Consulta implements Serializable {
 	@Column(name = "mc_cons_id")
 	private int id;
 
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mc_pa_id")
 	private Usuario usuario;
 
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mc_med_id")
 	private Usuario medico;
 

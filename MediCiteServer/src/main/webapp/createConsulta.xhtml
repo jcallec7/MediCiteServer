@@ -22,7 +22,7 @@
 
 			<div class="form-group">
             	<h:outputLabel>Seleccionar Paciente</h:outputLabel>
-            	<h:selectOneMenu id="usuario" class="form-control select2bs4"  value="#{gestionConsultaBean.selectedUsuario}" converter="usuarioConsultaConverter">
+            	<h:selectOneMenu id="usuario" class="form-control"  value="#{gestionConsultaBean.selectedUsuario}" converter="usuarioConsultaConverter">
 					<f:selectItems value = "#{gestionConsultaBean.usuarios}"  var="usuario" itemLabel="#{usuario.nombre} #{usuario.apellido}, #{usuario.id}" itemValue="#{usuario}"/>
 				</h:selectOneMenu>
 				<h:message for="usuario" />
@@ -31,7 +31,7 @@
             
             <div class="form-group">
             	<h:outputLabel>Seleccinar Medico</h:outputLabel>
-            	<h:selectOneMenu id="medico" class="form-control select2bs4" value="#{gestionConsultaBean.selectedMedico}" converter="medicoConsultaConverter">
+            	<h:selectOneMenu id="medico" class="form-control" value="#{gestionConsultaBean.selectedMedico}" converter="medicoConsultaConverter">
 					<f:selectItems value = "#{gestionConsultaBean.medicos}"  var="medico" itemLabel="#{medico.nombre} #{medico.apellido}, #{medico.especialidad}" itemValue="#{medico}"/>
 				</h:selectOneMenu>
 				<h:message for="medico" />
