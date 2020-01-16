@@ -17,158 +17,108 @@
 	
 	<ui:define name="contenido">
 	
-		<h:form>
+		<h:form role="form">
           	
 	       	<div class="card-body">
-	            <h5 class="card-title">Médico:</h5>
-	
-	            <p class="card-text">
-	            	#{gestionConsultaBean.selectedConsulta.medico.nombre} #{gestionConsultaBean.selectedConsulta.medico.nombre}, #{gestionConsultaBean.selectedConsulta.medico.especialidad}
-	            </p>
-	            
-	            <h5 class="card-title">Paciente:</h5>
-	            	
-            	<p class="card-text">
-             		#{gestionConsultaBean.selectedConsulta.usuario.nombre} #{gestionConsultaBean.selectedConsulta.usuario.apellido}, #{gestionConsultaBean.selectedConsulta.usuario.id}
-            	</p>
-	
+	       	
+	       		<div class="row">
+          			<div class="col-md-6">
+	       		
+			       		<div class="card card-info"> 
+				            <div class="card-header">
+			                	<h3 class="card-title">Medico:</h3>
+			              	</div>
+				
+			            	<div class="card-body">
+                				<div class="form-group">
+			                       	<label>
+				            			#{gestionConsultaBean.selectedConsulta.medico.nombre} #{gestionConsultaBean.selectedConsulta.medico.apellido}, #{gestionConsultaBean.selectedConsulta.medico.especialidad}
+			            			</label>
+		            			</div>
+		                   	</div>
+		                   	
+	                   	</div>
+	                   	
+                   	</div>
+				   
+         			<div class="col-md-6">
+	       		
+			       		<div class="card card-info">
+				            
+				            <div class="card-header">
+			                	<h3 class="card-title">Paciente:</h3>
+			              	</div>
+				            	
+				            <div class="card-body">
+                				<div class="form-group">
+			                       	<label>
+		                       			#{gestionConsultaBean.selectedConsulta.usuario.nombre} #{gestionConsultaBean.selectedConsulta.usuario.apellido}, #{gestionConsultaBean.selectedConsulta.usuario.id}                 	
+			            			</label>
+		            			</div>
+		                   	</div>	
+			      			
+						</div>
+						
+					</div>
+					
+				</div>
 				
 				<div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Ingresar Diagnostico</h3>
+                <h3 class="card-title">Diagnostico:</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <h:form role="form">
-                  <div class="row">
-                    <div class="col-sm-6">
+                <!-- <h:form role="form">  -->
                       <!-- text input -->
-                      <div class="form-group">
-                        <label>Text</label>
-                        <input type="text" class="form-control" placeholder="Enter ..."/>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Text Disabled</label>
-                        <input type="text" class="form-control" placeholder="Enter ..." />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <!-- textarea -->
-                      <div class="form-group">
-                        <label>Textarea</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Textarea Disabled</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..." ></textarea>
-                      </div>
-                    </div>
-                  </div>
+                  <div class="form-group">
 
-                  <!-- input states -->
-                  <div class="form-group">
-                    <label class="col-form-label" for="inputSuccess"><i class="fas fa-check"></i> Input with
-                      success</label>
-                    <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ..."/>
+          			<h:outputLabel>Ingresar Tipo de Diagnóstico</h:outputLabel>
+              		<h:inputText value = "#{gestionConsultaBean.diagnostico.tipo}" class="form-control" a:placeholder="Ingrese el tipo de diagnostico"/>
+       
                   </div>
+                    <!-- textarea -->
                   <div class="form-group">
-                    <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input with
-                      warning</label>
-                    <input type="text" class="form-control is-warning" id="inputWarning" placeholder="Enter ..."/>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-form-label" for="inputError"><i class="far fa-times-circle"></i> Input with
-                      error</label>
-                    <input type="text" class="form-control is-invalid" id="inputError" placeholder="Enter ..."/>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <!-- checkbox -->
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox"/>
-                          <label class="form-check-label">Checkbox</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" />
-                          <label class="form-check-label">Checkbox checked</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" />
-                          <label class="form-check-label">Checkbox disabled</label>
-                        </div>
-                      </div>
-                    </div> 
-                    <div class="col-sm-6">
-                      <!-- radio -->
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="radio1"/>
-                          <label class="form-check-label">Radio</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="radio1" />
-                          <label class="form-check-label">Radio checked</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" />
-                          <label class="form-check-label">Radio disabled</label>
-                        </div>
-                      </div>
-                    </div>
+                    <h:outputLabel>Ingresar Descripcion</h:outputLabel>
+                    <h:inputTextarea value = "#{gestionConsultaBean.diagnostico.detalle}" class="form-control" rows="3" a:placeholder="Ingrese una descripcion para el diagnostico..."></h:inputTextarea>
                   </div>
 
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- select -->
                       <div class="form-group">
-                        <label>Select</label>
-                        <select class="form-control">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Select Disabled</label>
-                        <select class="form-control" >
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
+                        <label>Receta:</label>
                       </div>
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <!-- Select multiple-->
-                      <div class="form-group">
-                        <label>Select Multiple</label>
-                        
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Select Multiple Disabled</label>
-                        
-                      </div>
-                    </div>
+ 
+                  <!-- Select multiple-->
+                  <div class="form-group">
+                    <label>Medicamentos</label>
+                    
+                    <h:dataTable value="#{gestionConsultaBean.receta.detalle}" var="detalle" id="resultado" class="table table-bordered">
+                    
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							<h:inputText value="#{detalle.medicamento.nombre}"></h:inputText>
+						</h:column>
+					
+						<h:column>
+							<f:facet name="header">Concentracion:</f:facet>
+							<h:inputText value="#{detalle.medicamento.concentracion}"></h:inputText>
+						</h:column>
+					
+						<h:column>
+							<f:facet name="header">Dosis</f:facet>
+							<h:inputText value="#{detalle.nombre}"></h:inputText>
+						</h:column>
+                    
+                    </h:dataTable>
+                    
                   </div>
-                </h:form>
+
+                <!-- </h:form>  -->
               </div>
               <!-- /.card-body -->
             </div>

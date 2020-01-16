@@ -25,18 +25,14 @@ public class GestionRecetaBean {
 
 	@Inject
 	private GestionDetalleLocal gdl;
-
-	//@Inject
-	//private GestionMedicamentoLocal gml;
-
-	/* Beans properties */
+	
 
 	private int id;
 	private String descr;
 	private List<Detalle> detalles;
-	//private List<Medicamento> medicamentos;
 	private List<Receta> recetas;
 
+	private Receta receta;
 	private String filtro;
 	private int currentRecetaId;
 	private int editReceta;
@@ -46,10 +42,17 @@ public class GestionRecetaBean {
 	@PostConstruct
 	public void init() {
 		listDetalles();
-		//listMedicamentos();
 		listRecetas();
 	}
-	
+
+	public Receta getReceta() {
+		return receta;
+	}
+
+	public void setReceta(Receta receta) {
+		this.receta = receta;
+	}
+
 	public Receta getSelectedReceta() {
 		return selectedReceta;
 	}
@@ -162,16 +165,7 @@ public class GestionRecetaBean {
 
 	private void listRecetas() {
 		this.detalles = this.gdl.getDetalles();
-		//this.medicamentos = this.gml.getMedicamento();
-		//this.recetas = this.grl.getRecetas();
 	}
-	
-	/*
-	private void listMedicamentos() {
-		this.medicamentos = this.gml.getMedicamento();
-	}
-	
-	*/
 
 	public String guardarReceta() {
 
@@ -182,6 +176,11 @@ public class GestionRecetaBean {
 		recetas = grl.getRecetas();
 		return "listReceta";
 
+	}
+	
+	public String addDetalle() {
+		receta.addDetalle(new Detalle());
+		return null;
 	}
 
 	public List<Receta> buscarReceta() {
@@ -198,14 +197,9 @@ public class GestionRecetaBean {
 		this.gdl.getDetalles();
 		System.out.println("*"+currentRecetaId+"*");
 		System.out.println("*"+selectedReceta+"*");
-		//this.gml.getMedicamento();
 		this.detalles = this.selectedReceta.getDetalle();
 		return "listDetalle";
 	}
 	
-	// public String updateMedicamento() {
-	// gdl.updateDetalle(id, nombre, medicamento);
-	// return "listDetalle";
-	// }
-
+	
 }

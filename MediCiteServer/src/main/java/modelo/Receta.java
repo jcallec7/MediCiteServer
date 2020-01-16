@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,6 +23,7 @@ public class Receta implements Serializable {
 	private static final long serialVersionUID = -20336965027624681L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "mc_rec_id")
 	private int id;
 
@@ -56,7 +58,11 @@ public class Receta implements Serializable {
 		this.detalle = detalle;
 	}
 
-	
+	public void addDetalle(Detalle det) {
+		if(detalle == null)
+			detalle = new ArrayList<>();
+		detalle.add(det);
+	}
 	
 	@Override
 	public String toString() {

@@ -24,5 +24,7 @@ public interface GestionConsultaLocal {
 	
 	public void updateConsulta(int id, Usuario paciente, Usuario medico, Date fecha, Diagnostico diagnostico);
 	
+	public void addDiagnostico(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico);
+	
 }
 	

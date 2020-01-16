@@ -42,7 +42,7 @@ public class Consulta implements Serializable {
 	@Column(name = "mc_cons_fecha")
 	private Date fecha;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.MERGE ,fetch = FetchType.LAZY)
 	@JoinColumn(name = "mc_diag_id")
 	private Diagnostico diagnostico;
 

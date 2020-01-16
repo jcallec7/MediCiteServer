@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -19,13 +21,14 @@ public class Detalle implements Serializable {
 	private static final long serialVersionUID = -20336965027624681L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="mc_det_id")
 	private String id;
 	
 	@Column(name="mc_det_nombre")
 	private String nombre;
 	
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Medicamento medicamento;
 
 	public String getId() {

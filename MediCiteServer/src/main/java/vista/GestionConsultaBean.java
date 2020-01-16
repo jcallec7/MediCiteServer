@@ -10,9 +10,15 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import modelo.Consulta;
+import modelo.Detalle;
 import modelo.Diagnostico;
+import modelo.Medicamento;
+import modelo.Receta;
 import modelo.Usuario;
 import negocio.GestionConsultaLocal;
+import negocio.GestionDetalleLocal;
+import negocio.GestionDiagnosticoLocal;
+import negocio.GestionRecetaLocal;
 import negocio.GestionUsuarioLocal;
 
 @ManagedBean
@@ -25,16 +31,31 @@ public class GestionConsultaBean {
 	@Inject
 	private GestionUsuarioLocal gul;
 	
+	@Inject
+	private GestionDiagnosticoLocal gdl;
+	
+	@Inject
+	private GestionRecetaLocal grl;
+	
+	@Inject
+	private GestionDetalleLocal gdetl;
+	
 	/* Beans properties */
 	private int id;
 	private Usuario usuario;
 	private Usuario medico;
 	private Date fecha;
 	private Diagnostico diagnostico;
+	private Receta receta;
+	private Detalle detalle;
+	private Consulta consulta;
+	private Medicamento medicamento;
 
 	private List<Consulta> consultas;
 	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
+	private List<Detalle> detalles;
+	private List<Receta> recetas;
 
 	private String filtro;
 	private Usuario selectedUsuario;
@@ -53,6 +74,81 @@ public class GestionConsultaBean {
 		listConsultas();
 		listUsuarios();
 		listMedicos();
+		receta = new Receta();
+		receta.addDetalle(new Detalle());
+		listRecetas();
+	}
+	
+	public Medicamento getMedicamento() {
+		return medicamento;
+	}
+
+	public void setMedicamento(Medicamento medicamento) {
+		this.medicamento = medicamento;
+	}
+
+	public List<Receta> getRecetas() {
+		return recetas;
+	}
+
+	public void setRecetas(List<Receta> recetas) {
+		this.recetas = recetas;
+	}
+
+	public List<Detalle> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<Detalle> detalles) {
+		this.detalles = detalles;
+	}
+
+	public Consulta getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(Consulta consulta) {
+		this.consulta = consulta;
+	}
+
+	public Detalle getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(Detalle detalle) {
+		this.detalle = detalle;
+	}
+
+	public GestionDiagnosticoLocal getGdl() {
+		return gdl;
+	}
+
+	public void setGdl(GestionDiagnosticoLocal gdl) {
+		this.gdl = gdl;
+	}
+
+	public GestionRecetaLocal getGrl() {
+		return grl;
+	}
+
+	public void setGrl(GestionRecetaLocal grl) {
+		this.grl = grl;
+	}
+
+	public GestionDetalleLocal getGdetl() {
+		return gdetl;
+	}
+
+	public void setGdetl(GestionDetalleLocal gdetl) {
+		this.gdetl = gdetl;
+	}
+
+	public Receta getReceta() {
+		return receta;
+	}
+
+	public void setReceta(Receta receta) {
+		this.receta = receta;
 	}
 
 	public int getSelectedConsultaId2() {
@@ -219,15 +315,26 @@ public class GestionConsultaBean {
 
 	public String guardarConsulta() {
 		
-		System.out.println("Entroooo");
-		System.out.println(selectedUsuario);
-		System.out.println(selectedMedico);
 		fecha.setHours(hora);
 		fecha.setMinutes(minuto);
 		gcl.guardarConsulta(id, selectedUsuario, selectedMedico, fecha, diagnostico);
 		consultas = gcl.getConsultas();
 		return "listConsulta";
 
+	}
+	
+	public String addDiagnostico() {
+		
+		id = selectedConsulta.getId();
+		usuario = selectedConsulta.getUsuario();
+		medico = selectedConsulta.getMedico();
+		fecha = selectedConsulta.getFecha();
+		gdl.guardarDiagnostico(diagnostico.getId(), diagnostico.getDetalle(), diagnostico.getReceta(), diagnostico.getTipo());
+		selectedConsulta.setDiagnostico(diagnostico);
+		gcl.addDiagnostico(id, usuario, medico, fecha, diagnostico);
+		
+		return null;
+		
 	}
 
 	public String getFiltro() {
@@ -251,6 +358,9 @@ public class GestionConsultaBean {
 		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedConsultaId"));
 		System.out.println(selectedConsultaId);
 		selectedConsulta = gcl.readConsulta(selectedConsultaId);
+		diagnostico = new Diagnostico();
+		receta = diagnostico.getReceta();
+		
 		return "updateConsulta";
 
 	}
@@ -274,6 +384,11 @@ public class GestionConsultaBean {
 	
 	public void listMedicos() {
 		this.medicos = this.gul.getUsuarioPorRol(rolMed);
+	}
+	
+	private void listRecetas() {
+		this.detalles = this.gdetl.getDetalles();
+		this.recetas = this.grl.getRecetas();
 	}
 
 	public String updateConsulta() {

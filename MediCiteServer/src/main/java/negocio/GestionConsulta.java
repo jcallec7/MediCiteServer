@@ -63,7 +63,20 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 	public void updateConsulta(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico) {		
 		Consulta c = new Consulta();
 		c.setId(id);
-		
+		c.setUsuario(usuario);
+		c.setMedico(medico);
+		c.setFecha(fecha);
+		c.setDiagnostico(diagnostico);
+		dao.update(c);
+	}
+	
+	public void addDiagnostico(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico) {
+		Consulta c = new Consulta();
+		c.setId(id);
+		c.setUsuario(usuario);
+		c.setMedico(medico);
+		c.setFecha(fecha);
+		c.setDiagnostico(diagnostico);
 		dao.update(c);
 	}
 
