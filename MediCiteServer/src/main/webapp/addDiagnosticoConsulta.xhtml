@@ -74,13 +74,13 @@
                   <div class="form-group">
 
           			<h:outputLabel>Ingresar Tipo de Diagnóstico</h:outputLabel>
-              		<h:inputText value = "#{gestionConsultaBean.diagnostico.tipo}" class="form-control" a:placeholder="Ingrese el tipo de diagnostico"/>
+              		<h:inputText value = "#{gestionConsultaBean.selectedConsulta.diagnostico.tipo}" class="form-control" a:placeholder="Ingrese el tipo de diagnostico"/>
        
                   </div>
                     <!-- textarea -->
                   <div class="form-group">
                     <h:outputLabel>Ingresar Descripcion</h:outputLabel>
-                    <h:inputTextarea value = "#{gestionConsultaBean.diagnostico.detalle}" class="form-control" rows="3" a:placeholder="Ingrese una descripcion para el diagnostico..."></h:inputTextarea>
+                    <h:inputTextarea value = "#{gestionConsultaBean.selectedConsulta.diagnostico.detalle}" class="form-control" rows="3" a:placeholder="Ingrese una descripcion para el diagnostico..."></h:inputTextarea>
                   </div>
 
                   <div class="row">
@@ -96,36 +96,36 @@
                   <!-- Select multiple-->
                   <div class="form-group">
                     <label>Medicamentos</label>
-                    
-                    <h:dataTable value="#{gestionConsultaBean.receta.detalle}" var="detalle" id="resultado" class="table table-bordered">
+                                        
+                    <h:dataTable value="#{gestionConsultaBean.selectedConsulta.diagnostico.receta.detalle}" var="detalle" id="resultado" class="table table-bordered">
                     
 						<h:column>
 							<f:facet name="header">Nombre</f:facet>
-							<h:inputText value="#{detalle.medicamento.nombre}"></h:inputText>
+							<h:inputText value="#{detalle.medicamento.nombre}" class="form-control"></h:inputText>
 						</h:column>
 					
 						<h:column>
 							<f:facet name="header">Concentracion:</f:facet>
-							<h:inputText value="#{detalle.medicamento.concentracion}"></h:inputText>
+							<h:inputText value="#{detalle.medicamento.concentracion}" class="form-control"></h:inputText>
 						</h:column>
 					
 						<h:column>
 							<f:facet name="header">Dosis</f:facet>
-							<h:inputText value="#{detalle.nombre}"></h:inputText>
+							<h:inputText value="#{detalle.nombre}" class="form-control"></h:inputText>
 						</h:column>
                     
                     </h:dataTable>
                     
+                    <h:commandButton action="#{gestionConsultaBean.addDetalle()}" value="+ Medicamento" class="btn btn-primary"/>
+                    
                   </div>
 
-                <!-- </h:form>  -->
               </div>
-              <!-- /.card-body -->
             </div>
 				
 	
 	
-	            <h:commandButton value="Actualizar Consulta" action="#{gestionConsultaBean.updateConsulta()}" type="submit" class="btn btn-primary">
+	            <h:commandButton value="Actualizar Consulta" action="#{gestionConsultaBean.actualizarDiagnostico()}" type="submit" class="btn btn-primary">
 				</h:commandButton>	
 				
          	</div>

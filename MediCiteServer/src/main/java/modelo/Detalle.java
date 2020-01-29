@@ -23,19 +23,19 @@ public class Detalle implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="mc_det_id")
-	private String id;
+	private int id;
 	
 	@Column(name="mc_det_nombre")
 	private String nombre;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Medicamento medicamento;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

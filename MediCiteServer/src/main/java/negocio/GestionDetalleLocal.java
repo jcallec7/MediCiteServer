@@ -7,13 +7,14 @@ import javax.ejb.Local;
 import modelo.Detalle;
 import modelo.Medicamento;
 
+@Local
 public interface GestionDetalleLocal {
-	public void guardarDetalle(String id, String nombre, Medicamento medicamento );
+	public void guardarDetalle(int id, String nombre, Medicamento medicamento );
 	public List<Detalle> getDetalles();
-	public Detalle leerDetalle(String id);
-	public void editarDetalle(String id, String nombre, Medicamento medicamento );
+	public Detalle leerDetalle(int id);
+	public void editarDetalle(int id, String nombre, Medicamento medicamento );
 	public List<Detalle> getDetallesPorNombre(String filtro);
-	public void eliminarDetalles(String id);
-	public void updateDetalle(String id, String nombre, Medicamento medicamento);
+	public void eliminarDetalles(int id);
+	public void updateDetalle(int id, String nombre, Medicamento medicamento);
 	
 }

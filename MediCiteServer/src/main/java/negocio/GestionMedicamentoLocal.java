@@ -1,11 +1,9 @@
 package negocio;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
 import modelo.Medicamento;
-import modelo.Receta;
 
 @Local
 public interface GestionMedicamentoLocal {

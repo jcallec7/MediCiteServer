@@ -23,7 +23,7 @@ public class DetalleRecetaConverter implements Converter {
         GestionRecetaBean beers = (GestionRecetaBean)vex.getValue(ctx.getELContext());
         for(Detalle a : beers.getDetalles()) {
         	System.out.println("id +" + a.getId() + "+" + beerId+"+");
-        	if(a.getId().equals(beerId)) {
+        	if(a.getId() == Integer.parseInt(beerId)) {
         		System.out.println(a);
         		return a;
         	}

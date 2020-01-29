@@ -26,7 +26,7 @@ public class GestionDetalleBean {
 	private GestionMedicamentoLocal gml;
 
 	/* Beans properties */
-	private String id;
+	private int id;
 	private String nombre;
 	private Medicamento medicamento;
 	
@@ -63,11 +63,11 @@ public class GestionDetalleBean {
 		this.gml = gml;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -167,12 +167,12 @@ public class GestionDetalleBean {
 		return detalles;
 	}
 	
-	public String editarDetalle(String id) {
+	public String editarDetalle(int id) {
 		this.editDetalle = gdl.leerDetalle(id);
 		return "updateDetalle";
 	}
 	
-	public String eliminarDetalle(String id) {
+	public String eliminarDetalle(int id) {
 		gdl.eliminarDetalles(id);
 		return "listDetalle";
 	}

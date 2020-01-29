@@ -29,13 +29,15 @@
 				<h:column>
 					#{cons.diagnostico}
 					<f:facet name="header">Diagnostico</f:facet>
+					<h:commandButton value="Agregar" rendered="#{cons.diagnostico == null}" action="#{gestionConsultaBean.addDiagnosticoConsultaById()}" class = "btn btn-primary">
+						<f:param name="selectedConsultaId" value="#{cons.id}"/>
+					</h:commandButton>
+					
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandButton value="Editar" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
-						<f:param name="selectedConsultaId" value="#{cons.id}"/>
-					</h:commandButton>
+					
 					
 				</h:column>
 				

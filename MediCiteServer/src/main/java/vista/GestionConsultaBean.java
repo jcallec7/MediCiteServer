@@ -1,5 +1,6 @@
 package vista;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
+import org.jboss.resteasy.plugins.server.servlet.ServletContainerDispatcher;
 
 import modelo.Consulta;
 import modelo.Detalle;
@@ -18,6 +21,7 @@ import modelo.Usuario;
 import negocio.GestionConsultaLocal;
 import negocio.GestionDetalleLocal;
 import negocio.GestionDiagnosticoLocal;
+import negocio.GestionMedicamentoLocal;
 import negocio.GestionRecetaLocal;
 import negocio.GestionUsuarioLocal;
 
@@ -40,22 +44,21 @@ public class GestionConsultaBean {
 	@Inject
 	private GestionDetalleLocal gdetl;
 	
+	@Inject
+	private GestionMedicamentoLocal gml;
+	
 	/* Beans properties */
 	private int id;
 	private Usuario usuario;
 	private Usuario medico;
 	private Date fecha;
-	private Diagnostico diagnostico;
-	private Receta receta;
-	private Detalle detalle;
+	private Detalle det;
 	private Consulta consulta;
 	private Medicamento medicamento;
 
 	private List<Consulta> consultas;
 	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
-	private List<Detalle> detalles;
-	private List<Receta> recetas;
 
 	private String filtro;
 	private Usuario selectedUsuario;
@@ -74,9 +77,6 @@ public class GestionConsultaBean {
 		listConsultas();
 		listUsuarios();
 		listMedicos();
-		receta = new Receta();
-		receta.addDetalle(new Detalle());
-		listRecetas();
 	}
 	
 	public Medicamento getMedicamento() {
@@ -87,22 +87,6 @@ public class GestionConsultaBean {
 		this.medicamento = medicamento;
 	}
 
-	public List<Receta> getRecetas() {
-		return recetas;
-	}
-
-	public void setRecetas(List<Receta> recetas) {
-		this.recetas = recetas;
-	}
-
-	public List<Detalle> getDetalles() {
-		return detalles;
-	}
-
-	public void setDetalles(List<Detalle> detalles) {
-		this.detalles = detalles;
-	}
-
 	public Consulta getConsulta() {
 		return consulta;
 	}
@@ -111,12 +95,12 @@ public class GestionConsultaBean {
 		this.consulta = consulta;
 	}
 
-	public Detalle getDetalle() {
-		return detalle;
+	public Detalle getDet() {
+		return det;
 	}
 
-	public void setDetalle(Detalle detalle) {
-		this.detalle = detalle;
+	public void setDet(Detalle det) {
+		this.det = det;
 	}
 
 	public GestionDiagnosticoLocal getGdl() {
@@ -141,14 +125,6 @@ public class GestionConsultaBean {
 
 	public void setGdetl(GestionDetalleLocal gdetl) {
 		this.gdetl = gdetl;
-	}
-
-	public Receta getReceta() {
-		return receta;
-	}
-
-	public void setReceta(Receta receta) {
-		this.receta = receta;
 	}
 
 	public int getSelectedConsultaId2() {
@@ -279,14 +255,6 @@ public class GestionConsultaBean {
 		this.fecha = fecha;
 	}
 
-	public Diagnostico getDiagnostico() {
-		return diagnostico;
-	}
-
-	public void setDiagnostico(Diagnostico diagnostico) {
-		this.diagnostico = diagnostico;
-	}
-
 	public List<Consulta> getConsultas() {
 		listUsuarios();
 		listMedicos();
@@ -317,7 +285,7 @@ public class GestionConsultaBean {
 		
 		fecha.setHours(hora);
 		fecha.setMinutes(minuto);
-		gcl.guardarConsulta(id, selectedUsuario, selectedMedico, fecha, diagnostico);
+		gcl.guardarConsulta(id, selectedUsuario, selectedMedico, fecha, null);
 		consultas = gcl.getConsultas();
 		return "listConsulta";
 
@@ -329,10 +297,7 @@ public class GestionConsultaBean {
 		usuario = selectedConsulta.getUsuario();
 		medico = selectedConsulta.getMedico();
 		fecha = selectedConsulta.getFecha();
-		gdl.guardarDiagnostico(diagnostico.getId(), diagnostico.getDetalle(), diagnostico.getReceta(), diagnostico.getTipo());
-		selectedConsulta.setDiagnostico(diagnostico);
-		gcl.addDiagnostico(id, usuario, medico, fecha, diagnostico);
-		
+		/*  Pending  */
 		return null;
 		
 	}
@@ -352,16 +317,20 @@ public class GestionConsultaBean {
 		return consultas;
 	}
 
-	public String editConsultaById() {
+	public String addDiagnosticoConsultaById() {
 
 		gcl.getConsultas();
 		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedConsultaId"));
 		System.out.println(selectedConsultaId);
 		selectedConsulta = gcl.readConsulta(selectedConsultaId);
-		diagnostico = new Diagnostico();
-		receta = diagnostico.getReceta();
 		
-		return "updateConsulta";
+		selectedConsulta.setDiagnostico(new Diagnostico());
+		selectedConsulta.getDiagnostico().setReceta(new Receta());
+		det = new Detalle();
+		det.setMedicamento(new Medicamento());
+		selectedConsulta.getDiagnostico().getReceta().addDetalle(det);
+		
+		return "addDiagnosticoConsulta";
 
 	}
 
@@ -386,13 +355,30 @@ public class GestionConsultaBean {
 		this.medicos = this.gul.getUsuarioPorRol(rolMed);
 	}
 	
-	private void listRecetas() {
-		this.detalles = this.gdetl.getDetalles();
-		this.recetas = this.grl.getRecetas();
-	}
-
 	public String updateConsulta() {
-		gcl.updateConsulta(id, usuario, medico, fecha, diagnostico);
+		
+		return "listConsulta";
+	}
+	
+	public String addDetalle() {
+		//detalles.add(diagnostico.getReceta().getDetalle().get(diagnostico.getReceta().getDetalle().size() - 1));
+		det = new Detalle();
+		det.setMedicamento(new Medicamento());
+		selectedConsulta.getDiagnostico().getReceta().addDetalle(det);
+		return null;
+	}
+	
+	public String actualizarDiagnostico() {
+		
+		for(Detalle d: selectedConsulta.getDiagnostico().getReceta().getDetalle()) {
+			gml.guardarMedicamento(d.getMedicamento().getId(), d.getMedicamento().getnombre(), d.getMedicamento().getConcentracion());
+		}
+		for(Detalle d: selectedConsulta.getDiagnostico().getReceta().getDetalle()) {
+			gdetl.guardarDetalle(d.getId(), d.getNombre(), d.getMedicamento());
+		}
+		grl.guardarReceta(selectedConsulta.getDiagnostico().getReceta().getId(), selectedConsulta.getDiagnostico().getReceta().getDescr(), selectedConsulta.getDiagnostico().getReceta().getDetalle());
+		gdl.guardarDiagnostico(selectedConsulta.getDiagnostico().getId(), selectedConsulta.getDiagnostico().getDetalle(), selectedConsulta.getDiagnostico().getReceta(), selectedConsulta.getDiagnostico().getTipo());
+		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
 		return "listConsulta";
 	}
 

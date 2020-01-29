@@ -25,15 +25,15 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 	
 	private List<Detalle> detalles = new ArrayList<Detalle>();
 
-	public void guardarDetalle(String id, String nombre, Medicamento medicamento ) {
+	public void guardarDetalle(int id, String nombre, Medicamento medicamento ) {
 
 		Detalle d = new Detalle();
 		//c.setId(id);
-		d.setId(id);
+		//d.setId(id);
 		d.setNombre(nombre);
 		d.setMedicamento(medicamento);
 		System.out.println(d);
-		detalles.add(d);
+		//detalles.add(d);
 		dao.insert(d);
 	}
 	
@@ -43,7 +43,7 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 		return dao.getDetalles();
 	}
 	
-	public Detalle leerDetalle(String id){
+	public Detalle leerDetalle(int id){
 		
 		Detalle detalle = dao.read(id);
 		System.out.print(detalle);
@@ -52,7 +52,7 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 		
 	}
 	
-	public void editarDetalle(String id, String nombre, Medicamento medicamento ) {
+	public void editarDetalle(int id, String nombre, Medicamento medicamento ) {
 
 		Detalle d = new Detalle();
 		//c.setId(id);
@@ -67,7 +67,7 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 	}
 	
 	
-	public void eliminarDetalles(String id){
+	public void eliminarDetalles(int id){
 		
 		System.out.print("******************************Usuario Eliminado*******************************");
 		dao.remove(id);
@@ -80,7 +80,7 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 
 	
 	
-	public void updateDetalle(String id, String nombre, Medicamento medicamento) {		
+	public void updateDetalle(int id, String nombre, Medicamento medicamento) {		
 		Detalle d = new Detalle();
 		d.setId(id);
 		
