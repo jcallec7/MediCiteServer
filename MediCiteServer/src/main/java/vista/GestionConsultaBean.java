@@ -56,13 +56,11 @@ public class GestionConsultaBean {
 	private Consulta consulta;
 	private Medicamento medicamento;
 	
-	private int recetaId;
-	private int diagnosticoId;
-
 	private List<Consulta> consultas;
 	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
-
+	private List<Diagnostico> diagnosticos;
+	
 	private String filtro;
 	private Usuario selectedUsuario;
 	private Usuario selectedMedico;
@@ -80,22 +78,15 @@ public class GestionConsultaBean {
 		listConsultas();
 		listUsuarios();
 		listMedicos();
-	}
-	
-	public int getRecetaId() {
-		return recetaId;
+		listDiagnosticos();
 	}
 
-	public void setRecetaId(int recetaId) {
-		this.recetaId = recetaId;
+	public List<Diagnostico> getDiagnosticos() {
+		return diagnosticos;
 	}
 
-	public int getDiagnosticoId() {
-		return diagnosticoId;
-	}
-
-	public void setDiagnosticoId(int diagnosticoId) {
-		this.diagnosticoId = diagnosticoId;
+	public void setDiagnosticos(List<Diagnostico> diagnosticos) {
+		this.diagnosticos = diagnosticos;
 	}
 
 	public Medicamento getMedicamento() {
@@ -379,6 +370,10 @@ public class GestionConsultaBean {
 		this.medicos = this.gul.getUsuarioPorRol(rolMed);
 	}
 	
+	public void listDiagnosticos() {
+		this.diagnosticos = this.gdl.getDiagnosticos();
+	}
+	
 	public String updateConsulta() {
 		
 		return "listConsulta";
@@ -404,8 +399,8 @@ public class GestionConsultaBean {
 		
 		grl.guardarReceta(selectedConsulta.getDiagnostico().getReceta().getId(), selectedConsulta.getDiagnostico().getReceta().getDescr(), selectedConsulta.getDiagnostico().getReceta().getDetalle());	
 		gdl.guardarDiagnostico(selectedConsulta.getDiagnostico().getId(), selectedConsulta.getDiagnostico().getDetalle(), selectedConsulta.getDiagnostico().getReceta(), selectedConsulta.getDiagnostico().getTipo());
-		System.out.println(selectedConsulta.getId());
-		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
+		selectedDiagnostico = gdl.readDiagnostico(selectedConsulta.getDiagnostico().getId());
+		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getFecha(), selectedDiagnostico);
 		return "listConsulta";
 	}
 

@@ -27,7 +27,7 @@
 					<f:facet name="header">Fecha</f:facet>
 				</h:column>
 				<h:column>
-					#{cons.diagnostico}
+					#{cons.diagnostico.detalle}
 					<f:facet name="header">Diagnostico</f:facet>
 					<h:commandButton value="Agregar" rendered="#{cons.diagnostico == null}" action="#{gestionConsultaBean.addDiagnosticoConsultaById()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>

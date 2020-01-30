@@ -1,9 +1,19 @@
 package modelo;
 
-import javax.persistence.*;
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Diagnostico {
+public class Diagnostico implements Serializable {
+
+	private static final long serialVersionUID = -1556188757474988028L;
 
 	@Id
 	@Column(name = "mc_diag_id")
@@ -15,17 +25,16 @@ public class Diagnostico {
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "mc_rec_id")
 	private Receta receta;
-	
+
 	@Column(name = "mc_diag_tipo")
 	private String tipo;
 
-	
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
-		id = id;
+		this.id = id;
 	}
 
 	public String getDetalle() {
@@ -43,7 +52,6 @@ public class Diagnostico {
 	public void setReceta(Receta receta) {
 		this.receta = receta;
 	}
-	
 
 	public String getTipo() {
 		return tipo;
@@ -58,5 +66,4 @@ public class Diagnostico {
 		return "Diagnostico [id=" + id + ", detalle=" + detalle + ", receta=" + receta + ", tipo=" + tipo + "]";
 	}
 
-	
 }
