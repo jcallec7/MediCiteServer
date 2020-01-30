@@ -16,5 +16,6 @@ public interface GestionRecetaLocal {
 	public void deleteRecetas(int id);
 	public Receta readReceta(int id);
 	public void updateReceta(int id, String descr, Detalle detalle);
+	public int getLastId();
 	
 }

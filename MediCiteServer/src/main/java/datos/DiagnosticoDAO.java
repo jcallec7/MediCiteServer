@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import modelo.Diagnostico;
+import modelo.Receta;
 
 
 
@@ -60,6 +61,19 @@ public class DiagnosticoDAO{
 		List<Diagnostico> diagnostico = q.getResultList();
 		
 		return diagnostico;
+	}
+	
+	public int getLastId() {
+		String jpql = "SELECT r FROM Diagnostico r";
+		Query q = em.createQuery(jpql, Diagnostico.class);
+		
+		List<Diagnostico> Diagnosticos = q.getResultList();
+		if(Diagnosticos.size() == 0) {
+			return 0;
+		} else {
+			return Diagnosticos.get(Diagnosticos.size() - 1).getId();
+		}			
+		
 	}
 
 }

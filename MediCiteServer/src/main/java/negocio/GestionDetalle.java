@@ -28,12 +28,10 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 	public void guardarDetalle(int id, String nombre, Medicamento medicamento ) {
 
 		Detalle d = new Detalle();
-		//c.setId(id);
-		//d.setId(id);
+		d.setId(id);
 		d.setNombre(nombre);
 		d.setMedicamento(medicamento);
 		System.out.println(d);
-		//detalles.add(d);
 		dao.insert(d);
 	}
 	
@@ -87,5 +85,7 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 		dao.update(d);
 	}
 
-	
+	public int getLastId() {
+		return dao.getLastId();
+	}
 }

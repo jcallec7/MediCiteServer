@@ -68,6 +68,8 @@ public class GestionReceta implements GestionRecetaLocal, GestionRecetaRemote {
 		dao.update(r);
 	}
 
-	
+	public int getLastId() {
+		return dao.getLastId();
+	}
 }
 

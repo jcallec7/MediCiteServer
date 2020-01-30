@@ -13,4 +13,5 @@ public interface GestionMedicamentoLocal {
 	public void editarMedicamento(int id, String nombre, String concentracion);
 	public void eliminarMedicamento(int id);
 	public List<Medicamento> getMedicamentoPorNombre(String filtro);
+	public List<Medicamento> getMedicamentoPorNombreYConcentracion(String nombre, String concentracion);
 }

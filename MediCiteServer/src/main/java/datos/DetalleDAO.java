@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import modelo.Detalle;
+import modelo.Diagnostico;
+import modelo.Receta;
 
 @Stateless
 public class DetalleDAO {
@@ -55,4 +57,16 @@ public class DetalleDAO {
 		return detalles;
 	}
 
+	public int getLastId() {
+		String jpql = "SELECT r FROM Detalle r";
+		Query q = em.createQuery(jpql, Detalle.class);
+		
+		List<Diagnostico> detalles = q.getResultList();
+		if(detalles.size() == 0) {
+			return 0;
+		} else {
+			return detalles.get(detalles.size() - 1).getId();
+		}
+	}
+	
 }

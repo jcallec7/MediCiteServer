@@ -15,4 +15,5 @@ public interface GestionDiagnosticoLocal {
 	public void deleteDiagnostico(int id);
 	public Diagnostico readDiagnostico(int id);
 	public void updateDiagnostico(int id, String detalle, Receta receta, String tipo);
+	public int getLastId();
 }

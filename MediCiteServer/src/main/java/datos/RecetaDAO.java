@@ -5,6 +5,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import modelo.Diagnostico;
 import modelo.Receta;
 
 
@@ -71,6 +73,19 @@ public class RecetaDAO {
 		List<Receta> Recetas = q.getResultList();
 		
 		return Recetas;
+	}
+	
+	public int getLastId() {
+		String jpql = "SELECT r FROM Receta r";
+		Query q = em.createQuery(jpql, Receta.class);
+		
+		List<Diagnostico> recetas = q.getResultList();
+		if(recetas.size() == 0) {
+			return 0;
+		} else {
+			return recetas.get(recetas.size() - 1).getId();
+		}			
+		
 	}
 
 }

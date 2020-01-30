@@ -61,5 +61,16 @@ public class MedicamentoDAO {
 		return Medicamentos;
 	}
 
+	public List<Medicamento> getMedicamentoXNombreYConcentracion(String nombre, String concentracion){
+		String jpql = "SELECT m FROM Medicamento m WHERE mc_medic_nombre = ?1 AND mc_medic_concentr = ?2";
+		Query q = em.createQuery(jpql, Medicamento.class);
+		q.setParameter(1, nombre);
+		q.setParameter(2, concentracion);
+		
+		List<Medicamento> Medicamentos = q.getResultList();
+		
+		return Medicamentos;
+	}
+	
 }
 

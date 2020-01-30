@@ -13,10 +13,9 @@ import modelo.Receta;
 @Stateless
 public class GestionMedicamento implements GestionMedicamentoLocal, GestionMedicamentoRemote {
 
-	
 	@Inject
 	private MedicamentoDAO dao;
-	
+
 	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 
 	public void guardarMedicamento(int id, String nombre, String concentracion) {
@@ -25,51 +24,51 @@ public class GestionMedicamento implements GestionMedicamentoLocal, GestionMedic
 		m.setnombre(nombre);
 		m.setConcentracion(concentracion);
 		System.out.println(m);
-		
+
 		medicamentos.add(m);
 		dao.insert(m);
 	}
-	
-	public List<Medicamento> getMedicamento(){
+
+	public List<Medicamento> getMedicamento() {
 		System.out.println(medicamentos);
-		medicamentos = dao.getmedicamento(); 
+		medicamentos = dao.getmedicamento();
 		return medicamentos;
 	}
-	
-	public Medicamento leerMedicamento(int id){
-		
+
+	public Medicamento leerMedicamento(int id) {
+
 		Medicamento medicamento = dao.read(id);
 		System.out.print(medicamento);
-		
+
 		return medicamento;
-		
+
 	}
-	
+
 	public void editarMedicamento(int id, String nombre, String concentracion) {
 		Medicamento m = new Medicamento();
 		m.setId(id);
 		m.setnombre(nombre);
 		m.setConcentracion(concentracion);
 		System.out.println(m);
-		
+
 		medicamentos.add(m);
 		dao.update(m);
 	}
-	
-	public void eliminarMedicamento(int id){
-		
+
+	public void eliminarMedicamento(int id) {
+
 		System.out.print("******************************Usuario Eliminado*******************************");
 		dao.remove(id);
 	}
-	
-	public List<Medicamento> getMedicamentoPorNombre(String filtro){
-		
+
+	public List<Medicamento> getMedicamentoPorNombre(String filtro) {
+
 		return dao.getMedicamentoXNombre(filtro);
 	}
-	
-	
-	
 
+	public List<Medicamento> getMedicamentoPorNombreYConcentracion(String nombre, String concentracion) {
 
+		return dao.getMedicamentoXNombreYConcentracion(nombre, concentracion);
+	}
 
 }

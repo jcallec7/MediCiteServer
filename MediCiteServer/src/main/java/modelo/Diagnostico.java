@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Diagnostico {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "mc_diag_id")
 	private int id;
 

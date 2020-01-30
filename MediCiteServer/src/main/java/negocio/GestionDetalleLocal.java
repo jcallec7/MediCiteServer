@@ -16,5 +16,5 @@ public interface GestionDetalleLocal {
 	public List<Detalle> getDetallesPorNombre(String filtro);
 	public void eliminarDetalles(int id);
 	public void updateDetalle(int id, String nombre, Medicamento medicamento);
-	
+	public int getLastId();
 }

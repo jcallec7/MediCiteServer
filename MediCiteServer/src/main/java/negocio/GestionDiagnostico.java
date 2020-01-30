@@ -40,7 +40,6 @@ public class GestionDiagnostico implements GestionDiagnosticoLocal, GestionDiagn
 	
 	public List<Diagnostico> getDiagnosticos(){
 		System.out.println(diagnosticos);
-		daoReceta.getReceta();
 		return dao.getDiagnostico();
 	}
 	
@@ -63,6 +62,10 @@ public class GestionDiagnostico implements GestionDiagnosticoLocal, GestionDiagn
 		d.setId(id);
 	
 		dao.update(d);
+	}
+	
+	public int getLastId() {
+		return dao.getLastId();
 	}
 
 }
