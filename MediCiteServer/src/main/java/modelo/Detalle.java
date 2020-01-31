@@ -21,13 +21,14 @@ public class Detalle implements Serializable {
 	private static final long serialVersionUID = -20336965027624681L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="mc_det_id")
 	private int id;
 	
 	@Column(name="mc_det_nombre")
 	private String nombre;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Medicamento medicamento;
 
 	public int getId() {

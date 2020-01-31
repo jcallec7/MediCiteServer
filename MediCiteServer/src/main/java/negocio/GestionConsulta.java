@@ -32,7 +32,7 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		c.setUsuario(usuario);
 		c.setMedico(medico);
 		c.setFecha(fecha);
-		c.setDiagnostico(null);
+		c.setDiagnostico(diagnostico);
 		consultas.add(c);
 		System.out.println(c);
 		dao.insert(c);
@@ -67,6 +67,8 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		c.setMedico(medico);
 		c.setFecha(fecha);
 		c.setDiagnostico(diagnostico);
+		System.out.println(c);
+		consultas.add(c);
 		dao.update(c);
 	}
 	

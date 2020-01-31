@@ -85,7 +85,4 @@ public class GestionDetalle implements GestionDetalleLocal, GestionDetalleRemote
 		dao.update(d);
 	}
 
-	public int getLastId() {
-		return dao.getLastId();
-	}
 }

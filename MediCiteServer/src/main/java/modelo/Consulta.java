@@ -37,7 +37,7 @@ public class Consulta implements Serializable {
 	@Column(name = "mc_cons_fecha")
 	private Date fecha;
 
-	@ManyToOne(cascade = CascadeType.MERGE ,fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "mc_diag_id")
 	private Diagnostico diagnostico;
 
@@ -80,11 +80,7 @@ public class Consulta implements Serializable {
 	public void setDiagnostico(Diagnostico diagnostico) {
 		this.diagnostico = diagnostico;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Consulta [id=" + id + ", usuario=" + usuario + ", medico=" + medico + ", fecha=" + fecha
