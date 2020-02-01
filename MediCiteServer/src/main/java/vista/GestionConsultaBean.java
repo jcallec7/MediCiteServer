@@ -1,5 +1,6 @@
 package vista;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,8 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-
-import org.jboss.resteasy.plugins.server.servlet.ServletContainerDispatcher;
+import javax.inject.Named;
 
 import modelo.Consulta;
 import modelo.Detalle;
@@ -27,26 +27,26 @@ import negocio.GestionUsuarioLocal;
 
 @ManagedBean
 @SessionScoped
-public class GestionConsultaBean {
+public class GestionConsultaBean implements Serializable {
 
 	@Inject
 	private GestionConsultaLocal gcl;
-	
+
 	@Inject
 	private GestionUsuarioLocal gul;
-	
+
 	@Inject
 	private GestionDiagnosticoLocal gdl;
-	
+
 	@Inject
 	private GestionRecetaLocal grl;
-	
+
 	@Inject
 	private GestionDetalleLocal gdetl;
-	
+
 	@Inject
 	private GestionMedicamentoLocal gml;
-	
+
 	/* Beans properties */
 	private int id;
 	private Usuario usuario;
@@ -55,12 +55,12 @@ public class GestionConsultaBean {
 	private Detalle det;
 	private Consulta consulta;
 	private Medicamento medicamento;
-	
+
 	private List<Consulta> consultas;
 	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
 	private List<Diagnostico> diagnosticos;
-	
+
 	private String filtro;
 	private Usuario selectedUsuario;
 	private Usuario selectedMedico;
@@ -73,12 +73,14 @@ public class GestionConsultaBean {
 	private int rolMed = 3;
 	private int rolPac = 4;
 
+
 	@PostConstruct
 	public void init() {
 		listConsultas();
 		listUsuarios();
 		listMedicos();
 		listDiagnosticos();
+		
 	}
 
 	public List<Diagnostico> getDiagnosticos() {
@@ -160,7 +162,7 @@ public class GestionConsultaBean {
 	public void setSelectedConsultaId(int selectedConsultaId) {
 		this.selectedConsultaId = selectedConsultaId;
 	}
-	
+
 	public GestionUsuarioLocal getGul() {
 		return gul;
 	}
@@ -273,8 +275,8 @@ public class GestionConsultaBean {
 
 	public void setConsultas(List<Consulta> consultas) {
 		this.consultas = consultas;
-	}	
-	
+	}
+
 	public int getHora() {
 		return hora;
 	}
@@ -292,7 +294,7 @@ public class GestionConsultaBean {
 	}
 
 	public String guardarConsulta() {
-		
+
 		fecha.setHours(hora);
 		fecha.setMinutes(minuto);
 		gcl.guardarConsulta(id, selectedUsuario, selectedMedico, fecha, null);
@@ -300,16 +302,26 @@ public class GestionConsultaBean {
 		return "listConsulta";
 
 	}
-	
+
+	public String updateConsulta() {
+
+		selectedConsulta.getFecha().setHours(hora);
+		selectedConsulta.getFecha().setMinutes(minuto);
+		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
+		consultas = gcl.getConsultas();
+		return "listConsulta";
+
+	}
+
 	public String addDiagnostico() {
-		
+
 		id = selectedConsulta.getId();
 		usuario = selectedConsulta.getUsuario();
 		medico = selectedConsulta.getMedico();
 		fecha = selectedConsulta.getFecha();
-		/*  Pending  */
+		/* Pending */
 		return null;
-		
+
 	}
 
 	public String getFiltro() {
@@ -329,25 +341,39 @@ public class GestionConsultaBean {
 
 	public String addDiagnosticoConsultaById() {
 
-		gcl.getConsultas();
-		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedConsultaId"));
+		//gcl.getConsultas();
+		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("selectedConsultaId"));
 		System.out.println(selectedConsultaId);
 		selectedConsulta = gcl.readConsulta(selectedConsultaId);
-		
+
 		selectedConsulta.setDiagnostico(new Diagnostico());
 		selectedConsulta.getDiagnostico().setReceta(new Receta());
 		det = new Detalle();
 		det.setMedicamento(new Medicamento());
 		selectedConsulta.getDiagnostico().getReceta().setDetalle(new ArrayList<Detalle>());
-		selectedConsulta.getDiagnostico().getReceta().addDetalle(det);		
-		
+		selectedConsulta.getDiagnostico().getReceta().addDetalle(det);
+
 		return "addDiagnosticoConsulta";
+
+	}
+
+	public String editConsultaById() {
+
+		//gcl.getConsultas();
+		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("selectedConsultaId"));
+		System.out.println(selectedConsultaId);
+		selectedConsulta = gcl.readConsulta(selectedConsultaId);
+
+		return "updateConsulta";
 
 	}
 
 	public String deleteConsulta() {
 
-		selectedConsultaId2 = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedConsultaId2"));
+		selectedConsultaId2 = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("selectedConsultaId2"));
 		System.out.println(selectedConsultaId2);
 		gcl.deleteConsulta(selectedConsultaId2);
 		return "return alert('Consulta Eliminada Exitosamente')";
@@ -357,37 +383,49 @@ public class GestionConsultaBean {
 	public void listConsultas() {
 		this.consultas = this.gcl.getConsultas();
 	}
-	
+
 	public void listUsuarios() {
 		this.usuarios = this.gul.getUsuarioPorRol(rolPac);
 	}
-	
+
 	public void listMedicos() {
 		this.medicos = this.gul.getUsuarioPorRol(rolMed);
 	}
-	
+
 	public void listDiagnosticos() {
 		this.diagnosticos = this.gdl.getDiagnosticos();
 	}
-	
+
 	public String addDetalle() {
 		det = new Detalle();
 		det.setMedicamento(new Medicamento());
 		selectedConsulta.getDiagnostico().getReceta().addDetalle(det);
 		return null;
 	}
-	
+
 	public String actualizarDiagnostico() {
-		
-		for(Detalle d: selectedConsulta.getDiagnostico().getReceta().getDetalle()) {
-			List<Medicamento> medicamentos = gml.getMedicamentoPorNombreYConcentracion(d.getMedicamento().getnombre(), d.getMedicamento().getConcentracion());
-			if(medicamentos.size() != 0) {
-				medicamento = gml.getMedicamentoPorNombreYConcentracion(d.getMedicamento().getnombre(), d.getMedicamento().getConcentracion()).get(0);
+
+		for (Detalle d : selectedConsulta.getDiagnostico().getReceta().getDetalle()) {
+			List<Medicamento> medicamentos = gml.getMedicamentoPorNombreYConcentracion(d.getMedicamento().getnombre(),
+					d.getMedicamento().getConcentracion());
+			if (medicamentos.size() != 0) {
+				medicamento = gml.getMedicamentoPorNombreYConcentracion(d.getMedicamento().getnombre(),
+						d.getMedicamento().getConcentracion()).get(0);
 				d.setMedicamento(medicamento);
 			}
 		}
-		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
+		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(),
+				selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
 		return "listConsulta";
+	}
+	
+	public String loadDiagnostico() {
+		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("selectedConsultaId"));
+		System.out.println(selectedConsultaId);
+		selectedConsulta = gcl.readConsulta(selectedConsultaId);
+		selectedConsulta.getDiagnostico();
+		return "readDiagnostico";
 	}
 
 }

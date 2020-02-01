@@ -37,7 +37,6 @@ public class DiagnosticoDAO{
 	public Diagnostico read(int id) {
 		
 		Diagnostico c = em.find(Diagnostico.class, id);
-		
 		return null;
 		
 	}

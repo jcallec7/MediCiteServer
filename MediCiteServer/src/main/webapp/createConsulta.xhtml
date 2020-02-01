@@ -39,21 +39,7 @@
             </div>
            	
            	<h:outputLabel value = "Ingresar Fecha y Hora"></h:outputLabel>
-            <h:inputText value = "#{gestionConsultaBean.fecha}" class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
-	            
-           		<f:convertDateTime pattern="yyyy/MM/dd" />
-           
-           	</h:inputText>
-           	<h:inputText value = "#{gestionConsultaBean.hora}" class="form-control" id="hora" a:placeholder="Hora">
-	            
-           		<!-- <f:convertDateTime pattern="HH:mm"/>  -->
-           
-           	</h:inputText>
-           	<h:inputText value = "#{gestionConsultaBean.minuto}" class="form-control" id="minuto" a:placeholder="Minutos">
-	            
-           		<!-- <f:convertDateTime pattern="HH:mm"/>  -->
-           
-           	</h:inputText>
+			<h:inputText id="datepicker"/>
 			
 			
 			<div class="card-footer">
