@@ -3,6 +3,7 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     xmlns:s=" http://jboss.com/products/seam/taglib "
      	template="blank.xhtml">
 
 	<ui:define name="cabecera">
@@ -18,21 +19,23 @@
 	<ui:define name="contenido">
 	
 		<h:form>
-			<!-- 
-			<div class="form-group">
-            	<h:outputLabel>Ingresar codigo</h:outputLabel>
-                <h:inputText value = "#{gestionMedicamentoBean.id}" class="form-control" a:placeholder="Ingrese el codigo"/>
-           	</div>
-           	 -->
+
            	
            	<div class="form-group">
             	<h:outputLabel>Nombre(s)</h:outputLabel>
-            	<h:inputText value = "#{gestionMedicamentoBean.nombre}" class="form-control" a:placeholder="Ingrese el o los nombres"/>
+            	<h:inputText value = "#{gestionMedicamentoBean.nombre}" label="Nombre" id="nombre" class="form-control" a:placeholder="Ingrese el o los nombres"
+            	required="true" requiredMessage= "Error: Debe ingresar el nombre del medicamento"
+            	style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+            	</h:inputText>
+            <h:message for="nombre" style="color:#E13D3D;font-weight: 400;boxshadow:#FF5D5D" />
             </div>
             
             <div class="form-group">
             	<h:outputLabel>Concentración</h:outputLabel>
-            	<h:inputText value = "#{gestionMedicamentoBean.concentracion}" class="form-control" a:placeholder="Ingrese la concentración"/>
+            	<h:inputText value = "#{gestionMedicamentoBean.concentracion}" label="Concentracion" id="concentracion" class="form-control" a:placeholder="Ingrese la concentración" required="true" requiredMessage="Error: Debe ingresar la concentración del medicamento"
+            	style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+            	</h:inputText>
+            	<h:message for="concentracion" style="color:#EE4242;font-weight: 400;boxshadow:#FF5D5D" />
             </div>
             
             
@@ -45,6 +48,6 @@
 		</h:form>
 	
 	</ui:define>
+
 	
 </ui:composition>
-
