@@ -33,6 +33,9 @@ public class Consulta implements Serializable {
 	@JoinColumn(name = "mc_med_id")
 	private Usuario medico;
 
+	@Column(name = "mc_cons_estado")
+	private String estado;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "mc_cons_fecha")
 	private Date fecha;
@@ -65,6 +68,14 @@ public class Consulta implements Serializable {
 		this.medico = medico;
 	}
 
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -80,11 +91,11 @@ public class Consulta implements Serializable {
 	public void setDiagnostico(Diagnostico diagnostico) {
 		this.diagnostico = diagnostico;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Consulta [id=" + id + ", usuario=" + usuario + ", medico=" + medico + ", fecha=" + fecha
-				+ ", diagnostico=" + diagnostico + "]";
+		return "Consulta [id=" + id + ", usuario=" + usuario + ", medico=" + medico + ", estado=" + estado + ", fecha="
+				+ fecha + ", diagnostico=" + diagnostico + "]";
 	}
-
+	
 }

@@ -12,7 +12,7 @@ import modelo.Usuario;
 @Remote
 public interface GestionConsultaRemote {
 
-	public void guardarConsulta(int id, Usuario paciente, Usuario medico, Date fecha, Diagnostico diagnostico);
+	public void guardarConsulta(int id, Usuario paciente, Usuario medico, String estado, Date fecha, Diagnostico diagnostico);
 
 	public List<Consulta> getConsultas();
 
@@ -22,8 +22,6 @@ public interface GestionConsultaRemote {
 
 	public Consulta readConsulta(int id);
 
-	public void updateConsulta(int id, Usuario paciente, Usuario medico, Date fecha, Diagnostico diagnostico);
-
-	public void addDiagnostico(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico);
+	public void updateConsulta(int id, Usuario paciente, Usuario medico, String estado, Date fecha, Diagnostico diagnostico);
 
 }

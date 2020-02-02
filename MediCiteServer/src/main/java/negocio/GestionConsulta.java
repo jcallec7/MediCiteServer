@@ -29,11 +29,12 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 
-	public void guardarConsulta(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico) {
+	public void guardarConsulta(int id, Usuario usuario, Usuario medico, String estado, Date fecha, Diagnostico diagnostico) {
 
 		Consulta c = new Consulta();
 		c.setUsuario(usuario);
 		c.setMedico(medico);
+		c.setEstado(estado);
 		c.setFecha(fecha);
 		c.setDiagnostico(diagnostico);
 		consultas.add(c);
@@ -65,11 +66,12 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		return consulta;
 	}
 	
-	public void updateConsulta(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico) {		
+	public void updateConsulta(int id, Usuario usuario, Usuario medico, String estado, Date fecha, Diagnostico diagnostico) {		
 		Consulta c = new Consulta();
 		c.setId(id);
 		c.setUsuario(usuario);
 		c.setMedico(medico);
+		c.setEstado(estado);
 		c.setFecha(fecha);
 		c.setDiagnostico(diagnostico);
 		System.out.println(c);
@@ -77,11 +79,12 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		dao.update(c);
 	}
 	
-	public void addDiagnostico(int id, Usuario usuario, Usuario medico, Date fecha, Diagnostico diagnostico) {
+	public void addDiagnostico(int id, Usuario usuario, Usuario medico, String estado, Date fecha, Diagnostico diagnostico) {
 		Consulta c = new Consulta();
 		c.setId(id);
 		c.setUsuario(usuario);
 		c.setMedico(medico);
+		c.setEstado(estado);
 		c.setFecha(fecha);
 		c.setDiagnostico(diagnostico);
 		dao.update(c);

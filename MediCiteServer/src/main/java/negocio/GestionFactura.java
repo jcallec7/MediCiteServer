@@ -22,10 +22,13 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 	private List<Factura> factura = new ArrayList<Factura>();
 
 	
-	public void guardarFactura(int id, Consulta consulta, double subtotal, double total, Date fecha) {
+	public void guardarFactura(int id, String nombre, String cedulaRuc, String direccion, Consulta consulta, double subtotal, double total, Date fecha) {
 		
 		Factura f = new Factura();
 		f.setId(id);
+		f.setNombre(nombre);
+		f.setCedulaRuc(cedulaRuc);
+		f.setDireccion(direccion);
 		f.setConsulta(consulta);
 		f.setSubtotal(subtotal);
 		f.setTotal(total);
@@ -42,10 +45,13 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 	
 
 	@Override
-	public void modificarFactura(int id, Consulta consulta, double subtotal, double total, Date fecha) {
+	public void modificarFactura(int id, String nombre, String cedulaRuc, String direccion, Consulta consulta, double subtotal, double total, Date fecha) {
 		
 		Factura f = new Factura();
 		f.setId(id);
+		f.setNombre(nombre);
+		f.setCedulaRuc(cedulaRuc);
+		f.setDireccion(direccion);
 		f.setConsulta(consulta);
 		f.setSubtotal(subtotal);
 		f.setTotal(total);

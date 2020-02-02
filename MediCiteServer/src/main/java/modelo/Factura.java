@@ -1,9 +1,12 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -11,28 +14,39 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Factura {
-	
+public class Factura implements Serializable {
+
+	private static final long serialVersionUID = -292628179707140384L;
+
 	@Id
-	@Column(name="mc_fact_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "mc_fact_id")
 	private int id;
-	
+
+	@Column(name = "mc_fact_nombre")
+	private String nombre;
+
+	@Column(name = "mc_fact_cedruc")
+	private String cedulaRuc;
+
+	@Column(name = "mc_fact_direccion")
+	private String direccion;
+
 	@OneToOne
 	@JoinColumn(name = "mc_cons_id")
 	private Consulta consulta;
-	
-	@Column(name="mc_fact_subtotal")
+
+	@Column(name = "mc_fact_subtotal")
 	private double subtotal;
-	
-	@Column(name="mc_fact_total")
+
+	@Column(name = "mc_fact_total")
 	private double total;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="mc_fact_date")
+	@Column(name = "mc_fact_date")
+
 	private Date fecha;
-	
-	
-	
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -73,10 +87,34 @@ public class Factura {
 		this.total = total;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getCedulaRuc() {
+		return cedulaRuc;
+	}
+
+	public void setCedulaRuc(String cedulaRuc) {
+		this.cedulaRuc = cedulaRuc;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 	@Override
 	public String toString() {
-		return "Factura [id=" + id + ", consulta=" + consulta + ", subtotal=" + subtotal + ", total=" + total
-				+ ", fecha=" + fecha + "]";
+		return "Factura [id=" + id + ", nombre=" + nombre + ", cedulaRuc=" + cedulaRuc + ", direccion=" + direccion
+				+ ", consulta=" + consulta + ", subtotal=" + subtotal + ", total=" + total + ", fecha=" + fecha + "]";
 	}
 
 }

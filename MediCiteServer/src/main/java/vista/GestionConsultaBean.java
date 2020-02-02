@@ -15,6 +15,7 @@ import javax.inject.Named;
 import modelo.Consulta;
 import modelo.Detalle;
 import modelo.Diagnostico;
+import modelo.Factura;
 import modelo.Medicamento;
 import modelo.Receta;
 import modelo.Usuario;
@@ -36,21 +37,13 @@ public class GestionConsultaBean implements Serializable {
 	private GestionUsuarioLocal gul;
 
 	@Inject
-	private GestionDiagnosticoLocal gdl;
-
-	@Inject
-	private GestionRecetaLocal grl;
-
-	@Inject
-	private GestionDetalleLocal gdetl;
-
-	@Inject
 	private GestionMedicamentoLocal gml;
 
 	/* Beans properties */
 	private int id;
 	private Usuario usuario;
 	private Usuario medico;
+	private String estado;
 	private Date fecha;
 	private Detalle det;
 	private Consulta consulta;
@@ -68,6 +61,7 @@ public class GestionConsultaBean implements Serializable {
 	private int selectedConsultaId2;
 	private Consulta selectedConsulta;
 	private Diagnostico selectedDiagnostico;
+	private Factura factura;
 	private int hora;
 	private int minuto;
 	private int rolMed = 3;
@@ -79,8 +73,22 @@ public class GestionConsultaBean implements Serializable {
 		listConsultas();
 		listUsuarios();
 		listMedicos();
-		listDiagnosticos();
-		
+	}
+
+	public Factura getFactura() {
+		return factura;
+	}
+
+	public void setFactura(Factura factura) {
+		this.factura = factura;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public List<Diagnostico> getDiagnosticos() {
@@ -113,30 +121,6 @@ public class GestionConsultaBean implements Serializable {
 
 	public void setDet(Detalle det) {
 		this.det = det;
-	}
-
-	public GestionDiagnosticoLocal getGdl() {
-		return gdl;
-	}
-
-	public void setGdl(GestionDiagnosticoLocal gdl) {
-		this.gdl = gdl;
-	}
-
-	public GestionRecetaLocal getGrl() {
-		return grl;
-	}
-
-	public void setGrl(GestionRecetaLocal grl) {
-		this.grl = grl;
-	}
-
-	public GestionDetalleLocal getGdetl() {
-		return gdetl;
-	}
-
-	public void setGdetl(GestionDetalleLocal gdetl) {
-		this.gdetl = gdetl;
 	}
 
 	public int getSelectedConsultaId2() {
@@ -297,9 +281,10 @@ public class GestionConsultaBean implements Serializable {
 
 		fecha.setHours(hora);
 		fecha.setMinutes(minuto);
-		gcl.guardarConsulta(id, selectedUsuario, selectedMedico, fecha, null);
+		estado = "pendiente";
+		gcl.guardarConsulta(id, selectedUsuario, selectedMedico, estado, fecha, null);
 		consultas = gcl.getConsultas();
-		return "listConsulta";
+		return "createFactura";
 
 	}
 
@@ -307,7 +292,7 @@ public class GestionConsultaBean implements Serializable {
 
 		selectedConsulta.getFecha().setHours(hora);
 		selectedConsulta.getFecha().setMinutes(minuto);
-		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
+		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), estado, selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
 		consultas = gcl.getConsultas();
 		return "listConsulta";
 
@@ -392,10 +377,6 @@ public class GestionConsultaBean implements Serializable {
 		this.medicos = this.gul.getUsuarioPorRol(rolMed);
 	}
 
-	public void listDiagnosticos() {
-		this.diagnosticos = this.gdl.getDiagnosticos();
-	}
-
 	public String addDetalle() {
 		det = new Detalle();
 		det.setMedicamento(new Medicamento());
@@ -405,6 +386,7 @@ public class GestionConsultaBean implements Serializable {
 
 	public String actualizarDiagnostico() {
 
+		estado = "Finalizado";
 		for (Detalle d : selectedConsulta.getDiagnostico().getReceta().getDetalle()) {
 			List<Medicamento> medicamentos = gml.getMedicamentoPorNombreYConcentracion(d.getMedicamento().getnombre(),
 					d.getMedicamento().getConcentracion());
@@ -414,7 +396,7 @@ public class GestionConsultaBean implements Serializable {
 				d.setMedicamento(medicamento);
 			}
 		}
-		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(),
+		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), estado,
 				selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
 		return "listConsulta";
 	}
