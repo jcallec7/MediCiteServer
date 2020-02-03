@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     xmlns:p="http://primefaces.org/ui">
+     
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>MediCite | Registrarse</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="resources/plugins/fontawesome-free/css/all.min.css"/>
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="resources/dist/css/adminlte.min.css"/>
+  
+  
+  <link rel="stylesheet" href="resources/dist/css/adminlte.min.css"/>
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
+  
+  <!-- OTROS -->
+ 
+ <link rel="stylesheet" href="CSS/upload.css"/>
+ <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <a><b>Medi</b>Cite</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Archivos</p>
+
+      <h:form>
+      
+     <div class="input_file">
+                    <label for="file" class="file_label">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        Cargar Archivos
+                    </label>
+                    <input value = "#{gestionArchivoBean.archivo}" id="file" type="file" name="file"/>
+      
+      <script>
+      $(document).ready(function () {
+    	    "use strict";
+    	    $("#file").on("change", function (e) {
+    	        var files = $(this)[0].files;
+    	        if (files.length >= 2) {
+    	            $(".file_label").text(files.length + " Files Ready To Upload");
+    	        } else {
+    	            var fileName = e.target.value.split("\\").pop();
+    	            $(".file_label").text(fileName);
+    	        }
+    	    });
+    	});
+      </script>
+   
+   <script>
+		$("#enviarimagenes").on("submit", function(e){
+			e.preventDefault();
+			var formData = new FormData(document.getElementById("enviarimagenes"));
+
+			$.ajax({
+				url: "subir.php",
+				type: "POST",
+				dataType: "HTML",
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false
+			}).done(function(echo){
+		$("#mensaje").html(echo);
+		});
+});
+</script>
+      
+      </div>
+
+        <div class="input-group mb-3">
+          <h:inputText value = "#{gestionArchivoBean.nombre}" class="form-control" a:placeholder="Ingrese una descripción]"/>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-pen"></span> 
+            </div>
+          </div>
+        </div>
+        
+       
+          <div class="col-4">
+            <h:commandButton class="btn btn-primary" value="Guardar" action="#{gestionArchivoBean.guardarArchivo()}"/>
+          </div>
+      </h:form>
+
+     
+
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="resources/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="resources/dist/js/adminlte.min.js"></script>
+</body>
+</html>

@@ -36,6 +36,38 @@ public class Archivo implements Serializable {
 	
 	@Column(name = "mc_arc_file")
 	private File archivo;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public File getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(File archivo) {
+		this.archivo = archivo;
+	}
+
+	@Override
+	public String toString() {
+		return "Archivo [nombre=" + nombre + ", archivo=" + archivo + "]";
+	}
+	
+	
+	
 	
 	
 }

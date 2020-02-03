@@ -6,6 +6,9 @@
      xmlns:s=" http://jboss.com/products/seam/taglib "
      	template="blank.xhtml">
 
+ <!-- Font Awesome -->
+  <link rel="stylesheet" href="resources/plugins/fontawesome-free/css/all.min.css"/>
+
 	<ui:define name="cabecera">
         	Sección Medicamento
    	</ui:define>
@@ -35,7 +38,9 @@
             	<h:inputText value = "#{gestionMedicamentoBean.concentracion}" label="Concentracion" id="concentracion" class="form-control" a:placeholder="Ingrese la concentración" required="true" requiredMessage="Error: Debe ingresar la concentración del medicamento"
             	style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
             	</h:inputText>
-            	<h:message for="concentracion" style="color:#EE4242;font-weight: 400;boxshadow:#FF5D5D" />
+            	
+            	<h:message for="concentracion" style="color:#EE4242;font-weight: 400;boxshadow:#FF5D5D">
+            	</h:message>
             </div>
             
             
