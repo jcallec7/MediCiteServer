@@ -12,8 +12,10 @@
 			
 			Filtro de búsqueda : 
 			<h:inputText value="#{gestionMedicoBean.filtro}" id = "filtro">
+			
 			<f:ajax execute = "filtro" render = "resultado" listener = "#{gestionMedicoBean.buscarMedico()}"
 			event = "keypress"/>
+			
 			</h:inputText>
 			
 									

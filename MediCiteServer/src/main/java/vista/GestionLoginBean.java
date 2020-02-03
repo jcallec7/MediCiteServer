@@ -73,7 +73,7 @@ public class GestionLoginBean {
 					
 				case 4:
 					
-					session.setAttribute("user", usuario);
+					session.setAttribute("userPaciente", usuario);
 					this.userName = usuario.getNombre()+" "+usuario.getApellido();		
 					return "indexPaciente";	
 					
@@ -96,6 +96,14 @@ public class GestionLoginBean {
 		}
 		return null;
 	}
+	
+	public String logout() {
+		
+		Session.logout();
+		
+		return "login.xhtml";
+       
+    }
 	
 	
 

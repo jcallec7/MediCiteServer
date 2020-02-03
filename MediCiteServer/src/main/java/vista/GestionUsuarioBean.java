@@ -7,10 +7,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import modelo.Usuario;
 import modelo.Rol;
 import negocio.GestionUsuarioLocal;
+import utils.Session;
 import negocio.GestionRolLocal;
 
 @ManagedBean
@@ -37,6 +39,9 @@ public class GestionUsuarioBean {
 	private String estatura;
 	private int rolId = 4;
 	private Rol rol;
+	
+	private HttpSession session = Session.getSession();
+	private Usuario miUsuario = (Usuario) session.getAttribute("userPaciente");
 
 	private List<Usuario> usuarios;
 	
@@ -224,6 +229,23 @@ public class GestionUsuarioBean {
 
 	public void setEditedUsuario(Usuario editedUsuario) {
 		this.editedUsuario = editedUsuario;
+	}
+	
+
+	public HttpSession getSession() {
+		return session;
+	}
+
+	public void setSession(HttpSession session) {
+		this.session = session;
+	}
+
+	public Usuario getMiUsuario() {
+		return miUsuario;
+	}
+
+	public void setMiUsuario(Usuario miUsuario) {
+		this.miUsuario = miUsuario;
 	}
 
 	public String guardarUsuario() {
