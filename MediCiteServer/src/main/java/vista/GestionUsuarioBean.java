@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import negocio.GestionUsuarioLocal;
 import utils.Session;
 import negocio.GestionRolLocal;
 
+
 @ManagedBean
 public class GestionUsuarioBean {
 
@@ -22,6 +24,8 @@ public class GestionUsuarioBean {
 	private GestionUsuarioLocal gul;
 	@Inject
 	private GestionRolLocal grl;
+	@Inject
+	private GestionConsultaBean gcb;
 
 	/* Beans properties */
 	private String id;
@@ -41,7 +45,7 @@ public class GestionUsuarioBean {
 	private Rol rol;
 	
 	private HttpSession session = Session.getSession();
-	private Usuario miUsuario = (Usuario) session.getAttribute("userPaciente");
+	private Usuario miUsuario = (Usuario) session.getAttribute("user");
 
 	private List<Usuario> usuarios;
 	
@@ -298,6 +302,12 @@ public class GestionUsuarioBean {
 		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, rol);
 		return "listUsuario";
 		
+	}
+	
+	public String Pages() {
+		
+		gcb.setMiUsuario(miUsuario);
+		return "createConsultaPaciente.xhtml";
 	}
 	
 }

@@ -54,6 +54,7 @@ public class GestionConsultaBean implements Serializable {
 	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
 	private List<Diagnostico> diagnosticos;
+	private Usuario miUsuario;
 
 	private String filtro;
 	private int selectedConsultaId;
@@ -68,6 +69,7 @@ public class GestionConsultaBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		System.out.print(miUsuario);
 		listConsultas();
 		listUsuarios();
 		listMedicos();
@@ -228,6 +230,14 @@ public class GestionConsultaBean implements Serializable {
 		this.minuto = minuto;
 	}
 
+	public Usuario getMiUsuario() {
+		return miUsuario;
+	}
+
+	public void setMiUsuario(Usuario miUsuario) {
+		this.miUsuario = miUsuario;
+	}
+
 	public String crearFactura() {
 
 		consulta.setEstado("pendiente");
@@ -365,5 +375,7 @@ public class GestionConsultaBean implements Serializable {
 		selectedConsulta.getDiagnostico();
 		return "readDiagnostico";
 	}
+	
+	
 	
 }
