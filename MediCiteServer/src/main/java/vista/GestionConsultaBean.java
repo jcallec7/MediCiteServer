@@ -237,8 +237,8 @@ public class GestionConsultaBean implements Serializable {
 		factura.setTotal(20);
 		factura.setSubtotal(factura.getTotal() / 1.12);
 		
-		gcl.guardarConsulta(consulta.getId(), consulta.getUsuario(), consulta.getMedico(), consulta.getEstado(), consulta.getFecha(), null);
-		consultas = gcl.getConsultas();
+		//gcl.guardarConsulta(consulta.getId(), consulta.getUsuario(), consulta.getMedico(), consulta.getEstado(), consulta.getFecha(), null);
+		//consultas = gcl.getConsultas();
 		
 		return "createFactura";
 
@@ -253,13 +253,14 @@ public class GestionConsultaBean implements Serializable {
 	public String realizarPago() {
 		factura.setConsulta(consulta);
 		gfl.guardarFactura(factura.getId(), factura.getNombre(), factura.getCedulaRuc(), factura.getDireccion(), factura.getConsulta(), factura.getSubtotal(), factura.getTotal(), factura.getFecha());
+		init();
 		return "listConsulta";
 	}
 
 	public String updateConsulta() {
 
 		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getEstado(), selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
-		consultas = gcl.getConsultas();
+		init();
 		return "listConsulta";
 
 	}
@@ -300,7 +301,6 @@ public class GestionConsultaBean implements Serializable {
 
 	public String editConsultaById() {
 
-		//gcl.getConsultas();
 		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("selectedConsultaId"));
 		System.out.println(selectedConsultaId);
@@ -353,7 +353,7 @@ public class GestionConsultaBean implements Serializable {
 		}
 		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getEstado(),
 				selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
-		gcl.getConsultas();
+		init();
 		return "listConsulta";
 	}
 	
