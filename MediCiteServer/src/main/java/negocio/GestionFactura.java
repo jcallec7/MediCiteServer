@@ -43,8 +43,6 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 		dao.remove(id);
 	}
 	
-
-	@Override
 	public void modificarFactura(int id, String nombre, String cedulaRuc, String direccion, Consulta consulta, double subtotal, double total, Date fecha) {
 		
 		Factura f = new Factura();
@@ -60,21 +58,18 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 		dao.update(f);
 	}
 
-	@Override
 	public Factura leerFactura(int id) {
 		Factura facturas = dao.read(id);
 		System.out.println(facturas);
 		return facturas;
 	}
 
-	@Override
 	public List<Factura> getFactura() {
 		System.out.println(factura);
 		return dao.getFactura();
 	}
 
 
-	@Override
 	public List<Factura> getFacturaPorId(String filtro) {
 		// TODO Auto-generated method stub
 		return dao.getFacturaXNombre(filtro);

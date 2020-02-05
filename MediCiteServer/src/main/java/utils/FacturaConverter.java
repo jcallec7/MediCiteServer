@@ -20,7 +20,7 @@ import vista.GestionConsultaBean;
 	                                "#{gestionConsultaBean}", GestionConsultaBean.class);
 	        GestionConsultaBean beers = (GestionConsultaBean)vex.getValue(ctx.getELContext());
 	        for(Consulta a : beers.getConsultas()) {
-	        	if(a.getId()== beers.getId()) {
+	        	if(a.getId()== beers.getConsulta().getId()) {
 	        		return a;
 	        	}
 	        }

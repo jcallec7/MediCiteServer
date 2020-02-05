@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
 <h:head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -12,16 +16,32 @@
   <link rel="stylesheet" href="resources/plugins/fontawesome-free/css/all.min.css"/>
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="resources/plugins/daterangepicker/daterangepicker.css"/>
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="resources/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css"/>
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"/>
+  <!-- Select2 -->
+  <link rel="stylesheet" href="resources/plugins/select2/css/select2.min.css"/>
+  <link rel="stylesheet" href="resources/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"/>
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="resources/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css"/>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="resources/dist/css/adminlte.min.css"/>
+  
+  <!-- DatePicker JavaScript & CSS -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="resources/dist/css/adminlte.min.css"/>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
-  <script src="resources/jquery-3.4.1.min.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
+  
 </h:head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -784,12 +804,28 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="resources/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="resources/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
+<!-- Select2 -->
+<script src="resources/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="resources/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="resources/plugins/moment/moment.min.js"></script>
+<script src="resources/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- date-range-picker -->
+<script src="resources/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="resources/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="resources/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="resources/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="resources/dist/js/demo.js"></script>
+<!-- Page script -->
 </body>
 </html>
