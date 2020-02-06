@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
 
@@ -28,6 +29,7 @@ import negocio.GestionFacturaLocal;
 import negocio.GestionMedicamentoLocal;
 import negocio.GestionRecetaLocal;
 import negocio.GestionUsuarioLocal;
+import utils.Session;
 
 @ManagedBean
 @SessionScoped
@@ -54,7 +56,6 @@ public class GestionConsultaBean implements Serializable {
 	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
 	private List<Diagnostico> diagnosticos;
-	private Usuario miUsuario;
 
 	private String filtro;
 	private int selectedConsultaId;
@@ -65,7 +66,9 @@ public class GestionConsultaBean implements Serializable {
 	private int minuto;
 	private int rolMed = 3;
 	private int rolPac = 4;
+	
 
+	private Usuario miUsuario;
 
 	@PostConstruct
 	public void init() {
