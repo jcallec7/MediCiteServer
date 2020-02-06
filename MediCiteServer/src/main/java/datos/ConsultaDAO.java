@@ -33,6 +33,8 @@ public class ConsultaDAO {
 	public Consulta read(int id) {
 
 		Consulta a = em.find(Consulta.class, id);
+		a.getMedico();
+		a.getUsuario();
 		return a;
 
 	}

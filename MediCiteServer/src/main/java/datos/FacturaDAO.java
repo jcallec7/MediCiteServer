@@ -36,7 +36,7 @@ public class FacturaDAO {
 	public Factura read(int id) {
 		
 		Factura c = em.find(Factura.class, id);
-		
+		c.getConsulta();
 		return null;
 		
 	}

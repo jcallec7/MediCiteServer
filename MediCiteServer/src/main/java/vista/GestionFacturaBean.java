@@ -8,17 +8,23 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import modelo.Factura;
+import modelo.Usuario;
 import modelo.Consulta;
 import negocio.GestionConsultaLocal;
 import negocio.GestionFacturaLocal;
+import negocio.GestionUsuarioLocal;
 
 @ManagedBean
 public class GestionFacturaBean {
+	
 	@Inject
 	private GestionFacturaLocal gfl;
 
 	@Inject
 	private GestionConsultaLocal gcl;
+	
+	@Inject
+	private GestionUsuarioLocal gul;
 
 	private int id;
 	private String nombre;
@@ -30,6 +36,8 @@ public class GestionFacturaBean {
 	private Date fecha;
 	private String filtro;
 
+	private List<Usuario> medicos;
+	private List<Usuario> usuarios;
 	private List<Factura> facturas;
 	private List<Consulta> consultas;
 
@@ -39,8 +47,9 @@ public class GestionFacturaBean {
 
 	@PostConstruct
 	public void init() {
-		listConsultas();
 		listFacturas();
+		listUsuarios();
+		listMedicos();
 	}
 
 	public String getNombre() {
@@ -205,10 +214,19 @@ public class GestionFacturaBean {
 
 	public void listConsultas() {
 		this.consultas = this.gcl.getConsultas();
+		this.gul.getUsuarios();
 	}
 
 	public void listFacturas() {
 		this.facturas = this.gfl.getFactura();
+	}
+	
+	public void listUsuarios() {
+		this.usuarios = this.gul.getUsuarioPorRol(4);
+	}
+
+	public void listMedicos() {
+		this.medicos = this.gul.getUsuarioPorRol(3);
 	}
 
 }
