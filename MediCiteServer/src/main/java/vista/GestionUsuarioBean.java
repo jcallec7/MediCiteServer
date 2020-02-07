@@ -304,10 +304,4 @@ public class GestionUsuarioBean {
 		
 	}
 	
-	public String Pages() {
-		
-		gcb.setMiUsuario(miUsuario);
-		return "createConsultaPaciente.xhtml";
-	}
-	
 }

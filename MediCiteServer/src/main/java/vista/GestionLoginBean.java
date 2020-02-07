@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import modelo.Usuario;
 import negocio.GestionUsuarioLocal;
 import utils.Session;
-import utils.SessionContext;
 
 import javax.servlet.http.HttpSession;
 
@@ -74,9 +73,9 @@ public class GestionLoginBean {
 					
 				case 4:
 				
-					SessionContext.getInstance().setAttribute("user", usuario);
+					session.setAttribute("user", usuario);
 					this.userName = usuario.getNombre()+" "+usuario.getApellido();		
-					return "indexPaciente.xhtml";	
+					return "indexPaciente";	
 					
 				default:
 					break;
@@ -98,12 +97,9 @@ public class GestionLoginBean {
 		return null;
 	}
 	
-	public String finishSession() {
-		
-		return SessionContext.getInstance().finishSession();
-       
-    }
-	
-	
-
+	public String logout() {
+		HttpSession session = Session.getSession();
+		session.invalidate();
+		return "login";
+	}
 }

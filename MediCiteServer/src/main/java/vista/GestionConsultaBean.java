@@ -66,13 +66,10 @@ public class GestionConsultaBean implements Serializable {
 	private int minuto;
 	private int rolMed = 3;
 	private int rolPac = 4;
-	
-
-	private Usuario miUsuario;
 
 	@PostConstruct
 	public void init() {
-		System.out.print(miUsuario);
+	
 		listConsultas();
 		listUsuarios();
 		listMedicos();
@@ -233,13 +230,6 @@ public class GestionConsultaBean implements Serializable {
 		this.minuto = minuto;
 	}
 
-	public Usuario getMiUsuario() {
-		return miUsuario;
-	}
-
-	public void setMiUsuario(Usuario miUsuario) {
-		this.miUsuario = miUsuario;
-	}
 
 	public String crearFactura() {
 
