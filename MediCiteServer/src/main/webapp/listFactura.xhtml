@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">Sección Factura</ui:define>
+
+	<ui:define name="titulo">Facturas</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+			
+			<h:dataTable value="#{gestionFacturaBean.facturas}" var="fac" class="table table-bordered">
+			
+				<h:column>
+					#{fac.id}
+					<f:facet name="header">Factura ID</f:facet>
+				</h:column>
+				<h:column>
+					#{fac.nombre}
+					<f:facet name="header">Nombre</f:facet>
+				</h:column>
+				<h:column>
+					#{fac.cedulaRuc}
+					<f:facet name="header">Cedula/RUC</f:facet>
+				</h:column>
+				<h:column>
+					#{fac.consulta.medico.nombre} #{fac.consulta.medico.apellido}, #{fac.consulta.medico.especialidad}
+					<f:facet name="header">Medico/Especialidad</f:facet>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{fac.subtotal}">
+						<f:convertNumber pattern="#0.00" />
+					</h:outputText>
+					<f:facet name="header">Subtoral</f:facet>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{fac.total - fac.subtotal}">
+						<f:convertNumber pattern="#0.00" />
+					</h:outputText>
+					<f:facet name="header">IVA 12%</f:facet>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{fac.total}">
+						<f:convertNumber pattern="#0.00" />
+					</h:outputText>
+					<f:facet name="header">Total</f:facet>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Exportar</f:facet>
+					<h:commandButton value="Generar PDF"  class = "btn btn-primary">
+						<f:param name="selectedConsultaId" value="#{cons.id}"/>
+					</h:commandButton>
+					
+				</h:column>
+			
+			</h:dataTable>
+		
+			<h:commandButton value="Crear Reporte" class = "btn btn-primary">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

@@ -8,8 +8,10 @@ import javax.inject.Inject;
 
 import datos.ConsultaDAO;
 import datos.FacturaDAO;
+import datos.UsuarioDAO;
 import modelo.Consulta;
 import modelo.Factura;
+import modelo.Usuario;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +25,9 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 
 	@Inject
 	private ConsultaDAO daoConsulta;
+	
+	@Inject
+	private UsuarioDAO daoUsuario;
 
 	private List<Factura> factura = new ArrayList<Factura>();
 
@@ -46,8 +51,7 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 		dao.remove(id);
 	}
 
-	public void modificarFactura(int id, String nombre, String cedulaRuc, String direccion, Consulta consulta,
-			double subtotal, double total, Date fecha) {
+	public void modificarFactura(int id, String nombre, String cedulaRuc, String direccion, Consulta consulta, double subtotal, double total, Date fecha) {
 
 		Factura f = new Factura();
 		f.setId(id);
@@ -64,14 +68,20 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 
 	public Factura leerFactura(int id) {
 		Factura facturas = dao.read(id);
-		System.out.println(facturas);
+		daoConsulta.getConsultas();
+		daoUsuario.getUsuarioPorRol(4);
+		daoUsuario.getUsuarioPorRol(3);
+		facturas.getConsulta();
+		facturas.getConsulta().getMedico();
+		facturas.getConsulta().getUsuario();
 		return facturas;
 	}
 
 	public List<Factura> getFactura() {
 		System.out.println(factura);
-		daoConsulta.getConsultas();
-		
+		List<Consulta> consultas = daoConsulta.getConsultas();
+		List<Usuario> pacientes = daoUsuario.getUsuarioPorRol(4);
+		List<Usuario> medicos = daoUsuario.getUsuarioPorRol(3);		
 		return dao.getFactura();
 	}
 
