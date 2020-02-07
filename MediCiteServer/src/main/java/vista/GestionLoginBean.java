@@ -97,9 +97,10 @@ public class GestionLoginBean {
 		return null;
 	}
 	
-	public String logout() {
+	public String cerrarSesion() {
 		HttpSession session = Session.getSession();
 		session.invalidate();
-		return "login";
+		return "login.xhtml";
 	}
+	
 }

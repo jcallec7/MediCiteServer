@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import modelo.Factura;
@@ -15,6 +16,7 @@ import negocio.GestionFacturaLocal;
 import negocio.GestionUsuarioLocal;
 
 @ManagedBean
+@ViewScoped
 public class GestionFacturaBean {
 	
 	@Inject

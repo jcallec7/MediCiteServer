@@ -1,13 +1,11 @@
 package vista;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import modelo.Rol;
 import negocio.GestionRolLocal;
 
 @ManagedBean
-@SessionScoped
 public class GestionRolBean {
 	
 	@Inject

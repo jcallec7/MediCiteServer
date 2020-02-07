@@ -5,11 +5,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import modelo.Consulta;
 import modelo.Detalle;
 import modelo.Diagnostico;
 import modelo.Medicamento;
@@ -21,7 +20,7 @@ import negocio.GestionMedicamentoLocal;
 import negocio.GestionRecetaLocal;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class GestionDiagnosticoBean {
 
 	@Inject

@@ -32,10 +32,9 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#"><i class="fas fa-bars"></i></a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a
-					href="resources/index3.html" class="nav-link">Hola
+				<li class="nav-item d-none d-sm-inline-block"><p>Hola
 						#{gestionUsuarioBean.miUsuario.nombre}, bienvenido al sistema de
-						Agendamiento de Citas Medicas MediCite!</a></li>
+						Agendamiento de Citas Medicas MediCite!</p></li>
 
 			</ul>
 
@@ -70,10 +69,8 @@
 							Notifications</a>
 					</div></li>
 			</ul>
-
-        <h:commandLink action="#{gestionLoginBean.logout()}" value="Cerrar Sesión"></h:commandLink>
-
-
+			
+			<a><h:commandLink action="#{gestionLoginBean.cerrarSesion()}">Cerrar Sesión</h:commandLink></a>
 
 		</nav>
 		<!-- /.navbar -->
@@ -108,11 +105,11 @@
 						data-widget="treeview" role="menu" data-accordion="false">
 						<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-						<li class="nav-item"><a href="resources/index3.html"
+						<li class="nav-item"><a href="indexPaciente.xhtml"
 							class="nav-link"> <i class="nav-icon fas fa-th-large"></i>
 								<p>Inicio</p>
 						</a></li>
-						<li class="nav-item"><a href="../calendar.html"
+						<li class="nav-item"><a href="createConsultaPaciente.xhtml"
 							class="nav-link"> <i class="nav-icon far fa-calendar-alt"></i>
 								<p>Agendar Cita</p>
 						</a></li>

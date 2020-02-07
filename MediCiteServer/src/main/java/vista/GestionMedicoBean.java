@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import negocio.GestionUsuarioLocal;
 import utils.Session;
 
 @ManagedBean
+@ViewScoped
 public class GestionMedicoBean {
 
 	

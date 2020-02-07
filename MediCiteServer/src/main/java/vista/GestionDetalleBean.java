@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import modelo.Medicamento;
@@ -16,7 +16,7 @@ import negocio.GestionDetalleLocal;
 import negocio.GestionMedicamentoLocal;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class GestionDetalleBean {
 	
 	@Inject
