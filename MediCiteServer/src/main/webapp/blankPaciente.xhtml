@@ -4,23 +4,23 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html" lang="en">
 <h:head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
 
-<title>MediCite | Médico</title>
-<!-- Font Awesome Icons -->
-<link rel="stylesheet"
-	href="resources/plugins/fontawesome-free/css/all.min.css" />
-<!-- overlayScrollbars -->
-<link rel="stylesheet"
-	href="resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
-<!-- Theme style -->
-<link rel="stylesheet" href="resources/dist/css/adminlte.min.css" />
-<!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet" />
+	<title>MediCite | Médico</title>
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet"
+		href="resources/plugins/fontawesome-free/css/all.min.css" />
+	<!-- overlayScrollbars -->
+	<link rel="stylesheet"
+		href="resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+	<!-- Theme style -->
+	<link rel="stylesheet" href="resources/dist/css/adminlte.min.css" />
+	<!-- Google Font: Source Sans Pro -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+		rel="stylesheet" />
 </h:head>
 <body class="hold-transition sidebar-mini">
 	<!-- Site wrapper -->
@@ -69,9 +69,9 @@
 							Notifications</a>
 					</div></li>
 			</ul>
-			
-			<a><h:commandLink action="#{gestionLoginBean.cerrarSesion()}">Cerrar Sesión</h:commandLink></a>
-
+			<h:form>
+				<a><h:commandLink action="#{gestionLoginBean.cerrarSesion()}">Cerrar Sesión</h:commandLink></a>
+			</h:form>
 		</nav>
 		<!-- /.navbar -->
 

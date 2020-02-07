@@ -3,8 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:p="http://primefaces.org/ui"
-	template="blankPaciente.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="blankPaciente.xhtml">
 
 	<ui:define name="cabecera">
         	Sección Consulta
@@ -20,18 +19,22 @@
 
 	<ui:define name="contenido">
 
-		<div class="card-body">
+		<div class="card">
 
 
 
 			<div class="card-header">
+				<h5 class="card-title">Selecciona la fecha</h5>
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool"
+						data-card-widget="collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+				</div>
 
-
-
-
-				<h:form id="form">
-
-
+			</div>
+			<div class="card-body">
+				<h:form>
 
 					<div class="form-group">
 						<h:outputLabel>Seleccionar Paciente</h:outputLabel>
@@ -103,7 +106,6 @@
 			</div>
 
 		</div>
-
 	</ui:define>
 
 </ui:composition>
