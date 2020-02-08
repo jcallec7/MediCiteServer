@@ -303,21 +303,26 @@ public class GestionUsuarioBean {
 		return null;
 
 	}
-	
+
 	public String recuperarContraseña() {
-		
+
 		Usuario usuario = gul.getUsuarioPorCorreo(correo);
-		
-		if(usuario.getPreguntaSeguridad().toLowerCase().equals(preguntaSeguridad.toLowerCase())) {
-			
-			return "nuevaContraseña";
-			
-		}else {
-			return "return alert('La respuesta es incorrecta')";
+
+		if (usuario == null) {
+
+			return "return alert('El correo que ingreso no esta registrado')";
+
+		} else {
+
+			if (usuario.getPreguntaSeguridad().toLowerCase().equals(preguntaSeguridad.toLowerCase())) {
+
+				return "nuevaContraseña";
+
+			} else {
+				return "return alert('La respuesta es incorrecta')";
+			}
 		}
-		
-		
-		
+
 	}
 
 	public void listUsuario() {
