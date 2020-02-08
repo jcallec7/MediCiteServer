@@ -69,7 +69,7 @@ public class GestionLoginBean {
 					
 					session.setAttribute("user", usuario);
 					this.userName = usuario.getNombre()+" "+usuario.getApellido();
-					return "indexMedico";			
+					return "/medico/indexMedico";			
 					
 				case 4:
 				
