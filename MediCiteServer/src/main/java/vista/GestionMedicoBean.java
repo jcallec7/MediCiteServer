@@ -40,6 +40,7 @@ public class GestionMedicoBean {
 	private Date fechaNac;
 	private String contrasena;
 	private String filtro;
+	private String preguntaSecreta;
 	private int rolId = 3;
 	private Rol rol;
 	
@@ -271,10 +272,20 @@ public class GestionMedicoBean {
 	}
 
 
+	public String getPreguntaSecreta() {
+		return preguntaSecreta;
+	}
+
+
+	public void setPreguntaSecreta(String preguntaSecreta) {
+		this.preguntaSecreta = preguntaSecreta;
+	}
+
+
 	public String guardarMedico() {
 		
 		rol = grl.readRol(rolId);
-		gul.guardarUsuario(id, nombre, apellido, genero, fechaNac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, rol);
+		gul.guardarUsuario(id, nombre, apellido, genero, fechaNac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSecreta, rol);
 		medicos = gul.getUsuarios();
 		
 		
@@ -307,7 +318,7 @@ public class GestionMedicoBean {
 	public String actualizarMedico() {
 		
 		rol = grl.readRol(rolId);
-		gul.updateUsuario(id, nombre, apellido, genero, fechaNac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, rol);
+		gul.updateUsuario(id, nombre, apellido, genero, fechaNac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSecreta, rol);
 		return "listMedico";
 	}
 	

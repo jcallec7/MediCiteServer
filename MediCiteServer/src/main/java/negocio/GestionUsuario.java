@@ -22,7 +22,7 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 
 	public void guardarUsuario(String id, String nombre, String apellido, String genero,
 								Date fecha_nac, String correo, String especialidad, String contrasena, String telf1, String telf2, String direccion,
-								String peso, String estatura, Rol rol) {
+								String peso, String estatura, String preguntaSeguridad, Rol rol) {
 
 		Usuario c = new Usuario();
 		c.setId(id);
@@ -38,6 +38,7 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 		c.setDireccion(direccion);
 		c.setPeso(peso);
 		c.setEstatura(estatura);
+		c.setPreguntaSeguridad(preguntaSeguridad);
 		c.setRol(rol);
 
 		Usuarios.add(c);
@@ -47,7 +48,7 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 	
 	public void updateUsuario(String id, String nombre, String apellido, String genero,
 			Date fecha_nac, String correo, String especialidad, String contrasena, String telf1, String telf2, String direccion,
-			String peso, String estatura, Rol rol) {		
+			String peso, String estatura, String preguntaSeguridad, Rol rol) {		
 		Usuario c = new Usuario();
 		c.setId(id);
 		c.setNombre(nombre);
@@ -62,6 +63,7 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 		c.setDireccion(direccion);
 		c.setPeso(peso);
 		c.setEstatura(estatura);
+		c.setPreguntaSeguridad(preguntaSeguridad);
 		c.setRol(rol);
 		dao.update(c);
 	}

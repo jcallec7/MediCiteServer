@@ -41,6 +41,7 @@ public class GestionUsuarioBean {
 	private String direccion;
 	private String peso;
 	private String estatura;
+	private String preguntaSeguridad;
 	private int rolId = 4;
 	private Rol rol;
 	
@@ -251,11 +252,20 @@ public class GestionUsuarioBean {
 	public void setMiUsuario(Usuario miUsuario) {
 		this.miUsuario = miUsuario;
 	}
+	
+
+	public String getPreguntaSeguridad() {
+		return preguntaSeguridad;
+	}
+
+	public void setPreguntaSeguridad(String preguntaSeguridad) {
+		this.preguntaSeguridad = preguntaSeguridad;
+	}
 
 	public String guardarUsuario() {
 		
 		rol = grl.readRol(rolId);
-		gul.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, rol);
+		gul.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSeguridad, rol);
 		usuarios = gul.getUsuarios();
 		return "login";
 		
@@ -299,7 +309,7 @@ public class GestionUsuarioBean {
 	}
 
 	public String updateUsuario() {
-		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, rol);
+		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSeguridad, rol);
 		return "listUsuario";
 		
 	}

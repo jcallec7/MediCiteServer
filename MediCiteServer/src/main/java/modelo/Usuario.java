@@ -63,6 +63,9 @@ public class Usuario implements Serializable {
 	@Column(name="mc_usr_estatura")
 	private String estatura;
 	
+	@Column(name="mc_usr_preguntaSeguridad")
+	private String preguntaSeguridad;
+	
 	@ManyToOne
 	@JoinColumn(name="mc_usr_rol")
 	private Rol rol;
@@ -177,6 +180,14 @@ public class Usuario implements Serializable {
 
 	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
+	}
+
+	public String getPreguntaSeguridad() {
+		return preguntaSeguridad;
+	}
+
+	public void setPreguntaSeguridad(String preguntaSeguridad) {
+		this.preguntaSeguridad = preguntaSeguridad;
 	}
 
 	@Override

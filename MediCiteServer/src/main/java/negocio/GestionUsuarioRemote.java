@@ -13,7 +13,7 @@ public interface GestionUsuarioRemote {
 	
 	public void guardarUsuario(String id, String nombre, String apellido, String genero, 
 								Date fecha_nac, String correo, String especialidad, String contrasena, String telf1, 
-								String telf2, String direccion, String peso, String estatura, Rol rol);
+								String telf2, String direccion, String peso, String estatura, String preguntaSeguridad, Rol rol);
 	
 	public List<Usuario> getUsuarios();
 
