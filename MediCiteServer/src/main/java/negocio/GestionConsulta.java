@@ -49,7 +49,13 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 	}
 
 	public List<Consulta> getConsultasPorNombre(String filtro) {
+		daoUsuario.getUsuarios();
 		return dao.getConsultasXNombre(filtro);
+	}
+	
+	public List<Consulta> getConsultasPorId(String filtro) {
+		daoUsuario.getUsuarios();
+		return dao.getConsultasXId(filtro);
 	}
 	
 	public void deleteConsulta(int id) {

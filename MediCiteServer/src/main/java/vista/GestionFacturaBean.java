@@ -1,12 +1,26 @@
 package vista;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import modelo.Factura;
 import modelo.Usuario;
@@ -16,7 +30,7 @@ import negocio.GestionFacturaLocal;
 import negocio.GestionUsuarioLocal;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class GestionFacturaBean {
 	
 	@Inject
@@ -46,6 +60,7 @@ public class GestionFacturaBean {
 	private Consulta selectedConsulta;
 	private int hora;
 	private int minuto;
+	private Document documento = new Document();
 
 	@PostConstruct
 	public void init() {
@@ -229,6 +244,56 @@ public class GestionFacturaBean {
 
 	public void listMedicos() {
 		this.medicos = this.gul.getUsuarioPorRol(3);
+	}
+	
+	public void generatePdf() {
+		
+		try {
+        	String path = new File(".").getCanonicalPath();
+        	String FILE_NAME = path + "/itext-test-file.pdf";
+        	
+            PdfWriter.getInstance(documento, new FileOutputStream(new File(FILE_NAME)));
+ 
+            documento.open();
+ 
+            Paragraph paragraphHello = new Paragraph();
+            paragraphHello.add("Hello iText paragraph!");
+            paragraphHello.setAlignment(Element.ALIGN_JUSTIFIED);
+ 
+            documento.add(paragraphHello);
+ 
+            Paragraph paragraphLorem = new Paragraph();
+            paragraphLorem.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            		+ "Maecenas finibus fringilla turpis, vitae fringilla justo."
+            		+ "Sed imperdiet purus quis tellus molestie, et finibus risus placerat."
+            		+ "Donec convallis eget felis vitae interdum. Praesent varius risus et dictum hendrerit."
+            		+ "Aenean eu semper nunc. Aenean posuere viverra orci in hendrerit. Aenean dui purus, eleifend nec tellus vitae,"
+            		+ " pretium dignissim ex. Aliquam erat volutpat. ");
+            
+            java.util.List<Element> paragraphList = new ArrayList<>();
+            
+            paragraphList = paragraphLorem.breakUp();
+ 
+            Font f = new Font();
+            f.setFamily(FontFamily.COURIER.name());
+            f.setStyle(Font.BOLDITALIC);
+            f.setSize(8);
+            
+            Paragraph p3 = new Paragraph();
+            p3.setFont(f);
+            p3.addAll(paragraphList);
+            p3.add("TEST LOREM IPSUM DOLOR SIT AMET CONSECTETUR ADIPISCING ELIT!");
+ 
+            documento.add(paragraphLorem);
+            documento.add(p3);
+            documento.close();
+ 
+        } catch (FileNotFoundException | DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

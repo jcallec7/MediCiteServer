@@ -2,8 +2,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" 
-	template="blank.xhtml">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" 
+	template="blankPaciente.xhtml">
 
 	<ui:define name="cabecera">
         	Sección Factura
@@ -20,6 +21,8 @@
 	<ui:define name="contenido">
 
 		<h:form>
+			
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 
 			<div class="invoice p-3 mb-3">
 				<!-- title row -->

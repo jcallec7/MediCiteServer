@@ -3,11 +3,13 @@ package negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.RolDAO;
 import modelo.Rol;
 
+@Stateless
 public class GestionRol implements GestionRolLocal {
 	
 	@Inject

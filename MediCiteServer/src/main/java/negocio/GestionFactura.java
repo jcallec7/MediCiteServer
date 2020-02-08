@@ -3,7 +3,6 @@ package negocio;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import datos.ConsultaDAO;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @Stateless
-@SessionScoped
 public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote {
 	
 	@Inject

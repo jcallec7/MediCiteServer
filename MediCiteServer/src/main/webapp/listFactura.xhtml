@@ -51,7 +51,7 @@
 				
 				<h:column>
 					<f:facet name="header">Exportar</f:facet>
-					<h:commandButton value="Generar PDF"  class = "btn btn-primary">
+					<h:commandButton value="Generar PDF" action="#{gestionFacturaBean.generatePdf()}"  class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
 					

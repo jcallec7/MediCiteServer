@@ -24,5 +24,7 @@ public interface GestionConsultaLocal {
 	
 	public void updateConsulta(int id, Usuario paciente, Usuario medico, String estado, Date fecha, Diagnostico diagnostico);
 	
+	public List<Consulta> getConsultasPorId(String filtro);
+	
 }
 	

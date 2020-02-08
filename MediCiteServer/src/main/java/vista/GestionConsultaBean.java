@@ -7,7 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.Application;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -32,7 +36,7 @@ import negocio.GestionUsuarioLocal;
 import utils.Session;
 
 @ManagedBean
-@ViewScoped
+@ApplicationScoped
 public class GestionConsultaBean implements Serializable {
 
 	@Inject
@@ -53,6 +57,7 @@ public class GestionConsultaBean implements Serializable {
 	private Medicamento medicamento;
 
 	private List<Consulta> consultas;
+	private List<Consulta> consultasUsuario;
 	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
 	private List<Diagnostico> diagnosticos;
@@ -66,14 +71,36 @@ public class GestionConsultaBean implements Serializable {
 	private int minuto;
 	private int rolMed = 3;
 	private int rolPac = 4;
+	
+	private Usuario miUsuario;
 
 	@PostConstruct
 	public void init() {
 	
-		listConsultas();
+		miUsuario = (Usuario) Session.getSession().getAttribute("user");
+		//listConsultas();
+		listConsultasUsuario();
 		listUsuarios();
 		listMedicos();
 		consulta = new Consulta();
+	}
+
+	public List<Consulta> getConsultasUsuario() {
+		listUsuarios();
+		listMedicos();
+		return consultasUsuario;
+	}
+
+	public void setConsultasUsuario(List<Consulta> consultasUsuario) {
+		this.consultasUsuario = consultasUsuario;
+	}
+
+	public Usuario getMiUsuario() {
+		return miUsuario;
+	}
+
+	public void setMiUsuario(Usuario miUsuario) {
+		this.miUsuario = miUsuario;
 	}
 
 	public GestionFacturaLocal getGfl() {
@@ -233,17 +260,43 @@ public class GestionConsultaBean implements Serializable {
 
 	public String crearFactura() {
 
-		consulta.setEstado("pendiente");
+		consulta.setEstado("Pendiente");
 		factura = new Factura();
 		factura.setConsulta(consulta);
 		factura.setFecha(new Date());
-		factura.setTotal(20);
+		factura.setTotal(25);
 		factura.setSubtotal(factura.getTotal() / 1.12);
 		
 		//gcl.guardarConsulta(consulta.getId(), consulta.getUsuario(), consulta.getMedico(), consulta.getEstado(), consulta.getFecha(), null);
 		//consultas = gcl.getConsultas();
 		
 		return "createFactura";
+
+	}
+	
+	public String crearFacturaPaciente() {
+
+		/*String miUsuarioId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("miUsuario");
+		miUsuario = gul.readUsuario(miUsuarioId);
+		consulta.setUsuario(miUsuario);*/
+		
+		consulta.setUsuario(miUsuario);
+		
+		System.out.println("Consulta recuperada para la factura:" + consulta);
+		
+		consulta.setEstado("Pendiente");
+		factura = new Factura();
+		factura.setConsulta(consulta);
+		factura.setFecha(new Date());
+		factura.setTotal(25);
+		factura.setSubtotal(factura.getTotal() / 1.12);
+		
+		System.out.println("Factura recuperada:" + factura);
+		
+		//gcl.guardarConsulta(consulta.getId(), consulta.getUsuario(), consulta.getMedico(), consulta.getEstado(), consulta.getFecha(), null);
+		//consultas = gcl.getConsultas();
+		
+		return "createFacturaPaciente";
 
 	}
 	
@@ -325,6 +378,10 @@ public class GestionConsultaBean implements Serializable {
 
 	public void listConsultas() {
 		this.consultas = this.gcl.getConsultas();
+	}
+	
+	public void listConsultasUsuario() {
+		this.consultasUsuario = this.gcl.getConsultasPorId(miUsuario.getId());
 	}
 
 	public void listUsuarios() {

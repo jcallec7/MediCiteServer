@@ -5,40 +5,28 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui" template="blankPaciente.xhtml">
 
+
 	<ui:define name="cabecera">
-        	Sección Consulta
+        	Inicio
    	</ui:define>
-
-	<ui:define name="titulo">
-
-		<div class="card-header">
-			<h3 class="card-title">Nueva Consulta</h3>
-		</div>
-
-	</ui:define>
 
 	<ui:define name="contenido">
 
-		<div class="card">
-
-
+		<div class="card-body">
 
 			<div class="card-header">
-				<h5 class="card-title">¿Qué desea hacer?</h5>
-				<div class="card-tools">
-					<button type="button" class="btn btn-tool"
-						data-card-widget="collapse">
-						<i class="fas fa-minus"></i>
-					</button>
-				</div>
 
-			</div>
+				<h5 class="card-title">¿Qué desea hacer?</h5> <br/>
 
-			<div class="card-body">
-				<h:form>
+				<h:form id="form">
+
+					<p:growl id="msgs" showDetail="true"
+						skipDetailIfEqualsSummary="true" />
+
 					<div class="row">
+						
 						<div class="col-md-3">
-
+						
 							<p class="text-center">
 								<strong style="color: rgb(0, 166, 255);">Asignar Cita</strong><br></br>
 
@@ -47,18 +35,19 @@
 									class="imgOpa" src="img/AgendarRotatorCyan.png"
 									style="width: 45px; height: 45px;"></img></a>
 							</p>
-
-
+						
 						</div>
-
+						
 						<div class="col-md-3">
 							<p class="text-center">
-								<strong style="color: rgb(0, 166, 255);">Reasignar Cita</strong>
-								<br></br> <input type="image" src="img/ReagendaRotatorCyan.png"
+								<strong style="color: rgb(0, 166, 255);">Reasignar Cita</strong><br/>
+								
+								<input type="image" src="img/ReagendaRotatorCyan.png"
 									style="width: 45px; height: 45px;"></input>
 							</p>
 
 						</div>
+						
 						<div class="col-md-3">
 							<p class="text-center">
 								<strong style="color: rgb(0, 166, 255);">Cancelar Cita</strong>
@@ -67,18 +56,28 @@
 							</p>
 
 						</div>
+						
 						<div class="col-md-3">
 							<p class="text-center">
-								<strong style="color: rgb(0, 166, 255);">Historial de
-									Citas</strong> <br></br> <input type="image" src="img/HistorialCyan.png"
-									style="width: 45px; height: 45px;"></input>
+								<strong style="color: rgb(0, 166, 255);">Historial de Consultas</strong> <br></br> 
+								
+								<a href="listConsultaPaciente.xhtml" class="nav-link"><img
+									class="imgOpa" src="img/HistorialCyan.png"
+									style="width: 45px; height: 45px;"></img></a>
+								
 							</p>
 
 						</div>
+						
 					</div>
 
 				</h:form>
+
 			</div>
+
 		</div>
+
 	</ui:define>
+
+
 </ui:composition>
