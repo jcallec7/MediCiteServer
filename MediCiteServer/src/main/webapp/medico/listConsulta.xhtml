@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     	template="blank.xhtml">
+
+	<ui:define name="cabecera">Sección Consulta</ui:define>
+
+	<ui:define name="titulo">Consultas Guardadas</ui:define>
+	
+	<ui:define name="contenido">
+	
+		<h:form>
+			
+			<h:dataTable value="#{gestionConsultaBean.consultasUsuario}" var="cons" class="table table-bordered">
+			
+				<h:column>
+					#{cons.usuario.nombre} #{cons.usuario.apellido}, #{cons.usuario.id}
+					<f:facet name="header">Paciente</f:facet>
+				</h:column>
+				<h:column>
+					#{cons.medico.nombre} #{cons.medico.apellido}, #{cons.medico.especialidad}
+					<f:facet name="header">Medico</f:facet>
+				</h:column>
+				<h:column>
+					#{cons.fecha.toString()}
+					<f:facet name="header">Fecha</f:facet>
+				</h:column>
+				<h:column>
+					#{cons.estado}
+					<f:facet name="header">Estado</f:facet>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Diagnostico</f:facet>
+					<h:commandButton value="Agregar" rendered="#{cons.diagnostico == null}" action="#{gestionConsultaBean.addDiagnosticoConsultaById()}" class = "btn btn-primary">
+						<f:param name="selectedConsultaId" value="#{cons.id}"/>
+					</h:commandButton>
+					<h:commandButton value="Mostrar Diagnostico" rendered="#{cons.diagnostico != null}" action="#{gestionConsultaBean.loadDiagnostico()}" class = "btn btn-primary">
+						<f:param name="selectedConsultaId" value="#{cons.id}"/>
+					</h:commandButton>
+					
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton value="Editar" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
+						<f:param name="selectedConsultaId" value="#{cons.id}"/>
+					</h:commandButton>
+					
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton value="Eliminar" onclick="return confirm('¿Está seguro de eliminar esta consulta?');" action="#{gestionConsultaBean.deleteConsulta()}" class = "btn btn-primary">
+						<f:param name="selectedConsultaId2" value="#{cons.id}"/>
+					</h:commandButton>
+					
+				</h:column>
+			
+			</h:dataTable>
+		
+			<h:commandButton value="Crear Nueva Consulta" action="createConsulta" class = "btn btn-primary">
+			</h:commandButton>
+			
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+

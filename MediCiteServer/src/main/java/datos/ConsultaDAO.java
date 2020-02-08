@@ -60,7 +60,7 @@ public class ConsultaDAO {
 	}
 
 	public List<Consulta> getConsultasXId(String filtro) {
-		String jpql = "SELECT c FROM Consulta c WHERE mc_pa_id = ?1";
+		String jpql = "SELECT c FROM Consulta c WHERE mc_pa_id LIKE ?1 OR mc_med_id LIKE ?1";
 		Query q = em.createQuery(jpql, Consulta.class);
 		q.setParameter(1, "%" + filtro + "%");
 

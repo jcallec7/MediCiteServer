@@ -280,6 +280,8 @@ public class GestionConsultaBean implements Serializable {
 		miUsuario = gul.readUsuario(miUsuarioId);
 		consulta.setUsuario(miUsuario);*/
 		
+		miUsuario = (Usuario) Session.getSession().getAttribute("user");
+		
 		consulta.setUsuario(miUsuario);
 		
 		System.out.println("Consulta recuperada para la factura:" + consulta);
