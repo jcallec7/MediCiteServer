@@ -75,7 +75,7 @@ public class GestionLoginBean {
 				
 					session.setAttribute("user", usuario);
 					this.userName = usuario.getNombre()+" "+usuario.getApellido();		
-					return "indexPaciente";	
+					return "resources/paciente/indexPaciente.xhtml";	
 					
 				default:
 					break;
