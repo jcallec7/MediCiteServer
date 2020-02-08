@@ -17,7 +17,6 @@ import negocio.GestionUsuarioLocal;
 import utils.Session;
 import negocio.GestionRolLocal;
 
-
 @ManagedBean
 @ViewScoped
 public class GestionUsuarioBean {
@@ -44,17 +43,17 @@ public class GestionUsuarioBean {
 	private String preguntaSeguridad;
 	private int rolId = 4;
 	private Rol rol;
-	
+
 	private HttpSession session = Session.getSession();
 	private Usuario miUsuario = (Usuario) session.getAttribute("user");
 
 	private List<Usuario> usuarios;
-	
+
 	private String filtro;
 	private String selectedUsuarioId;
 	private String selectedUsuarioId2;
 	private Usuario editedUsuario;
-	
+
 	@PostConstruct
 	public void init() {
 		listUsuario();
@@ -179,7 +178,7 @@ public class GestionUsuarioBean {
 	public void setSelectedUsuarioId(String selectedUsuarioId) {
 		this.selectedUsuarioId = selectedUsuarioId;
 	}
-	
+
 	public String getSelectedUsuarioId2() {
 		return selectedUsuarioId2;
 	}
@@ -187,7 +186,7 @@ public class GestionUsuarioBean {
 	public void setSelectedUsuarioId2(String selectedUsuarioId2) {
 		this.selectedUsuarioId2 = selectedUsuarioId2;
 	}
-	
+
 	public Usuario geteditedUsuario() {
 		return editedUsuario;
 	}
@@ -235,7 +234,6 @@ public class GestionUsuarioBean {
 	public void setEditedUsuario(Usuario editedUsuario) {
 		this.editedUsuario = editedUsuario;
 	}
-	
 
 	public HttpSession getSession() {
 		return session;
@@ -252,7 +250,6 @@ public class GestionUsuarioBean {
 	public void setMiUsuario(Usuario miUsuario) {
 		this.miUsuario = miUsuario;
 	}
-	
 
 	public String getPreguntaSeguridad() {
 		return preguntaSeguridad;
@@ -262,15 +259,6 @@ public class GestionUsuarioBean {
 		this.preguntaSeguridad = preguntaSeguridad;
 	}
 
-	public String guardarUsuario() {
-		
-		rol = grl.readRol(rolId);
-		gul.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSeguridad, rol);
-		usuarios = gul.getUsuarios();
-		return "login";
-		
-	}
-	
 	public String getFiltro() {
 		return filtro;
 	}
@@ -280,38 +268,67 @@ public class GestionUsuarioBean {
 	}
 
 	public List<Usuario> buscarUsuario() {
-		
+
 		usuarios = gul.getUsuariosPorNombre(filtro);
-		
+
 		return usuarios;
 	}
-	
+
+	public String guardarUsuario() {
+
+		rol = grl.readRol(rolId);
+		gul.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2,
+				direccion, peso, estatura, preguntaSeguridad, rol);
+		usuarios = gul.getUsuarios();
+		return "login";
+
+	}
+
 	public String editUsuarioById() {
-		
-		selectedUsuarioId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedUsuarioId");
+
+		selectedUsuarioId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
+				.get("selectedUsuarioId");
 		System.out.println(selectedUsuarioId);
 		editedUsuario = gul.readUsuario(selectedUsuarioId);
 		return "updateUsuario";
-		
+
 	}
-	
+
 	public String deleteUsuario() {
-		
-		selectedUsuarioId2 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectedUsuarioId2");
+
+		selectedUsuarioId2 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
+				.get("selectedUsuarioId2");
 		System.out.println(selectedUsuarioId2);
 		gul.deleteUsuario(selectedUsuarioId2);
 		return null;
-		
+
 	}
 	
+	public String recuperarContraseña() {
+		
+		Usuario usuario = gul.getUsuarioPorCorreo(correo);
+		
+		if(usuario.getPreguntaSeguridad().toLowerCase().equals(preguntaSeguridad.toLowerCase())) {
+			
+			return "nuevaContraseña";
+			
+		}else {
+			return "return alert('La respuesta es incorrecta')";
+		}
+		
+		
+		
+	}
+
 	public void listUsuario() {
 		this.usuarios = this.gul.getUsuarios();
 	}
 
 	public String updateUsuario() {
-		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSeguridad, rol);
+		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2,
+				direccion, peso, estatura, preguntaSeguridad, rol);
 		return "listUsuario";
-		
+
 	}
-	
+
 }

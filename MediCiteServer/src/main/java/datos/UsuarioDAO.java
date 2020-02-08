@@ -80,6 +80,17 @@ public class UsuarioDAO {
 		return Usuarios;
 		
 	}
+	
+	public Usuario getUsuarioPorCorreo(String filtro){
+		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_correo LIKE ?1";
+		Query q = em.createQuery(jpql, Usuario.class);
+		q.setParameter(1, "%" + filtro + "%");
+		
+		Usuario Usuarios = (Usuario) q.getSingleResult();
+		
+		return Usuarios;
+		
+	}
 
 }
 

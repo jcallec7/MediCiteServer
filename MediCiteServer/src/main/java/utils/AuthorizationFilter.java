@@ -35,10 +35,11 @@ public class AuthorizationFilter implements Filter {
 			String reqURI = reqt.getRequestURI();
 			if (reqURI.indexOf("/login.xhtml") >= 0
 					||(ses != null && ses.getAttribute("user") != null)
-					|| reqURI.indexOf("/userType.xhtml") >= 0
-					|| reqURI.indexOf("/registerPaciente.xhtml") >= 0
 					|| reqURI.indexOf("/public/") >= 0
-					|| reqURI.contains("javax.faces.resource"))
+					|| reqURI.contains("javax.faces.resource")
+					|| reqURI.indexOf("/userType.xhtml") >= 0
+				    || reqURI.indexOf("/recuperarContraseña.xhtml") >= 0
+					|| reqURI.indexOf("/registerPaciente.xhtml") >= 0)
 				chain.doFilter(request, response);
 			else
 				resp.sendRedirect(reqt.getContextPath() + "/faces/login.xhtml");

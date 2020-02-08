@@ -96,5 +96,10 @@ public class GestionUsuario implements GestionUsuarioRemote, GestionUsuarioLocal
 		
 		return dao.getUsuarioPorRol(filtro);
 	}
+	
+	public Usuario getUsuarioPorCorreo(String filtro) {
+		return dao.getUsuarioPorCorreo(filtro);
+	}
+	
 
 }
