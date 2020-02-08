@@ -257,7 +257,7 @@ public class GestionUsuarioBean {
 		rol = grl.readRol(rolId);
 		gul.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, rol);
 		usuarios = gul.getUsuarios();
-		return null;
+		return "login";
 		
 	}
 	
