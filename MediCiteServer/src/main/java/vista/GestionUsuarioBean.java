@@ -26,7 +26,6 @@ public class GestionUsuarioBean {
 	@Inject
 	private GestionRolLocal grl;
 
-	/* Beans properties */
 	private String id;
 	private String nombre;
 	private String apellido;
