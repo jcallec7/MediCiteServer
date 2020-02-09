@@ -308,7 +308,7 @@ public class GestionConsultaBean implements Serializable {
 		factura.setConsulta(consulta);
 		gfl.guardarFactura(factura.getId(), factura.getNombre(), factura.getCedulaRuc(), factura.getDireccion(), factura.getConsulta(), factura.getSubtotal(), factura.getTotal(), factura.getFecha());
 		init();
-		return "listConsultaPaciente";
+		return "listConsulta";
 	}
 
 	public String updateConsulta() {
@@ -414,7 +414,7 @@ public class GestionConsultaBean implements Serializable {
 		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getEstado(),
 				selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
 		init();
-		return "listConsultaMedico";
+		return "listConsulta";
 	}
 	
 	public String loadDiagnostico() {

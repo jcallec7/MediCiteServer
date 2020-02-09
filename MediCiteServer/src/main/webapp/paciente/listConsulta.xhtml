@@ -53,7 +53,7 @@
 				<h:column>
 					<f:facet name="header">Eliminar</f:facet>
 					<h:commandButton value="Eliminar" onclick="return confirm('¿Está seguro de eliminar esta consulta?');" action="#{gestionConsultaBean.deleteConsulta()}" class = "btn btn-primary">
-						<f:param name="selectedConsultaId2" value="#{cons.id}"/>
+						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
 					
 				</h:column>

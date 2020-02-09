@@ -3,7 +3,7 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-     	template="blankMedico.xhtml">
+     	template="blankPaciente.xhtml">
 
 	<ui:define name="cabecera">
         	Sección Consulta
@@ -65,7 +65,7 @@
 				
 				<div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Diagnostico:</h3>
+                <h3 class="card-title">Modificar:</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -73,49 +73,24 @@
                       <!-- text input -->
                   <div class="form-group">
 
-          			<h:outputLabel>Tipo de Diagnóstico</h:outputLabel>
-              		<h:outputText value = "#{gestionConsultaBean.selectedConsulta.diagnostico.tipo}" class="form-control" />
+          			<h:outputLabel>Fecha:</h:outputLabel>       
+       				<h:outputLabel value = "Modificar Fecha y Hora"></h:outputLabel>
+            		<h:inputText value = "#{gestionConsultaBean.selectedConsulta.fecha}" class="form-control" id="fecha" a:placeholder="#{gestionConsultaBean.selectedConsulta.fecha}">
+	            
+           				<f:convertDateTime pattern="yyyy/MM/dd" />
+           
+           			</h:inputText>
+           			<h:inputText value = "#{gestionConsultaBean.hora}" class="form-control" id="hora" a:placeholder="Hora">
+	            
+           			<!-- <f:convertDateTime pattern="HH:mm"/>  -->
+           
+           			</h:inputText>
+           			<h:inputText value = "#{gestionConsultaBean.minuto}" class="form-control" id="minuto" a:placeholder="Minutos">
+	            
+           		<!-- <f:convertDateTime pattern="HH:mm"/>  -->
+           
+           			</h:inputText>
        
-                  </div>
-                    <!-- textarea -->
-                  <div class="form-group">
-                    <h:outputLabel>Descripcion</h:outputLabel>
-                    <h:outputText value = "#{gestionConsultaBean.selectedConsulta.diagnostico.detalle}" class="form-control" rows="3" a:placeholder="Ingrese una descripcion para el diagnostico..."></h:outputText>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <!-- select -->
-                      <div class="form-group">
-                        <label>Receta:</label>
-                      </div>
-                    </div>
-                  </div>
-
- 
-                  <!-- Select multiple-->
-                  <div class="form-group">
-                    <label>Medicamentos</label>
-                                        
-                    <h:dataTable value="#{gestionConsultaBean.selectedConsulta.diagnostico.receta.detalle}" var="detalle" id="resultado" class="table table-bordered">
-                    
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							<h:outputText value="#{detalle.medicamento.nombre}" class="form-control"></h:outputText>
-						</h:column>
-					
-						<h:column>
-							<f:facet name="header">Concentracion:</f:facet>
-							<h:outputText value="#{detalle.medicamento.concentracion}" class="form-control"></h:outputText>
-						</h:column>
-					
-						<h:column>
-							<f:facet name="header">Dosis</f:facet>
-							<h:outputText value="#{detalle.nombre}" class="form-control"></h:outputText>
-						</h:column>
-                    
-                    </h:dataTable>
-                    
                   </div>
 
               </div>
@@ -123,7 +98,7 @@
 				
 	
 	
-	            <h:commandButton value="Editar Diagnostico"  type="submit" class="btn btn-primary">
+	            <h:commandButton value="Actualizar Consulta" action="#{gestionConsultaBean.updateConsulta()}" type="submit" class="btn btn-primary">
 				</h:commandButton>	
 				
          	</div>
