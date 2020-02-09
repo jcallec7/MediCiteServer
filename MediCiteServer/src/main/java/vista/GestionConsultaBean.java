@@ -435,6 +435,7 @@ public class GestionConsultaBean implements Serializable {
 			retorno = "/paciente/listConsulta";
 		}
 		return retorno;
+		
 	}
 	
 }
