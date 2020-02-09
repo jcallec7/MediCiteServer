@@ -5,14 +5,13 @@
      xmlns:p="http://primefaces.org/ui"
      	template="blankPaciente.xhtml">
 
-	<ui:define name="cabecera">Sección Consulta</ui:define>
-
-	<ui:define name="titulo">Consultas Guardadas</ui:define>
+	<ui:define name="cabecera"></ui:define>
 	
 	<ui:define name="contenido">
 	
 		<h:form>
 		
+		<div class=""></div>
 			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 			
 			<h:dataTable value="#{gestionConsultaBean.consultasUsuario}" var="cons" class="table table-bordered">
@@ -43,9 +42,9 @@
 					
 				</h:column>
 				
-				<h:column >
+				<h:column>
 					<f:facet name="header">Opciones</f:facet>
-					<h:commandButton value="Editar" rendered="#{cons.diagnostico == null}" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
+					<h:commandButton value="Editar" rendered="#{cons.diagnostico == null and (cons.estado.equals('Cancelada') == false)}" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
 					
@@ -56,6 +55,8 @@
 					<h:commandButton value="Generar Certificado" rendered="#{cons.diagnostico != null}" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
+					
+					<h:outputText value="" rendered="#{cons.estado.equals('Cancelada')}"/>
 					
 				</h:column>
 			
