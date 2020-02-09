@@ -51,8 +51,7 @@ public class GestionUsuarioBean {
 	private String filtro;
 	private String selectedUsuarioId;
 	private String selectedUsuarioId2;
-	private Usuario editedUsuario;
-	private Usuario usuarioEdit;
+	private Usuario editUsuario;
 
 	@PostConstruct
 	public void init() {
@@ -187,14 +186,6 @@ public class GestionUsuarioBean {
 		this.selectedUsuarioId2 = selectedUsuarioId2;
 	}
 
-	public Usuario geteditedUsuario() {
-		return editedUsuario;
-	}
-
-	public void seteditedUsuario(Usuario editedUsuario) {
-		this.editedUsuario = editedUsuario;
-	}
-
 	public String getEspecialidad() {
 		return especialidad;
 	}
@@ -227,12 +218,12 @@ public class GestionUsuarioBean {
 		this.rol = rol;
 	}
 
-	public Usuario getEditedUsuario() {
-		return editedUsuario;
+	public Usuario getEditUsuario() {
+		return editUsuario;
 	}
 
-	public void setEditedUsuario(Usuario editedUsuario) {
-		this.editedUsuario = editedUsuario;
+	public void setEditUsuario(Usuario editedUsuario) {
+		this.editUsuario = editedUsuario;
 	}
 
 	public HttpSession getSession() {
@@ -279,11 +270,11 @@ public class GestionUsuarioBean {
 	}
 
 	public Usuario getUsuarioEdit() {
-		return usuarioEdit;
+		return editUsuario;
 	}
 
-	public void setUsuarioEdit(Usuario usuarioEdit) {
-		this.usuarioEdit = usuarioEdit;
+	public void setUsuarioEdit(Usuario editUsuario) {
+		this.editUsuario = editUsuario;
 	}
 
 	public String guardarUsuario() {
@@ -298,53 +289,29 @@ public class GestionUsuarioBean {
 
 	public String editarUsuario(String id) {
 
-		this.usuarioEdit = gul.readUsuario(id);
+		this.editUsuario = gul.readUsuario(id);
 
-		this.setId(usuarioEdit.getId());
-		this.setNombre(usuarioEdit.getNombre());
-		this.setApellido(usuarioEdit.getApellido());
-		this.setGenero(usuarioEdit.getGenero());
-		this.setEspecialidad(usuarioEdit.getEspecialidad());
-		this.setCorreo(usuarioEdit.getCorreo());
-		this.setDireccion(usuarioEdit.getDireccion());
-		this.setTelf1(usuarioEdit.getTelf1());
-		this.setTelf2(usuarioEdit.getTelf2());
-		this.setEstatura(usuarioEdit.getEstatura());
-		this.setPeso(usuarioEdit.getPeso());
-		this.setFecha_nac(usuarioEdit.getFecha_nac());
-		this.setContrasena(usuarioEdit.getContrasena());
+		this.setId(editUsuario.getId());
+		this.setNombre(editUsuario.getNombre());
+		this.setApellido(editUsuario.getApellido());
+		this.setGenero(editUsuario.getGenero());
+		this.setEspecialidad(editUsuario.getEspecialidad());
+		this.setCorreo(editUsuario.getCorreo());
+		this.setDireccion(editUsuario.getDireccion());
+		this.setTelf1(editUsuario.getTelf1());
+		this.setTelf2(editUsuario.getTelf2());
+		this.setEstatura(editUsuario.getEstatura());
+		this.setPeso(editUsuario.getPeso());
+		this.setFecha_nac(editUsuario.getFecha_nac());
+		this.setContrasena(editUsuario.getContrasena());
+		this.setPreguntaSeguridad(editUsuario.getPreguntaSeguridad());
 
-		return "../paciente/updatePaciente.xhtml";
-	}
-	
-	public String recuperarContraseña(String correo){
-		
-		this.usuarioEdit = gul.getUsuarioPorCorreo(correo);
-		System.out.print(this.usuarioEdit);
-		
-		if (usuarioEdit != null) {
-
-			if (usuarioEdit.getPreguntaSeguridad().toLowerCase().equals(preguntaSeguridad.toLowerCase())) {
-
-				return "/publicas/nuevaContraseña";
-
-			} else {
-
-				return "return confirm('La respuestas es incorrecta');";
-
-			}
-
-		} else {
-
-			return "/publicas/recuperarConstraseña";
-
-		}
-		
+		return "../paciente/profilePaciente.xhtml";
 	}
 
 	public String updateUsuario() {
 		
-		System.out.print(this.usuarioEdit);
+		System.out.print(this.editUsuario);
 
 		rol = grl.readRol(rolId);
 		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2,
