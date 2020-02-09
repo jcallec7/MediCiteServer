@@ -284,16 +284,12 @@ public class GestionConsultaBean implements Serializable {
 		
 		consulta.setUsuario(miUsuario);
 		
-		System.out.println("Consulta recuperada para la factura:" + consulta);
-		
 		consulta.setEstado("Pendiente");
 		factura = new Factura();
 		factura.setConsulta(consulta);
 		factura.setFecha(new Date());
 		factura.setTotal(25);
 		factura.setSubtotal(factura.getTotal() / 1.12);
-		
-		System.out.println("Factura recuperada:" + factura);
 		
 		//gcl.guardarConsulta(consulta.getId(), consulta.getUsuario(), consulta.getMedico(), consulta.getEstado(), consulta.getFecha(), null);
 		//consultas = gcl.getConsultas();
@@ -312,7 +308,7 @@ public class GestionConsultaBean implements Serializable {
 		factura.setConsulta(consulta);
 		gfl.guardarFactura(factura.getId(), factura.getNombre(), factura.getCedulaRuc(), factura.getDireccion(), factura.getConsulta(), factura.getSubtotal(), factura.getTotal(), factura.getFecha());
 		init();
-		return "listConsulta";
+		return "listConsultaPaciente";
 	}
 
 	public String updateConsulta() {
@@ -383,6 +379,8 @@ public class GestionConsultaBean implements Serializable {
 	}
 	
 	public void listConsultasUsuario() {
+		
+		miUsuario = (Usuario) Session.getSession().getAttribute("user");
 		this.consultasUsuario = this.gcl.getConsultasPorId(miUsuario.getId());
 	}
 
@@ -416,7 +414,7 @@ public class GestionConsultaBean implements Serializable {
 		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getEstado(),
 				selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
 		init();
-		return "listConsulta";
+		return "listConsultaMedico";
 	}
 	
 	public String loadDiagnostico() {
@@ -428,6 +426,15 @@ public class GestionConsultaBean implements Serializable {
 		return "readDiagnostico";
 	}
 	
-	
+	public String cargarConsultasUsuario() {
+		listConsultasUsuario();
+		String retorno = "";
+		if(miUsuario.getRol().getId() == 3) {
+			retorno = "/medico/listConsulta";
+		} else if(miUsuario.getRol().getId() == 4 ) {
+			retorno = "/paciente/listConsulta";
+		}
+		return retorno;
+	}
 	
 }

@@ -289,7 +289,7 @@ public class GestionMedicoBean {
 		medicos = gul.getUsuarios();
 		
 		
-		return "listMedico";
+		return "login";
 	}
 	
 	

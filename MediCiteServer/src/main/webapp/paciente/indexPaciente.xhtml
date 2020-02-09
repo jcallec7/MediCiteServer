@@ -28,10 +28,10 @@
 						<div class="col-md-3">
 						
 							<p class="text-center">
-								<strong style="color: rgb(0, 166, 255);">Asignar Cita</strong><br></br>
+								<strong style="color: rgb(0, 166, 255);">Soliciar Cita</strong><br></br>
 
 
-								<a href="createConsultaPaciente.xhtml" class="nav-link"><img
+								<a href="../paciente/createConsultaPaciente.xhtml" class="nav-link"><img
 									class="imgOpa" src="../resources/img/AgendarRotatorCyan.png"
 									style="width: 45px; height: 45px;"></img></a>
 							</p>
@@ -59,11 +59,12 @@
 						
 						<div class="col-md-3">
 							<p class="text-center">
-								<strong style="color: rgb(0, 166, 255);">Historial de Consultas</strong> <br></br> 
 								
-								<a href="listConsultaPaciente.xhtml" class="nav-link"><img
-									class="imgOpa" src="../resources/img/HistorialCyan.png"
-									style="width: 45px; height: 45px;"></img></a>
+									
+								<h:commandLink action="#{gestionConsultaBean.cargarConsultasUsuario()}" >
+									<strong style="color: rgb(0, 166, 255);">Historial de Consultas</strong> <br></br> 
+									<img class="imgOpa" src="../resources/img/HistorialCyan.png" style="width: 45px; height: 45px;"/>
+								</h:commandLink>
 								
 							</p>
 
