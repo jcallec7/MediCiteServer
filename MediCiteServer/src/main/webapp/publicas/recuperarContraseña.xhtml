@@ -44,22 +44,22 @@
 				<h:outputLabel class="login-box-msg"
 					rendered="#{gestionUsuarioBean.recuperado != null}"
 					value="¡Falta poco! Ingresa tu nueva contraseña" />
-					
+
 				<h:form>
 					<h:outputLabel rendered="#{gestionUsuarioBean.recuperado == null}"
 						value="Ingrese su correo electrónico" />
 
 					<div class="input-group mb-3">
-					
+
 						<h:inputText rendered="#{gestionUsuarioBean.recuperado == null}"
 							type="email" value="#{gestionUsuarioBean.correo}"
-							class="form-control" a:placeholder="Email" />							
-					
+							class="form-control" a:placeholder="Email" />
+
 					</div>
-					
+
 					<h:outputLabel rendered="#{gestionUsuarioBean.recuperado == null}"
 						value="¿Cuál es el nombre de su libro favorito?" />
-						
+
 					<div class="input-group mb-3">
 						<h:inputText rendered="#{gestionUsuarioBean.recuperado == null}"
 							type="password" value="#{gestionUsuarioBean.preguntaSeguridad}"

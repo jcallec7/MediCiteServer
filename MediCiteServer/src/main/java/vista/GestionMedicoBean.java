@@ -40,7 +40,7 @@ public class GestionMedicoBean {
 	private Date fechaNac;
 	private String contrasena;
 	private String filtro;
-	private String preguntaSecreta;
+	private String preguntaSeguridad;
 	private int rolId = 3;
 	private Rol rol;
 	
@@ -272,20 +272,20 @@ public class GestionMedicoBean {
 	}
 
 
-	public String getPreguntaSecreta() {
-		return preguntaSecreta;
+	public String getPreguntaSeguridad() {
+		return preguntaSeguridad;
 	}
 
 
-	public void setPreguntaSecreta(String preguntaSecreta) {
-		this.preguntaSecreta = preguntaSecreta;
+	public void setPreguntaSeguridad(String preguntaSeguridad) {
+		this.preguntaSeguridad = preguntaSeguridad;
 	}
 
 
 	public String guardarMedico() {
 		
 		rol = grl.readRol(rolId);
-		gul.guardarUsuario(id, nombre, apellido, genero, fechaNac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSecreta, rol);
+		gul.guardarUsuario(id, nombre, apellido, genero, fechaNac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSeguridad.toLowerCase(), rol);
 		medicos = gul.getUsuarios();
 		
 		
@@ -310,16 +310,17 @@ public class GestionMedicoBean {
 		this.setPeso(medicoEdit.getPeso());
 		this.setFechaNac(medicoEdit.getFecha_nac());
 		this.setContrasena(medicoEdit.getContrasena());
+		this.setPreguntaSeguridad(medicoEdit.getPreguntaSeguridad());
 		//this.setRol(medicoEdit.getRol());
 		
-		return "updateMedico";
+		return "../medico/profileMedico.xhtml";
 	}
 	
 	public String actualizarMedico() {
 		
 		rol = grl.readRol(rolId);
-		gul.updateUsuario(id, nombre, apellido, genero, fechaNac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSecreta, rol);
-		return "listMedico";
+		gul.updateUsuario(id, nombre, apellido, genero, fechaNac, correo, especialidad, contrasena, telf1, telf2, direccion, peso, estatura, preguntaSeguridad.toLowerCase(), rol);
+		return "../medico/profileMedico.xhtml";
 	}
 	
 	public String eliminarMedico(String id) {
