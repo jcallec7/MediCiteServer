@@ -3,6 +3,8 @@ package modelo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
+@ManagedBean
+@RequestScoped
 @Entity
 public class Usuario implements Serializable {
 

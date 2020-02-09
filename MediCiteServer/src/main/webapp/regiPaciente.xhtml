@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
 	<meta charset="utf-8" />
 	<title>Registrar Paciente</title>
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="resources/Register/css/opensans-font.css" />
-	<link rel="stylesheet" type="text/css" href="resources/Register/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css" />
+	<link rel="stylesheet" type="text/css" href="../resources/Register/css/opensans-font.css" />
+	<link rel="stylesheet" type="text/css" href="../resources/Register/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css" />
 	<!-- Main Style Css -->
-    <link rel="stylesheet" href="resources/Register/css/style.css" />
-    <link rel="stylesheet" href="resources/Register/CSS/principal.css" />
-    
+    <link rel="stylesheet" href="../resources/Register/css/style.css" />
+    <link rel="stylesheet" href="../resources/Register/CSS/principal.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
-</head>
-<body style="background-image: url(resources/img/www.jpg);background-repeat: no-repeat; background-size: 100% 100%;">
+    
+    
+</h:head>
+<h:body style="background-image: url(resources/img/www.jpg);background-repeat: no-repeat; background-size: 100% 100%;">
+	
 	<div class="page-content">
 		<div class="form-v1-content">
 			<div class="wizard-form">
-		        <form class="form-register" action="#" method="post">
+		        <h:form class="form-register" action="#" method="post">
 		        	<div id="form-total">
 		        		<!-- SECTION 1 -->
 			            <h2>
@@ -35,7 +42,7 @@
 									<div class="form-holder">
 										<fieldset>
 											<legend>Cédula</legend>
-											<input type="text" class="form-control" id="first-name" name="first-name" placeholder="Cédula" />
+											<h:inputText value="#{gestionUsuarioBean.id}" class="form-control" a:placeholder="Cédula" />
 										</fieldset>
 									</div>
 
@@ -45,7 +52,7 @@
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Nombre</legend>
-											<input type="text" class="form-control" id="first-name" name="first-name" placeholder="Ingrese sus nombres" required="true" />
+											<h:inputText  value="#{gestionUsuarioBean.nombre}" a:placeholder="Ingrese sus nombres" required="true" />
 										</fieldset>
 									</div>
 								</div>
@@ -54,7 +61,7 @@
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Apellido</legend>
-											<input type="text" class="form-control" id="last-name" name="last-name" placeholder="Ingrese sus apellidos" required="true" />
+											<h:inputText value="#{gestionUsuarioBean.apellido}"  a:placeholder="Ingrese sus apellidos" required="true" />
 										</fieldset>
 									</div>
 								</div>
@@ -64,7 +71,7 @@
 									<div class="form-holder">
 										<fieldset>
 											<legend>Fecha de Nacimiento</legend>
-											<input type="date" class="form-control" value="1998-11-02" min="1900-01-01" max="2020-02-10"/>
+											<h:inputText  type="date" class="form-control" value="1998-11-02" min="1900-01-01" max="2020-02-10"/>
 										</fieldset>
 									</div>
 
@@ -76,7 +83,7 @@
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Género</legend>
-											<input type="text" name="your_email" id="your_email" class="form-control" placeholder="Masculino / Femenino / Otros" required="true" />
+											<h:inputText value="#{gestionUsuarioBean.genero}" class="form-control" a:placeholder="Masculino / Femenino / Otros" required="true" />
 										</fieldset>
 									</div>
 								</div>
@@ -98,14 +105,14 @@
 									<div class="form-holder">
 										<fieldset>
 											<legend>Teléfono Principal</legend>
-											<input type="text" class="form-control" id="first-name" name="first-name" placeholder="Ingrese su número" required="true" />
+											<h:inputText  value="#{gestionUsuarioBean.telf1}" class="form-control" a:placeholder="Ingrese su número" required="true" />
 										</fieldset>
 									</div>
 									
 									<div class="form-holder">
 										<fieldset>
 											<legend>Teléfono Secundario</legend>
-											<input type="text" class="form-control" id="first-name" name="first-name" placeholder="Ingrese su número" required="true" />
+											<h:inputText  value="#{gestionUsuarioBean.telf2}" class="form-control" a:placeholder="Ingrese su número" required="true" />
 										</fieldset>
 									</div>
 
@@ -115,7 +122,7 @@
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Dirección de Domicilio</legend>
-											<input type="text" class="form-control" id="last-name" name="last-name" placeholder="Alfonso Cordero 1-84 " required="true" />
+											<h:inputText  value="#{gestionUsuarioBean.direccion}" class="form-control" a:placeholder="Alfonso Cordero 1-84 " required="true" />
 										</fieldset>
 									</div>
 								</div>
@@ -124,7 +131,7 @@
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Estatura</legend>
-											<input type="text" class="form-control" id="last-name" name="last-name" placeholder="Ingrese su estatura en centímentros (Ejemplo: 158.5)" required="true" />
+											<h:inputText value="#{gestionUsuarioBean.estatura}" class="form-control" a:placeholder="Ingrese su estatura en centímentros (Ejemplo: 158.5)" required="true" />
 										</fieldset>
 									</div>
 								</div>
@@ -133,7 +140,8 @@
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Peso</legend>
-											<input type="text" class="form-control" id="last-name" name="last-name" placeholder="Ingrese su estatura en kilogramos (Ejemplo: 64.8)" required="true" />
+											<h:inputText  value="#{gestionUsuarioBean.peso}" class="form-control"  a:placeholder="Ingrese su estatura en kilogramos (Ejemplo: 64.8)" required="true" />
+											
 										</fieldset>
 									</div>
 								</div>
@@ -159,84 +167,38 @@
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Correo Electrónico</legend>
-											<input type="text" name="your_email" id="your_email" class="form-control" pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="example@email.com" required="true" />
+											<h:inputText  value="#{gestionUsuarioBean.correo}" class="form-control" pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="example@email.com" required="true" />
 										</fieldset>
 									</div>
 								</div>
 								
-								<div class="form-row">
-									<div class="form-holder form-holder-2">
-										<fieldset>
-											<legend>Contraseña</legend>
-											<input type="password" id="password" class="form-control" placeholder="Ingrese una contraseña" required="true" />
-											<meter max="4" id="password-strength"></meter>
-									        <p id="password-strength-text"></p>
-									        <script type="text/javascript">
-									            var strength = {
-									              0: "Bien baja",
-									              1: "Baja",
-									              2: "OK",
-									              3: "Buena",
-									              4: "Excelente"
-									            }
-									             
-									            var password = document.getElementById('password');
-									            var meter = document.getElementById('password-strength');
-									            var text = document.getElementById('password-strength-text');
-									 
-									            password.addEventListener('input', function() {
-									                var val = password.value;
-									                var result = zxcvbn(val);
-									 
-									                // This updates the password strength meter
-									                meter.value = result.score;
-									 
-									                // This updates the password meter text
-									                if (val !== "") {
-									                    text.innerHTML = "Seguridad: " + strength[result.score]; 
-									                } else {
-									                    text.innerHTML = "";
-									                }
-									            });
-									        </script>
-
-										</fieldset>
-									</div>
-								</div>
+								<h:form>
+    <h:panelGrid columns="2" cellpadding="5">
+        <h:outputText value="Feedback: " />
+        <p:password id="feedback" value="#{passwordView.password2}" feedback="true" />
+    </h:panelGrid>
+     
+    
+     
+    <p:messages id="messages" showDetail="true" autoUpdate="true" />
+ 
+    
+ 
+    <p:commandButton update="feedback" value="Save" />    
+</h:form>				
 								
-								<div class="form-row">
-									<div class="form-holder form-holder-2">
-										<fieldset>
-											<legend>Confirmar Contraseña</legend>
-											<input type="password" id="confirm_password" class="form-control" placeholder="Repita su contraseña" required="true" />
-										</fieldset>
-										
-										<script>
-									var password = document.getElementById("password")
-									  , confirm_password = document.getElementById("confirm_password");
-
-									function validatePassword(){
-									  if(password.value != confirm_password.value) {
-									    confirm_password.setCustomValidity("No coiciden las contraseñas :(");
-									  } else {
-									    confirm_password.setCustomValidity('');
-									  }
-									}
-
-									password.onchange = validatePassword;
-									confirm_password.onkeyup = validatePassword;
-									</script>
-										
-										
-									</div>
-									
-									
-									
-									
-								</div>
 								
-								  <button type="submit" class="pure-button pure-button-primary">Confirmar</button>
-   
+								
+								
+								
+								
+								
+								
+								
+		
+								
+								<h:commandButton class="btn btn-primary" value="Registrar"
+								action="#{gestionUsuarioBean.guardarUsuario()}" />   
 								
 								
 								
@@ -244,12 +206,24 @@
 							</div>
 			            </section>
 		        	</div>
-		        </form>
+		        </h:form>
 			</div>
 		</div>
 	</div>
-	<script src="resources/Register/js/jquery-3.3.1.min.js"></script>
-	<script src="resources/Register/js/jquery.steps.js"></script>
-	<script src="resources/Register/js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+	</h:body>
+	
+	<!-- jQuery -->
+	<script src="../resources/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../resources/dist/js/adminlte.min.js"></script>
+	
+	
+	
+	<script src="../resources/dist/js/adminlte.min.js"></script>
+	<script src="../resources/Register/js/jquery-3.3.1.min.js"></script>
+	<script src="../resources/Register/js/jquery.steps.js"></script>
+	<script src="../resources/Register/js/main.js"></script>
+	
 </html>
