@@ -2,6 +2,7 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:p="http://primefaces.org/ui"
      	template="blankMedico.xhtml">
 
 	<ui:define name="cabecera">Sección Consulta</ui:define>
@@ -11,6 +12,8 @@
 	<ui:define name="contenido">
 	
 		<h:form>
+			<p:growl id="msgs" showDetail="true"
+						skipDetailIfEqualsSummary="true" />
 			
 			<h:dataTable value="#{gestionConsultaBean.consultasUsuario}" var="cons" class="table table-bordered">
 			
@@ -32,18 +35,19 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Diagnostico</f:facet>
-					<h:commandButton value="Agregar" rendered="#{cons.diagnostico == null}" action="#{gestionConsultaBean.addDiagnosticoConsultaById()}" class = "btn btn-primary">
+					<h:commandButton value="Agregar" rendered="#{cons.diagnostico == null and (cons.estado.equals('Cancelada') == false)}" action="#{gestionConsultaBean.addDiagnosticoConsultaById()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
-					<h:commandButton value="Mostrar Diagnostico" rendered="#{cons.diagnostico != null}" action="#{gestionConsultaBean.loadDiagnostico()}" class = "btn btn-primary">
+					<h:commandButton value="Mostrar Diagnostico" rendered="#{cons.diagnostico != null and (cons.estado.equals('Cancelada') == false)}" action="#{gestionConsultaBean.loadDiagnostico()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
+					<h:outputText value="El paciente ha cancelado esta consulta." rendered="#{cons.estado.equals('Cancelada')}"/>
 					
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandButton value="Editar" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
+					<h:commandButton value="Editar" rendered="#{cons.diagnostico == null and (cons.estado.equals('Cancelada') == false)}" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
 					

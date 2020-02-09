@@ -72,6 +72,8 @@ public class GestionConsultaBean implements Serializable {
 	private int rolMed = 3;
 	private int rolPac = 4;
 	
+	private int facturaId;
+	
 	private Usuario miUsuario;
 
 	@PostConstruct
@@ -89,6 +91,14 @@ public class GestionConsultaBean implements Serializable {
 		listUsuarios();
 		listMedicos();
 		return consultasUsuario;
+	}
+
+	public int getFacturaId() {
+		return facturaId;
+	}
+
+	public void setFacturaId(int facturaId) {
+		this.facturaId = facturaId;
 	}
 
 	public void setConsultasUsuario(List<Consulta> consultasUsuario) {
@@ -307,6 +317,7 @@ public class GestionConsultaBean implements Serializable {
 	public String realizarPago() {
 		factura.setConsulta(consulta);
 		gfl.guardarFactura(factura.getId(), factura.getNombre(), factura.getCedulaRuc(), factura.getDireccion(), factura.getConsulta(), factura.getSubtotal(), factura.getTotal(), factura.getFecha());
+		generatePDF();
 		init();
 		return "listConsulta";
 	}
@@ -438,6 +449,11 @@ public class GestionConsultaBean implements Serializable {
 			retorno = "/paciente/listConsulta";
 		}
 		return retorno;
+	}
+	
+	public void generatePDF() {
+		System.out.println("Factura recuperada con id: " + ": " + factura);
+		gfl.generatePDF(factura);
 	}
 	
 }

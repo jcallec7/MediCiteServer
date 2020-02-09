@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -110,27 +111,27 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 		
 		try {
         	String path = new File(".").getCanonicalPath();
-        	String FILE_NAME = path + "/factura" + factura.getId() + ".pdf";
+        	String FILE_NAME = path + "/factura" + (dao.getFactura().size() + 1 ) + ".pdf";
         	
             PdfWriter.getInstance(documento, new FileOutputStream(new File(FILE_NAME)));
  
             documento.open();
  
             Paragraph paragraphHello = new Paragraph();
-            paragraphHello.add("MediCite Factura # " + factura.getId()
-            					+ "Nombre: " + factura.getNombre()
-            					+ "Cedula/RUC: " + factura.getCedulaRuc()
-            					+ "Direccion: " + factura.getDireccion());
+            paragraphHello.add("MediCite Factura # " + (dao.getFactura().size() + 1 )
+            					+ "\n Nombre: " + factura.getNombre()
+            					+ "\n Cedula/RUC: " + factura.getCedulaRuc()
+            					+ "\n Direccion: " + factura.getDireccion());
             paragraphHello.setAlignment(Element.ALIGN_CENTER);
  
             documento.add(paragraphHello);
  
             Paragraph paragraphLorem = new Paragraph();
             paragraphLorem.add(
-            		"1 Consulta:"
-            		+ "Medico:" + factura.getConsulta().getMedico().getNombre() + factura.getConsulta().getMedico().getApellido() + ", " + factura.getConsulta().getMedico().getEspecialidad()
-            		+ "Paciente: " + factura.getConsulta().getUsuario().getNombre() + factura.getConsulta().getUsuario().getApellido() + ", " + factura.getConsulta().getUsuario().getId()
-            		+ "Fecha: " + factura.getConsulta().getFecha());
+            		"\n 1 Consulta: "
+            		+ "\n Medico: " + factura.getConsulta().getMedico().getNombre() + " " + factura.getConsulta().getMedico().getApellido() + ", " + factura.getConsulta().getMedico().getEspecialidad()
+            		+ "\n Paciente: " + factura.getConsulta().getUsuario().getNombre() + " " + factura.getConsulta().getUsuario().getApellido() + ", " + factura.getConsulta().getUsuario().getId()
+            		+ "\n Fecha: " + factura.getConsulta().getFecha());
             
             java.util.List<Element> paragraphList = new ArrayList<>();
             
@@ -139,15 +140,15 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
             Font f = new Font();
             f.setFamily(FontFamily.COURIER.name());
             f.setStyle(Font.BOLDITALIC);
-            f.setSize(32);
+            f.setSize(18);
             
             Paragraph p3 = new Paragraph();
             p3.setFont(f);
             p3.setAlignment(Element.ALIGN_RIGHT);
             p3.addAll(paragraphList);
-            p3.add("Subtotal: " + factura.getSubtotal()
-            		+ "IVA(12%): " + (factura.getTotal() - factura.getSubtotal())
-            		+ "Total: " + factura.getTotal());
+            p3.add("\n Subtotal: " + factura.getSubtotal()
+            		+ "\n IVA(12%): " + (factura.getTotal() - factura.getSubtotal())
+            		+ "\n Total: " + factura.getTotal());
  
             documento.add(paragraphLorem);
             documento.add(p3);

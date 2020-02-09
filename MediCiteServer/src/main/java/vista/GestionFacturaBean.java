@@ -287,5 +287,4 @@ public class GestionFacturaBean {
 		gfl.generatePDF(factura);
 	}
 	
-
 }
