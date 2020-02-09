@@ -314,7 +314,7 @@ public class GestionUsuarioBean {
 		this.setFecha_nac(usuarioEdit.getFecha_nac());
 		this.setContrasena(usuarioEdit.getContrasena());
 
-		return "updatePaciente";
+		return "../paciente/updatePaciente.xhtml";
 	}
 	
 	public String recuperarContraseña(String correo){
