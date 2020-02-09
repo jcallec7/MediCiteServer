@@ -46,6 +46,7 @@
 				</h:column>
 				
 				<h:column>
+				
 					<f:facet name="header">Editar</f:facet>
 					<h:commandButton value="Editar" rendered="#{cons.diagnostico == null and (cons.estado.equals('Cancelada') == false)}" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
