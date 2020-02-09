@@ -3,7 +3,7 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-     	template="blank.xhtml">
+     	template="blankPaciente.xhtml">
 
 	<ui:define name="cabecera">
         	Sección Paciente
@@ -21,68 +21,68 @@
 		
 			<div class="form-group">
             	<h:outputLabel>Cedula o RUC</h:outputLabel>
-                <h:inputText value = "#{gestionPacienteBean.id}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.id}"/>
+                <h:inputText value = "#{gestionUsuarioBean.id}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.id}"/>
            	</div>
            	
            	<div class="form-group">
             	<h:outputLabel>Nombre(s)</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.nombre}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.nombre}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.nombre}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.nombre}"/>
             </div>
             
             <div class="form-group">
             	<h:outputLabel>Apellido(s)</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.apellido}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.apellido}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.apellido}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.apellido}"/>
             </div>
 			
 			<div class="form-group">
             	<h:outputLabel>Genero</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.genero}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.genero}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.genero}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.genero}"/>
             </div>
             
             <div class="form-group">
 	            <h:outputLabel for="fecha">Fecha Nacimiento</h:outputLabel>
-				<h:inputText value = "#{gestionPacienteBean.fecha_nac}" class="form-control" id="fecha" a:placeholder="#{gestionPacienteBean.editedPaciente.fecha_nac}">
+				<h:inputText value = "#{gestionUsuarioBean.fecha_nac}" class="form-control" id="fecha" a:placeholder="#{gestionUsuarioBean.editedUsuario.fecha_nac}">
 					<f:convertDateTime pattern="yyyy/MM/dd" />
 				</h:inputText>
 			</div>
 			
 			<div class="form-group">
             	<h:outputLabel>Correo Electronico</h:outputLabel>
-                <h:inputText value = "#{gestionPacienteBean.correo}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.correo}"/>
+                <h:inputText value = "#{gestionUsuarioBean.correo}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.correo}"/>
             </div>
             
             <div class="form-group">
             	<h:outputLabel>Contraseña</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.contrasena}" class="form-control" id="exampleInputPassword1" a:placeholder="#{gestionPacienteBean.editedPaciente.contrasena}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.contrasena}" class="form-control" id="exampleInputPassword1" a:placeholder="#{gestionUsuarioBean.editedUsuario.contrasena}"/>
             </div>
 			
 			<div class="form-group">
             	<h:outputLabel>Telefono</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.telf1}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.telf1}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.telf1}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.telf1}"/>
             </div>
             
             <div class="form-group">
             	<h:outputLabel>Telefono Secundario (Opcional)</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.telf2}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.telf2}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.telf2}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.telf2}"/>
             </div>
             
             <div class="form-group">
             	<h:outputLabel>Direccion</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.direccion}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.direccion}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.direccion}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.direccion}"/>
             </div>
 			
 			<div class="form-group">
             	<h:outputLabel>Peso (kg)</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.peso}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.peso}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.peso}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.peso}"/>
             </div>
 			
 			<div class="form-group">
             	<h:outputLabel>Estatura (cm)</h:outputLabel>
-            	<h:inputText value = "#{gestionPacienteBean.estatura}" class="form-control" a:placeholder="#{gestionPacienteBean.editedPaciente.estatura}"/>
+            	<h:inputText value = "#{gestionUsuarioBean.estatura}" class="form-control" a:placeholder="#{gestionUsuarioBean.editedUsuario.estatura}"/>
             </div>
 			
 			<div class="card-footer">
-				<h:commandButton class="btn btn-primary" value="Editar" action="#{gestionPacienteBean.updatePaciente()}"/>
+				<h:commandButton class="btn btn-primary" value="Editar" action="#{gestionUsuarioBean.updateUsuario()}"/>
 			</div>
 			
 		</h:form>

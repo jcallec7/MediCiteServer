@@ -35,24 +35,12 @@
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body">
-				<p class="login-box-msg">¿Olvidaste tu contraseña? Responde a la
-					siguiente pregunta de seguridad</p>
+				<p class="login-box-msg">Ya falta poco! Ingresa tu nueva contraseña</p>
 				<h:form>
-					<h:outputLabel value="Ingrese su correo electrónico" />
-					<div class="input-group mb-3">
-						<h:inputText type="email" value="#{gestionUsuarioBean.correo}"
-							class="form-control" a:placeholder="Email" />
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-envelope"></span>
-							</div>
-						</div>
-					</div>
-					<h:outputLabel value="¿Cuál es el nombre de su libro favorito?" />
 					<div class="input-group mb-3">
 						<h:inputText type="password"
-							value="#{gestionUsuarioBean.preguntaSeguridad}" a:type="password"
-							class="form-control" a:placeholder="Respuesta" />
+							value="#{gestionUsuarioBean.contrasena}" a:type="password"
+							class="form-control" a:placeholder="#{gestionUsuarioBean.usuarioEdit}" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-user"></span>
@@ -61,20 +49,14 @@
 					</div>
 					<div class="row">
 						<div class="col-4">
-							<h:commandButton
-								action="#{gestionUsuarioBean.recuperarContraseña(gestionUsuarioBean.correo)}"
-								value="Recuperar" class="btn btn-primary btn-block"></h:commandButton>
+							<h:commandButton onclick="return confirm('Contraseña actualizada exitosamente');"
+								action="#{gestionUsuarioBean.updateUsuario()}"
+								value="Guardar" class="btn btn-primary btn-block"></h:commandButton>
 						</div>
 					</div>
 				</h:form>
 			</div>
 			<div class="card-footer">
-				<p class="mb-1">
-					<a href="login.xhtml" class="text-center">Ya estoy registrado</a>
-				</p>
-				<p class="mb-0">
-					<a href="userType.xhtml" class="text-center">Registrarse</a>
-				</p>
 			</div>
 		</div>
 	</div>

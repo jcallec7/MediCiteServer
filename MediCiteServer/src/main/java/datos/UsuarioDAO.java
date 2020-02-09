@@ -83,6 +83,7 @@ public class UsuarioDAO {
 	}
 
 	public Usuario getUsuarioPorCorreo(String filtro) {
+		
 		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_correo LIKE ?1";
 		Query q = em.createQuery(jpql, Usuario.class);
 		q.setParameter(1, "%" + filtro + "%");

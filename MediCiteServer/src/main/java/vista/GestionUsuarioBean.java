@@ -52,6 +52,7 @@ public class GestionUsuarioBean {
 	private String selectedUsuarioId;
 	private String selectedUsuarioId2;
 	private Usuario editedUsuario;
+	private Usuario usuarioEdit;
 
 	@PostConstruct
 	public void init() {
@@ -273,6 +274,18 @@ public class GestionUsuarioBean {
 		return usuarios;
 	}
 
+	public void listUsuario() {
+		this.usuarios = this.gul.getUsuarios();
+	}
+
+	public Usuario getUsuarioEdit() {
+		return usuarioEdit;
+	}
+
+	public void setUsuarioEdit(Usuario usuarioEdit) {
+		this.usuarioEdit = usuarioEdit;
+	}
+
 	public String guardarUsuario() {
 
 		rol = grl.readRol(rolId);
@@ -283,56 +296,60 @@ public class GestionUsuarioBean {
 
 	}
 
-	public String editUsuarioById() {
+	public String editarUsuario(String id) {
 
-		selectedUsuarioId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
-				.get("selectedUsuarioId");
-		System.out.println(selectedUsuarioId);
-		editedUsuario = gul.readUsuario(selectedUsuarioId);
-		return "updateUsuario";
+		this.usuarioEdit = gul.readUsuario(id);
 
+		this.setId(usuarioEdit.getId());
+		this.setNombre(usuarioEdit.getNombre());
+		this.setApellido(usuarioEdit.getApellido());
+		this.setGenero(usuarioEdit.getGenero());
+		this.setEspecialidad(usuarioEdit.getEspecialidad());
+		this.setCorreo(usuarioEdit.getCorreo());
+		this.setDireccion(usuarioEdit.getDireccion());
+		this.setTelf1(usuarioEdit.getTelf1());
+		this.setTelf2(usuarioEdit.getTelf2());
+		this.setEstatura(usuarioEdit.getEstatura());
+		this.setPeso(usuarioEdit.getPeso());
+		this.setFecha_nac(usuarioEdit.getFecha_nac());
+		this.setContrasena(usuarioEdit.getContrasena());
+
+		return "updatePaciente";
 	}
+	
+	public String recuperarContraseña(String correo){
+		
+		this.usuarioEdit = gul.getUsuarioPorCorreo(correo);
+		System.out.print(this.usuarioEdit);
+		
+		if (usuarioEdit != null) {
 
-	public String deleteUsuario() {
+			if (usuarioEdit.getPreguntaSeguridad().toLowerCase().equals(preguntaSeguridad.toLowerCase())) {
 
-		selectedUsuarioId2 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
-				.get("selectedUsuarioId2");
-		System.out.println(selectedUsuarioId2);
-		gul.deleteUsuario(selectedUsuarioId2);
-		return null;
+				return "/publicas/nuevaContraseña";
 
-	}
+			} else {
 
-	public String recuperarContraseña() {
+				return "return confirm('La respuestas es incorrecta');";
 
-		Usuario usuario = gul.getUsuarioPorCorreo(correo);
-
-		if (usuario == null) {
-
-			return "return alert('El correo que ingreso no esta registrado')";
+			}
 
 		} else {
 
-			if (usuario.getPreguntaSeguridad().toLowerCase().equals(preguntaSeguridad.toLowerCase())) {
+			return "/publicas/recuperarConstraseña";
 
-				return "nuevaContraseña";
-
-			} else {
-				return "return alert('La respuesta es incorrecta')";
-			}
 		}
-
-	}
-
-	public void listUsuario() {
-		this.usuarios = this.gul.getUsuarios();
+		
 	}
 
 	public String updateUsuario() {
+		
+		System.out.print(this.usuarioEdit);
+
+		rol = grl.readRol(rolId);
 		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2,
 				direccion, peso, estatura, preguntaSeguridad, rol);
-		return "listUsuario";
-
+		return "listMedico";
 	}
 
 }
