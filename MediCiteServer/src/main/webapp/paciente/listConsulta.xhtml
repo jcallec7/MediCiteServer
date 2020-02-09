@@ -38,21 +38,22 @@
 					<h:commandButton value="Mostrar Diagnostico" rendered="#{cons.diagnostico != null}" action="#{gestionConsultaBean.loadDiagnostico()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
-					<h:outputText value="El/la médico no ha ingresado todavía" rendered="#{cons.diagnostico == null}"/>
+					<h:outputText value="El/la médico no ha ingresado todavía un diagnostico." rendered="#{cons.diagnostico == null and (cons.estado.equals('Cancelada') == false)}"/>
+					<h:outputText value="Ha cancelado esta consulta." rendered="#{cons.estado.equals('Cancelada')}"/>
 					
 				</h:column>
 				
-				<h:column>
-					<f:facet name="header">Editar</f:facet>
-					<h:commandButton value="Editar" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
+				<h:column >
+					<f:facet name="header">Opciones</f:facet>
+					<h:commandButton value="Editar" rendered="#{cons.diagnostico == null}" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
 					
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Eliminar</f:facet>
-					<h:commandButton value="Eliminar" onclick="return confirm('¿Está seguro de eliminar esta consulta?');" action="#{gestionConsultaBean.deleteConsulta()}" class = "btn btn-primary">
+					<h:commandButton value="Cancelar" rendered="#{cons.diagnostico == null and (cons.estado.equals('Cancelada') == false)}" onclick="return confirm('¿Está seguro de cancelar esta consulta?');" action="#{gestionConsultaBean.deleteConsulta()}" class = "btn btn-primary">
+						<f:param name="selectedConsultaId" value="#{cons.id}"/>
+					</h:commandButton>
+					
+					<h:commandButton value="Generar Certificado" rendered="#{cons.diagnostico != null}" action="#{gestionConsultaBean.editConsultaById()}" class = "btn btn-primary">
 						<f:param name="selectedConsultaId" value="#{cons.id}"/>
 					</h:commandButton>
 					
@@ -60,7 +61,7 @@
 			
 			</h:dataTable>
 		
-			<h:commandButton value="Crear Nueva Consulta" action="createConsulta" class = "btn btn-primary">
+			<h:commandButton value="Crear Nueva Consulta" action="createConsultaPaciente" class = "btn btn-primary">
 			</h:commandButton>
 			
 		</h:form>

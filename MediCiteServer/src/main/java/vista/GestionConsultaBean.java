@@ -368,9 +368,12 @@ public class GestionConsultaBean implements Serializable {
 
 		selectedConsultaId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("selectedConsultaId"));
-		System.out.println(selectedConsultaId);
-		gcl.deleteConsulta(selectedConsultaId);
-		return "return alert('Consulta Eliminada Exitosamente')";
+		selectedConsulta = gcl.readConsulta(selectedConsultaId);
+		selectedConsulta.setEstado("Cancelada");
+		gcl.updateConsulta(selectedConsulta.getId(), selectedConsulta.getUsuario(), selectedConsulta.getMedico(), selectedConsulta.getEstado(), selectedConsulta.getFecha(), selectedConsulta.getDiagnostico());
+
+		init();
+		return "listConsulta";
 
 	}
 
