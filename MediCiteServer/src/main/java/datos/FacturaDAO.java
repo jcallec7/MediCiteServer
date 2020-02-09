@@ -37,7 +37,9 @@ public class FacturaDAO {
 		
 		Factura c = em.find(Factura.class, id);
 		c.getConsulta();
-		return null;
+		c.getConsulta().getMedico();
+		c.getConsulta().getUsuario();
+		return c;
 		
 	}
 	
