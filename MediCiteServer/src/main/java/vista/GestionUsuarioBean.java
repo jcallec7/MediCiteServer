@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -49,9 +48,8 @@ public class GestionUsuarioBean {
 	private List<Usuario> usuarios;
 
 	private String filtro;
-	private String selectedUsuarioId;
-	private String selectedUsuarioId2;
 	private Usuario editUsuario;
+	private Usuario recuperado = null;
 
 	@PostConstruct
 	public void init() {
@@ -170,22 +168,6 @@ public class GestionUsuarioBean {
 		this.usuarios = usuarios;
 	}
 
-	public String getSelectedUsuarioId() {
-		return selectedUsuarioId;
-	}
-
-	public void setSelectedUsuarioId(String selectedUsuarioId) {
-		this.selectedUsuarioId = selectedUsuarioId;
-	}
-
-	public String getSelectedUsuarioId2() {
-		return selectedUsuarioId2;
-	}
-
-	public void setSelectedUsuarioId2(String selectedUsuarioId2) {
-		this.selectedUsuarioId2 = selectedUsuarioId2;
-	}
-
 	public String getEspecialidad() {
 		return especialidad;
 	}
@@ -277,11 +259,20 @@ public class GestionUsuarioBean {
 		this.editUsuario = editUsuario;
 	}
 
+	public Usuario getRecuperado() {
+		return recuperado;
+	}
+
+	public void setRecuperado(Usuario recuperado) {
+		this.recuperado = recuperado;
+	}
+	
+
 	public String guardarUsuario() {
 
 		rol = grl.readRol(rolId);
 		gul.guardarUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2,
-				direccion, peso, estatura, preguntaSeguridad, rol);
+				direccion, peso, estatura, preguntaSeguridad.toLowerCase(), rol);
 		usuarios = gul.getUsuarios();
 		return "login";
 
@@ -308,15 +299,41 @@ public class GestionUsuarioBean {
 
 		return "../paciente/profilePaciente.xhtml";
 	}
+	
+	public String comprobarRespuesta() {
+		
+		recuperado = gul.getUsuarioPorCorreo(this.getCorreo(), this.getPreguntaSeguridad().toLowerCase());
+		
+		if(recuperado != null) {
+			
+			return "alert(Datos correctos);";
+			
+		}
+		 
+		return "recuperarContraseña";
+	}
+
+	public String recuperarContraseña() {
+		
+		rol = grl.readRol(rolId);
+
+		gul.updateUsuario(recuperado.getId(), recuperado.getNombre(), recuperado.getApellido(),
+				recuperado.getGenero(), recuperado.getFecha_nac(), recuperado.getCorreo(),
+				recuperado.getEspecialidad(), this.getContrasena(), recuperado.getTelf1(),
+				recuperado.getTelf2(), recuperado.getDireccion(), recuperado.getPeso(),
+				recuperado.getEstatura(), recuperado.getPreguntaSeguridad(), rol);
+		
+		return "login.xhtml";
+		
+	}
 
 	public String updateUsuario() {
-		
-		System.out.print(this.editUsuario);
 
 		rol = grl.readRol(rolId);
 		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2,
-				direccion, peso, estatura, preguntaSeguridad, rol);
-		return "listMedico";
+				direccion, peso, estatura, preguntaSeguridad.toLowerCase(), rol);
+
+		return "../paciente/profilePaciente.xhtml";
 	}
 
 }

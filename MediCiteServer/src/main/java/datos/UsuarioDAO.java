@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 import modelo.Usuario;
@@ -82,29 +83,27 @@ public class UsuarioDAO {
 
 	}
 
-	public Usuario getUsuarioPorCorreo(String filtro) {
+	public Usuario getUsuarioPorCorreo(String filtro, String filtro2) {
 		
-		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_correo LIKE ?1";
+		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_correo LIKE ?1 AND mc_usr_preguntaSeguridad LIKE ?2";
 		Query q = em.createQuery(jpql, Usuario.class);
 		q.setParameter(1, "%" + filtro + "%");
+		q.setParameter(2, "%" + filtro2 + "%");
+		
+		try{
+			Usuario usuario = (Usuario) q.getSingleResult();
+			System.out.print(usuario);
 
-		Usuario Usuarios = null;
-
-		try {
-
-			Usuarios = (Usuario) q.getSingleResult();
-
-		} catch (NoResultException nre) {
-
+			return usuario;
+			
+		}catch(NonUniqueResultException nure){
+			
+		}catch(NoResultException nre) {
+			
 		}
-
-		if (Usuarios == null) {
-
-			return Usuarios;
-
-		}
-
-		return Usuarios;
+		
+		return null;
+		
 	}
 
 }

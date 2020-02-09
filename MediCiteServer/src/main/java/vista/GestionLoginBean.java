@@ -100,7 +100,7 @@ public class GestionLoginBean {
 	public String cerrarSesion() {
 		HttpSession session = Session.getSession();
 		session.invalidate();
-		return "/publicas/login";
+		return "/publicas/principal";
 	}
 	
 }

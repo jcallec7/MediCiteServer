@@ -23,7 +23,7 @@ public interface GestionUsuarioLocal {
 	
 	public List<Usuario> getUsuarioPorRol(int filtro);
 	
-	public Usuario getUsuarioPorCorreo(String filtro);
+	public Usuario getUsuarioPorCorreo(String filtro, String pregunta);
 	
 	public void deleteUsuario(String id);
 	
