@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import com.itextpdf.text.Document;
+
 import modelo.Consulta;
 import modelo.Factura;
 
@@ -17,5 +19,6 @@ public interface GestionFacturaLocal
 	public void eliminarFactura(int id);
 	public List<Factura> getFactura();
 	public List<Factura> getFacturaPorId(String filtro);
+	public void generatePDF(Factura factura);
 	
 }

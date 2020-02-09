@@ -3,6 +3,7 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     xmlns:p="http://primefaces.org/ui"
      	template="blankPaciente.xhtml">
 
 	<ui:define name="cabecera">
@@ -74,22 +75,24 @@
                   <div class="form-group">
 
           			<h:outputLabel>Fecha:</h:outputLabel>       
-       				<h:outputLabel value = "Modificar Fecha y Hora"></h:outputLabel>
-            		<h:inputText value = "#{gestionConsultaBean.selectedConsulta.fecha}" class="form-control" id="fecha" a:placeholder="#{gestionConsultaBean.selectedConsulta.fecha}">
-	            
-           				<f:convertDateTime pattern="yyyy/MM/dd" />
-           
-           			</h:inputText>
-           			<h:inputText value = "#{gestionConsultaBean.hora}" class="form-control" id="hora" a:placeholder="Hora">
-	            
-           			<!-- <f:convertDateTime pattern="HH:mm"/>  -->
-           
-           			</h:inputText>
-           			<h:inputText value = "#{gestionConsultaBean.minuto}" class="form-control" id="minuto" a:placeholder="Minutos">
-	            
-           		<!-- <f:convertDateTime pattern="HH:mm"/>  -->
-           
-           			</h:inputText>
+       				
+       				<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+     
+    				<h:panelGrid columns="2" cellpadding="5">
+    				
+        				<p:calendar id="datetime" value="#{gestionConsultaBean.consulta.fecha}" pattern="MM/dd/yyyy HH:mm:ss" />				
+    					
+    				</h:panelGrid>    				
+    				
+    				<p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+        				<p:panelGrid id="display" columns="2" columnClasses="label,value">
+        				
+							<h:outputText value="#{gestionConsultaBean.consulta.fecha}">
+							    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+							</h:outputText>
+        				
+        				</p:panelGrid>
+   	 				</p:dialog>
        
                   </div>
 

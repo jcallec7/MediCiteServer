@@ -5,13 +5,27 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import datos.ConsultaDAO;
+import datos.DiagnosticoDAO;
 import datos.FacturaDAO;
 import datos.UsuarioDAO;
 import modelo.Consulta;
+import modelo.Diagnostico;
 import modelo.Factura;
 import modelo.Usuario;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,8 +40,13 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 	
 	@Inject
 	private UsuarioDAO daoUsuario;
+	
+	@Inject
+	private DiagnosticoDAO daoDiagnostico;
 
 	private List<Factura> factura = new ArrayList<Factura>();
+	
+	private Document documento = new Document();
 
 	public void guardarFactura(int id, String nombre, String cedulaRuc, String direccion, Consulta consulta, double subtotal, double total, Date fecha) {
 
@@ -66,12 +85,11 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 
 	public Factura leerFactura(int id) {
 		Factura facturas = dao.read(id);
-		daoConsulta.getConsultas();
-		daoUsuario.getUsuarioPorRol(4);
-		daoUsuario.getUsuarioPorRol(3);
-		facturas.getConsulta();
-		facturas.getConsulta().getMedico();
-		facturas.getConsulta().getUsuario();
+
+		List<Consulta> consultas = daoConsulta.getConsultas();
+		List<Usuario> pacientes = daoUsuario.getUsuarioPorRol(4);
+		List<Usuario> medicos = daoUsuario.getUsuarioPorRol(3);		
+		List<Diagnostico> diagnosticos = daoDiagnostico.getDiagnostico();
 		return facturas;
 	}
 
@@ -88,4 +106,59 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 		return dao.getFacturaXNombre(filtro);
 	}
 
+	public void generatePDF(Factura factura) {
+		
+		try {
+        	String path = new File(".").getCanonicalPath();
+        	String FILE_NAME = path + "/factura" + factura.getId() + ".pdf";
+        	
+            PdfWriter.getInstance(documento, new FileOutputStream(new File(FILE_NAME)));
+ 
+            documento.open();
+ 
+            Paragraph paragraphHello = new Paragraph();
+            paragraphHello.add("MediCite Factura # " + factura.getId()
+            					+ "Nombre: " + factura.getNombre()
+            					+ "Cedula/RUC: " + factura.getCedulaRuc()
+            					+ "Direccion: " + factura.getDireccion());
+            paragraphHello.setAlignment(Element.ALIGN_CENTER);
+ 
+            documento.add(paragraphHello);
+ 
+            Paragraph paragraphLorem = new Paragraph();
+            paragraphLorem.add(
+            		"1 Consulta:"
+            		+ "Medico:" + factura.getConsulta().getMedico().getNombre() + factura.getConsulta().getMedico().getApellido() + ", " + factura.getConsulta().getMedico().getEspecialidad()
+            		+ "Paciente: " + factura.getConsulta().getUsuario().getNombre() + factura.getConsulta().getUsuario().getApellido() + ", " + factura.getConsulta().getUsuario().getId()
+            		+ "Fecha: " + factura.getConsulta().getFecha());
+            
+            java.util.List<Element> paragraphList = new ArrayList<>();
+            
+            paragraphList = paragraphLorem.breakUp();
+ 
+            Font f = new Font();
+            f.setFamily(FontFamily.COURIER.name());
+            f.setStyle(Font.BOLDITALIC);
+            f.setSize(32);
+            
+            Paragraph p3 = new Paragraph();
+            p3.setFont(f);
+            p3.setAlignment(Element.ALIGN_RIGHT);
+            p3.addAll(paragraphList);
+            p3.add("Subtotal: " + factura.getSubtotal()
+            		+ "IVA(12%): " + (factura.getTotal() - factura.getSubtotal())
+            		+ "Total: " + factura.getTotal());
+ 
+            documento.add(paragraphLorem);
+            documento.add(p3);
+            documento.close();
+ 
+        } catch (FileNotFoundException | DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

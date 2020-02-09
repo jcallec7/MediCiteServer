@@ -54,32 +54,27 @@
 					</div>
 
 					<h:outputLabel value="Ingresar Fecha y Hora"></h:outputLabel>
-
-					<p:growl id="msgs" showDetail="true"
-						skipDetailIfEqualsSummary="true" />
-
-					<h:panelGrid columns="2" cellpadding="5">
-
-
-						<p:datePicker id="time" locale="es"
-							value="#{gestionConsultaBean.consulta.fecha}" showTime="true"
-							autocomplete="off" />
-
-					</h:panelGrid>
-
-					<p:dialog modal="true" resizable="false" header="Values"
-						widgetVar="dlg" showEffect="fold">
-						<p:panelGrid id="display" columns="4"
-							columnClasses="label,value,label,value">
-
-							<h:outputText value="Time:" />
+					
+					
+					<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+     
+    				<h:panelGrid columns="2" cellpadding="5">
+    				
+        				<p:calendar id="datetime" value="#{gestionConsultaBean.consulta.fecha}" pattern="MM/dd/yyyy HH:mm:ss" />				
+    					
+    				</h:panelGrid>    				
+    				
+    				<p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+        				<p:panelGrid id="display" columns="2" columnClasses="label,value">
+        				
 							<h:outputText value="#{gestionConsultaBean.consulta.fecha}">
-								<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+							    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
 							</h:outputText>
-
-
-						</p:panelGrid>
-					</p:dialog>
+        				
+        				</p:panelGrid>
+   	 				</p:dialog>
+    					
+    					
 
 					<div class="row">
 						<div class="col-8"></div>
