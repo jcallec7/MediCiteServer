@@ -37,11 +37,14 @@
 			<div class="card-body login-card-body">
 				<p class="login-box-msg">¿Olvidaste tu contraseña? Responde a la
 					siguiente pregunta de seguridad</p>
+
 				<h:form>
 					<h:outputLabel value="Ingrese su correo electrónico" />
+					
 					<div class="input-group mb-3">
 						<h:inputText type="email" value="#{gestionUsuarioBean.correo}"
 							class="form-control" a:placeholder="Email" />
+							
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-envelope"></span>
@@ -61,9 +64,9 @@
 					</div>
 					<div class="row">
 						<div class="col-4">
-							<h:commandButton
-								action="#{gestionUsuarioBean.recuperarContraseña(gestionUsuarioBean.correo)}"
-								value="Recuperar" class="btn btn-primary btn-block"></h:commandButton>
+							<h:commandButton value="Recuperar"
+								class="btn btn-primary btn-block"></h:commandButton>
+
 						</div>
 					</div>
 				</h:form>
