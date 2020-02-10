@@ -26,6 +26,7 @@ public class AuthorizationFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+
 		try {
 
 			HttpServletRequest reqt = (HttpServletRequest) request;
@@ -40,6 +41,11 @@ public class AuthorizationFilter implements Filter {
 
 				chain.doFilter(request, response);
 
+			else if (reqURI.indexOf("/admin/") >= 0
+					&& (ses != null && ses.getAttribute("user") != null && ((int) ses.getAttribute("rol")) == 2))
+
+				chain.doFilter(request, response);
+
 			else if (reqURI.indexOf("/medico/") >= 0
 					&& (ses != null && ses.getAttribute("user") != null && ((int) ses.getAttribute("rol")) == 3))
 
@@ -50,7 +56,7 @@ public class AuthorizationFilter implements Filter {
 				chain.doFilter(request, response);
 			else
 
-				resp.sendRedirect(reqt.getContextPath() + "/publicas/error404.xhtml");
+				resp.sendRedirect(reqt.getContextPath() + "/publicas/principal.xhtml");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

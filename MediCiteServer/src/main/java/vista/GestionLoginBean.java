@@ -53,19 +53,12 @@ public class GestionLoginBean {
 			
 			switch(rol){
 			
-				case 1:
-					
-					session.setAttribute("user", usuario);
-					session.setAttribute("rol", rol);
-					this.userName = usuario.getNombre()+" "+usuario.getApellido();
-					return "indexAdmin";
-					
 				case 2:
 					
 					session.setAttribute("user", usuario);
 					session.setAttribute("rol", rol);
-					this.userName = usuario.getNombre()+" "+usuario.getApellido();		
-					return "indexSecretario";
+					this.userName = usuario.getNombre()+" "+usuario.getApellido();
+					return "/admin/indexAdmin";
 					
 				case 3:
 					

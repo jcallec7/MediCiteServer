@@ -3,7 +3,7 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-     	template="blankPaciente.xhtml">
+     	template="../admin/blankAdmin.xhtml">
 
 	<ui:define name="cabecera">
         	Sección Paciente
@@ -82,7 +82,7 @@
             </div>
 			
 			<div class="card-footer">
-				<h:commandButton class="btn btn-primary" value="Editar" action="#{gestionUsuarioBean.updateUsuario()}"/>
+				<h:commandButton class="btn btn-primary" value="Editar" action="#{gestionUsuarioBean.updateAdminUsuario()}"/>
 			</div>
 			
 		</h:form>

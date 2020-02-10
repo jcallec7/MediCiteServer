@@ -300,6 +300,28 @@ public class GestionUsuarioBean {
 		return "../paciente/profilePaciente.xhtml";
 	}
 	
+	public String editarAdminUsuario(String id) {
+
+		this.editUsuario = gul.readUsuario(id);
+
+		this.setId(editUsuario.getId());
+		this.setNombre(editUsuario.getNombre());
+		this.setApellido(editUsuario.getApellido());
+		this.setGenero(editUsuario.getGenero());
+		this.setEspecialidad(editUsuario.getEspecialidad());
+		this.setCorreo(editUsuario.getCorreo());
+		this.setDireccion(editUsuario.getDireccion());
+		this.setTelf1(editUsuario.getTelf1());
+		this.setTelf2(editUsuario.getTelf2());
+		this.setEstatura(editUsuario.getEstatura());
+		this.setPeso(editUsuario.getPeso());
+		this.setFecha_nac(editUsuario.getFecha_nac());
+		this.setContrasena(editUsuario.getContrasena());
+		this.setPreguntaSeguridad(editUsuario.getPreguntaSeguridad());
+
+		return "/admin/updatePaciente.xhtml";
+	}
+	
 	public String comprobarRespuesta() {
 		
 		recuperado = gul.getUsuarioPorCorreo(this.getCorreo(), this.getPreguntaSeguridad().toLowerCase());
@@ -326,6 +348,12 @@ public class GestionUsuarioBean {
 		return "login.xhtml";
 		
 	}
+	
+	public String eliminarUsuario(String id) {
+		
+		gul.deleteUsuario(id);	
+		return "listPaciente";
+	}
 
 	public String updateUsuario() {
 
@@ -334,6 +362,15 @@ public class GestionUsuarioBean {
 				direccion, peso, estatura, preguntaSeguridad.toLowerCase(), rol);
 
 		return "../paciente/profilePaciente.xhtml";
+	}
+	
+	public String updateAdminUsuario() {
+
+		rol = grl.readRol(rolId);
+		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2,
+				direccion, peso, estatura, preguntaSeguridad.toLowerCase(), rol);
+
+		return "/admin/listPaciente.xhtml";
 	}
 
 }

@@ -1,0 +1,289 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="blankAdmin.xhtml">
+
+	<ui:define name="cabecera">
+        	Perfil
+   	</ui:define>
+
+	<ui:define name="contenido">
+
+		<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+
+					<!-- Profile Image -->
+					<div class="card card-primary card-outline">
+						<div class="card-body box-profile">
+
+							<h3 class="profile-username text-center">#{gestionAdminBean.miUsuario.nombre}
+								#{gestionAdminBean.miUsuario.apellido}</h3>
+
+							<p class="text-muted text-center">Admin</p>
+
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+
+					<!-- About Me Box -->
+					<div class="card card-primary">
+						<div class="card-header">
+							<h:outputLabel value="Acerca de mi" />
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<strong><i class="fas fa-user"></i> Cedula</strong>
+
+							<p class="text-muted">#{gestionAdminBean.miUsuario.id}</p>
+
+							<hr></hr>
+
+							<strong><i class="fas fa-map-marker-alt mr-1"></i>
+								Dirección</strong>
+
+							<p class="text-muted">#{gestionAdminBean.miUsuario.direccion}</p>
+
+							<hr></hr>
+
+							<strong><i class="fas fa-pencil-alt mr-1"></i>Caracteristicas</strong>
+
+							<p class="text-muted">
+								Peso: #{gestionAdminBean.miUsuario.peso} kg<br></br> Estatura:
+								#{gestionAdminBean.miUsuario.estatura} cm<br></br> Fecha de
+								Nacimiento: #{gestionAdminBean.miUsuario.fecha_nac}
+							</p>
+
+							<hr></hr>
+
+							<strong><i class="far fa-envelope"></i> Correo</strong>
+
+							<p class="text-muted">#{gestionAdminBean.miUsuario.correo}</p>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+				<div class="col-md-9">
+					<div class="card">
+						<div class="card-header p-2">
+							<ul class="nav nav-pills">
+								<li class="nav-item"><a class="nav-link active"
+									href="#historial" data-toggle="tab">Historial Citas</a></li>
+								<li class="nav-item"><a class="nav-link" href="#Editar"
+									data-toggle="tab">Editar</a></li>
+							</ul>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<div class="tab-content">
+								<div class="active tab-pane" id="historial">
+									<h:form>
+
+										<h:dataTable value="#{gestionConsultaBean.listConsultas()}"
+											var="cons" class="table table-bordered">
+
+											<h:column>
+					#{cons.usuario.nombre} #{cons.usuario.apellido}, #{cons.usuario.id}
+					<f:facet name="header">Paciente</f:facet>
+											</h:column>
+											<h:column>
+					#{cons.medico.nombre} #{cons.medico.apellido}, #{cons.medico.especialidad}
+					<f:facet name="header">Medico</f:facet>
+											</h:column>
+											<h:column>
+					#{cons.fecha.toString()}
+					<f:facet name="header">Fecha</f:facet>
+											</h:column>
+											<h:column>
+					#{cons.estado}
+					<f:facet name="header">Estado</f:facet>
+											</h:column>
+											<h:column>
+												<f:facet name="header">Diagnostico</f:facet>
+												<h:commandButton value="Agregar"
+													rendered="#{cons.diagnostico == null}"
+													action="#{gestionConsultaBean.addDiagnosticoConsultaById()}"
+													class="btn btn-primary">
+													<f:param name="selectedConsultaId" value="#{cons.id}" />
+												</h:commandButton>
+												<h:commandButton value="Mostrar Diagnostico"
+													rendered="#{cons.diagnostico != null}"
+													action="#{gestionConsultaBean.loadDiagnostico()}"
+													class="btn btn-primary">
+													<f:param name="selectedConsultaId" value="#{cons.id}" />
+												</h:commandButton>
+
+											</h:column>
+
+											<h:column>
+												<f:facet name="header">Editar</f:facet>
+												<h:commandButton value="Editar"
+													action="#{gestionConsultaBean.editConsultaById()}"
+													class="btn btn-primary">
+													<f:param name="selectedConsultaId" value="#{cons.id}" />
+												</h:commandButton>
+
+											</h:column>
+
+											<h:column>
+												<f:facet name="header">Eliminar</f:facet>
+												<h:commandButton value="Eliminar"
+													onclick="return confirm('¿Está seguro de eliminar esta consulta?');"
+													action="#{gestionConsultaBean.deleteConsulta()}"
+													class="btn btn-primary">
+													<f:param name="selectedConsultaId2" value="#{cons.id}" />
+												</h:commandButton>
+
+											</h:column>
+
+										</h:dataTable>
+
+										<h:commandButton value="Crear Nueva Consulta"
+											action="createConsulta" class="btn btn-primary">
+										</h:commandButton>
+
+									</h:form>
+								</div>
+								<!-- /.tab-pane -->
+
+								<div class="tab-pane" id="Editar">
+									<h:form>
+
+										<div class="form-group">
+											<h:outputLabel>Cedula o RUC</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.id}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.id}"
+												readonly="true" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Nombre(s)</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.nombre}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.nombre}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Apellido(s)</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.apellido}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.apellido}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Genero</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.genero}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.genero}" />
+										</div>
+
+										<div class="form-group">
+
+											<h:outputLabel for="fecha">Fecha Nacimiento</h:outputLabel>
+											<p:growl id="msgs" showDetail="true"
+												skipDetailIfEqualsSummary="true" />
+
+											<h:panelGrid columns="2" cellpadding="5">
+												<p:calendar id="fecha" value="#{gestionAdminBean.fechaNac}"
+													locale="de" navigator="true" pattern="yyyy/MM/dd" />
+											</h:panelGrid>
+											<p:dialog modal="true" resizable="false" header="Values"
+												widgetVar="dlg" showEffect="fold">
+												<p:panelGrid id="display" columns="2"
+													columnClasses="label,value">
+													<h:outputText value="#{gestionAdminBean.fechaNac}">
+														<f:convertDateTime pattern="yyyy-MM-dd" />
+													</h:outputText>
+												</p:panelGrid>
+											</p:dialog>
+										</div>
+
+
+										<div class="form-group">
+											<h:outputLabel>Correo Eléctronico</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.correo}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.correo}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Contraseña</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.contrasena}"
+												class="form-control" id="exampleInputPassword1"
+												a:placeholder="#{gestionAdminBean.adminEdit.contrasena}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Teléfono</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.telf1}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.telf1}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Telefono Secundario (Opcional)</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.telf2}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.telf2}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Dirección</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.direccion}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.direccion}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Peso (kg)</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.peso}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.peso}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Estatura (cm)</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.estatura}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.estatura}" />
+										</div>
+
+										<div class="form-group">
+											<h:outputLabel>Pregunta de Seguridad: ¿Cuál es su libro favorito?</h:outputLabel>
+											<h:inputText value="#{gestionAdminBean.preguntaSeguridad}"
+												class="form-control"
+												a:placeholder="#{gestionAdminBean.adminEdit.preguntaSeguridad}" />
+										</div>
+
+										<h:commandButton class="btn btn-primary" value="Editar"
+											action="#{gestionAdminBean.actualizarAdmin()}" />
+
+
+									</h:form>
+								</div>
+								<!-- /.tab-pane -->
+							</div>
+							<!-- /.tab-content -->
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.nav-tabs-custom -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+

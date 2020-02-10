@@ -388,8 +388,11 @@ public class GestionConsultaBean implements Serializable {
 
 	}
 
-	public void listConsultas() {
+	public List<Consulta> listConsultas() {
+		
 		this.consultas = this.gcl.getConsultas();
+		
+		return this.consultas;
 	}
 	
 	public void listConsultasUsuario() {

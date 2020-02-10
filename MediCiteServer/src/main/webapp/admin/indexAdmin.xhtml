@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="blankAdmin.xhtml">
+
+
+	<ui:define name="cabecera">
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<h:form id="form">
+			<div id="slider">
+				<a href="#" class="control_next"></a> <a href="#"
+					class="control_prev"></a>
+				<ul>
+					<li style="background: #aaa;"><img
+						src="../resources/img/1.jpg"
+						style="width: 800px; height: 450px; align: center"
+						class="img-responsive" alt="" /></li>
+					<li style="background: #aaa;"><img
+						src="../resources/img/6.jpg"
+						style="width: 800px; height: 450px; align: center"
+						class="img-responsive" alt="" /></li>
+					<li style="background: #aaa;"><img
+						src="../resources/img/oper.jpg"
+						style="width: 800px; height: 450px; align: center"
+						class="img-responsive" alt="" /></li>
+					<li style="background: #aaa;"><img
+						src="../resources/img/2.jpg"
+						style="width: 800px; height: 450px; align: center"
+						class="img-responsive" alt="" /></li>
+				</ul>
+			</div>
+
+
+
+			<div class="card-header">
+
+				<h4 align="center">¿Qué desea hacer?</h4>
+				<br />
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-3 col-md-3">
+							<div class="wow fadeInUp" data-wow-delay="0.2s">
+								<div class="box text-center">
+
+									<a href="../admin/listPaciente.xhtml" class="nav-link"><img
+										class="imgOpa" src="../resources/img/HistorialCyan.png"
+										style="width: 100px; height: 100px;"></img></a>
+									<h4 class="h-bold">Listar Usuario</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-md-3">
+							<div class="wow fadeInUp" data-wow-delay="0.2s">
+								<div class="box text-center">
+									<a href="../admin/listMedico.xhtml"><img class="imgOpa"
+										src="../resources/img/HistorialCyan.png"
+										style="width: 100px; height: 100px;"></img>
+										<h4 class="h-bold">Listar Medicos</h4> </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-md-3">
+							<div class="wow fadeInUp" data-wow-delay="0.2s">
+								<div class="box text-center">
+									<a href="../admin/listFactura.xhtml"><img class="imgOpa"
+										src="../resources/img/HistorialCyan.png"
+										style="width: 100px; height: 100px;"></img>
+										<h4 class="h-bold">Listar Facturas</h4>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+		</h:form>
+
+
+
+
+	</ui:define>
+
+
+</ui:composition>

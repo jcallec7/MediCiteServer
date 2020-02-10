@@ -40,7 +40,7 @@ public class GestionAdminBean {
 	private String contrasena;
 	private String filtro;
 	private String preguntaSeguridad;
-	private int rolId = 1;
+	private int rolId = 2;
 	private Rol rol;
 	
 	private HttpSession session = Session.getSession();
@@ -310,7 +310,6 @@ public class GestionAdminBean {
 		this.setFechaNac(adminEdit.getFecha_nac());
 		this.setContrasena(adminEdit.getContrasena());
 		this.setPreguntaSeguridad(adminEdit.getPreguntaSeguridad());
-		//this.setRol(adminEdit.getRol());
 		
 		return "../admin/profileAdmin.xhtml";
 	}
