@@ -82,13 +82,6 @@ public class ConsultaDAO {
 		
 		q.setParameter(1, "%" + medId + "%");
 		
-		/*
-		SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy HH");
-		Time fecha2 = Time.valueOf(formater.format(fecha));
-		String aux = formater.format(fecha);
-		
-		fecha2 = Time.valueOf(aux); */
-		
 		q.setParameter(2, fecha);
 
 		List<Consulta> consultas = q.getResultList();

@@ -316,8 +316,9 @@ public class GestionConsultaBean implements Serializable {
 		
 		consulta.setUsuario(miUsuario);	
 		consulta.setEstado("Pendiente");
+		System.out.println(consulta.getMedico().getId() + consulta.getFecha());
 		
-		if(gcl.verificarDisponibilidad(consulta.getMedico().getId(), consulta.getFecha())) {
+		if(gcl.verificarDisponibilidad(consulta.getMedico().getId(), consulta.getFecha()) == true) {
 			factura = new Factura();
 			factura.setConsulta(consulta);
 			factura.setFecha(new Date());
