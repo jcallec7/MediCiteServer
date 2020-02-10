@@ -87,8 +87,8 @@ public class UsuarioDAO {
 		
 		String jpql = "SELECT a FROM Usuario a WHERE mc_usr_correo LIKE ?1 AND mc_usr_preguntaSeguridad LIKE ?2";
 		Query q = em.createQuery(jpql, Usuario.class);
-		q.setParameter(1, "%" + filtro + "%");
-		q.setParameter(2, "%" + filtro2 + "%");
+		q.setParameter(1, filtro);
+		q.setParameter(2, filtro2);
 		
 		try{
 			Usuario usuario = (Usuario) q.getSingleResult();

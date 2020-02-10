@@ -23,6 +23,7 @@ public class GestionLoginBean {
 	private String correo;
 	private String contrasena;
 	private String userName;
+	private Usuario usuario = null;
 	
 	public String getCorreo() {
 		return correo;
@@ -42,9 +43,16 @@ public class GestionLoginBean {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	public String iniciarSesion() {
 		
-		Usuario usuario=this.validarLogin();
+		usuario=this.validarLogin();
 		
 		if(usuario != null) {
 			

@@ -33,11 +33,9 @@
 				
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandButton value="Editar" action="#{gestionUsuarioBean.editarAdminUsuario(pa.id)}" class = "btn btn-primary">
+					<h:commandButton value="Editar" action="#{gestionAdminBean.editarAdmin(pa.id)}" class = "btn btn-primary">
 						<f:param name="selectedUsuarioId" value="#{pa.id}"/>
 					</h:commandButton>
-					
-					<!-- <a href="updateUsuario.xhtml?id=#{medico.id}">Editar</a>  -->
 					
 				</h:column>
 				
@@ -51,10 +49,10 @@
 			
 			</h:dataTable>
 		
-			<h:commandButton value="Ingresar Nuevo Usuario" action="createUsuario" class = "btn btn-primary">
+			<h:commandButton value="Ingresar Nuevo Usuario" action="createPaciente" class = "btn btn-primary">
 			</h:commandButton>
 			
-			<h:commandButton value="Buscar Usuario" action="readUsuario" class = "btn btn-primary">
+			<h:commandButton value="Buscar Usuario" action="readPaciente" class = "btn btn-primary">
 			</h:commandButton>
 			
 		</h:form>

@@ -46,6 +46,9 @@
 					value="¡Falta poco! Ingresa tu nueva contraseña" />
 
 				<h:form>
+				
+				<p align="center"><b><h:message for="mybutton" /></b></p>
+				
 					<h:outputLabel rendered="#{gestionUsuarioBean.recuperado == null}"
 						value="Ingrese su correo electrónico" />
 
@@ -82,10 +85,13 @@
 								rendered="#{gestionUsuarioBean.recuperado == null}"
 								value="Comprobar"
 								action="#{gestionUsuarioBean.comprobarRespuesta()}"
-								class="btn btn-primary btn-block"></h:commandButton>
+								class="btn btn-primary btn-block" id="mybutton"
+								binding="#{gestionUsuarioBean.mybutton}"></h:commandButton>
 
 						</div>
 					</div>
+
+
 
 					<div class="row">
 						<div class="col-4">

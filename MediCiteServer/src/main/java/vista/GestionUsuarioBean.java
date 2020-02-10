@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -50,6 +52,7 @@ public class GestionUsuarioBean {
 	private String filtro;
 	private Usuario editUsuario;
 	private Usuario recuperado = null;
+	private UIComponent mybutton;
 
 	@PostConstruct
 	public void init() {
@@ -268,6 +271,14 @@ public class GestionUsuarioBean {
 	}
 	
 
+	public UIComponent getMybutton() {
+		return mybutton;
+	}
+
+	public void setMybutton(UIComponent mybutton) {
+		this.mybutton = mybutton;
+	}
+
 	public String guardarUsuario() {
 
 		rol = grl.readRol(rolId);
@@ -300,38 +311,23 @@ public class GestionUsuarioBean {
 		return "../paciente/profilePaciente.xhtml";
 	}
 	
-	public String editarAdminUsuario(String id) {
-
-		this.editUsuario = gul.readUsuario(id);
-
-		this.setId(editUsuario.getId());
-		this.setNombre(editUsuario.getNombre());
-		this.setApellido(editUsuario.getApellido());
-		this.setGenero(editUsuario.getGenero());
-		this.setEspecialidad(editUsuario.getEspecialidad());
-		this.setCorreo(editUsuario.getCorreo());
-		this.setDireccion(editUsuario.getDireccion());
-		this.setTelf1(editUsuario.getTelf1());
-		this.setTelf2(editUsuario.getTelf2());
-		this.setEstatura(editUsuario.getEstatura());
-		this.setPeso(editUsuario.getPeso());
-		this.setFecha_nac(editUsuario.getFecha_nac());
-		this.setContrasena(editUsuario.getContrasena());
-		this.setPreguntaSeguridad(editUsuario.getPreguntaSeguridad());
-
-		return "/admin/updatePaciente.xhtml";
-	}
-	
 	public String comprobarRespuesta() {
 		
 		recuperado = gul.getUsuarioPorCorreo(this.getCorreo(), this.getPreguntaSeguridad().toLowerCase());
 		
 		if(recuperado != null) {
 			
-			return "alert(Datos correctos);";
+			FacesMessage message = new FacesMessage("¡Datos correctos!");
+	        FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(mybutton.getClientId(context), message);
+	        
+			return null;
 			
 		}
 		 
+		FacesMessage message = new FacesMessage("¡Pregunta o correo incorrecto!");
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(mybutton.getClientId(context), message);
 		return "recuperarContraseña";
 	}
 
@@ -363,14 +359,4 @@ public class GestionUsuarioBean {
 
 		return "../paciente/profilePaciente.xhtml";
 	}
-	
-	public String updateAdminUsuario() {
-
-		rol = grl.readRol(rolId);
-		gul.updateUsuario(id, nombre, apellido, genero, fecha_nac, correo, especialidad, contrasena, telf1, telf2,
-				direccion, peso, estatura, preguntaSeguridad.toLowerCase(), rol);
-
-		return "/admin/listPaciente.xhtml";
-	}
-
 }
