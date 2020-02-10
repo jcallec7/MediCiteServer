@@ -20,6 +20,7 @@ import modelo.Consulta;
 import negocio.GestionConsultaLocal;
 import negocio.GestionFacturaLocal;
 import negocio.GestionUsuarioLocal;
+import utils.Session;
 
 @ManagedBean
 @RequestScoped
@@ -47,6 +48,7 @@ public class GestionFacturaBean {
 	private List<Usuario> medicos;
 	private List<Usuario> usuarios;
 	private List<Factura> facturas;
+	private List<Factura> facturasUsuario;
 	private List<Consulta> consultas;
 
 	private Consulta selectedConsulta;
@@ -54,12 +56,22 @@ public class GestionFacturaBean {
 	private int minuto;
 	private Factura factura;
 	private int facturaId;
+	
+	private Usuario miUsuario;
 
 	@PostConstruct
 	public void init() {
 		listFacturas();
 		listUsuarios();
 		listMedicos();
+	}
+
+	public List<Factura> getFacturasUsuario() {
+		return facturasUsuario;
+	}
+
+	public void setFacturasUsuario(List<Factura> facturasUsuario) {
+		this.facturasUsuario = facturasUsuario;
 	}
 
 	public GestionUsuarioLocal getGul() {
@@ -257,10 +269,6 @@ public class GestionFacturaBean {
 		return "listFactura";
 	}
 
-	public List<Factura> buscarFactura() {
-		facturas = gfl.getFacturaPorId(filtro);
-		return facturas;
-	}
 
 	public void listConsultas() {
 		this.consultas = this.gcl.getConsultas();
@@ -269,6 +277,10 @@ public class GestionFacturaBean {
 
 	public void listFacturas() {
 		this.facturas = this.gfl.getFactura();
+	}
+	
+	public void listFacturasUsuario(String miUsuarioId) {
+		this.facturasUsuario = this.gfl.getFacturasPorId(miUsuarioId);
 	}
 	
 	public void listUsuarios() {
@@ -285,6 +297,20 @@ public class GestionFacturaBean {
 		factura = gfl.leerFactura(facturaId);
 		System.out.println("Factura recuperada con id: " + facturaId + ": " + factura);
 		gfl.generatePDF(factura);
+	}
+	
+	public String cargarFacturasUsuario() {
+		
+		miUsuario = (Usuario) Session.getSession().getAttribute("user");
+		listFacturasUsuario(miUsuario.getId());
+		String retorno = "";
+		if(miUsuario.getRol().getId() == 3) {
+			retorno = "/medico/listFactura";
+		} else if(miUsuario.getRol().getId() == 4 ) {
+			retorno = "/paciente/listFactura";
+		}
+		System.out.println(retorno);
+		return retorno;
 	}
 	
 }

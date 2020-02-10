@@ -102,9 +102,9 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 		return dao.getFactura();
 	}
 
-	public List<Factura> getFacturaPorId(String filtro) {
-		// TODO Auto-generated method stub
-		return dao.getFacturaXNombre(filtro);
+	public List<Factura> getFacturasPorId(String filtro) {
+		daoConsulta.getConsultas();
+		return dao.getFacturasXId(filtro);
 	}
 
 	public void generatePDF(Factura factura) {

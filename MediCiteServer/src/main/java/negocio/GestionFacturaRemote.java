@@ -17,5 +17,4 @@ public interface GestionFacturaRemote
 	public Factura leerFactura(int id);
 	public void eliminarFactura(int id);
 	public List<Factura> getFactura();
-	public List<Factura> getFacturaPorId(String filtro);
 }

@@ -2,17 +2,15 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
-     	template="blank.xhtml">
+     	template="blankMedico.xhtml">
 
 	<ui:define name="cabecera">Sección Factura</ui:define>
-
-	<ui:define name="titulo">Facturas</ui:define>
 	
 	<ui:define name="contenido">
 	
 		<h:form>
 			
-			<h:dataTable value="#{gestionFacturaBean.facturas}" var="fac" class="table table-bordered">
+			<h:dataTable value="#{gestionFacturaBean.facturasUsuario}" var="fac" class="table table-bordered">
 			
 				<h:column>
 					#{fac.id}

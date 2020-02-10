@@ -1,12 +1,15 @@
 package datos;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import modelo.Factura;
 
+import modelo.Consulta;
+import modelo.Factura;
+import negocio.GestionConsultaLocal;
 
 
 @Stateless
@@ -64,6 +67,34 @@ public class FacturaDAO {
 		return Factura;
 	}
 
+	public List<Factura> getFacturasXId(String filtro) {
+		
+		String jpql = "SELECT f FROM Factura f";
+		Query q = em.createQuery(jpql, Factura.class);
+		//q.setParameter(1, "%" + filtro + "%");
+		
+
+		List<Factura> facturas = q.getResultList();
+		
+		List<Factura> facturas2 = new ArrayList<Factura>();
+		
+		List<Consulta> consultas = new ArrayList<Consulta>();
+		
+		for(Factura f: facturas) {
+			consultas.add(f.getConsulta());
+			if(consultas.get(consultas.size() - 1).getMedico().getId().equals(filtro) || consultas.get(consultas.size() - 1).getUsuario().getId().equals(filtro)) {
+				facturas2.add(f);
+			}
+		}
+				
+		
+		//List<Factura> facturas2 = new ArrayList<Factura>();
+		
+		System.out.println("consultas recuperadas" + facturas2);
+
+		return facturas2;
+	}
+	
 
 }
 

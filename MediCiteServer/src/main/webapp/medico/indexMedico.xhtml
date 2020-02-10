@@ -51,20 +51,26 @@
 							<div class="col-sm-3 col-md-3">
 								<div class="wow fadeInUp" data-wow-delay="0.2s">
 									<div class="box text-center">
-										<input type="image"
-											src="../resources/img/CancelarRotatorCyan.png"
-											style="width: 100px; height: 100px;"></input>
-										<h4 class="h-bold">Cancelar cita</h4>
+										<h:commandLink
+										action="#{gestionFacturaBean.cargarFacturasUsuario()}"
+										class="nav-link">
+										<img class="imgOpa" src="../resources/img/HistorialCyan.png"
+											style="width: 100px; height: 100px;"></img>
+										<h4 class="h-bold">Mis Facturas</h4>
+										</h:commandLink>
 									</div>
 								</div>
 							</div>
 							<div class="col-sm-3 col-md-3">
 								<div class="wow fadeInUp" data-wow-delay="0.2s">
 									<div class="box text-center">
-										<a href="listConsultaPaciente.xhtml" class="nav-link"><img
-											class="imgOpa" src="../resources/img/HistorialCyan.png"
-											style="width: 100px; height: 100px;"></img></a>
-										<h4 class="h-bold">Historial de citas</h4>
+										<h:commandLink
+										action="#{gestionConsultaBean.cargarConsultasUsuario()}"
+										class="nav-link">
+										<img class="imgOpa" src="../resources/img/HistorialCyan.png"
+											style="width: 100px; height: 100px;"></img>
+										<h4 class="h-bold">Mis Consultas</h4>
+										</h:commandLink>
 									</div>
 								</div>
 							</div>

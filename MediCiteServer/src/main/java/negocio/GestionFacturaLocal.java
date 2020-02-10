@@ -18,7 +18,7 @@ public interface GestionFacturaLocal
 	public Factura leerFactura(int id);
 	public void eliminarFactura(int id);
 	public List<Factura> getFactura();
-	public List<Factura> getFacturaPorId(String filtro);
+	public List<Factura> getFacturasPorId(String filtro);
 	public void generatePDF(Factura factura);
 	
 }
