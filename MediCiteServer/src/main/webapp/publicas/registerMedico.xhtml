@@ -5,6 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
+	
 <h:head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +54,7 @@
 				
 				
 					<div class="input-group mb-3" style="width: 275px">
-						<h:inputText  value="#{gestionUsuarioBean.id}" class="form-control"
+						<h:inputText  value="#{gestionMedicoBean.id}" class="form-control"
 						a:placeholder="Ingrese el número de cédula" id="id"
 						required="true" requiredMessage= "Error: Debe ingresar su número de cédula"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
@@ -65,7 +66,7 @@
 						</div>
 					</div>
 					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.nombre}"
+						<h:inputText value="#{gestionMedicoBean.nombre}"
 							class="form-control" a:placeholder="Ingrese el o los nombres" 
 							required="true" requiredMessage= "Error: Debe ingresar su nombre"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
@@ -79,7 +80,7 @@
 						</div>
 					</div>
 					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.apellido}"
+						<h:inputText value="#{gestionMedicoBean.apellido}"
 							class="form-control" a:placeholder="Ingrese el o los apellidos" 
 							required="true" requiredMessage= "Error: Debe ingresar su apellido"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
@@ -92,7 +93,7 @@
 					</div>
 					
 					<div class="input-group mb-3" style="width: 460px">
-						<h:inputText value="#{gestionUsuarioBean.genero}"
+						<h:inputText value="#{gestionMedicoBean.genero}"
 							class="form-control" a:placeholder="Ingrese el género" 
 							required="true" requiredMessage= "Error: Debe ingresar su género"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
@@ -103,7 +104,7 @@
 							</div>
 						</div><br/>
 						
-						<h:inputText value="#{gestionUsuarioBean.fecha_nac}"
+						<h:inputText value="#{gestionMedicoBean.fechaNac}"
 							class="form-control" id="fecha" a:placeholder="AAAA/MM/DD" 
 							required="true" requiredMessage= "Error: Debe ingresar su fecha de nacimiento"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}" >
@@ -117,7 +118,7 @@
 					</div>
 					
 					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.direccion}"
+						<h:inputText value="#{gestionMedicoBean.direccion}"
 							class="form-control" a:placeholder="Ingrese su dirección de domicio"  
 							required="true" requiredMessage= "Error: Debe ingresar su dirección"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
@@ -133,7 +134,7 @@
 					
 						<div class="input-group mb-3" style="width: 460px" >
 							
-							<h:inputText value="#{gestionUsuarioBean.telf1}"
+							<h:inputText value="#{gestionMedicoBean.telf1}"
 							class="form-control"
 							a:placeholder="Teléfono principal"
 							required="true" requiredMessage= "Error: Debe ingresar su número de Telf"
@@ -147,7 +148,7 @@
 							
 						</div><br/>
 						
-						<h:inputText value="#{gestionUsuarioBean.telf2}"
+						<h:inputText value="#{gestionMedicoBean.telf2}"
 							class="form-control" a:placeholder="Teléfono opcional"  
 							required="true" requiredMessage= "Error: Debe ingresar otro número de Telf"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
@@ -160,7 +161,7 @@
 					</div>
 					
 					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.especialidad}"
+						<h:inputText value="#{gestionMedicoBean.especialidad}"
 							class="form-control" a:placeholder="Ingrese su especialidad médica"  
 							required="true" requiredMessage= "Error: Debe ingresar su especialidad"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
@@ -173,7 +174,7 @@
 					</div>
 
 					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.correo}"
+						<h:inputText value="#{gestionMedicoBean.correo}"
 							class="form-control"
 							a:placeholder="Ingrese el correo electronico" 
 							required="true" requiredMessage= "Error: Debe ingresar su email"
@@ -190,7 +191,7 @@
 					
 					
 					<div class="input-group mb-3">
-						<p:password value="#{gestionUsuarioBean.contrasena}"
+						<p:password value="#{gestionMedicoBean.contrasena}"
 							class="form-control" id="feedback" feedback="true"
 							a:placeholder="Ingrese una contrasena" 
 							required="true" requiredMessage= "Error: Debe ingresar su contraseña"
@@ -212,7 +213,7 @@
 					
 					<div class="input-group mb-3">
 
-						<h:inputText aling="center" value="#{gestionUsuarioBean.preguntaSeguridad}"
+						<h:inputText aling="center" value="#{gestionMedicoBean.preguntaSeguridad}"
 							class="form-control" a:placeholder="Pregunta de seguridad"  required="true" requiredMessage= "Error: Debe ingresar su respuesta"
             				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
 						</h:inputText>
@@ -238,7 +239,7 @@
 						</div>
 						<div class="col-4">
 							<h:commandButton class="btn btn-primary" value="Registrar"
-								action="#{gestionUsuarioBean.guardarUsuario()}" />
+								action="#{gestionMedicoBean.guardarMedico()}" />
 						</div>
 					</div>
 					
