@@ -49,9 +49,8 @@ public class AuthorizationFilter implements Filter {
 					&& (ses != null && ses.getAttribute("user") != null && ((int) ses.getAttribute("rol")) == 4))
 				chain.doFilter(request, response);
 			else
-				
+
 				resp.sendRedirect(reqt.getContextPath() + "/publicas/error404.xhtml");
-				
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
