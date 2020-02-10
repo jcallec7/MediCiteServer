@@ -111,7 +111,7 @@ public class GestionFactura implements GestionFacturaLocal, GestionFacturaRemote
 		
 		try {
         	String path = new File(".").getCanonicalPath();
-        	String FILE_NAME = path + "/factura" + (dao.getFactura().size() + 1 ) + ".pdf";
+        	String FILE_NAME = path + "/factura" + (factura.getFecha().getHours()) + (factura.getFecha().getMinutes()) + (factura.getFecha().getSeconds()) + ".pdf";
         	
             PdfWriter.getInstance(documento, new FileOutputStream(new File(FILE_NAME)));
  
