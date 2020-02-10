@@ -1,66 +1,80 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:ui="http://java.sun.com/jsf/facelets"
-     xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-     xmlns:p="http://primefaces.org/ui">
-     
-<head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>MediCite | Registrarse</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../resources/plugins/fontawesome-free/css/all.min.css"/>
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="../resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../resources/dist/css/adminlte.min.css"/>
-  
-  
-  <link rel="stylesheet" href="../resources/dist/css/adminlte.min.css"/>
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
-  
-  <!-- OTROS -->
- 
- <link rel="stylesheet" href="../resources/CSS/404.css"/>
- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>MediCite | Registrarse</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="../resources/plugins/fontawesome-free/css/all.min.css" />
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+<!-- icheck bootstrap -->
+<link rel="stylesheet"
+	href="../resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+<!-- Theme style -->
+<link rel="stylesheet" href="../resources/dist/css/adminlte.min.css" />
+
+
+<link rel="stylesheet" href="../resources/dist/css/adminlte.min.css" />
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet" />
+
+<!-- OTROS -->
+
+<link rel="stylesheet" href="../resources/CSS/404.css" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
 
 	<div id="clouds">
-            <div class="cloud x1"></div>
-            <div class="cloud x1_5"></div>
-            <div class="cloud x2"></div>
-            <div class="cloud x3"></div>
-            <div class="cloud x4"></div>
-            <div class="cloud x5"></div>
-    </div>
-    
-    <div class='c'>
-      		
-            <div class='_404'>404</div>
-        	 <div class='_1'>PÁGINA</div>
-            <div class='_2'>NO ENCONTRADA</div>
-            <h5>Lo sentimos, no hemos encontrado lo que buscas</h5>
-            
-            <a class='btn' href="../paciente/indexPaciente.xhtml">REGRESAR</a>
-            <img class="fotito" style="width:300px; height:375px;" src="../resources/img/Julius_Hibbert.png"/>
-            
-    </div>
+		<div class="cloud x1"></div>
+		<div class="cloud x1_5"></div>
+		<div class="cloud x2"></div>
+		<div class="cloud x3"></div>
+		<div class="cloud x4"></div>
+		<div class="cloud x5"></div>
+	</div>
 
-<script src="../resources/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../resources/dist/js/adminlte.min.js"></script>
+	<div class='c'>
+
+		<div class='_404'>404</div>
+		<div class='_1'>PÁGINA</div>
+		<div class='_2'>NO ENCONTRADA</div>
+		<h5>Lo sentimos, no hemos encontrado lo que buscas</h5>
+
+		<a class='btn' onclick="goBack()">REGRESAR</a> <img class="fotito"
+			style="width: 300px; height: 375px;"
+			src="../resources/img/Julius_Hibbert.png" />
+
+	</div>
+
+	<script src="../resources/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../resources/dist/js/adminlte.min.js"></script>
+	<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 </body>
 </html>

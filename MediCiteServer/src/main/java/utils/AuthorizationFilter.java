@@ -24,8 +24,8 @@ public class AuthorizationFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		try {
 
 			HttpServletRequest reqt = (HttpServletRequest) request;
@@ -33,20 +33,30 @@ public class AuthorizationFilter implements Filter {
 			HttpSession ses = reqt.getSession(false);
 
 			String reqURI = reqt.getRequestURI();
-			
+
 			if (reqURI.indexOf("/publicas/") >= 0
-					||(ses != null && ses.getAttribute("user") != null)
+					|| (ses != null && ses.getAttribute("user") != null && ses.getAttribute("rol") == null)
 					|| reqURI.contains("javax.faces.resource"))
+
+				chain.doFilter(request, response);
+
+			else if (reqURI.indexOf("/medico/") >= 0
+					&& (ses != null && ses.getAttribute("user") != null && ((int) ses.getAttribute("rol")) == 3))
+
+				chain.doFilter(request, response);
+
+			else if (reqURI.indexOf("/paciente/") >= 0
+					&& (ses != null && ses.getAttribute("user") != null && ((int) ses.getAttribute("rol")) == 4))
 				chain.doFilter(request, response);
 			else
-				resp.sendRedirect(reqt.getContextPath() + "/publicas/principal.xhtml");
-			
+
+				resp.sendRedirect(reqt.getContextPath() + "/publicas/error404.xhtml");
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	
 	@Override
 	public void destroy() {
 
