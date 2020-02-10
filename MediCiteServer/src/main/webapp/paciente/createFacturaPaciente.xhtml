@@ -59,7 +59,8 @@
 						<h:form id="datos-factura">
 							<b>Factura # 0000 - 000 - 00#{gestionFacturaBean.facturas.size() + 1}</b><br></br>
 							<h:outputLabel value="Nombre" /><br/>
-							<h:inputText value="#{gestionConsultaBean.factura.nombre}" id="nombre" a:placeholder="#{gestionConsultaBean.factura.nombre}" />
+							<h:inputText  value="#{gestionConsultaBean.factura.nombre}" id="nombre" a:placeholder="#{gestionConsultaBean.factura.nombre}" />
+							
 							<br/>
 							<h:outputLabel value="Cedula/Ruc" /><br/>
 							<h:inputText value="#{gestionConsultaBean.factura.cedulaRuc}" id="cedula-ruc" a:placeholder="#{gestionConsultaBean.factura.cedulaRuc}" />
@@ -83,7 +84,8 @@
 						<br/>
 						<br/>
 						<br/>
-						<h:commandButton value="Usar Datos del Paciente" action="#{gestionConsultaBean.usarDatosPaciente()}" class="btn btn-default">
+						<h:commandButton value="Usar Datos del Paciente" action="#{gestionConsultaBean.usarDatosPaciente()}" class="btn btn-success  float-right">
+						<style >.btn-success{background-color: #20c997}</style>
 						    <f:ajax execute="@this" render="datos-factura:nombre"/>
 						    <f:ajax execute="@this" render="datos-factura:cedula-ruc"/>
 						    <f:ajax execute="@this" render="datos-factura:direccion"/>
