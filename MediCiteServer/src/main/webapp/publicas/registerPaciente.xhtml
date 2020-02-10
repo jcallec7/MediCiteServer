@@ -3,8 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-<head>
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>MediCite | Registrarse</title>
@@ -26,30 +27,51 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet" />
-</head>
-<body class="hold-transition register-page">
+	
+	<style>               
+    .Bimage{background-image:url("../resources/img/www.jpg");background-repeat: no-repeat;  background-size: cover;
+    }        
+     </style>
+	
+	
+</h:head>
+<h:body class="hold-transition register-page Bimage">
+
 	<div class="register-box">
 		<div class="register-logo">
-			<a><b>Medi</b>Cite</a>
+			
 		</div>
 
-		<div class="card">
-			<div class="card-body register-card-body">
-				<p class="login-box-msg">Register a new membership</p>
-
+		<div class="card" style="width: 500px">
+			<div class="card-body register-card-body" >
 				<h:form>
-					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.id}" class="form-control"
-							a:placeholder="Ingrese el numero de cedula o RUC" />
+				<div  align="center">
+				<img src="../resources/Principal/img/dummy/logoEste.png" alt=""
+					width="190" height="80" />
+				</div>
+				
+				
+				
+					<div class="input-group mb-3" style="width: 275px">
+						<h:inputText  value="#{gestionUsuarioBean.id}" class="form-control"
+						a:placeholder="Ingrese el número de cédula" id="id"
+						required="true" requiredMessage= "Error: Debe ingresar su número de cédula"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+            			</h:inputText>
 						<div class="input-group-append">
 							<div class="input-group-text">
-								<span class="fas fa-user"></span>
+								<span class="fas fa-id-card"></span>
 							</div>
 						</div>
 					</div>
 					<div class="input-group mb-3">
 						<h:inputText value="#{gestionUsuarioBean.nombre}"
-							class="form-control" a:placeholder="Ingrese el o los nombres" />
+							class="form-control" a:placeholder="Ingrese el o los nombres" 
+							required="true" requiredMessage= "Error: Debe ingresar su nombre"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+            			</h:inputText> 
+            			<br></br>
+							
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-user"></span>
@@ -58,119 +80,175 @@
 					</div>
 					<div class="input-group mb-3">
 						<h:inputText value="#{gestionUsuarioBean.apellido}"
-							class="form-control" a:placeholder="Ingrese el o los apellidos" />
+							class="form-control" a:placeholder="Ingrese el o los apellidos" 
+							required="true" requiredMessage= "Error: Debe ingresar su apellido"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						</h:inputText>		
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-user"></span>
 							</div>
 						</div>
 					</div>
-					<div class="input-group mb-3">
+					
+					<div class="input-group mb-3" style="width: 460px">
 						<h:inputText value="#{gestionUsuarioBean.genero}"
-							class="form-control" a:placeholder="Ingrese el genero" />
+							class="form-control" a:placeholder="Ingrese el género" 
+							required="true" requiredMessage= "Error: Debe ingresar su género"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						</h:inputText>
 						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-user"></span>
+							<div class="input-group-text" style="margin-right:20px">
+								<span class="fas fa-venus-mars"></span>
 							</div>
-						</div>
-					</div>
-					<div class="input-group mb-3">
+						</div><br/>
+						
 						<h:inputText value="#{gestionUsuarioBean.fecha_nac}"
-							class="form-control" id="fecha" a:placeholder="AAAA/MM/DD">
+							class="form-control" id="fecha" a:placeholder="AAAA/MM/DD" 
+							required="true" requiredMessage= "Error: Debe ingresar su fecha de nacimiento"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}" >
 							<f:convertDateTime pattern="yyyy/MM/dd" />
 						</h:inputText>
 						<div class="input-group-append">
 							<div class="input-group-text">
-								<span class="fas fa-user"></span>
+								<span class="fas fa-birthday-cake"></span>
+							</div>
+						</div>
+					</div>					
+					
+					
+					
+						<div class="input-group mb-3" style="width: 460px" >
+							
+							<h:inputText value="#{gestionUsuarioBean.telf1}"
+							class="form-control"
+							a:placeholder="Teléfono principal"
+							required="true" requiredMessage= "Error: Debe ingresar su número de Telf"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						    </h:inputText>
+							<div class="input-group-append">
+							<div class="input-group-text"  style="margin-right:20px">
+								<span class="fas fa-mobile-alt"></span>
+							</div>
+							
+							
+						</div><br/>
+						
+						<h:inputText value="#{gestionUsuarioBean.telf2}"
+							class="form-control" a:placeholder="Teléfono opcional"  
+							required="true" requiredMessage= "Error: Debe ingresar otro número de Telf"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						</h:inputText>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-phone"></span>
 							</div>
 						</div>
 					</div>
+					
+					<div class="input-group mb-3">
+						<h:inputText value="#{gestionUsuarioBean.direccion}"
+							class="form-control" a:placeholder="Ingrese la direccion"  
+							required="true" requiredMessage= "Error: Debe ingresar su dirección de domicilio"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						</h:inputText>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-map-marker-alt"></span>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="input-group mb-3" style="width: 460px">
+							
+						<h:inputText value="#{gestionUsuarioBean.peso}"
+							class="form-control"
+							a:placeholder="Peso en kilogramos" 
+							required="true" requiredMessage= "Error: Debe ingresar su peso "
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						</h:inputText>
+						<div class="input-group-append">
+							<div class="input-group-text" style="margin-right:20px">
+								<span class="fas fa-weight"></span>
+							</div>
+						</div>
+							
+						
+						
+						<h:inputText value="#{gestionUsuarioBean.estatura}"
+							class="form-control"
+							a:placeholder="Estatura en centimetros" 
+							required="true" requiredMessage= "Error: Debe ingresar su estatura"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						</h:inputText>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-ruler-vertical"></span>
+							</div>
+						</div>
+					</div>
+						
+					
+					
+					
+				
 
 					<div class="input-group mb-3">
 						<h:inputText value="#{gestionUsuarioBean.correo}"
 							class="form-control"
-							a:placeholder="Ingrese el correo electronico" />
+							a:placeholder="Ingrese el correo electronico" 
+							required="true" requiredMessage= "Error: Debe ingresar su email"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+            			</h:inputText>	
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-at"></span>
+							</div>
+						</div>
+					</div>
+	
+					
+					
+					
+					<div class="input-group mb-3">
+						<p:password value="#{gestionUsuarioBean.contrasena}"
+							class="form-control" id="feedback" feedback="true"
+							a:placeholder="Ingrese una contrasena" 
+							required="true" requiredMessage= "Error: Debe ingresar su contraseña"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						</p:password>	
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-envelope"></span>
 							</div>
 						</div>
 					</div>
+					
+			
+					
 
-					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.contrasena}"
-							class="form-control" a:type="password"
-							a:placeholder="Ingrese la contraseña" />
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-address"></span>
-							</div>
-						</div>
+					<div align="center">
+						<h:outputLabel value="¿Cuál es el nombre de su libro favorito?"></h:outputLabel>
 					</div>
-
-					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.telf1}"
-							class="form-control"
-							a:placeholder="Ingrese el telefono principal" />
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-address"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.telf2}"
-							class="form-control" a:placeholder="Ingrese el telefono opcional" />
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.direccion}"
-							class="form-control" a:placeholder="Ingrese la direccion" />
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.peso}"
-							class="form-control"
-							a:placeholder="Ingrese el peso en kilogramos" />
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="input-group mb-3">
-						<h:inputText value="#{gestionUsuarioBean.estatura}"
-							class="form-control"
-							a:placeholder="Ingrese la estatura en centimetros" />
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
-					</div>
-					<h:outputLabel value="¿Cuál es el nombre de su libro favorito?"></h:outputLabel>
+					
 					<div class="input-group mb-3">
 
 						<h:inputText value="#{gestionUsuarioBean.preguntaSeguridad}"
-							class="form-control" a:placeholder="Pregunta de seguridad" />
+							class="form-control" a:placeholder="Pregunta de seguridad"  required="true" requiredMessage= "Error: Debe ingresar su respuesta"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						</h:inputText>
 						<div class="input-group-append">
 							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
+								<span class="fas fa-question"></span>
 							</div>
 						</div>
 					</div>
+					
+					<p:messages id="messages" showDetail="true" autoUpdate="true" />
+					
+					
 
 					<div class="row">
 						<div class="col-8">
@@ -186,24 +264,18 @@
 								action="#{gestionUsuarioBean.guardarUsuario()}" />
 						</div>
 					</div>
-				</h:form>
-
-				<div class="social-auth-links text-center">
-					<p>- OR -</p>
-					<a href="#" class="btn btn-block btn-primary"> <i
-						class="fab fa-facebook mr-2"></i> Sign up using Facebook
-					</a> <a href="#" class="btn btn-block btn-danger"> <i
-						class="fab fa-google-plus mr-2"></i> Sign up using Google+
-					</a>
+					
+					</h:form>
 				</div>
+				
 
-				<a href="login.xhtml" class="text-center">I already have a
-					membership</a>
+				<a href="login.xhtml" class="text-center">Ya estoy registrado</a>
+					
 			</div>
-			<!-- /.form-box -->
+			
 		</div>
 		<!-- /.card -->
-	</div>
+	</h:body>body>
 	<!-- /.register-box -->
 
 	<!-- jQuery -->
@@ -212,5 +284,4 @@
 	<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="../resources/dist/js/adminlte.min.js"></script>
-</body>
 </html>
