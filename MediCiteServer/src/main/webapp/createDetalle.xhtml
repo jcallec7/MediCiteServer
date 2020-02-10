@@ -21,7 +21,12 @@
 
 			<div class="form-group">
             	<h:outputLabel>Ingresar codigo</h:outputLabel>
-                <h:inputText value = "#{gestionDetalleBean.id}" class="form-control" a:placeholder="Ingrese el codigo"/>
+                <h:inputText value = "#{gestionDetalleBean.id}" class="form-control" a:placeholder="Ingrese el codigo"
+                style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+            	</h:inputText>
+            	
+            	<h:message for="concentracion" style="color:#EE4242;font-weight: 400;boxshadow:#FF5D5D">
+            	</h:message>
            	</div>
            	
            	
@@ -36,7 +41,12 @@
            	
            	<div class="form-group">
             	<h:outputLabel>Ingresar la Dosis</h:outputLabel>
-            	<h:inputText value = "#{gestionDetalleBean.nombre}" class="form-control" a:placeholder="Ingrese el nombre"/>
+            	<h:inputText value = "#{gestionDetalleBean.nombre}" class="form-control" a:placeholder="Ingrese la dosis para el medicamento seleccionado"
+            	style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+            	</h:inputText>
+            	
+            	<h:message for="nombre" style="color:#EE4242;font-weight: 400;boxshadow:#FF5D5D">
+            	</h:message>
             </div>
 			
 			<div class="card-footer">
