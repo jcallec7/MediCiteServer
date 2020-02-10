@@ -1,17 +1,19 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:ui="http://java.sun.com/jsf/facelets"
-     xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:h="http://java.sun.com/jsf/html"
-     	template="blankMedico.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:p="http://primefaces.org/ui"
+	template="blankMedico.xhtml">
 
 	<ui:define name="cabecera">Sección Factura</ui:define>
-	
+
 	<ui:define name="contenido">
-	
+
 		<h:form>
-			
-			<h:dataTable value="#{gestionFacturaBean.facturasUsuario}" var="fac" class="table table-bordered">
-			
+
+			<h:dataTable value="#{gestionFacturaBean.facturasUsuario}" var="fac"
+				class="table table-bordered">
+
 				<h:column>
 					#{fac.id}
 					<f:facet name="header">Factura ID</f:facet>
@@ -27,6 +29,10 @@
 				<h:column>
 					#{fac.consulta.medico.nombre} #{fac.consulta.medico.apellido}, #{fac.consulta.medico.especialidad}
 					<f:facet name="header">Medico/Especialidad</f:facet>
+				</h:column>
+				<h:column>
+					#{fac.consulta.estado}
+					<f:facet name="header">Estado Consulta</f:facet>
 				</h:column>
 				<h:column>
 					<h:outputText value="#{fac.subtotal}">
@@ -46,23 +52,27 @@
 					</h:outputText>
 					<f:facet name="header">Total</f:facet>
 				</h:column>
-				
+
 				<h:column>
-					<f:facet name="header">Exportar</f:facet>
-					<h:commandButton value="Generar PDF" action="#{gestionFacturaBean.generatePdf()}"  class = "btn btn-primary">
-						<f:param name="selectedConsultaId" value="#{cons.id}"/>
-					</h:commandButton>
-					
+					<f:facet name="header">Opciones</f:facet>
+
+					<p:commandButton rendered="#{fac.consulta.estado != 'Cancelada'}" value="Imprimir PDF" type="button" icon="pi pi-print"
+						style="display:block;margin-bottom: 20px">
+						<p:printer target="document" />
+					</p:commandButton>
+
+					<p:graphicImage id="document" name="C:/apps/wildfly-18.0.0.Final/bin/factura#{fac.consulta.fecha.hours}#{fac.consulta.fecha.minutes}#{fac.consulta.fecha.seconds}.pdf"/>
+
 				</h:column>
-			
+
 			</h:dataTable>
-		
-			<h:commandButton value="Crear Reporte" class = "btn btn-primary">
+
+			<h:commandButton value="Crear Reporte" class="btn btn-primary">
 			</h:commandButton>
-			
+
 		</h:form>
-	
+
 	</ui:define>
-	
+
 </ui:composition>
 

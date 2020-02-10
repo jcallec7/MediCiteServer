@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+@ManagedBean
+@RequestScoped
 @Entity
 public class Detalle implements Serializable {
 	

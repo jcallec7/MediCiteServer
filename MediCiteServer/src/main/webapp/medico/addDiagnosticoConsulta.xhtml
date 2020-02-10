@@ -3,6 +3,7 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     xmlns:p="http://primefaces.org/ui"
      	template="blankMedico.xhtml">
 
 	<ui:define name="cabecera">
@@ -26,7 +27,7 @@
 	       		
 			       		<div class="card card-info"> 
 				            <div class="card-header">
-			                	<h3 class="card-title">Medico:</h3>
+			                	<h1 style="font-size: 22px" class="card-title">Medico</h1>
 			              	</div>
 				
 			            	<div class="card-body">
@@ -46,7 +47,7 @@
 			       		<div class="card card-info">
 				            
 				            <div class="card-header">
-			                	<h3 class="card-title">Paciente:</h3>
+			                	<h1 style="font-size: 22px" class="card-title">Paciente</h1>
 			              	</div>
 				            	
 				            <div class="card-body">
@@ -65,7 +66,7 @@
 				
 				<div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Diagnostico:</h3>
+                <h1 class="card-title" style="font-size: 22px">Diagnostico</h1>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -74,13 +75,25 @@
                   <div class="form-group">
 
           			<h:outputLabel>Ingresar Tipo de Diagnóstico</h:outputLabel>
-              		<h:inputText value = "#{gestionConsultaBean.selectedConsulta.diagnostico.tipo}" class="form-control" a:placeholder="Ingrese el tipo de diagnostico"/>
+              		<h:inputText value = "#{gestionConsultaBean.selectedConsulta.diagnostico.tipo}" class="form-control"
+              		 a:placeholder="Ingrese el tipo de diagnostico" id="tipo"
+							required="true" requiredMessage= "Error: Debe ingresar el tipo de diagnóstico"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+					</h:inputText>
+					<h:message for="tipo" style="color:#E13D3D;font-weight: 400;boxshadow:#FF5D5D" />
+					
+					
        
                   </div>
                     <!-- textarea -->
                   <div class="form-group">
                     <h:outputLabel>Ingresar Descripcion</h:outputLabel>
-                    <h:inputTextarea value = "#{gestionConsultaBean.selectedConsulta.diagnostico.detalle}" class="form-control" rows="3" a:placeholder="Ingrese una descripcion para el diagnostico..."></h:inputTextarea>
+                    <h:inputTextarea value = "#{gestionConsultaBean.selectedConsulta.diagnostico.detalle}" class="form-control"
+                     a:placeholder="Ingrese una descripcion del diagnóstico" id="detalle"
+					required="true" requiredMessage= "Error: Debe ingresar una descripcion del diagnóstico"
+            		style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+					</h:inputTextarea>
+					<h:message for="detalle" style="color:#E13D3D;font-weight: 400;boxshadow:#FF5D5D" />
                   </div>
 
                   <div class="row">
@@ -101,17 +114,34 @@
                     
 						<h:column>
 							<f:facet name="header">Nombre</f:facet>
-							<h:inputText value="#{detalle.medicamento.nombre}" class="form-control"></h:inputText>
+							<h:inputText value="#{detalle.medicamento.nombre}" class="form-control" id="nombre"
+							a:placeholder="Ingrese el nombre del medicamento"
+							required="true" requiredMessage= "Error: Debe ingresar el nombre del medicamento"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						    </h:inputText>
+						    <h:message for="nombre" style="color:#E13D3D;font-weight: 400;boxshadow:#FF5D5D" />
+						    
+							
 						</h:column>
 					
 						<h:column>
 							<f:facet name="header">Concentracion:</f:facet>
-							<h:inputText value="#{detalle.medicamento.concentracion}" class="form-control"></h:inputText>
+							<h:inputText value="#{detalle.medicamento.concentracion}" class="form-control"
+							a:placeholder="Ingrese la concentracion del medicamento" id="concentracion"
+							required="true" requiredMessage= "Error: Debe ingresar la concentracion"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						    </h:inputText>
+							 <h:message for="concentracion" style="color:#E13D3D;font-weight: 400;boxshadow:#FF5D5D" />
 						</h:column>
 					
 						<h:column>
 							<f:facet name="header">Dosis</f:facet>
-							<h:inputText value="#{detalle.nombre}" class="form-control"></h:inputText>
+							<h:inputText value="#{detalle.nombre}" class="form-control"
+							a:placeholder="Ingrese la dosis del medicamento" id="dosis"
+							required="true" requiredMessage= "Error: Debe ingresar la dosis del medicamento"
+            				style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+						    </h:inputText>
+						     <h:message for="dosis" style="color:#E13D3D;font-weight: 400;boxshadow:#FF5D5D" />
 						</h:column>
                     
                     </h:dataTable>
@@ -122,6 +152,8 @@
 
               </div>
             </div>
+       
+					
 				
 	
 	
