@@ -56,24 +56,28 @@ public class GestionLoginBean {
 				case 1:
 					
 					session.setAttribute("user", usuario);
+					session.setAttribute("rol", rol);
 					this.userName = usuario.getNombre()+" "+usuario.getApellido();
 					return "indexAdmin";
 					
 				case 2:
 					
 					session.setAttribute("user", usuario);
+					session.setAttribute("rol", rol);
 					this.userName = usuario.getNombre()+" "+usuario.getApellido();		
 					return "indexSecretario";
 					
 				case 3:
 					
 					session.setAttribute("user", usuario);
+					session.setAttribute("rol", rol);
 					this.userName = usuario.getNombre()+" "+usuario.getApellido();
 					return "/medico/indexMedico";			
 					
 				case 4:
 				
 					session.setAttribute("user", usuario);
+					session.setAttribute("rol", rol);
 					this.userName = usuario.getNombre()+" "+usuario.getApellido();		
 					return "/paciente/indexPaciente";	
 					
