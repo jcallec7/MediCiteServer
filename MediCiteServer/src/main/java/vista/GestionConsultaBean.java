@@ -8,11 +8,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.Application;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -75,6 +77,10 @@ public class GestionConsultaBean implements Serializable {
 	private int facturaId;
 	
 	private Usuario miUsuario;
+	
+	private UIComponent mybutton;
+	
+	private Date minDate;;
 
 	@PostConstruct
 	public void init() {
@@ -87,10 +93,26 @@ public class GestionConsultaBean implements Serializable {
 		consulta = new Consulta();
 	}
 
+	public Date getMinDate() {
+		return minDate;
+	}
+
+	public void setMinDate(Date minDate) {
+		this.minDate = new Date();
+	}
+
 	public List<Consulta> getConsultasUsuario() {
 		listUsuarios();
 		listMedicos();
 		return consultasUsuario;
+	}
+
+	public UIComponent getMybutton() {
+		return mybutton;
+	}
+
+	public void setMybutton(UIComponent mybutton) {
+		this.mybutton = mybutton;
 	}
 
 	public int getFacturaId() {
@@ -292,19 +314,25 @@ public class GestionConsultaBean implements Serializable {
 		
 		miUsuario = (Usuario) Session.getSession().getAttribute("user");
 		
-		consulta.setUsuario(miUsuario);
-		
+		consulta.setUsuario(miUsuario);	
 		consulta.setEstado("Pendiente");
-		factura = new Factura();
-		factura.setConsulta(consulta);
-		factura.setFecha(new Date());
-		factura.setTotal(25);
-		factura.setSubtotal(factura.getTotal() / 1.12);
 		
+		if(gcl.verificarDisponibilidad(consulta.getMedico().getId(), consulta.getFecha())) {
+			factura = new Factura();
+			factura.setConsulta(consulta);
+			factura.setFecha(new Date());
+			factura.setTotal(25);
+			factura.setSubtotal(factura.getTotal() / 1.12);
+			return "createFacturaPaciente";
+		}
+		
+		FacesMessage message = new FacesMessage("La fecha y hora seleccionada no está disponible con este medico");
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(mybutton.getClientId(context), message);
 		//gcl.guardarConsulta(consulta.getId(), consulta.getUsuario(), consulta.getMedico(), consulta.getEstado(), consulta.getFecha(), null);
 		//consultas = gcl.getConsultas();
 		
-		return "createFacturaPaciente";
+		return null;
 
 	}
 	

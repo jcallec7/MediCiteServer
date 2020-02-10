@@ -1,5 +1,8 @@
 package datos;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -64,6 +67,29 @@ public class ConsultaDAO {
 		String jpql = "SELECT c FROM Consulta c WHERE mc_pa_id LIKE ?1 OR mc_med_id LIKE ?1";
 		Query q = em.createQuery(jpql, Consulta.class);
 		q.setParameter(1, "%" + filtro + "%");
+
+		List<Consulta> consultas = q.getResultList();
+		
+		System.out.println("consultas recuperadas" + consultas);
+
+		return consultas;
+	}
+	
+	public List<Consulta> getConsultasPorFechaYMedico(String medId, Date fecha) {
+		
+		String jpql = "SELECT c FROM Consulta c WHERE mc_med_id LIKE ?1 AND mc_cons_fecha = ?2";
+		Query q = em.createQuery(jpql, Consulta.class);
+		
+		q.setParameter(1, "%" + medId + "%");
+		
+		/*
+		SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy HH");
+		Time fecha2 = Time.valueOf(formater.format(fecha));
+		String aux = formater.format(fecha);
+		
+		fecha2 = Time.valueOf(aux); */
+		
+		q.setParameter(2, fecha);
 
 		List<Consulta> consultas = q.getResultList();
 		

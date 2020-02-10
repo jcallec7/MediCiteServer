@@ -95,5 +95,19 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		c.setDiagnostico(diagnostico);
 		dao.update(c);
 	}
+	
+	public boolean verificarDisponibilidad(String medId, Date fecha) {
+		
+		boolean ban = false;
+		//java.sql.Timestamp t = new Timestamp(Date.getTime());
+		consultas = dao.getConsultasPorFechaYMedico(medId, fecha);
+		
+		if(consultas.size() == 0) {
+			ban = true;
+		}
+		
+		return ban;
+		
+	}
 
 }
