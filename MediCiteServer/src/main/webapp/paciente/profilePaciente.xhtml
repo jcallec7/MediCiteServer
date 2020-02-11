@@ -5,8 +5,8 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui" template="blankPaciente.xhtml">
 
-	<ui:define name="cabecera">
-        	Perfil
+	<ui:define name="cabecera" style="align:center">
+        	Perfil de Usuario
    	</ui:define>
 
 	<ui:define name="contenido">
@@ -39,7 +39,7 @@
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
-							<strong><i class="fas fa-user"></i> Cedula</strong>
+							<strong><i class="fas fa-user"></i> Cédula</strong>
 
 							<p class="text-muted">#{gestionUsuarioBean.miUsuario.id}</p>
 
@@ -78,14 +78,14 @@
 								<li class="nav-item"><a class="nav-link active"
 									href="#historial" data-toggle="tab">Historial Citas</a></li>
 								<li class="nav-item"><a class="nav-link" href="#Editar"
-									data-toggle="tab">Editar</a></li>
+									data-toggle="tab">Editar Información Personal</a></li>
 							</ul>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
 							<div class="tab-content">
 								<div class="active tab-pane" id="historial">
-									<h:form>
+									<h:form style="text-align: center;">
 
 										<p:growl id="msgs" showDetail="true"
 											skipDetailIfEqualsSummary="true" />
@@ -93,19 +93,19 @@
 										<h:dataTable value="#{gestionConsultaBean.consultasUsuario}"
 											var="cons" class="table table-bordered">
 
-											<h:column>
+											<h:column style="text-align: center;" >
 					#{cons.usuario.nombre} #{cons.usuario.apellido}, #{cons.usuario.id}
 					<f:facet name="header">Paciente</f:facet>
 											</h:column>
-											<h:column>
+											<h:column style="text-align: center;">
 					#{cons.medico.nombre} #{cons.medico.apellido}, #{cons.medico.especialidad}
 					<f:facet name="header">Medico</f:facet>
 											</h:column>
-											<h:column>
+											<h:column style="text-align: center;">
 					#{cons.fecha.toString()}
 					<f:facet name="header">Fecha</f:facet>
 											</h:column>
-											<h:column>
+											<h:column style="text-align: center;">
 					#{cons.estado}
 					<f:facet name="header">Estado</f:facet>
 											</h:column>
@@ -114,7 +114,7 @@
 												<h:commandButton value="Mostrar Diagnostico"
 													rendered="#{cons.diagnostico != null}"
 													action="#{gestionConsultaBean.loadDiagnostico()}"
-													class="btn btn-primary">
+													class="btn btn-skin btn-lg" style="background-color:	#3CB371			 ">
 													<f:param name="selectedConsultaId" value="#{cons.id}" />
 												</h:commandButton>
 												<h:outputText value="El/la médico no ha ingresado todavía"
@@ -123,21 +123,21 @@
 											</h:column>
 
 											<h:column>
-												<f:facet name="header">Editar</f:facet>
+												<f:facet name="header">Reagendar </f:facet>
 												<h:commandButton value="Editar"
 													action="#{gestionConsultaBean.editConsultaById()}"
-													class="btn btn-primary">
+													class="btn btn-skin btn-lg" style="background-color:	#87CEFA	 ">
 													<f:param name="selectedConsultaId" value="#{cons.id}" />
 												</h:commandButton>
 
 											</h:column>
 
 											<h:column>
-												<f:facet name="header">Eliminar</f:facet>
+												<f:facet name="header">Cancelar</f:facet>
 												<h:commandButton value="Eliminar"
 													onclick="return confirm('¿Está seguro de eliminar esta consulta?');"
 													action="#{gestionConsultaBean.deleteConsulta()}"
-													class="btn btn-primary">
+													class="btn btn-skin btn-lg" style="background-color:	#FA8072			 ">
 													<f:param name="selectedConsultaId2" value="#{cons.id}" />
 												</h:commandButton>
 
@@ -145,7 +145,7 @@
 
 										</h:dataTable>
 
-										<h:commandButton value="Crear Nueva Consulta"
+										<h:commandButton value="Crear Nueva Cita"
 											action="createConsulta" class="btn btn-primary">
 										</h:commandButton>
 
@@ -157,7 +157,7 @@
 									<h:form>
 
 										<div class="form-group">
-											<h:outputLabel>Cedula o RUC</h:outputLabel>
+											<h:outputLabel>Cédula o RUC</h:outputLabel>
 											<h:inputText value="#{gestionUsuarioBean.id}"
 												class="form-control"
 												a:placeholder="#{gestionUsuarioBean.editUsuario.id}"
@@ -179,7 +179,7 @@
 										</div>
 
 										<div class="form-group">
-											<h:outputLabel>Genero</h:outputLabel>
+											<h:outputLabel>Género</h:outputLabel>
 											<h:inputText value="#{gestionUsuarioBean.genero}"
 												class="form-control"
 												a:placeholder="#{gestionUsuarioBean.editUsuario.genero}" />
@@ -208,7 +208,7 @@
 
 
 										<div class="form-group">
-											<h:outputLabel>Correo Eléctronico</h:outputLabel>
+											<h:outputLabel>Correo Electrónico</h:outputLabel>
 											<h:inputText value="#{gestionUsuarioBean.correo}"
 												class="form-control"
 												a:placeholder="#{gestionUsuarioBean.editUsuario.correo}" />
@@ -229,7 +229,7 @@
 										</div>
 
 										<div class="form-group">
-											<h:outputLabel>Telefono Secundario (Opcional)</h:outputLabel>
+											<h:outputLabel>Teléfono Secundario (Opcional)</h:outputLabel>
 											<h:inputText value="#{gestionUsuarioBean.telf2}"
 												class="form-control"
 												a:placeholder="#{gestionUsuarioBean.editUsuario.telf2}" />
@@ -263,7 +263,7 @@
 												a:placeholder="#{gestionUsuarioBean.editUsuario.preguntaSeguridad}" />
 										</div>
 
-										<h:commandButton class="btn btn-primary" value="Editar"
+										<h:commandButton class="btn btn-primary" value="Guardar"
 											action="#{gestionUsuarioBean.updateUsuario()}" />
 
 
