@@ -96,11 +96,11 @@ public class GestionConsulta implements GestionConsultaRemote, GestionConsultaLo
 		dao.update(c);
 	}
 	
-	public boolean verificarDisponibilidad(String medId, Date fecha) {
+	public boolean verificarDisponibilidad(String medId, String pacId, Date fecha) {
 		
 		boolean ban = false;
 		//java.sql.Timestamp t = new Timestamp(Date.getTime());
-		consultas = dao.getConsultasPorFechaYMedico(medId, fecha);
+		consultas = dao.getConsultasPorFechaYMedico(medId, pacId, fecha);
 		
 		if(consultas.size() == 0) {
 			ban = true;

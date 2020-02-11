@@ -80,7 +80,7 @@ public class GestionConsultaBean implements Serializable {
 	
 	private UIComponent mybutton;
 	
-	private Date minDate;;
+	private Date minDate;
 
 	@PostConstruct
 	public void init() {
@@ -94,7 +94,7 @@ public class GestionConsultaBean implements Serializable {
 	}
 
 	public Date getMinDate() {
-		return minDate;
+		return new Date();
 	}
 
 	public void setMinDate(Date minDate) {
@@ -318,7 +318,7 @@ public class GestionConsultaBean implements Serializable {
 		consulta.setEstado("Pendiente");
 		System.out.println(consulta.getMedico().getId() + consulta.getFecha());
 		
-		if(gcl.verificarDisponibilidad(consulta.getMedico().getId(), consulta.getFecha()) == true) {
+		if(gcl.verificarDisponibilidad(consulta.getMedico().getId(), consulta.getUsuario().getId(), consulta.getFecha()) == true) {
 			factura = new Factura();
 			factura.setConsulta(consulta);
 			factura.setFecha(new Date());
@@ -327,7 +327,7 @@ public class GestionConsultaBean implements Serializable {
 			return "createFacturaPaciente";
 		}
 		
-		FacesMessage message = new FacesMessage("La fecha y hora seleccionada no está disponible con este medico");
+		FacesMessage message = new FacesMessage("El médico no está disponible o usted ya tiene una cita en la fecha escogida, por favor revise sus citas pendientes e intente con una nueva fecha");
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(mybutton.getClientId(context), message);
 		//gcl.guardarConsulta(consulta.getId(), consulta.getUsuario(), consulta.getMedico(), consulta.getEstado(), consulta.getFecha(), null);

@@ -26,7 +26,7 @@ public interface GestionConsultaLocal {
 	
 	public List<Consulta> getConsultasPorId(String filtro);
 	
-	public boolean verificarDisponibilidad(String medId, Date fecha);
+	public boolean verificarDisponibilidad(String medId, String pacId, Date fecha);
 	
 }
 	

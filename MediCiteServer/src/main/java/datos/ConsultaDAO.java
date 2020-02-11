@@ -75,14 +75,16 @@ public class ConsultaDAO {
 		return consultas;
 	}
 	
-	public List<Consulta> getConsultasPorFechaYMedico(String medId, Date fecha) {
+	public List<Consulta> getConsultasPorFechaYMedico(String medId, String pacId, Date fecha) {
 		
-		String jpql = "SELECT c FROM Consulta c WHERE mc_med_id LIKE ?1 AND mc_cons_fecha = ?2";
+		String jpql = "SELECT c FROM Consulta c WHERE (mc_med_id LIKE ?1 AND mc_cons_fecha = ?2) OR (mc_pa_id LIKE ?3 AND mc_cons_fecha = ?2)";
 		Query q = em.createQuery(jpql, Consulta.class);
 		
 		q.setParameter(1, "%" + medId + "%");
 		
 		q.setParameter(2, fecha);
+		
+		q.setParameter(3, pacId);
 
 		List<Consulta> consultas = q.getResultList();
 		
