@@ -27,7 +27,7 @@
 	       		
 			       		<div class="card card-info"> 
 				            <div class="card-header">
-			                	<h1 style="font-size: 22px" class="card-title">Medico</h1>
+			                	<h1 style="font-size: 22px" class="card-title">Médico</h1>
 			              	</div>
 				
 			            	<div class="card-body">
@@ -90,8 +90,8 @@
                     <h:outputLabel>Ingresar Descripcion</h:outputLabel>
                     <h:inputTextarea value = "#{gestionConsultaBean.selectedConsulta.diagnostico.detalle}" class="form-control"
                      a:placeholder="Ingrese una descripcion del diagnóstico" id="detalle"
-					required="true" requiredMessage= "Error: Debe ingresar una descripcion del diagnóstico"
-            		style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
+							required="true" requiredMessage= "Error: Debe ingresar una descripcion del diagnóstico"
+		            		style="#{ component.valid ? 'border-color:;' : 'border-color:#FF5D5D;background-color: #FF5D5D;color: white'}">
 					</h:inputTextarea>
 					<h:message for="detalle" style="color:#E13D3D;font-weight: 400;boxshadow:#FF5D5D" />
                   </div>
@@ -125,7 +125,7 @@
 						</h:column>
 					
 						<h:column>
-							<f:facet name="header">Concentracion:</f:facet>
+							<f:facet name="header">Concentración</f:facet>
 							<h:inputText value="#{detalle.medicamento.concentracion}" class="form-control"
 							a:placeholder="Ingrese la concentracion del medicamento" id="concentracion"
 							required="true" requiredMessage= "Error: Debe ingresar la concentracion"
@@ -135,7 +135,7 @@
 						</h:column>
 					
 						<h:column>
-							<f:facet name="header">Dosis</f:facet>
+							<f:facet name="header">Dósis</f:facet>
 							<h:inputText value="#{detalle.nombre}" class="form-control"
 							a:placeholder="Ingrese la dosis del medicamento" id="dosis"
 							required="true" requiredMessage= "Error: Debe ingresar la dosis del medicamento"

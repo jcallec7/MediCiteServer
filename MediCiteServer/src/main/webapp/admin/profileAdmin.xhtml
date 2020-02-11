@@ -124,7 +124,7 @@
 											</h:column>
 
 											<h:column>
-												<f:facet name="header">Editar</f:facet>
+												<f:facet name="header">Reagendar</f:facet>
 												<h:commandButton value="Editar"
 													action="#{gestionConsultaBean.editConsultaById()}"
 													class="btn btn-primary">
@@ -134,7 +134,7 @@
 											</h:column>
 
 											<h:column>
-												<f:facet name="header">Eliminar</f:facet>
+												<f:facet name="header">Cancelar</f:facet>
 												<h:commandButton value="Eliminar"
 													onclick="return confirm('¿Está seguro de eliminar esta consulta?');"
 													action="#{gestionConsultaBean.deleteConsulta()}"
@@ -147,7 +147,7 @@
 										</h:dataTable>
 
 										<h:commandButton value="Crear Nueva Consulta"
-											action="createConsulta" class="btn btn-primary">
+											action="createConsulta" class = "btn btn-skin btn-lg"   >
 										</h:commandButton>
 
 									</h:form>

@@ -38,12 +38,42 @@
 		rel="stylesheet" />
 		
 	<link rel="stylesheet"
-		href="../resources/dist/css/alt/slider.css" />		
+		href="../resources/dist/css/alt/slider.css" />	
+		
+		<!-- css -->
+<link href="../resources/Principal/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="../resources/Principal/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="../resources/Principal/plugins/cubeportfolio/css/cubeportfolio.min.css" />
+<link href="../resources/Principal/css/nivo-lightbox.css"
+	rel="stylesheet" />
+<link
+	href="../resources/Principal/css/nivo-lightbox-theme/default/default.css"
+	rel="stylesheet" type="text/css" />
+<link href="../resources/Principal/css/owl.carousel.css"
+	rel="stylesheet" media="screen" />
+<link href="../resources/Principal/css/owl.theme.css" rel="stylesheet"
+	media="screen" />
+<link href="../resources/Principal/css/animate.css" rel="stylesheet" />
+<link href="../resources/Principal/css/style.css" rel="stylesheet" />
+<link href="../resources/Principal/css/popup.css" rel="stylesheet" />
+
+<!-- boxed bg -->
+<link id="bodybg" href="../resources/Principal/bodybg/bg1.css"
+	rel="stylesheet" type="text/css" />
+<!-- template skin -->
+<link id="t-colors" href="../resources/Principal/color/default.css"
+	rel="stylesheet" />
+		
+						
 </h:head>
 <body class="hold-transition sidebar-mini">
 	<!-- Site wrapper -->
 	<div class="wrapper">
-		<!-- Navbar -->
+				<!-- Navbar -->
 		<nav
 			class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
@@ -51,35 +81,36 @@
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><p>Hola Dr/a.
-						#{gestionUsuarioBean.miUsuario.nombre}, Bienvenido a MediCite!</p></li>
+						#{gestionMedicoBean.miUsuario.nombre}, Bienvenido a MediCite!</p></li>
 
 			</ul>
-
+			<div class = "btn btn-skin btn-lg" style="position:relative; margin-left:730px">
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 
-
+			
 			</ul>
 			<h:form>
 				<a><h:commandLink action="#{gestionLoginBean.cerrarSesion()}">Cerrar Sesión</h:commandLink></a>
 			</h:form>
+			</div>
 		</nav>
-		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="../resources/index3.html" class="brand-link"> <img
-				src="../resources/Principal/img/dummy/logoBlanco.png"  alt="AdminLTE Logo"/> 
+			<img
+				src="../resources/Principal/img/dummy/logoBlanco.png"
+				style="position:relative; margin: 18px 0 0 18px;"/> 
 				
-			</a>
+			
 
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Sidebar user (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="image">
-						<i class="fas fa-user-md fa-2x" style="color:#FFFFFF;"></i>
+					<div class="image"  style="position:relative; margin: 16px 0 0 16px;">
+						<i class="fas fa-user-md fa-3x" style="color:#FFFFFF;"></i>
 					</div>
 					<div class="info">
 						<a href="#{gestionMedicoBean.editarMedico(gestionMedicoBean.miUsuario.id)}" class="d-block">#{gestionUsuarioBean.miUsuario.nombre}<br></br>
@@ -98,15 +129,15 @@
 							class="nav-link"> <i class="nav-icon fas fa-th-large"></i>
 								<p>Inicio</p>
 						</a></li>
-						<li class="nav-item"><a href="../medico/li.xhtml"
+						<li class="nav-item"><a href="../medico/profileMedico.xhtml"
 							class="nav-link"> <i class="nav-icon far fa-calendar-alt"></i>
 								<p>Atender Cita</p>
 						</a></li>
-						<li class="nav-item"><a href="../calendar.html"
+						<li class="nav-item"><a href="../medico/profileMedico.xhtml"
 							class="nav-link"> <i class="nav-icon far fa-calendar-alt"></i>
 								<p>Cancelar Cita</p>
 						</a></li>
-						<li class="nav-item"><a href="../calendar.html"
+						<li class="nav-item"><a href="../medico/profileMedico.xhtml"
 							class="nav-link"> <i class="nav-icon far fa-calendar-alt"></i>
 								<p>Reagendar Cita</p>
 						</a></li>
